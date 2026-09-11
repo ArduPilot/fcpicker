@@ -194,6 +194,24 @@
   box-shadow: 0 0 0 3px rgba(39, 170, 225, 0.18);
 }
 
+.input-select {
+  width: 100%;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 8px 10px;
+  font: inherit;
+  font-size: 14px;
+  color: var(--ink);
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.12s, box-shadow 0.12s;
+}
+.input-select:focus {
+  border-color: var(--ap-blue);
+  box-shadow: 0 0 0 3px rgba(39, 170, 225, 0.18);
+}
+
 .chip-row {
   display: flex;
   flex-wrap: wrap;

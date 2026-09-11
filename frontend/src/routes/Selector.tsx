@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState, type KeyboardEvent, type ReactNode } from "react";
 import { Link } from "react-router-dom";
-import { mcuFamilyLabel, physicalSensorCount, useBoards } from "../data";
+import { manufacturerKey, mcuFamilyLabel, physicalSensorCount, useBoards } from "../data";
 import type { Board, VehicleType } from "../types";
 
 // Physical maximum number of IMU slots any ArduPilot autopilot ships with.
@@ -31,6 +31,8 @@ function imuSlotCount(b: Board): number {
 
 interface Filters {
   query: string;
+  // Canonical manufacturer key (see manufacturerKey); "ANY" = no filter.
+  manufacturer: string;
   platform: string;
   mcu: string;
   vehicles: VehicleType[];
@@ -70,6 +72,7 @@ interface Filters {
 
 const DEFAULTS: Filters = {
   query: "",
+  manufacturer: "ANY",
   platform: "ANY",
   mcu: "ANY",
   vehicles: [],
@@ -282,6 +285,7 @@ function passes(b: Board, f: Filters): boolean {
     )
       return false;
   }
+  if (f.manufacturer !== "ANY" && manufacturerKey(b.manufacturer) !== f.manufacturer) return false;
   if (f.platform !== "ANY" && b.platform !== f.platform) return false;
   if (f.mcu !== "ANY" && mcuFamilyLabel(b.mcu.family) !== f.mcu) return false;
   if (f.vehicles.length > 0) {
@@ -374,6 +378,27 @@ export default function Selector() {
     });
   };
 
+  // One entry per company: key → display label (the most common spelling in
+  // the catalog, shortest on ties) and board count.
+  const manufacturerOptions = useMemo(() => {
+    if (!boards) return [];
+    const groups = new Map<string, { spellings: Map<string, number>; count: number }>();
+    for (const b of boards) {
+      const raw = (b.manufacturer ?? "").trim();
+      if (!raw) continue;
+      const key = manufacturerKey(raw);
+      const g = groups.get(key) ?? { spellings: new Map(), count: 0 };
+      g.spellings.set(raw, (g.spellings.get(raw) ?? 0) + 1);
+      g.count += 1;
+      groups.set(key, g);
+    }
+    return Array.from(groups, ([key, g]) => {
+      const label = Array.from(g.spellings)
+        .sort((a, b) => b[1] - a[1] || a[0].length - b[0].length)[0][0];
+      return { key, label, count: g.count };
+    }).sort((a, b) => a.label.localeCompare(b.label, undefined, { sensitivity: "base" }));
+  }, [boards]);
+
   const mcuOptions = useMemo(() => {
     if (!boards) return [];
     const set = new Set<string>();
@@ -436,6 +461,21 @@ export default function Selector() {
             value={f.query}
             onChange={(e) => set("query", e.target.value)}
           />
+        </div>
+
+        <div className="sidebar-block">
+          <h3 className="block-title">Manufacturer</h3>
+          <select
+            className="input-select"
+            value={f.manufacturer}
+            onChange={(e) => set("manufacturer", e.target.value)}
+            aria-label="Manufacturer"
+          >
+            <option value="ANY">Any manufacturer</option>
+            {manufacturerOptions.map((m) => (
+              <option key={m.key} value={m.key}>{m.label} ({m.count})</option>
+            ))}
+          </select>
         </div>
 
         <div className="sidebar-block">

@@ -145,3 +145,32 @@ export function mcuFamilyLabel(family: string | null): string {
   if (family.startsWith("STM32L4")) return "STM32 L4";
   return family;
 }
+
+// Manufacturer names in hwdef files are free text, so the same company
+// appears under several spellings ("Matek", "Matek Systems", "Mateksys").
+// Fold them onto one key so a filter dropdown lists each company once.
+const MANUFACTURER_ALIASES: Record<string, string> = {
+  "3dr mro": "3dr",
+  "airbot systems": "airbot",
+  "cubepilot hex proficnc": "cubepilot",
+  "hex proficnc": "cubepilot",
+  "jae japan aviation electronics industry": "jae",
+  "japan aviation electronics industry jae": "jae",
+  "matek systems": "matek",
+  "mateksys": "matek",
+  "micoair tech": "micoair",
+  "mrobotics": "mro",
+  "openpilot open source hardware sold by hobbyking and others": "openpilot",
+  "tbs team blacksheep": "team blacksheep",
+  "team black sheep": "team blacksheep",
+  "team blacksheep tbs": "team blacksheep",
+  "vololand co ltd": "vololand",
+};
+
+export function manufacturerKey(raw: string | null | undefined): string {
+  const k = (raw ?? "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
+  return MANUFACTURER_ALIASES[k] ?? k;
+}

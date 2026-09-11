@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useState, type KeyboardEvent, type ReactNode } from "react";
 import { Link } from "react-router-dom";
+import Slider from "rc-slider";
+import "rc-slider/assets/index.css";
 import { manufacturerKey, mcuFamilyLabel, physicalSensorCount, useBoards } from "../data";
 import type { Board, VehicleType } from "../types";
 
@@ -613,17 +615,17 @@ export default function Selector() {
               </p>
 
               <NumRange
-                label="Weight" unit="g"
+                label="Weight" unit="g" max={200} step={1}
                 lo={f.aiWeightMin} hi={f.aiWeightMax}
                 onChange={(lo, hi) => setF((p) => ({ ...p, aiWeightMin: lo, aiWeightMax: hi }))}
               />
               <NumRange
-                label="Size (longest side)" unit="mm"
+                label="Size (longest side)" unit="mm" max={120} step={1}
                 lo={f.aiSizeMin} hi={f.aiSizeMax}
                 onChange={(lo, hi) => setF((p) => ({ ...p, aiSizeMin: lo, aiSizeMax: hi }))}
               />
               <NumRange
-                label="Input voltage" unit="V" step={0.1}
+                label="Input voltage" unit="V" max={60} step={0.1}
                 lo={f.aiVoltMin} hi={f.aiVoltMax}
                 onChange={(lo, hi) => setF((p) => ({ ...p, aiVoltMin: lo, aiVoltMax: hi }))}
               />
@@ -1113,13 +1115,14 @@ function Stepper({
   );
 }
 
-// Two number boxes ("min" / "max") for an optional numeric bound. Blank = no
-// bound on that side. Commits on blur / Enter, like Stepper.
+// Range slider for an optional numeric bound, with min / max number boxes as
+// editable readouts. A handle parked at the slider's end means "no bound"
+// (stored as null); the boxes accept values beyond the slider's max.
 function NumRange({
-  label, unit, lo, hi, onChange, step = 1,
+  label, unit, lo, hi, onChange, max, step = 1,
 }: {
   label: string; unit: string; lo: number | null; hi: number | null;
-  step?: number; onChange: (lo: number | null, hi: number | null) => void;
+  max: number; step?: number; onChange: (lo: number | null, hi: number | null) => void;
 }) {
   const fmt = (n: number | null) => (n == null ? "" : String(n));
   const [loText, setLoText] = useState(fmt(lo));
@@ -1152,9 +1155,28 @@ function NumRange({
     }
   };
 
+  const sliderValue: [number, number] = [
+    Math.min(lo ?? 0, max),
+    Math.min(hi ?? max, max),
+  ];
+
   return (
     <div className="num-range">
       <span className="stepper-label">{label}</span>
+      <div className="range-slider">
+        <Slider
+          range={{ draggableTrack: true }}
+          allowCross={false}
+          min={0}
+          max={max}
+          step={step}
+          value={sliderValue}
+          onChange={(v) => {
+            const [a, b] = v as [number, number];
+            onChange(a <= 0 ? null : a, b >= max ? null : b);
+          }}
+        />
+      </div>
       <div className="num-range-ctrl">
         <input
           type="number" inputMode="decimal" min={0} step={step}

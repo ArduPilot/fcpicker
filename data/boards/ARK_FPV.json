@@ -43,6 +43,8 @@
     "sdcard": true,
     "sbus_out": false,
     "iomcu": false,
+    "bdshot": true,
+    "bdshot_variant": null,
     "adc_inputs": 6
   },
   "power": {
@@ -56,6 +58,13 @@
       "variant": null,
       "slot": "SPI1/CS:IMU1_CS",
       "chip_display": "IIM42653"
+    },
+    {
+      "chip": "LSM6DSV",
+      "bus": "SPI:lsm6dsv",
+      "variant": null,
+      "slot": "SPI1/CS:IMU1_CS",
+      "chip_display": "LSM6DSV"
     }
   ],
   "baros": [

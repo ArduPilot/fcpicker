@@ -122,6 +122,14 @@
       ]
     },
     {
+      "slug": "Agam_MegH7",
+      "is_autopilot": true,
+      "images": [
+        "agam-robotics_megh7-bot.png",
+        "agam-robotics_megh7-top.png"
+      ]
+    },
+    {
       "slug": "Airvolute-DCS2",
       "is_autopilot": true,
       "images": [
@@ -486,6 +494,13 @@
       ]
     },
     {
+      "slug": "FlyFishRCF405",
+      "is_autopilot": true,
+      "images": [
+        "FlyFishRCF405-pinout.jpg"
+      ]
+    },
+    {
       "slug": "FlysparkF4",
       "is_autopilot": true,
       "images": [
@@ -600,6 +615,14 @@
       "is_autopilot": true,
       "images": [
         "heewingf405.jpg"
+      ]
+    },
+    {
+      "slug": "HGLRC_H743_EVO",
+      "is_autopilot": true,
+      "images": [
+        "BOTTOM.png",
+        "TOP.png"
       ]
     },
     {
@@ -760,6 +783,18 @@
       ]
     },
     {
+      "slug": "Lectron-Pi5-H7",
+      "is_autopilot": true,
+      "images": [
+        "cm5_izo_view_conn_back.png",
+        "cm5_izo_view_conn_front.png",
+        "cm5_wiring.png",
+        "dimension.png",
+        "lectron_pi5_autopilot.png",
+        "pinouts.png"
+      ]
+    },
+    {
       "slug": "LongBowF405WING",
       "is_autopilot": true,
       "images": [
@@ -912,6 +947,14 @@
         "Morakot_bottom_Wired.jpg",
         "Morakot_top.jpg",
         "Morakot_top_Wired.jpg"
+      ]
+    },
+    {
+      "slug": "NWBLUE_PROH757",
+      "is_autopilot": true,
+      "images": [
+        "BottomNWBlue.png",
+        "TopNWBlue.png"
       ]
     },
     {
@@ -1403,6 +1446,14 @@
       ]
     },
     {
+      "slug": "TUSTIN_MACH",
+      "is_autopilot": true,
+      "images": [
+        "mach_back_real.jpg",
+        "mach_front_real.jpg"
+      ]
+    },
+    {
       "slug": "VM-L431-Periph-Pico",
       "is_autopilot": false,
       "images": [
@@ -1447,6 +1498,17 @@
       "images": [
         "AP-H743v2_BottomPort.png",
         "AP-H743v2_TopPort.png"
+      ]
+    },
+    {
+      "slug": "X-MAV-AP-H743v3",
+      "is_autopilot": true,
+      "images": [
+        "AP-H743v3_BottomPort.png",
+        "AP-H743v3_FrontView.png",
+        "AP-H743v3_TopPort.png",
+        "AP-H743v3_back_wiring_diagram.png",
+        "AP-H743v3_front_wiring_diagram.png"
       ]
     },
     {

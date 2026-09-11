@@ -50,6 +50,8 @@
     "sdcard": true,
     "sbus_out": false,
     "iomcu": false,
+    "bdshot": false,
+    "bdshot_variant": "ARKV6X-bdshot",
     "adc_inputs": 7
   },
   "power": {

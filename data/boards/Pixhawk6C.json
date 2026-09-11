@@ -45,6 +45,8 @@
     "sdcard": true,
     "sbus_out": false,
     "iomcu": true,
+    "bdshot": true,
+    "bdshot_variant": "Pixhawk6C-bdshot",
     "adc_inputs": 5
   },
   "power": {

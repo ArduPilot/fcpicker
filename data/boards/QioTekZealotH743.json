@@ -44,6 +44,8 @@
     "sdcard": true,
     "sbus_out": false,
     "iomcu": false,
+    "bdshot": false,
+    "bdshot_variant": "QioTekZealotH743-bdshot",
     "adc_inputs": 8
   },
   "power": {

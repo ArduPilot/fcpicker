@@ -1,0 +1,127 @@
+{
+  "slug": "HGLRC_H743_EVO",
+  "name": "HGLRC_H743_EVO",
+  "platform": "chibios",
+  "manufacturer": null,
+  "mcu": {
+    "family": "STM32H7xx",
+    "part": "STM32H743xx"
+  },
+  "flash_kb": 2048,
+  "io": {
+    "uart_count": 7,
+    "uart_buses": [
+      "USART1",
+      "USART2",
+      "USART3",
+      "UART4",
+      "UART5",
+      "UART7",
+      "UART8"
+    ],
+    "i2c_count": 2,
+    "i2c_buses": [
+      "I2C2",
+      "I2C1"
+    ],
+    "spi_count": 3,
+    "spi_buses": [
+      "SPI1",
+      "SPI2",
+      "SPI4"
+    ],
+    "can_count": 1,
+    "can_buses": [
+      "CAN1"
+    ],
+    "canfd": false,
+    "usb_count": 1,
+    "pwm": {
+      "fmu": 11,
+      "io": 0,
+      "total": 11
+    },
+    "ethernet": false,
+    "sdcard": true,
+    "sbus_out": false,
+    "iomcu": false,
+    "bdshot": true,
+    "bdshot_variant": null,
+    "adc_inputs": 2
+  },
+  "power": {
+    "monitor_inputs": 1,
+    "bec": []
+  },
+  "imus": [
+    {
+      "chip": "Invensensev3",
+      "bus": "SPI:icm42688",
+      "variant": null,
+      "slot": "SPI1/CS:ICM42688_CS",
+      "chip_display": "ICM42688"
+    },
+    {
+      "chip": "BMI270",
+      "bus": "SPI:bmi270",
+      "variant": null,
+      "slot": "SPI4/CS:BMI270_CS",
+      "chip_display": "BMI270"
+    }
+  ],
+  "baros": [
+    {
+      "chip": "DPS310",
+      "bus": "I2C:0:0x76",
+      "variant": null,
+      "slot": null,
+      "chip_display": null
+    }
+  ],
+  "compasses": [
+    {
+      "chip": "IST8310",
+      "bus": "I2C:ALL_EXTERNAL:0x0E",
+      "variant": null,
+      "slot": null,
+      "chip_display": null
+    },
+    {
+      "chip": "IST8310",
+      "bus": "I2C:ALL_INTERNAL:0x0F",
+      "variant": null,
+      "slot": null,
+      "chip_display": null
+    }
+  ],
+  "firmware_support": [
+    {
+      "firmware": "ardupilot",
+      "maturity": "official"
+    }
+  ],
+  "vehicles": [
+    "copter",
+    "plane",
+    "rover",
+    "sub",
+    "tracker",
+    "blimp"
+  ],
+  "docs_url": "https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_HAL_ChibiOS/hwdef/HGLRC_H743_EVO/README.md",
+  "repo_url": null,
+  "manual": {
+    "status": "not_started",
+    "form_factor": null,
+    "mounting": null,
+    "assembly": null,
+    "dimensions_mm": null,
+    "weight_g": null,
+    "connectors": [],
+    "images": [],
+    "ardupilot_repo_url": null,
+    "discontinued": false,
+    "imu_count": null,
+    "notes": null
+  }
+}

@@ -41,6 +41,8 @@
     "sdcard": true,
     "sbus_out": false,
     "iomcu": false,
+    "bdshot": false,
+    "bdshot_variant": "KakuteH7-bdshot",
     "adc_inputs": 3
   },
   "power": {

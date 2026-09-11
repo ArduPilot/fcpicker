@@ -48,6 +48,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 4
       },
       "power": {
@@ -329,6 +331,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": true,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 7
       },
       "power": {
@@ -621,6 +625,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -860,6 +866,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -1129,6 +1137,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 2
       },
       "power": {
@@ -1379,6 +1389,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 0
       },
       "power": {
@@ -1499,6 +1511,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 2
       },
       "power": {
@@ -1741,6 +1755,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 6
       },
       "power": {
@@ -2004,6 +2020,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": true,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 7
       },
       "power": {
@@ -2301,6 +2319,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 6
       },
       "power": {
@@ -2588,6 +2608,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 5
       },
       "power": {
@@ -2659,6 +2681,119 @@
       }
     },
     {
+      "slug": "Agam_MegH7",
+      "name": "Agam_MegH7",
+      "platform": "chibios",
+      "manufacturer": null,
+      "mcu": {
+        "family": "STM32H7xx",
+        "part": "STM32H743xx"
+      },
+      "flash_kb": 2048,
+      "io": {
+        "uart_count": 7,
+        "uart_buses": [
+          "USART1",
+          "USART2",
+          "USART3",
+          "UART4",
+          "USART6",
+          "UART7",
+          "UART8"
+        ],
+        "i2c_count": 3,
+        "i2c_buses": [
+          "I2C2",
+          "I2C1",
+          "I2C4"
+        ],
+        "spi_count": 3,
+        "spi_buses": [
+          "SPI2",
+          "SPI3",
+          "SPI4"
+        ],
+        "can_count": 1,
+        "can_buses": [
+          "CAN1"
+        ],
+        "canfd": false,
+        "usb_count": 2,
+        "pwm": {
+          "fmu": 9,
+          "io": 0,
+          "total": 9
+        },
+        "ethernet": false,
+        "sdcard": true,
+        "sbus_out": false,
+        "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
+        "adc_inputs": 5
+      },
+      "power": {
+        "monitor_inputs": 1,
+        "bec": []
+      },
+      "imus": [
+        {
+          "chip": "Invensensev3",
+          "bus": "SPI:icm45686",
+          "variant": null,
+          "slot": "SPI2/CS:IMU1_CS",
+          "chip_display": "ICM45686"
+        }
+      ],
+      "baros": [
+        {
+          "chip": "BMP388",
+          "bus": "I2C:0:0x76",
+          "variant": null,
+          "slot": null,
+          "chip_display": null
+        },
+        {
+          "chip": "SPL06",
+          "bus": "I2C:0:0x76",
+          "variant": null,
+          "slot": null,
+          "chip_display": null
+        }
+      ],
+      "compasses": [],
+      "firmware_support": [
+        {
+          "firmware": "ardupilot",
+          "maturity": "official"
+        }
+      ],
+      "vehicles": [
+        "copter",
+        "plane",
+        "rover",
+        "sub",
+        "tracker",
+        "blimp"
+      ],
+      "docs_url": "https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_HAL_ChibiOS/hwdef/Agam_MegH7/README.md",
+      "repo_url": null,
+      "manual": {
+        "status": "not_started",
+        "form_factor": null,
+        "mounting": null,
+        "assembly": null,
+        "dimensions_mm": null,
+        "weight_g": null,
+        "connectors": [],
+        "images": [],
+        "ardupilot_repo_url": null,
+        "discontinued": false,
+        "imu_count": null,
+        "notes": null
+      }
+    },
+    {
       "slug": "airbotf4",
       "name": "airbotf4",
       "platform": "chibios",
@@ -2696,6 +2831,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -2920,6 +3057,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 2
       },
       "power": {
@@ -3187,6 +3326,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": true,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 5
       },
       "power": {
@@ -3462,6 +3603,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 1
       },
       "power": {
@@ -3688,6 +3831,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 2
       },
       "power": {
@@ -3946,6 +4091,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 6
       },
       "power": {
@@ -4237,6 +4384,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 6
       },
       "power": {
@@ -4250,6 +4399,13 @@
           "variant": null,
           "slot": "SPI1/CS:IMU1_CS",
           "chip_display": "IIM42653"
+        },
+        {
+          "chip": "LSM6DSV",
+          "bus": "SPI:lsm6dsv",
+          "variant": null,
+          "slot": "SPI1/CS:IMU1_CS",
+          "chip_display": "LSM6DSV"
         }
       ],
       "baros": [
@@ -4504,6 +4660,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 6
       },
       "power": {
@@ -4764,6 +4922,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 4
       },
       "power": {
@@ -4880,6 +5040,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": "ARKV6X-bdshot",
         "adc_inputs": 7
       },
       "power": {
@@ -5161,6 +5323,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 7
       },
       "power": {
@@ -5440,6 +5604,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 8
       },
       "power": {
@@ -5690,6 +5856,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 4
       },
       "power": {
@@ -5945,6 +6113,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 4
       },
       "power": {
@@ -6190,6 +6360,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 0
       },
       "power": {
@@ -6311,6 +6483,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 2
       },
       "power": {
@@ -6409,6 +6583,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -6666,6 +6842,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -6902,6 +7080,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -7181,6 +7361,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -7427,6 +7609,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 0
       },
       "power": {
@@ -7526,6 +7710,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -7758,6 +7944,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -7998,6 +8186,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 0
       },
       "power": {
@@ -8113,6 +8303,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -8379,6 +8571,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -8643,6 +8837,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 4
       },
       "power": {
@@ -8899,6 +9095,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -9185,6 +9383,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 4
       },
       "power": {
@@ -9442,6 +9642,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 0
       },
       "power": {
@@ -9549,6 +9751,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -9792,6 +9996,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -10034,6 +10240,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -10269,6 +10477,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -10521,6 +10731,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 0
       },
       "power": {
@@ -10633,6 +10845,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 2
       },
       "power": {
@@ -10881,6 +11095,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -11141,6 +11357,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 2
       },
       "power": {
@@ -11371,6 +11589,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 2
       },
       "power": {
@@ -11686,6 +11906,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 6
       },
       "power": {
@@ -11813,6 +12035,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 9
       },
       "power": {
@@ -11930,6 +12154,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 2
       },
       "power": {
@@ -12152,6 +12378,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 0
       },
       "power": {
@@ -12381,6 +12609,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -12609,6 +12839,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 9
       },
       "power": {
@@ -12880,6 +13112,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 9
       },
       "power": {
@@ -13153,6 +13387,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": "CUAV-Nora-bdshot",
         "adc_inputs": 8
       },
       "power": {
@@ -13490,6 +13726,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 8
       },
       "power": {
@@ -13827,6 +14065,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 8
       },
       "power": {
@@ -14164,6 +14404,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": true,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 7
       },
       "power": {
@@ -14435,6 +14677,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": true,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 7
       },
       "power": {
@@ -14705,6 +14949,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 7
       },
       "power": {
@@ -14998,6 +15244,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 7
       },
       "power": {
@@ -15291,6 +15539,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 7
       },
       "power": {
@@ -15426,6 +15676,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 7
       },
       "power": {
@@ -15561,6 +15813,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": "CUAV-X7-bdshot",
         "adc_inputs": 8
       },
       "power": {
@@ -15870,6 +16124,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 8
       },
       "power": {
@@ -16179,6 +16435,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 8
       },
       "power": {
@@ -16487,6 +16745,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": true,
+        "bdshot": false,
+        "bdshot_variant": "CUAVv5-bdshot",
         "adc_inputs": 9
       },
       "power": {
@@ -16773,6 +17033,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": true,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 9
       },
       "power": {
@@ -17059,6 +17321,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": true,
+        "bdshot": false,
+        "bdshot_variant": "CUAVv5Nano-bdshot",
         "adc_inputs": 9
       },
       "power": {
@@ -17337,6 +17601,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": true,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 9
       },
       "power": {
@@ -17612,6 +17878,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": true,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 8
       },
       "power": {
@@ -17885,6 +18153,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": true,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 8
       },
       "power": {
@@ -18160,6 +18430,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": true,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 8
       },
       "power": {
@@ -18425,6 +18697,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 0
       },
       "power": {
@@ -18625,6 +18899,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 1
       },
       "power": {
@@ -18827,6 +19103,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": true,
+        "bdshot": false,
+        "bdshot_variant": "CubeOrange-bdshot",
         "adc_inputs": 8
       },
       "power": {
@@ -19092,6 +19370,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": true,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 8
       },
       "power": {
@@ -19357,6 +19637,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": true,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 8
       },
       "power": {
@@ -19600,6 +19882,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": true,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 8
       },
       "power": {
@@ -19865,6 +20149,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": true,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 8
       },
       "power": {
@@ -20125,6 +20411,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": true,
+        "bdshot": false,
+        "bdshot_variant": "CubeOrangePlus-bdshot",
         "adc_inputs": 8
       },
       "power": {
@@ -20395,6 +20683,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": true,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 8
       },
       "power": {
@@ -20665,6 +20955,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": true,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 8
       },
       "power": {
@@ -20935,6 +21227,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": true,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 8
       },
       "power": {
@@ -21200,6 +21494,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": true,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 8
       },
       "power": {
@@ -21414,6 +21710,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": true,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 7
       },
       "power": {
@@ -21675,6 +21973,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": true,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 7
       },
       "power": {
@@ -21909,6 +22209,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 2
       },
       "power": {
@@ -22108,6 +22410,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": true,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 6
       },
       "power": {
@@ -22385,6 +22689,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": true,
+        "bdshot": false,
+        "bdshot_variant": "CubeYellow-bdshot",
         "adc_inputs": 6
       },
       "power": {
@@ -22635,6 +22941,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": true,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 6
       },
       "power": {
@@ -22891,6 +23199,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": true,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 7
       },
       "power": {
@@ -23019,6 +23329,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -23028,6 +23340,20 @@
       "imus": [
         {
           "chip": "Invensensev3",
+          "bus": "SPI:imu1",
+          "variant": null,
+          "slot": "SPI1/CS:GYRO1_CS",
+          "chip_display": "IMU1"
+        },
+        {
+          "chip": "LSM6DSV",
+          "bus": "SPI:imu1",
+          "variant": null,
+          "slot": "SPI1/CS:GYRO1_CS",
+          "chip_display": "IMU1"
+        },
+        {
+          "chip": "BMI270",
           "bus": "SPI:imu1",
           "variant": null,
           "slot": "SPI1/CS:GYRO1_CS",
@@ -23289,6 +23615,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -23305,6 +23633,34 @@
         },
         {
           "chip": "Invensensev3",
+          "bus": "SPI:imu2",
+          "variant": null,
+          "slot": "SPI4/CS:GYRO2_CS",
+          "chip_display": "IMU2"
+        },
+        {
+          "chip": "LSM6DSV",
+          "bus": "SPI:imu1",
+          "variant": null,
+          "slot": "SPI1/CS:GYRO1_CS",
+          "chip_display": "IMU1"
+        },
+        {
+          "chip": "LSM6DSV",
+          "bus": "SPI:imu2",
+          "variant": null,
+          "slot": "SPI4/CS:GYRO2_CS",
+          "chip_display": "IMU2"
+        },
+        {
+          "chip": "BMI270",
+          "bus": "SPI:imu1",
+          "variant": null,
+          "slot": "SPI1/CS:GYRO1_CS",
+          "chip_display": "IMU1"
+        },
+        {
+          "chip": "BMI270",
           "bus": "SPI:imu2",
           "variant": null,
           "slot": "SPI4/CS:GYRO2_CS",
@@ -23544,6 +23900,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 4
       },
       "power": {
@@ -23560,6 +23918,34 @@
         },
         {
           "chip": "Invensensev3",
+          "bus": "SPI:imu2",
+          "variant": null,
+          "slot": "SPI4/CS:GYRO2_CS",
+          "chip_display": "IMU2"
+        },
+        {
+          "chip": "LSM6DSV",
+          "bus": "SPI:imu1",
+          "variant": null,
+          "slot": "SPI1/CS:GYRO1_CS",
+          "chip_display": "IMU1"
+        },
+        {
+          "chip": "LSM6DSV",
+          "bus": "SPI:imu2",
+          "variant": null,
+          "slot": "SPI4/CS:GYRO2_CS",
+          "chip_display": "IMU2"
+        },
+        {
+          "chip": "BMI270",
+          "bus": "SPI:imu1",
+          "variant": null,
+          "slot": "SPI1/CS:GYRO1_CS",
+          "chip_display": "IMU1"
+        },
+        {
+          "chip": "BMI270",
           "bus": "SPI:imu2",
           "variant": null,
           "slot": "SPI4/CS:GYRO2_CS",
@@ -23810,6 +24196,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -23826,6 +24214,34 @@
         },
         {
           "chip": "Invensensev3",
+          "bus": "SPI:imu2",
+          "variant": null,
+          "slot": "SPI4/CS:GYRO2_CS",
+          "chip_display": "IMU2"
+        },
+        {
+          "chip": "LSM6DSV",
+          "bus": "SPI:imu1",
+          "variant": null,
+          "slot": "SPI1/CS:GYRO1_CS",
+          "chip_display": "IMU1"
+        },
+        {
+          "chip": "LSM6DSV",
+          "bus": "SPI:imu2",
+          "variant": null,
+          "slot": "SPI4/CS:GYRO2_CS",
+          "chip_display": "IMU2"
+        },
+        {
+          "chip": "BMI270",
+          "bus": "SPI:imu1",
+          "variant": null,
+          "slot": "SPI1/CS:GYRO1_CS",
+          "chip_display": "IMU1"
+        },
+        {
+          "chip": "BMI270",
           "bus": "SPI:imu2",
           "variant": null,
           "slot": "SPI4/CS:GYRO2_CS",
@@ -24054,6 +24470,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 0
       },
       "power": {
@@ -24148,6 +24566,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 0
       },
       "power": {
@@ -24249,6 +24669,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -24513,6 +24935,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": true,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 5
       },
       "power": {
@@ -24794,6 +25218,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": true,
+        "bdshot": false,
+        "bdshot_variant": "Durandal-bdshot",
         "adc_inputs": 9
       },
       "power": {
@@ -25065,6 +25491,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": true,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 9
       },
       "power": {
@@ -25315,6 +25743,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 0
       },
       "power": {
@@ -25408,6 +25838,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 0
       },
       "power": {
@@ -25502,6 +25934,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 0
       },
       "power": {
@@ -25607,6 +26041,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -25848,6 +26284,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 6
       },
       "power": {
@@ -26075,6 +26513,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 6
       },
       "power": {
@@ -26321,6 +26761,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 6
       },
       "power": {
@@ -26590,6 +27032,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 1
       },
       "power": {
@@ -26654,6 +27098,107 @@
       }
     },
     {
+      "slug": "FlyFishRCF405",
+      "name": "FlyFishRCF405",
+      "platform": "chibios",
+      "manufacturer": null,
+      "mcu": {
+        "family": "STM32F4xx",
+        "part": "STM32F405xx"
+      },
+      "flash_kb": 1024,
+      "io": {
+        "uart_count": 6,
+        "uart_buses": [
+          "USART1",
+          "USART2",
+          "USART3",
+          "UART4",
+          "UART5",
+          "USART6"
+        ],
+        "i2c_count": 1,
+        "i2c_buses": [
+          "I2C1"
+        ],
+        "spi_count": 3,
+        "spi_buses": [
+          "SPI1",
+          "SPI2",
+          "SPI3"
+        ],
+        "can_count": 0,
+        "can_buses": [],
+        "canfd": false,
+        "usb_count": 1,
+        "pwm": {
+          "fmu": 9,
+          "io": 0,
+          "total": 9
+        },
+        "ethernet": false,
+        "sdcard": false,
+        "sbus_out": false,
+        "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
+        "adc_inputs": 3
+      },
+      "power": {
+        "monitor_inputs": 1,
+        "bec": []
+      },
+      "imus": [
+        {
+          "chip": "Invensensev3",
+          "bus": "SPI:icm42688",
+          "variant": null,
+          "slot": "SPI1/CS:GYRO1_CS",
+          "chip_display": "ICM42688"
+        }
+      ],
+      "baros": [
+        {
+          "chip": "DPS310",
+          "bus": "I2C:0:0x76",
+          "variant": null,
+          "slot": null,
+          "chip_display": null
+        }
+      ],
+      "compasses": [],
+      "firmware_support": [
+        {
+          "firmware": "ardupilot",
+          "maturity": "official"
+        }
+      ],
+      "vehicles": [
+        "copter",
+        "plane",
+        "rover",
+        "sub",
+        "tracker",
+        "blimp"
+      ],
+      "docs_url": "https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_HAL_ChibiOS/hwdef/FlyFishRCF405/README.md",
+      "repo_url": null,
+      "manual": {
+        "status": "not_started",
+        "form_factor": null,
+        "mounting": null,
+        "assembly": null,
+        "dimensions_mm": null,
+        "weight_g": null,
+        "connectors": [],
+        "images": [],
+        "ardupilot_repo_url": null,
+        "discontinued": false,
+        "imu_count": null,
+        "notes": null
+      }
+    },
+    {
       "slug": "FlyingMoonF407",
       "name": "FlyingMoonF407",
       "platform": "chibios",
@@ -26694,6 +27239,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 6
       },
       "power": {
@@ -26911,6 +27458,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 6
       },
       "power": {
@@ -27169,6 +27718,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 6
       },
       "power": {
@@ -27404,6 +27955,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -27660,6 +28213,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -27954,6 +28509,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -28189,6 +28746,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -28473,6 +29032,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -28783,6 +29344,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -29062,6 +29625,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 4
       },
       "power": {
@@ -29335,6 +29900,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": true,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 9
       },
       "power": {
@@ -29580,6 +30147,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -29836,6 +30405,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 2
       },
       "power": {
@@ -30101,6 +30672,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 2
       },
       "power": {
@@ -30359,6 +30932,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 2
       },
       "power": {
@@ -30631,6 +31206,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": true,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 8
       },
       "power": {
@@ -30767,6 +31344,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 5
       },
       "power": {
@@ -30993,6 +31572,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 2
       },
       "power": {
@@ -31213,6 +31794,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 2
       },
       "power": {
@@ -31444,6 +32027,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 1
       },
       "power": {
@@ -31631,6 +32216,133 @@
       }
     },
     {
+      "slug": "HGLRC_H743_EVO",
+      "name": "HGLRC_H743_EVO",
+      "platform": "chibios",
+      "manufacturer": null,
+      "mcu": {
+        "family": "STM32H7xx",
+        "part": "STM32H743xx"
+      },
+      "flash_kb": 2048,
+      "io": {
+        "uart_count": 7,
+        "uart_buses": [
+          "USART1",
+          "USART2",
+          "USART3",
+          "UART4",
+          "UART5",
+          "UART7",
+          "UART8"
+        ],
+        "i2c_count": 2,
+        "i2c_buses": [
+          "I2C2",
+          "I2C1"
+        ],
+        "spi_count": 3,
+        "spi_buses": [
+          "SPI1",
+          "SPI2",
+          "SPI4"
+        ],
+        "can_count": 1,
+        "can_buses": [
+          "CAN1"
+        ],
+        "canfd": false,
+        "usb_count": 1,
+        "pwm": {
+          "fmu": 11,
+          "io": 0,
+          "total": 11
+        },
+        "ethernet": false,
+        "sdcard": true,
+        "sbus_out": false,
+        "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
+        "adc_inputs": 2
+      },
+      "power": {
+        "monitor_inputs": 1,
+        "bec": []
+      },
+      "imus": [
+        {
+          "chip": "Invensensev3",
+          "bus": "SPI:icm42688",
+          "variant": null,
+          "slot": "SPI1/CS:ICM42688_CS",
+          "chip_display": "ICM42688"
+        },
+        {
+          "chip": "BMI270",
+          "bus": "SPI:bmi270",
+          "variant": null,
+          "slot": "SPI4/CS:BMI270_CS",
+          "chip_display": "BMI270"
+        }
+      ],
+      "baros": [
+        {
+          "chip": "DPS310",
+          "bus": "I2C:0:0x76",
+          "variant": null,
+          "slot": null,
+          "chip_display": null
+        }
+      ],
+      "compasses": [
+        {
+          "chip": "IST8310",
+          "bus": "I2C:ALL_EXTERNAL:0x0E",
+          "variant": null,
+          "slot": null,
+          "chip_display": null
+        },
+        {
+          "chip": "IST8310",
+          "bus": "I2C:ALL_INTERNAL:0x0F",
+          "variant": null,
+          "slot": null,
+          "chip_display": null
+        }
+      ],
+      "firmware_support": [
+        {
+          "firmware": "ardupilot",
+          "maturity": "official"
+        }
+      ],
+      "vehicles": [
+        "copter",
+        "plane",
+        "rover",
+        "sub",
+        "tracker",
+        "blimp"
+      ],
+      "docs_url": "https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_HAL_ChibiOS/hwdef/HGLRC_H743_EVO/README.md",
+      "repo_url": null,
+      "manual": {
+        "status": "not_started",
+        "form_factor": null,
+        "mounting": null,
+        "assembly": null,
+        "dimensions_mm": null,
+        "weight_g": null,
+        "connectors": [],
+        "images": [],
+        "ardupilot_repo_url": null,
+        "discontinued": false,
+        "imu_count": null,
+        "notes": null
+      }
+    },
+    {
       "slug": "HWH7",
       "name": "HWH7",
       "platform": "chibios",
@@ -31675,6 +32387,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 2
       },
       "power": {
@@ -31952,6 +32666,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -32223,6 +32939,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 11
       },
       "power": {
@@ -32478,6 +33196,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 12
       },
       "power": {
@@ -32756,6 +33476,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 10
       },
       "power": {
@@ -32896,6 +33618,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -33162,6 +33886,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -33390,6 +34116,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -33645,6 +34373,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 2
       },
       "power": {
@@ -33893,6 +34623,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -34147,6 +34879,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 4
       },
       "power": {
@@ -34381,6 +35115,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 7
       },
       "power": {
@@ -34642,6 +35378,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -34907,6 +35645,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 2
       },
       "power": {
@@ -35145,6 +35885,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -35401,6 +36143,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": "KakuteF7-bdshot",
         "adc_inputs": 3
       },
       "power": {
@@ -35640,6 +36384,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -35879,6 +36625,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -36139,6 +36887,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": "KakuteH7-bdshot",
         "adc_inputs": 3
       },
       "power": {
@@ -36441,6 +37191,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -36748,6 +37500,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 6
       },
       "power": {
@@ -37031,6 +37785,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -37264,6 +38020,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -37508,6 +38266,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 5
       },
       "power": {
@@ -37790,6 +38550,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -37892,6 +38654,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 2
       },
       "power": {
@@ -38111,6 +38875,145 @@
       }
     },
     {
+      "slug": "Lectron-Pi5-H7",
+      "name": "Lectron-Pi5-H7",
+      "platform": "chibios",
+      "manufacturer": null,
+      "mcu": {
+        "family": "STM32H7xx",
+        "part": "STM32H753xx"
+      },
+      "flash_kb": 2048,
+      "io": {
+        "uart_count": 7,
+        "uart_buses": [
+          "UART7",
+          "UART5",
+          "USART1",
+          "UART8",
+          "USART2",
+          "UART4",
+          "USART3"
+        ],
+        "i2c_count": 4,
+        "i2c_buses": [
+          "I2C1",
+          "I2C2",
+          "I2C3",
+          "I2C4"
+        ],
+        "spi_count": 5,
+        "spi_buses": [
+          "SPI1",
+          "SPI2",
+          "SPI3",
+          "SPI5",
+          "SPI6"
+        ],
+        "can_count": 2,
+        "can_buses": [
+          "CAN1",
+          "CAN2"
+        ],
+        "canfd": false,
+        "usb_count": 1,
+        "pwm": {
+          "fmu": 8,
+          "io": 8,
+          "total": 16
+        },
+        "ethernet": true,
+        "sdcard": true,
+        "sbus_out": false,
+        "iomcu": true,
+        "bdshot": false,
+        "bdshot_variant": null,
+        "adc_inputs": 5
+      },
+      "power": {
+        "monitor_inputs": 3,
+        "bec": []
+      },
+      "imus": [
+        {
+          "chip": "Invensensev3",
+          "bus": "SPI:icm42670_fmu",
+          "variant": null,
+          "slot": "SPI1/CS:SP1_CS1",
+          "chip_display": "ICM42670_FMU"
+        },
+        {
+          "chip": "Invensensev3",
+          "bus": "SPI:icm42670_sens",
+          "variant": null,
+          "slot": "SPI2/CS:SP2_CS1",
+          "chip_display": "ICM42670_SENS"
+        },
+        {
+          "chip": "BMI270",
+          "bus": "SPI:bmi270",
+          "variant": null,
+          "slot": "SPI3/CS:SP3_CS1",
+          "chip_display": "BMI270"
+        }
+      ],
+      "baros": [
+        {
+          "chip": "BMP388",
+          "bus": "I2C:1:0x77",
+          "variant": null,
+          "slot": null,
+          "chip_display": null
+        },
+        {
+          "chip": "BMP388",
+          "bus": "I2C:3:0x77",
+          "variant": null,
+          "slot": null,
+          "chip_display": null
+        }
+      ],
+      "compasses": [
+        {
+          "chip": "BMM350",
+          "bus": "I2C:3:0x14",
+          "variant": null,
+          "slot": null,
+          "chip_display": null
+        }
+      ],
+      "firmware_support": [
+        {
+          "firmware": "ardupilot",
+          "maturity": "official"
+        }
+      ],
+      "vehicles": [
+        "copter",
+        "plane",
+        "rover",
+        "sub",
+        "tracker",
+        "blimp"
+      ],
+      "docs_url": "https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_HAL_ChibiOS/hwdef/Lectron-Pi5-H7/README.md",
+      "repo_url": null,
+      "manual": {
+        "status": "not_started",
+        "form_factor": null,
+        "mounting": null,
+        "assembly": null,
+        "dimensions_mm": null,
+        "weight_g": null,
+        "connectors": [],
+        "images": [],
+        "ardupilot_repo_url": null,
+        "discontinued": false,
+        "imu_count": null,
+        "notes": null
+      }
+    },
+    {
       "slug": "LongBowF405WING",
       "name": "LongBowF405WING",
       "platform": "chibios",
@@ -38153,6 +39056,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 4
       },
       "power": {
@@ -38394,6 +39299,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 2
       },
       "power": {
@@ -38626,6 +39533,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -38859,6 +39768,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -39075,6 +39986,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -39339,6 +40252,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -39559,6 +40474,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -39810,6 +40727,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -40120,6 +41039,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": "MatekF405-bdshot",
         "adc_inputs": 3
       },
       "power": {
@@ -40357,6 +41278,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -40596,6 +41519,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 5
       },
       "power": {
@@ -40824,6 +41749,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -41055,6 +41982,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": "MatekF405-TE-bdshot",
         "adc_inputs": 4
       },
       "power": {
@@ -41277,6 +42206,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 4
       },
       "power": {
@@ -41501,6 +42432,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": "MatekF405-Wing-bdshot",
         "adc_inputs": 3
       },
       "power": {
@@ -41759,6 +42692,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -42022,6 +42957,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 6
       },
       "power": {
@@ -42282,6 +43219,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": "MatekF765-Wing-bdshot",
         "adc_inputs": 6
       },
       "power": {
@@ -42545,6 +43484,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 6
       },
       "power": {
@@ -42810,6 +43751,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": "MatekH743-bdshot",
         "adc_inputs": 6
       },
       "power": {
@@ -43103,6 +44046,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 6
       },
       "power": {
@@ -43392,6 +44337,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 4
       },
       "power": {
@@ -43652,6 +44599,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 4
       },
       "power": {
@@ -43907,6 +44856,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -44154,6 +45105,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 2
       },
       "power": {
@@ -44391,6 +45344,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 2
       },
       "power": {
@@ -44651,6 +45606,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 2
       },
       "power": {
@@ -44892,6 +45849,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 2
       },
       "power": {
@@ -45179,6 +46138,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 2
       },
       "power": {
@@ -45459,6 +46420,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 2
       },
       "power": {
@@ -45712,6 +46675,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 2
       },
       "power": {
@@ -46015,6 +46980,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 6
       },
       "power": {
@@ -46250,6 +47217,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 4
       },
       "power": {
@@ -46507,6 +47476,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 2
       },
       "power": {
@@ -46722,6 +47693,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 2
       },
       "power": {
@@ -47007,6 +47980,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 8
       },
       "power": {
@@ -47286,6 +48261,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 4
       },
       "power": {
@@ -47549,6 +48526,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": "mRoControlZeroH7-bdshot",
         "adc_inputs": 4
       },
       "power": {
@@ -47812,6 +48791,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 4
       },
       "power": {
@@ -48078,6 +49059,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 4
       },
       "power": {
@@ -48343,6 +49326,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 4
       },
       "power": {
@@ -48596,6 +49581,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 2
       },
       "power": {
@@ -48836,6 +49823,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": "mRoPixracerPro-bdshot",
         "adc_inputs": 4
       },
       "power": {
@@ -49080,6 +50069,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 4
       },
       "power": {
@@ -49328,6 +50319,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": true,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 9
       },
       "power": {
@@ -49610,6 +50603,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 8
       },
       "power": {
@@ -49897,6 +50892,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 8
       },
       "power": {
@@ -50242,6 +51239,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 6
       },
       "power": {
@@ -50493,6 +51492,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 0
       },
       "power": {
@@ -50615,6 +51616,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 0
       },
       "power": {
@@ -50737,6 +51740,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 0
       },
       "power": {
@@ -50831,6 +51836,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 0
       },
       "power": {
@@ -50938,6 +51945,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 1
       },
       "power": {
@@ -51144,6 +52153,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 2
       },
       "power": {
@@ -51304,6 +52315,116 @@
       }
     },
     {
+      "slug": "NWBLUE_PROH757",
+      "name": "NWBLUE_PROH757",
+      "platform": "chibios",
+      "manufacturer": null,
+      "mcu": {
+        "family": "STM32H7xx",
+        "part": "STM32H757xx"
+      },
+      "flash_kb": 2048,
+      "io": {
+        "uart_count": 6,
+        "uart_buses": [
+          "USART1",
+          "USART2",
+          "UART4",
+          "USART6",
+          "UART7",
+          "UART8"
+        ],
+        "i2c_count": 2,
+        "i2c_buses": [
+          "I2C4",
+          "I2C3"
+        ],
+        "spi_count": 1,
+        "spi_buses": [
+          "SPI3"
+        ],
+        "can_count": 1,
+        "can_buses": [
+          "CAN1"
+        ],
+        "canfd": false,
+        "usb_count": 1,
+        "pwm": {
+          "fmu": 9,
+          "io": 0,
+          "total": 9
+        },
+        "ethernet": true,
+        "sdcard": true,
+        "sbus_out": false,
+        "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
+        "adc_inputs": 5
+      },
+      "power": {
+        "monitor_inputs": 1,
+        "bec": []
+      },
+      "imus": [
+        {
+          "chip": "Invensensev3",
+          "bus": "SPI:icm45686",
+          "variant": null,
+          "slot": "SPI3/CS:IMU_CS",
+          "chip_display": "ICM45686"
+        }
+      ],
+      "baros": [
+        {
+          "chip": "DPS310",
+          "bus": "SPI:dps368",
+          "variant": null,
+          "slot": "SPI3/CS:BARO_CS",
+          "chip_display": "DPS368"
+        }
+      ],
+      "compasses": [
+        {
+          "chip": "IIS2MDC",
+          "bus": "I2C:1:0x1E",
+          "variant": null,
+          "slot": null,
+          "chip_display": null
+        }
+      ],
+      "firmware_support": [
+        {
+          "firmware": "ardupilot",
+          "maturity": "official"
+        }
+      ],
+      "vehicles": [
+        "copter",
+        "plane",
+        "rover",
+        "sub",
+        "tracker",
+        "blimp"
+      ],
+      "docs_url": "https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_HAL_ChibiOS/hwdef/NWBLUE_PROH757/README.md",
+      "repo_url": null,
+      "manual": {
+        "status": "not_started",
+        "form_factor": null,
+        "mounting": null,
+        "assembly": null,
+        "dimensions_mm": null,
+        "weight_g": null,
+        "connectors": [],
+        "images": [],
+        "ardupilot_repo_url": null,
+        "discontinued": false,
+        "imu_count": null,
+        "notes": null
+      }
+    },
+    {
       "slug": "NxtPX4v2",
       "name": "NxtPX4v2",
       "platform": "chibios",
@@ -51347,6 +52468,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 2
       },
       "power": {
@@ -51598,6 +52721,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 0
       },
       "power": {
@@ -51692,6 +52817,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 0
       },
       "power": {
@@ -51797,6 +52924,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -52007,6 +53136,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": "omnibusf4pro-bdshot",
         "adc_inputs": 3
       },
       "power": {
@@ -52250,6 +53381,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -52493,6 +53626,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -52744,6 +53879,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -52992,6 +54129,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -53261,6 +54400,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": "OmnibusNanoV6-bdshot",
         "adc_inputs": 3
       },
       "power": {
@@ -53500,6 +54641,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -53743,6 +54886,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 5
       },
       "power": {
@@ -54012,6 +55157,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -54116,6 +55263,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 2
       },
       "power": {
@@ -54356,6 +55505,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 2
       },
       "power": {
@@ -54614,6 +55765,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": true,
+        "bdshot": false,
+        "bdshot_variant": "PH4-mini-bdshot",
         "adc_inputs": 9
       },
       "power": {
@@ -54865,6 +56018,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": true,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 9
       },
       "power": {
@@ -55113,6 +56268,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 6
       },
       "power": {
@@ -55366,6 +56523,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 0
       },
       "power": {
@@ -55479,6 +56638,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": true,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 9
       },
       "power": {
@@ -55752,6 +56913,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": true,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 9
       },
       "power": {
@@ -56020,6 +57183,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 6
       },
       "power": {
@@ -56238,6 +57403,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 5
       },
       "power": {
@@ -56492,6 +57659,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": true,
+        "bdshot": false,
+        "bdshot_variant": "Pixhawk1-bdshot",
         "adc_inputs": 6
       },
       "power": {
@@ -56737,6 +57906,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": true,
+        "bdshot": false,
+        "bdshot_variant": "Pixhawk1-1M-bdshot",
         "adc_inputs": 6
       },
       "power": {
@@ -56969,6 +58140,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": true,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 6
       },
       "power": {
@@ -57201,6 +58374,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": true,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 6
       },
       "power": {
@@ -57449,6 +58624,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": true,
+        "bdshot": false,
+        "bdshot_variant": "Pixhawk4-bdshot",
         "adc_inputs": 9
       },
       "power": {
@@ -57724,6 +58901,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": true,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 9
       },
       "power": {
@@ -58001,6 +59180,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": true,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 7
       },
       "power": {
@@ -58262,6 +59443,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": true,
+        "bdshot": true,
+        "bdshot_variant": "Pixhawk6C-bdshot",
         "adc_inputs": 5
       },
       "power": {
@@ -58553,6 +59736,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": true,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 5
       },
       "power": {
@@ -58848,6 +60033,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": true,
+        "bdshot": true,
+        "bdshot_variant": "Pixhawk6X-bdshot",
         "adc_inputs": 7
       },
       "power": {
@@ -59257,6 +60444,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": true,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 7
       },
       "power": {
@@ -59653,6 +60842,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": true,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 7
       },
       "power": {
@@ -60049,6 +61240,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": true,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 7
       },
       "power": {
@@ -60382,6 +61575,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": true,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 5
       },
       "power": {
@@ -60657,6 +61852,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": true,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 5
       },
       "power": {
@@ -60925,6 +62122,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": true,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 6
       },
       "power": {
@@ -61182,6 +62381,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": true,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 5
       },
       "power": {
@@ -61450,6 +62651,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": "Pixracer-bdshot",
         "adc_inputs": 4
       },
       "power": {
@@ -61717,6 +62920,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 4
       },
       "power": {
@@ -61986,6 +63191,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": true,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 5
       },
       "power": {
@@ -62250,6 +63457,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": true,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 5
       },
       "power": {
@@ -62457,6 +63666,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 0
       },
       "power": {
@@ -62551,6 +63762,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 0
       },
       "power": {
@@ -62660,6 +63873,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 5
       },
       "power": {
@@ -62930,6 +64145,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 0
       },
       "power": {
@@ -63024,6 +64241,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 0
       },
       "power": {
@@ -63132,6 +64351,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 7
       },
       "power": {
@@ -63411,6 +64632,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 8
       },
       "power": {
@@ -63738,6 +64961,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": "QioTekZealotH743-bdshot",
         "adc_inputs": 8
       },
       "power": {
@@ -64065,6 +65290,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 8
       },
       "power": {
@@ -64391,6 +65618,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 4
       },
       "power": {
@@ -64684,6 +65913,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -64974,6 +66205,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": true,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 6
       },
       "power": {
@@ -65223,6 +66456,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -65478,6 +66713,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -65736,6 +66973,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 2
       },
       "power": {
@@ -65970,6 +67209,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": "revo-mini-bdshot",
         "adc_inputs": 4
       },
       "power": {
@@ -66200,6 +67441,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 4
       },
       "power": {
@@ -66434,6 +67677,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": "revo-mini-i2c-bdshot",
         "adc_inputs": 4
       },
       "power": {
@@ -66687,6 +67932,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 4
       },
       "power": {
@@ -66940,6 +68187,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 4
       },
       "power": {
@@ -67157,6 +68406,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 9
       },
       "power": {
@@ -67396,6 +68647,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 6
       },
       "power": {
@@ -67517,6 +68770,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 5
       },
       "power": {
@@ -67774,6 +69029,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -68056,6 +69313,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 2
       },
       "power": {
@@ -68326,6 +69585,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 1
       },
       "power": {
@@ -68540,6 +69801,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -68644,6 +69907,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 8
       },
       "power": {
@@ -68770,6 +70035,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 8
       },
       "power": {
@@ -68894,6 +70161,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": true,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 4
       },
       "power": {
@@ -69160,6 +70429,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": true,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 4
       },
       "power": {
@@ -69282,6 +70553,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 2
       },
       "power": {
@@ -69387,6 +70660,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 2
       },
       "power": {
@@ -69637,6 +70912,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 4
       },
       "power": {
@@ -69924,6 +71201,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -70183,6 +71462,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": "SkystarsH7HD-bdshot",
         "adc_inputs": 3
       },
       "power": {
@@ -70421,6 +71702,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -70659,6 +71942,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -70921,6 +72206,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 6
       },
       "power": {
@@ -71144,6 +72431,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 6
       },
       "power": {
@@ -71365,6 +72654,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 6
       },
       "power": {
@@ -71584,10 +72875,12 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": true,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 7
       },
       "power": {
-        "monitor_inputs": 2,
+        "monitor_inputs": 1,
         "bec": []
       },
       "imus": [
@@ -71853,6 +73146,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 2
       },
       "power": {
@@ -72099,6 +73394,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 2
       },
       "power": {
@@ -72339,6 +73636,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 2
       },
       "power": {
@@ -72591,6 +73890,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -72842,6 +74143,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 2
       },
       "power": {
@@ -73112,6 +74415,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -73387,6 +74692,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 4
       },
       "power": {
@@ -73623,6 +74930,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -73839,6 +75148,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -74093,6 +75404,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -74342,6 +75655,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 4
       },
       "power": {
@@ -74578,6 +75893,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -74825,6 +76142,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 2
       },
       "power": {
@@ -75103,6 +76422,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 2
       },
       "power": {
@@ -75364,6 +76685,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -75627,6 +76950,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 2
       },
       "power": {
@@ -75877,6 +77202,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": true,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 7
       },
       "power": {
@@ -76115,6 +77442,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": true,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 7
       },
       "power": {
@@ -76365,6 +77694,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": true,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 9
       },
       "power": {
@@ -76609,6 +77940,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 0
       },
       "power": {
@@ -76720,6 +78053,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 6
       },
       "power": {
@@ -76995,6 +78330,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 6
       },
       "power": {
@@ -77126,6 +78463,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 6
       },
       "power": {
@@ -77387,6 +78726,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 6
       },
       "power": {
@@ -77655,6 +78996,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 6
       },
       "power": {
@@ -77782,6 +79125,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 2
       },
       "power": {
@@ -78042,6 +79387,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": true,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 6
       },
       "power": {
@@ -78290,6 +79637,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": true,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 6
       },
       "power": {
@@ -78543,6 +79892,8 @@
         "sdcard": false,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 3
       },
       "power": {
@@ -78764,6 +80115,127 @@
       }
     },
     {
+      "slug": "TUSTIN_MACH",
+      "name": "TUSTIN_MACH",
+      "platform": "chibios",
+      "manufacturer": null,
+      "mcu": {
+        "family": "STM32H7xx",
+        "part": "STM32H743xx"
+      },
+      "flash_kb": 2048,
+      "io": {
+        "uart_count": 7,
+        "uart_buses": [
+          "USART1",
+          "USART2",
+          "USART3",
+          "UART4",
+          "UART5",
+          "USART6",
+          "UART7"
+        ],
+        "i2c_count": 2,
+        "i2c_buses": [
+          "I2C2",
+          "I2C1"
+        ],
+        "spi_count": 4,
+        "spi_buses": [
+          "SPI1",
+          "SPI2",
+          "SPI3",
+          "SPI4"
+        ],
+        "can_count": 1,
+        "can_buses": [
+          "CAN1"
+        ],
+        "canfd": false,
+        "usb_count": 1,
+        "pwm": {
+          "fmu": 8,
+          "io": 0,
+          "total": 8
+        },
+        "ethernet": false,
+        "sdcard": true,
+        "sbus_out": false,
+        "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
+        "adc_inputs": 2
+      },
+      "power": {
+        "monitor_inputs": 1,
+        "bec": []
+      },
+      "imus": [
+        {
+          "chip": "BMI088",
+          "bus": "SPI:bmi088_a",
+          "variant": null,
+          "slot": "SPI2/CS:BMI088_A_CS",
+          "chip_display": "BMI088"
+        },
+        {
+          "chip": "Invensensev3",
+          "bus": "SPI:icm45686",
+          "variant": null,
+          "slot": "SPI3/CS:ICM45686_CS",
+          "chip_display": "ICM45686"
+        }
+      ],
+      "baros": [
+        {
+          "chip": "ICP201XX",
+          "bus": "I2C:0:0x63",
+          "variant": null,
+          "slot": null,
+          "chip_display": null
+        }
+      ],
+      "compasses": [
+        {
+          "chip": "IST8310",
+          "bus": "I2C:ALL_INTERNAL:0x0E",
+          "variant": null,
+          "slot": null,
+          "chip_display": null
+        }
+      ],
+      "firmware_support": [
+        {
+          "firmware": "ardupilot",
+          "maturity": "official"
+        }
+      ],
+      "vehicles": [
+        "copter",
+        "plane",
+        "rover",
+        "sub",
+        "tracker",
+        "blimp"
+      ],
+      "docs_url": "https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_HAL_ChibiOS/hwdef/TUSTIN_MACH/README.md",
+      "repo_url": null,
+      "manual": {
+        "status": "not_started",
+        "form_factor": null,
+        "mounting": null,
+        "assembly": null,
+        "dimensions_mm": null,
+        "weight_g": null,
+        "connectors": [],
+        "images": [],
+        "ardupilot_repo_url": null,
+        "discontinued": false,
+        "imu_count": null,
+        "notes": null
+      }
+    },
+    {
       "slug": "uav-dev-fc-um982",
       "name": "uav-dev-fc-um982",
       "platform": "chibios",
@@ -78807,6 +80279,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 1
       },
       "power": {
@@ -79034,6 +80508,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 2
       },
       "power": {
@@ -79257,6 +80733,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 2
       },
       "power": {
@@ -79470,6 +80948,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 2
       },
       "power": {
@@ -79694,6 +81174,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 2
       },
       "power": {
@@ -79905,6 +81387,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": false,
+        "bdshot_variant": null,
         "adc_inputs": 1
       },
       "power": {
@@ -80130,6 +81614,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 7
       },
       "power": {
@@ -80394,6 +81880,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 8
       },
       "power": {
@@ -80656,6 +82144,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": true,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 2
       },
       "power": {
@@ -80942,6 +82432,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 2
       },
       "power": {
@@ -81179,6 +82671,135 @@
       }
     },
     {
+      "slug": "X-MAV-AP-H743v3",
+      "name": "X-MAV-AP-H743v3",
+      "platform": "chibios",
+      "manufacturer": null,
+      "mcu": {
+        "family": "STM32H7xx",
+        "part": "STM32H743xx"
+      },
+      "flash_kb": 2048,
+      "io": {
+        "uart_count": 8,
+        "uart_buses": [
+          "USART2",
+          "UART4",
+          "USART1",
+          "USART6",
+          "UART8",
+          "USART3",
+          "UART5",
+          "UART7"
+        ],
+        "i2c_count": 2,
+        "i2c_buses": [
+          "I2C1",
+          "I2C4"
+        ],
+        "spi_count": 3,
+        "spi_buses": [
+          "SPI1",
+          "SPI3",
+          "SPI4"
+        ],
+        "can_count": 2,
+        "can_buses": [
+          "CAN1",
+          "CAN2"
+        ],
+        "canfd": false,
+        "usb_count": 1,
+        "pwm": {
+          "fmu": 8,
+          "io": 0,
+          "total": 8
+        },
+        "ethernet": false,
+        "sdcard": true,
+        "sbus_out": false,
+        "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
+        "adc_inputs": 2
+      },
+      "power": {
+        "monitor_inputs": 1,
+        "bec": []
+      },
+      "imus": [
+        {
+          "chip": "BMI088",
+          "bus": "SPI:imu0_a",
+          "variant": null,
+          "slot": "SPI1/CS:BMI088_1_A_CS",
+          "chip_display": "IMU0"
+        },
+        {
+          "chip": "Invensensev3",
+          "bus": "SPI:imu1",
+          "variant": null,
+          "slot": "SPI4/CS:ICM45686_CS",
+          "chip_display": "IMU1"
+        }
+      ],
+      "baros": [
+        {
+          "chip": "SPL06",
+          "bus": "I2C:0:0x76",
+          "variant": null,
+          "slot": null,
+          "chip_display": null
+        }
+      ],
+      "compasses": [
+        {
+          "chip": "QMC5883P",
+          "bus": "I2C:ALL_EXTERNAL:0x2C",
+          "variant": null,
+          "slot": null,
+          "chip_display": null
+        },
+        {
+          "chip": "QMC5883P",
+          "bus": "I2C:ALL_INTERNAL:0x2C",
+          "variant": null,
+          "slot": null,
+          "chip_display": null
+        }
+      ],
+      "firmware_support": [
+        {
+          "firmware": "ardupilot",
+          "maturity": "official"
+        }
+      ],
+      "vehicles": [
+        "copter",
+        "plane",
+        "rover",
+        "sub",
+        "tracker",
+        "blimp"
+      ],
+      "docs_url": "https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_HAL_ChibiOS/hwdef/X-MAV-AP-H743v3/README.md",
+      "repo_url": null,
+      "manual": {
+        "status": "not_started",
+        "form_factor": null,
+        "mounting": null,
+        "assembly": null,
+        "dimensions_mm": null,
+        "weight_g": null,
+        "connectors": [],
+        "images": [],
+        "ardupilot_repo_url": null,
+        "discontinued": false,
+        "imu_count": null,
+        "notes": null
+      }
+    },
+    {
       "slug": "YARIV6X",
       "name": "YARIV6X",
       "platform": "chibios",
@@ -81229,6 +82850,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": true,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 7
       },
       "power": {
@@ -81488,6 +83111,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 6
       },
       "power": {
@@ -81785,6 +83410,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 7
       },
       "power": {
@@ -82083,6 +83710,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 7
       },
       "power": {
@@ -82387,6 +84016,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": false,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 9
       },
       "power": {
@@ -82690,6 +84321,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": true,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 7
       },
       "power": {
@@ -82970,6 +84603,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": true,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 7
       },
       "power": {
@@ -83133,6 +84768,8 @@
         "sdcard": true,
         "sbus_out": false,
         "iomcu": true,
+        "bdshot": true,
+        "bdshot_variant": null,
         "adc_inputs": 7
       },
       "power": {

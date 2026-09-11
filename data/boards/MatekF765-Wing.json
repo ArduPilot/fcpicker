@@ -44,6 +44,8 @@
     "sdcard": true,
     "sbus_out": false,
     "iomcu": false,
+    "bdshot": false,
+    "bdshot_variant": "MatekF765-Wing-bdshot",
     "adc_inputs": 6
   },
   "power": {

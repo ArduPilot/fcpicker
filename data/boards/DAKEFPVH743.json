@@ -46,6 +46,8 @@
     "sdcard": false,
     "sbus_out": false,
     "iomcu": false,
+    "bdshot": true,
+    "bdshot_variant": null,
     "adc_inputs": 3
   },
   "power": {
@@ -62,6 +64,34 @@
     },
     {
       "chip": "Invensensev3",
+      "bus": "SPI:imu2",
+      "variant": null,
+      "slot": "SPI4/CS:GYRO2_CS",
+      "chip_display": "IMU2"
+    },
+    {
+      "chip": "LSM6DSV",
+      "bus": "SPI:imu1",
+      "variant": null,
+      "slot": "SPI1/CS:GYRO1_CS",
+      "chip_display": "IMU1"
+    },
+    {
+      "chip": "LSM6DSV",
+      "bus": "SPI:imu2",
+      "variant": null,
+      "slot": "SPI4/CS:GYRO2_CS",
+      "chip_display": "IMU2"
+    },
+    {
+      "chip": "BMI270",
+      "bus": "SPI:imu1",
+      "variant": null,
+      "slot": "SPI1/CS:GYRO1_CS",
+      "chip_display": "IMU1"
+    },
+    {
+      "chip": "BMI270",
       "bus": "SPI:imu2",
       "variant": null,
       "slot": "SPI4/CS:GYRO2_CS",

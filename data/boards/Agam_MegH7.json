@@ -1,0 +1,113 @@
+{
+  "slug": "Agam_MegH7",
+  "name": "Agam_MegH7",
+  "platform": "chibios",
+  "manufacturer": null,
+  "mcu": {
+    "family": "STM32H7xx",
+    "part": "STM32H743xx"
+  },
+  "flash_kb": 2048,
+  "io": {
+    "uart_count": 7,
+    "uart_buses": [
+      "USART1",
+      "USART2",
+      "USART3",
+      "UART4",
+      "USART6",
+      "UART7",
+      "UART8"
+    ],
+    "i2c_count": 3,
+    "i2c_buses": [
+      "I2C2",
+      "I2C1",
+      "I2C4"
+    ],
+    "spi_count": 3,
+    "spi_buses": [
+      "SPI2",
+      "SPI3",
+      "SPI4"
+    ],
+    "can_count": 1,
+    "can_buses": [
+      "CAN1"
+    ],
+    "canfd": false,
+    "usb_count": 2,
+    "pwm": {
+      "fmu": 9,
+      "io": 0,
+      "total": 9
+    },
+    "ethernet": false,
+    "sdcard": true,
+    "sbus_out": false,
+    "iomcu": false,
+    "bdshot": false,
+    "bdshot_variant": null,
+    "adc_inputs": 5
+  },
+  "power": {
+    "monitor_inputs": 1,
+    "bec": []
+  },
+  "imus": [
+    {
+      "chip": "Invensensev3",
+      "bus": "SPI:icm45686",
+      "variant": null,
+      "slot": "SPI2/CS:IMU1_CS",
+      "chip_display": "ICM45686"
+    }
+  ],
+  "baros": [
+    {
+      "chip": "BMP388",
+      "bus": "I2C:0:0x76",
+      "variant": null,
+      "slot": null,
+      "chip_display": null
+    },
+    {
+      "chip": "SPL06",
+      "bus": "I2C:0:0x76",
+      "variant": null,
+      "slot": null,
+      "chip_display": null
+    }
+  ],
+  "compasses": [],
+  "firmware_support": [
+    {
+      "firmware": "ardupilot",
+      "maturity": "official"
+    }
+  ],
+  "vehicles": [
+    "copter",
+    "plane",
+    "rover",
+    "sub",
+    "tracker",
+    "blimp"
+  ],
+  "docs_url": "https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_HAL_ChibiOS/hwdef/Agam_MegH7/README.md",
+  "repo_url": null,
+  "manual": {
+    "status": "not_started",
+    "form_factor": null,
+    "mounting": null,
+    "assembly": null,
+    "dimensions_mm": null,
+    "weight_g": null,
+    "connectors": [],
+    "images": [],
+    "ardupilot_repo_url": null,
+    "discontinued": false,
+    "imu_count": null,
+    "notes": null
+  }
+}

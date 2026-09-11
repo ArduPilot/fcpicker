@@ -1,0 +1,139 @@
+{
+  "slug": "Lectron-Pi5-H7",
+  "name": "Lectron-Pi5-H7",
+  "platform": "chibios",
+  "manufacturer": null,
+  "mcu": {
+    "family": "STM32H7xx",
+    "part": "STM32H753xx"
+  },
+  "flash_kb": 2048,
+  "io": {
+    "uart_count": 7,
+    "uart_buses": [
+      "UART7",
+      "UART5",
+      "USART1",
+      "UART8",
+      "USART2",
+      "UART4",
+      "USART3"
+    ],
+    "i2c_count": 4,
+    "i2c_buses": [
+      "I2C1",
+      "I2C2",
+      "I2C3",
+      "I2C4"
+    ],
+    "spi_count": 5,
+    "spi_buses": [
+      "SPI1",
+      "SPI2",
+      "SPI3",
+      "SPI5",
+      "SPI6"
+    ],
+    "can_count": 2,
+    "can_buses": [
+      "CAN1",
+      "CAN2"
+    ],
+    "canfd": false,
+    "usb_count": 1,
+    "pwm": {
+      "fmu": 8,
+      "io": 8,
+      "total": 16
+    },
+    "ethernet": true,
+    "sdcard": true,
+    "sbus_out": false,
+    "iomcu": true,
+    "bdshot": false,
+    "bdshot_variant": null,
+    "adc_inputs": 5
+  },
+  "power": {
+    "monitor_inputs": 3,
+    "bec": []
+  },
+  "imus": [
+    {
+      "chip": "Invensensev3",
+      "bus": "SPI:icm42670_fmu",
+      "variant": null,
+      "slot": "SPI1/CS:SP1_CS1",
+      "chip_display": "ICM42670_FMU"
+    },
+    {
+      "chip": "Invensensev3",
+      "bus": "SPI:icm42670_sens",
+      "variant": null,
+      "slot": "SPI2/CS:SP2_CS1",
+      "chip_display": "ICM42670_SENS"
+    },
+    {
+      "chip": "BMI270",
+      "bus": "SPI:bmi270",
+      "variant": null,
+      "slot": "SPI3/CS:SP3_CS1",
+      "chip_display": "BMI270"
+    }
+  ],
+  "baros": [
+    {
+      "chip": "BMP388",
+      "bus": "I2C:1:0x77",
+      "variant": null,
+      "slot": null,
+      "chip_display": null
+    },
+    {
+      "chip": "BMP388",
+      "bus": "I2C:3:0x77",
+      "variant": null,
+      "slot": null,
+      "chip_display": null
+    }
+  ],
+  "compasses": [
+    {
+      "chip": "BMM350",
+      "bus": "I2C:3:0x14",
+      "variant": null,
+      "slot": null,
+      "chip_display": null
+    }
+  ],
+  "firmware_support": [
+    {
+      "firmware": "ardupilot",
+      "maturity": "official"
+    }
+  ],
+  "vehicles": [
+    "copter",
+    "plane",
+    "rover",
+    "sub",
+    "tracker",
+    "blimp"
+  ],
+  "docs_url": "https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_HAL_ChibiOS/hwdef/Lectron-Pi5-H7/README.md",
+  "repo_url": null,
+  "manual": {
+    "status": "not_started",
+    "form_factor": null,
+    "mounting": null,
+    "assembly": null,
+    "dimensions_mm": null,
+    "weight_g": null,
+    "connectors": [],
+    "images": [],
+    "ardupilot_repo_url": null,
+    "discontinued": false,
+    "imu_count": null,
+    "notes": null
+  }
+}

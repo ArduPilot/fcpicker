@@ -33,6 +33,10 @@ export interface BoardIO {
   sdcard: boolean;
   sbus_out: boolean;
   iomcu: boolean;
+  // Bidirectional DShot in this hwdef (BIDIR-tagged PWM pin or IOMCU flag).
+  bdshot: boolean;
+  // Slug of a sibling "<slug>-bdshot" hwdef that adds it, if one exists.
+  bdshot_variant: string | null;
   adc_inputs: number;
 }
 

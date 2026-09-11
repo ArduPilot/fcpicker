@@ -49,6 +49,7 @@ interface Filters {
   sdcard: boolean;
   sbusOut: boolean;
   iomcu: boolean;
+  bdshot: boolean;
   minFlash: number;
   includeDiscontinued: boolean;
   // Experimental — filters over the unverified, AI-gathered `ai` spec block.
@@ -89,6 +90,7 @@ const DEFAULTS: Filters = {
   sdcard: false,
   sbusOut: false,
   iomcu: false,
+  bdshot: false,
   minFlash: 0,
   includeDiscontinued: false,
   aiEnabled: false,
@@ -131,7 +133,7 @@ const VEHICLES: { id: VehicleType; label: string }[] = [
 type SortKey =
   | "slug" | "mcu" | "flash"
   | "uart" | "i2c" | "spi" | "can" | "pwm" | "usb"
-  | "imus" | "power" | "ethernet" | "sdcard" | "sbus" | "iomcu";
+  | "imus" | "power" | "ethernet" | "sdcard" | "sbus" | "iomcu" | "bdshot";
 
 interface TableColumn {
   id: string;
@@ -182,7 +184,13 @@ const TABLE_COLUMNS: TableColumn[] = [
     cell: (b) => <BoolCell on={b.io.sbus_out} /> },
   { id: "iomcu",    label: "IOMCU", sortKey: "iomcu",    align: "center",
     cell: (b) => <BoolCell on={b.io.iomcu} /> },
+  { id: "bdshot",   label: "BDShot", sortKey: "bdshot",  align: "center",
+    cell: (b) => <BdshotCell board={b} /> },
 ];
+
+// true when the board supports bidirectional DShot directly or via a sibling
+// "<slug>-bdshot" firmware target.
+const hasBdshot = (b: Board) => b.io.bdshot || b.io.bdshot_variant != null;
 const DEFAULT_COL_ORDER = TABLE_COLUMNS.map((c) => c.id);
 const COL_ORDER_KEY = "fcpicker.columnOrder.v1";
 
@@ -227,6 +235,7 @@ const CSV_COLUMNS: CsvColumn[] = [
   { id: "ethernet",   label: "Ethernet",           get: (b) => (b.io.ethernet ? "yes" : "no") },
   { id: "sdcard",     label: "microSD",            get: (b) => (b.io.sdcard ? "yes" : "no") },
   { id: "sbus_out",   label: "SBUS out",           get: (b) => (b.io.sbus_out ? "yes" : "no") },
+  { id: "bdshot",     label: "BDShot",             get: (b) => (b.io.bdshot ? "yes" : b.io.bdshot_variant ? `via ${b.io.bdshot_variant}` : "no") },
   { id: "usb",        label: "USB ports",          get: (b) => b.io.usb_count },
   { id: "power",      label: "Power inputs",       get: (b) => b.power.monitor_inputs },
   { id: "imus",       label: "IMU count",          get: (b) => imuSlotCount(b) },
@@ -303,6 +312,7 @@ function passes(b: Board, f: Filters): boolean {
   if (f.ethernet && !b.io.ethernet) return false;
   if (f.sdcard && !b.io.sdcard) return false;
   if (f.sbusOut && !b.io.sbus_out) return false;
+  if (f.bdshot && !hasBdshot(b)) return false;
   if (f.iomcu && !b.io.iomcu) return false;
   if (imuSlotCount(b) < f.imus) return false;
   if (f.canfd && !b.io.canfd) return false;
@@ -429,6 +439,7 @@ export default function Selector() {
         case "sdcard":   return ((a.io.sdcard   ? 1 : 0) - (b.io.sdcard   ? 1 : 0)) * dir;
         case "sbus":     return ((a.io.sbus_out ? 1 : 0) - (b.io.sbus_out ? 1 : 0)) * dir;
         case "iomcu":    return ((a.io.iomcu    ? 1 : 0) - (b.io.iomcu    ? 1 : 0)) * dir;
+        case "bdshot":   return ((hasBdshot(a) ? 1 : 0) - (hasBdshot(b) ? 1 : 0)) * dir;
       }
     });
     return out;
@@ -576,6 +587,11 @@ export default function Selector() {
             <input type="checkbox" checked={f.iomcu} onChange={(e) => set("iomcu", e.target.checked)} />
             <span className="toggle-mark" aria-hidden />
             <span className="toggle-label">IOMCU (16 PWM)</span>
+          </label>
+          <label className="toggle">
+            <input type="checkbox" checked={f.bdshot} onChange={(e) => set("bdshot", e.target.checked)} />
+            <span className="toggle-mark" aria-hidden />
+            <span className="toggle-label">Bidirectional DShot</span>
           </label>
         </div>
 
@@ -1010,6 +1026,19 @@ function Th({
 
 function Cell({ col, board }: { col: TableColumn; board: Board }) {
   return col.cell(board);
+}
+
+// BDShot cell: ● native, "var" when only a sibling -bdshot target has it.
+function BdshotCell({ board: b }: { board: Board }) {
+  if (b.io.bdshot) return <BoolCell on />;
+  if (b.io.bdshot_variant) {
+    return (
+      <td className="td-bool td-bool-yes">
+        <Link to={`/board/${b.io.bdshot_variant}`} className="bdshot-var" title={`Via ${b.io.bdshot_variant}`}>var</Link>
+      </td>
+    );
+  }
+  return <BoolCell on={false} />;
 }
 
 function BoolCell({ on }: { on: boolean }) {

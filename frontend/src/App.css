@@ -741,6 +741,7 @@
 }
 .td-bool-yes { color: var(--ap-blue-dark); font-weight: 600; }
 .td-bool-no  { color: var(--ink-dim); }
+.bdshot-var { font-size: 11px; text-decoration: none; border-bottom: 1px dotted currentColor; }
 
 .td-name { white-space: nowrap; }
 /* Suggested manufacturer — secondary discovery hint, not authoritative. */

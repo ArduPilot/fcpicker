@@ -139,6 +139,7 @@ export default function BoardDetail() {
           <FeatureChip on={b.io.ethernet} label="Ethernet" />
           <FeatureChip on={b.io.sdcard} label="microSD" />
           <FeatureChip on={b.io.sbus_out} label="SBUS out" />
+          <FeatureChip on={b.io.bdshot || b.io.bdshot_variant != null} label={b.io.bdshot ? "BDShot" : b.io.bdshot_variant ? `BDShot via ${b.io.bdshot_variant}` : "BDShot"} />
           <FeatureChip on={b.io.usb_count > 0} label={`USB ×${b.io.usb_count}`} />
           {b.power.monitor_inputs > 0 && <FeatureChip on label={`Power inputs ×${b.power.monitor_inputs}`} />}
           {b.io.adc_inputs > 0 && <FeatureChip on label={`ADC ×${b.io.adc_inputs}`} />}

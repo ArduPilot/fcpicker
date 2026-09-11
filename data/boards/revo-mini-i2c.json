@@ -40,6 +40,8 @@
     "sdcard": false,
     "sbus_out": false,
     "iomcu": false,
+    "bdshot": false,
+    "bdshot_variant": "revo-mini-i2c-bdshot",
     "adc_inputs": 4
   },
   "power": {

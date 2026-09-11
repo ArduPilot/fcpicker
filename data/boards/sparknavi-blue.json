@@ -43,10 +43,12 @@
     "sdcard": true,
     "sbus_out": false,
     "iomcu": true,
+    "bdshot": true,
+    "bdshot_variant": null,
     "adc_inputs": 7
   },
   "power": {
-    "monitor_inputs": 2,
+    "monitor_inputs": 1,
     "bec": []
   },
   "imus": [

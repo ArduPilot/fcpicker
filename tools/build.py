@@ -95,6 +95,8 @@ class Board(Base):
     sdcard: Mapped[bool] = mapped_column(Integer, default=0)
     sbus_out: Mapped[bool] = mapped_column(Integer, default=0)
     iomcu: Mapped[bool] = mapped_column(Integer, default=0)
+    bdshot: Mapped[bool] = mapped_column(Integer, default=0)
+    bdshot_variant: Mapped[str | None] = mapped_column(String, nullable=True)
     adc_inputs: Mapped[int] = mapped_column(Integer, default=0)
     power_inputs: Mapped[int] = mapped_column(Integer, default=0)
     vehicles_csv: Mapped[str] = mapped_column(String, default="")
@@ -175,6 +177,8 @@ class ParsedBoard:
     sdcard: bool = False
     sbus_out: bool = False
     iomcu: bool = False
+    bdshot: bool = False
+    bdshot_variant: str | None = None
     adc_inputs: int = 0
     power_inputs: int = 0
     vehicles: list[str] = None
@@ -215,6 +219,9 @@ PHY_RE = re.compile(r"^\s*define\s+BOARD_PHY_ID\b", re.MULTILINE)
 SDMMC_RE = re.compile(r"\bSDMMC\d?_(?:CK|CMD)\b")
 FATFS_RE = re.compile(r"^\s*define\s+HAL_OS_FATFS_IO\s+1\b", re.MULTILINE)
 IOMCU_RE = re.compile(r"^\s*IOMCU_UART\b|^\s*define\s+HAL_WITH_IO_MCU\w*\s+1\b", re.MULTILINE)
+# Bidirectional DShot: a PWM pin tagged BIDIR, or the IOMCU flag. Boards that
+# only get it via a sibling `<slug>-bdshot` hwdef are recorded separately.
+BDSHOT_RE = re.compile(r"\bPWM\(\d+\)[^\n]*\bBIDIR\b|^\s*define\s+HAL_WITH_IO_MCU_BIDIR_DSHOT\s+1\b", re.MULTILINE)
 # nVALID brick pins. Boards typically declare one per power input as
 # VDD_BRICK_nVALID, VDD_BRICK2_nVALID, VDD_BRICK3_nVALID, etc.
 BRICK_RE = re.compile(r"\bVDD_BRICK\d*_n?VALID\b")
@@ -498,6 +505,10 @@ def parse_board(board_dir: Path, platform: str = "chibios") -> ParsedBoard | Non
     ethernet = bool(PHY_RE.search(text))
     sdcard = bool(FATFS_RE.search(text)) or bool(SDMMC_RE.search(text))
     sbus_out = bool(SBUS_OUT_RE.search(text))
+    bdshot = bool(BDSHOT_RE.search(text))
+    # e.g. MatekF405 → MatekF405-bdshot exists as its own hwdef directory.
+    sibling = board_dir.parent / f"{slug}-bdshot"
+    bdshot_variant = sibling.name if sibling.is_dir() else None
     adc_inputs = len(set(ADC_PIN_RE.findall(text)))
     # Distinct brick indices: VDD_BRICK_nVALID, VDD_BRICK2_nVALID → 2 inputs.
     # Boards with no bricks but onboard analog battery sensing have one
@@ -539,6 +550,8 @@ def parse_board(board_dir: Path, platform: str = "chibios") -> ParsedBoard | Non
         sdcard=sdcard,
         sbus_out=sbus_out,
         iomcu=iomcu,
+        bdshot=bdshot,
+        bdshot_variant=bdshot_variant,
         adc_inputs=adc_inputs,
         power_inputs=power_inputs,
         vehicles=vehicles,
@@ -849,6 +862,8 @@ def populate_db(session: Session, parsed: list[ParsedBoard], docs_map: dict[str,
             sdcard=p.sdcard,
             sbus_out=p.sbus_out,
             iomcu=p.iomcu,
+            bdshot=p.bdshot,
+            bdshot_variant=p.bdshot_variant,
             adc_inputs=p.adc_inputs,
             power_inputs=p.power_inputs,
             vehicles_csv=",".join(p.vehicles or []),
@@ -971,6 +986,8 @@ def _board_payload(b: "Board") -> dict:
             "sdcard": bool(b.sdcard),
             "sbus_out": bool(b.sbus_out),
             "iomcu": bool(b.iomcu),
+            "bdshot": bool(b.bdshot),
+            "bdshot_variant": b.bdshot_variant,
             "adc_inputs": b.adc_inputs,
         },
         "power": {

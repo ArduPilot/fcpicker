@@ -44,6 +44,8 @@
     "sdcard": true,
     "sbus_out": false,
     "iomcu": true,
+    "bdshot": false,
+    "bdshot_variant": null,
     "adc_inputs": 8
   },
   "power": {

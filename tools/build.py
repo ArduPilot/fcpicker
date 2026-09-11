@@ -96,7 +96,8 @@ class Board(Base):
     sbus_out: Mapped[bool] = mapped_column(Integer, default=0)
     iomcu: Mapped[bool] = mapped_column(Integer, default=0)
     bdshot: Mapped[bool] = mapped_column(Integer, default=0)
-    bdshot_variant: Mapped[str | None] = mapped_column(String, nullable=True)
+    # JSON: {slug, notes, io} of the merged "<slug>-bdshot" hwdef, if any.
+    bdshot_target_json: Mapped[str | None] = mapped_column(String, nullable=True)
     adc_inputs: Mapped[int] = mapped_column(Integer, default=0)
     power_inputs: Mapped[int] = mapped_column(Integer, default=0)
     vehicles_csv: Mapped[str] = mapped_column(String, default="")
@@ -178,7 +179,8 @@ class ParsedBoard:
     sbus_out: bool = False
     iomcu: bool = False
     bdshot: bool = False
-    bdshot_variant: str | None = None
+    bdshot_target: dict | None = None
+    header_note: str | None = None
     adc_inputs: int = 0
     power_inputs: int = 0
     vehicles: list[str] = None
@@ -337,6 +339,41 @@ def _apply_undef(text: str, keyword: str) -> str:
     )
 
 
+def _apply_pin_undefs(text: str) -> str:
+    """Honor `undef A B …` for pin / define lines, as ArduPilot's hwdef.py does.
+
+    A variant hwdef (e.g. `MatekH743-bdshot`) includes its parent and then
+    `undef`s the pins it remaps before redeclaring them. hwdef.py drops every
+    earlier pin whose port (PB0) or label (TIM3_CH3) matches, and every
+    `define NAME` line. Without this the redeclared pins are counted twice —
+    MatekH743-bdshot reported 25 PWM outputs instead of 12.
+
+    The `undef` lines themselves are kept so `_apply_undef` can still see the
+    bare IMU / BARO / COMPASS keywords.
+    """
+    kept: list[str] = []
+    for line in text.splitlines():
+        toks = line.split()
+        if len(toks) >= 2 and toks[0] == "undef":
+            # `undef define FOO` appears in a few hwdefs; hwdef.py treats the
+            # stray "define" token as a no-op, so it must not match `define`
+            # lines by their first token.
+            names = set(toks[1:]) - {"define"}
+            kept = [
+                k for k in kept
+                if not (
+                    (kt := k.split())
+                    and (
+                        kt[0] in names
+                        or (len(kt) >= 2 and kt[1] in names)
+                        or (len(kt) >= 2 and kt[0] == "define" and kt[1] in names)
+                    )
+                )
+            ]
+        kept.append(line)
+    return "\n".join(kept)
+
+
 def _strip_comments(text: str) -> str:
     """Remove `#` comments from hwdef text.
 
@@ -356,6 +393,67 @@ def is_autopilot(slug: str) -> bool:
     return True
 
 
+def _header_note(path: Path) -> str | None:
+    """The leading `#` comment block of a hwdef file, as plain text.
+
+    Variant hwdefs open with a note on what they change ("RC input moves to
+    UART…"); surfaced on the board page next to the firmware-target toggle.
+    """
+    if not path.exists():
+        return None
+    lines: list[str] = []
+    for raw in path.read_text(errors="replace").splitlines():
+        s = raw.strip()
+        if not s.startswith("#"):
+            if lines or s:
+                break
+            continue
+        lines.append(s.lstrip("#").strip())
+    note = " ".join(l for l in lines if l).strip()
+    return note or None
+
+
+def _io_from_parsed(p: "ParsedBoard") -> dict:
+    """io block for a ParsedBoard — same shape as _board_payload()["io"]."""
+    return {
+        "uart_count": len(p.uart_buses or []),
+        "uart_buses": list(p.uart_buses or []),
+        "i2c_count": len(p.i2c_buses or []),
+        "i2c_buses": list(p.i2c_buses or []),
+        "spi_count": len(p.spi_buses or []),
+        "spi_buses": list(p.spi_buses or []),
+        "can_count": len(p.can_buses or []),
+        "can_buses": list(p.can_buses or []),
+        "canfd": bool(p.canfd),
+        "usb_count": p.usb_count,
+        "pwm": {"fmu": p.pwm_fmu, "io": p.pwm_io, "total": p.pwm_fmu + p.pwm_io},
+        "ethernet": bool(p.ethernet),
+        "sdcard": bool(p.sdcard),
+        "sbus_out": bool(p.sbus_out),
+        "iomcu": bool(p.iomcu),
+        "bdshot": bool(p.bdshot),
+        "adc_inputs": p.adc_inputs,
+    }
+
+
+def merge_bdshot_targets(parsed: list["ParsedBoard"]) -> list["ParsedBoard"]:
+    """Fold each "<slug>-bdshot" hwdef into its base board as a firmware target.
+
+    A -bdshot hwdef is the same PCB with a different pin map (see the note at
+    the top of any of them), so it is not a separate board. Variants whose
+    base isn't an autopilot in the catalog stay as standalone entries.
+    """
+    by_slug = {p.slug: p for p in parsed}
+    out: list[ParsedBoard] = []
+    for p in parsed:
+        if p.slug.endswith("-bdshot") and p.slug[: -len("-bdshot")] in by_slug:
+            base = by_slug[p.slug[: -len("-bdshot")]]
+            base.bdshot_target = {"slug": p.slug, "notes": p.header_note, "io": _io_from_parsed(p)}
+            continue
+        out.append(p)
+    return out
+
+
 def parse_board(board_dir: Path, platform: str = "chibios") -> ParsedBoard | None:
     slug = board_dir.name
     if not is_autopilot(slug):
@@ -365,6 +463,7 @@ def parse_board(board_dir: Path, platform: str = "chibios") -> ParsedBoard | Non
         return None
     # Strip comments so disabled (`#`-commented) pin/feature lines aren't parsed.
     text = _strip_comments(text)
+    text = _apply_pin_undefs(text)
 
     mcu_m = MCU_RE.search(text)
     flash_m = FLASH_RE.search(text)
@@ -506,9 +605,7 @@ def parse_board(board_dir: Path, platform: str = "chibios") -> ParsedBoard | Non
     sdcard = bool(FATFS_RE.search(text)) or bool(SDMMC_RE.search(text))
     sbus_out = bool(SBUS_OUT_RE.search(text))
     bdshot = bool(BDSHOT_RE.search(text))
-    # e.g. MatekF405 → MatekF405-bdshot exists as its own hwdef directory.
-    sibling = board_dir.parent / f"{slug}-bdshot"
-    bdshot_variant = sibling.name if sibling.is_dir() else None
+    header_note = _header_note(board_dir / "hwdef.dat")
     adc_inputs = len(set(ADC_PIN_RE.findall(text)))
     # Distinct brick indices: VDD_BRICK_nVALID, VDD_BRICK2_nVALID → 2 inputs.
     # Boards with no bricks but onboard analog battery sensing have one
@@ -551,7 +648,7 @@ def parse_board(board_dir: Path, platform: str = "chibios") -> ParsedBoard | Non
         sbus_out=sbus_out,
         iomcu=iomcu,
         bdshot=bdshot,
-        bdshot_variant=bdshot_variant,
+        header_note=header_note,
         adc_inputs=adc_inputs,
         power_inputs=power_inputs,
         vehicles=vehicles,
@@ -863,7 +960,7 @@ def populate_db(session: Session, parsed: list[ParsedBoard], docs_map: dict[str,
             sbus_out=p.sbus_out,
             iomcu=p.iomcu,
             bdshot=p.bdshot,
-            bdshot_variant=p.bdshot_variant,
+            bdshot_target_json=json.dumps(p.bdshot_target) if p.bdshot_target else None,
             adc_inputs=p.adc_inputs,
             power_inputs=p.power_inputs,
             vehicles_csv=",".join(p.vehicles or []),
@@ -987,9 +1084,11 @@ def _board_payload(b: "Board") -> dict:
             "sbus_out": bool(b.sbus_out),
             "iomcu": bool(b.iomcu),
             "bdshot": bool(b.bdshot),
-            "bdshot_variant": b.bdshot_variant,
             "adc_inputs": b.adc_inputs,
         },
+        # The "<slug>-bdshot" firmware target folded into this board, if any:
+        # same PCB, different pin map. {slug, notes, io}.
+        "bdshot_target": json.loads(b.bdshot_target_json) if b.bdshot_target_json else None,
         "power": {
             "monitor_inputs": b.power_inputs,
             "bec": [
@@ -1097,6 +1196,7 @@ def main() -> int:
             p = parse_board(board_dir, platform=platform)
             if p:
                 parsed.append(p)
+    parsed = merge_bdshot_targets(parsed)
 
     docs_map = build_docs_map()
 

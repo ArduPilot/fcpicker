@@ -41,8 +41,46 @@
     "sbus_out": false,
     "iomcu": false,
     "bdshot": false,
-    "bdshot_variant": "MatekF405-TE-bdshot",
     "adc_inputs": 4
+  },
+  "bdshot_target": {
+    "slug": "MatekF405-TE-bdshot",
+    "notes": "hw definition file for MATEK F405 VTOL",
+    "io": {
+      "uart_count": 6,
+      "uart_buses": [
+        "USART1",
+        "USART3",
+        "UART5",
+        "UART4",
+        "USART6",
+        "USART2"
+      ],
+      "i2c_count": 1,
+      "i2c_buses": [
+        "I2C1"
+      ],
+      "spi_count": 2,
+      "spi_buses": [
+        "SPI1",
+        "SPI2"
+      ],
+      "can_count": 0,
+      "can_buses": [],
+      "canfd": false,
+      "usb_count": 1,
+      "pwm": {
+        "fmu": 12,
+        "io": 0,
+        "total": 12
+      },
+      "ethernet": false,
+      "sdcard": true,
+      "sbus_out": false,
+      "iomcu": false,
+      "bdshot": true,
+      "adc_inputs": 4
+    }
   },
   "power": {
     "monitor_inputs": 1,

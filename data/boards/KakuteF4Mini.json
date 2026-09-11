@@ -11,11 +11,11 @@
   "io": {
     "uart_count": 5,
     "uart_buses": [
-      "USART6",
       "USART1",
+      "USART3",
       "UART4",
       "UART5",
-      "USART3"
+      "USART6"
     ],
     "i2c_count": 1,
     "i2c_buses": [
@@ -31,18 +31,18 @@
     "canfd": false,
     "usb_count": 1,
     "pwm": {
-      "fmu": 10,
+      "fmu": 5,
       "io": 0,
-      "total": 10
+      "total": 5
     },
     "ethernet": false,
     "sdcard": false,
     "sbus_out": false,
     "iomcu": false,
     "bdshot": true,
-    "bdshot_variant": null,
     "adc_inputs": 3
   },
+  "bdshot_target": null,
   "power": {
     "monitor_inputs": 1,
     "bec": []

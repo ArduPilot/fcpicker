@@ -9,14 +9,13 @@
   },
   "flash_kb": 2048,
   "io": {
-    "uart_count": 8,
+    "uart_count": 7,
     "uart_buses": [
       "UART7",
       "USART1",
       "USART2",
       "USART3",
       "UART8",
-      "UART4",
       "USART6",
       "UART5"
     ],
@@ -25,11 +24,9 @@
       "I2C2",
       "I2C1"
     ],
-    "spi_count": 4,
+    "spi_count": 2,
     "spi_buses": [
-      "SPI1",
       "SPI2",
-      "SPI3",
       "SPI4"
     ],
     "can_count": 1,
@@ -37,20 +34,20 @@
       "CAN1"
     ],
     "canfd": false,
-    "usb_count": 1,
+    "usb_count": 2,
     "pwm": {
-      "fmu": 17,
+      "fmu": 13,
       "io": 0,
-      "total": 17
+      "total": 13
     },
     "ethernet": false,
     "sdcard": true,
     "sbus_out": false,
     "iomcu": false,
     "bdshot": true,
-    "bdshot_variant": null,
     "adc_inputs": 6
   },
+  "bdshot_target": null,
   "power": {
     "monitor_inputs": 1,
     "bec": []

@@ -41,8 +41,46 @@
     "sbus_out": false,
     "iomcu": false,
     "bdshot": false,
-    "bdshot_variant": "OmnibusNanoV6-bdshot",
     "adc_inputs": 3
+  },
+  "bdshot_target": {
+    "slug": "OmnibusNanoV6-bdshot",
+    "notes": "Bi-directional dshot version of OmnibusNanoV6",
+    "io": {
+      "uart_count": 4,
+      "uart_buses": [
+        "USART1",
+        "UART4",
+        "USART6",
+        "USART3"
+      ],
+      "i2c_count": 2,
+      "i2c_buses": [
+        "I2C2",
+        "I2C1"
+      ],
+      "spi_count": 3,
+      "spi_buses": [
+        "SPI1",
+        "SPI2",
+        "SPI3"
+      ],
+      "can_count": 0,
+      "can_buses": [],
+      "canfd": false,
+      "usb_count": 1,
+      "pwm": {
+        "fmu": 4,
+        "io": 0,
+        "total": 4
+      },
+      "ethernet": false,
+      "sdcard": false,
+      "sbus_out": false,
+      "iomcu": false,
+      "bdshot": true,
+      "adc_inputs": 3
+    }
   },
   "power": {
     "monitor_inputs": 1,

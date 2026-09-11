@@ -42,8 +42,47 @@
     "sbus_out": false,
     "iomcu": false,
     "bdshot": false,
-    "bdshot_variant": "KakuteH7-bdshot",
     "adc_inputs": 3
+  },
+  "bdshot_target": {
+    "slug": "KakuteH7-bdshot",
+    "notes": "Bi-directional dshot version of KakuteH7",
+    "io": {
+      "uart_count": 6,
+      "uart_buses": [
+        "USART1",
+        "USART2",
+        "USART3",
+        "UART4",
+        "USART6",
+        "UART7"
+      ],
+      "i2c_count": 1,
+      "i2c_buses": [
+        "I2C1"
+      ],
+      "spi_count": 3,
+      "spi_buses": [
+        "SPI1",
+        "SPI2",
+        "SPI4"
+      ],
+      "can_count": 0,
+      "can_buses": [],
+      "canfd": false,
+      "usb_count": 1,
+      "pwm": {
+        "fmu": 9,
+        "io": 0,
+        "total": 9
+      },
+      "ethernet": false,
+      "sdcard": true,
+      "sbus_out": false,
+      "iomcu": false,
+      "bdshot": true,
+      "adc_inputs": 3
+    }
   },
   "power": {
     "monitor_inputs": 1,

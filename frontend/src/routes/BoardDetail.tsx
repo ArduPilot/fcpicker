@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { isOnboardSensor, mcuFamilyLabel, sensorSlotKey, useBoardImages, useBoards } from "../data";
 import type { Board, BoardAi, SensorEntry } from "../types";
@@ -20,6 +20,8 @@ export default function BoardDetail() {
   const { slug = "" } = useParams();
   const { boards, loading, error } = useBoards();
   const boardImages = useBoardImages(slug);
+  // Show the "<slug>-bdshot" firmware target's pin map instead of the default.
+  const [bdshotOn, setBdshotOn] = useState(false);
 
   const allSlugs = useMemo(
     () => (boards ?? []).slice().sort((a, b) => a.slug.localeCompare(b.slug)).map((x) => x.slug),
@@ -40,7 +42,11 @@ export default function BoardDetail() {
   }
 
   const docsCommon = "https://ardupilot.org/copter/docs/common-autopilots.html";
-  const hwdefUrl = `https://github.com/ArduPilot/ardupilot/tree/master/libraries/AP_HAL_ChibiOS/hwdef/${b.slug}`;
+  const target = b.bdshot_target;
+  const useTarget = bdshotOn && target != null;
+  const io = useTarget ? target.io : b.io;
+  const hwdefSlug = useTarget ? target.slug : b.slug;
+  const hwdefUrl = `https://github.com/ArduPilot/ardupilot/tree/master/libraries/AP_HAL_ChibiOS/hwdef/${hwdefSlug}`;
   const firmware = b.firmware_support[0];
 
   return (
@@ -123,26 +129,44 @@ export default function BoardDetail() {
       {/* Stats strip — at a glance */}
       <section className="bd-section">
         <h2 className="bd-h2">Key specs</h2>
+        {target && (
+          <div className="bd-target">
+            <label className="toggle">
+              <input type="checkbox" checked={bdshotOn} onChange={(e) => setBdshotOn(e.target.checked)} />
+              <span className="toggle-mark" aria-hidden />
+              <span className="toggle-label">
+                Bidirectional DShot {bdshotOn ? "enabled" : "disabled"}
+                <span className="bd-target-slug"> — firmware target <code className="bd-code">{hwdefSlug}</code></span>
+              </span>
+            </label>
+            {bdshotOn && target.notes && <p className="bd-target-note">{target.notes}</p>}
+            {!bdshotOn && (
+              <p className="bd-target-note">
+                Same board; the {target.slug} firmware remaps pins for BDShot. Switch on to see that pin map.
+              </p>
+            )}
+          </div>
+        )}
         <div className="bd-stats">
-          <Stat label="UART" value={b.io.uart_count} hint={b.io.uart_buses.join(", ") || undefined} />
-          <Stat label="I²C"  value={b.io.i2c_count} hint={b.io.i2c_buses.join(", ") || undefined} />
-          <Stat label="SPI"  value={b.io.spi_count} hint={b.io.spi_buses.join(", ") || undefined} />
-          <Stat label={b.io.canfd ? "CAN-FD" : "CAN"} value={b.io.can_count} hint={b.io.can_buses.join(", ") || undefined} />
+          <Stat label="UART" value={io.uart_count} hint={io.uart_buses.join(", ") || undefined} />
+          <Stat label="I²C"  value={io.i2c_count} hint={io.i2c_buses.join(", ") || undefined} />
+          <Stat label="SPI"  value={io.spi_count} hint={io.spi_buses.join(", ") || undefined} />
+          <Stat label={io.canfd ? "CAN-FD" : "CAN"} value={io.can_count} hint={io.can_buses.join(", ") || undefined} />
           <Stat
             label="PWM"
-            value={b.io.pwm.total}
-            hint={b.io.iomcu ? `${b.io.pwm.fmu} FMU + ${b.io.pwm.io} IO` : "FMU only"}
+            value={io.pwm.total}
+            hint={io.iomcu ? `${io.pwm.fmu} FMU + ${io.pwm.io} IO` : "FMU only"}
           />
           <Stat label="IMUs" value={imuStatValue(b)} hint={imuStatHint(b)} />
         </div>
         <div className="bd-feature-row">
-          <FeatureChip on={b.io.ethernet} label="Ethernet" />
-          <FeatureChip on={b.io.sdcard} label="microSD" />
-          <FeatureChip on={b.io.sbus_out} label="SBUS out" />
-          <FeatureChip on={b.io.bdshot || b.io.bdshot_variant != null} label={b.io.bdshot ? "BDShot" : b.io.bdshot_variant ? `BDShot via ${b.io.bdshot_variant}` : "BDShot"} />
-          <FeatureChip on={b.io.usb_count > 0} label={`USB ×${b.io.usb_count}`} />
+          <FeatureChip on={io.ethernet} label="Ethernet" />
+          <FeatureChip on={io.sdcard} label="microSD" />
+          <FeatureChip on={io.sbus_out} label="SBUS out" />
+          <FeatureChip on={io.bdshot} label="Bidirectional DShot" />
+          <FeatureChip on={io.usb_count > 0} label={`USB ×${io.usb_count}`} />
           {b.power.monitor_inputs > 0 && <FeatureChip on label={`Power inputs ×${b.power.monitor_inputs}`} />}
-          {b.io.adc_inputs > 0 && <FeatureChip on label={`ADC ×${b.io.adc_inputs}`} />}
+          {io.adc_inputs > 0 && <FeatureChip on label={`ADC ×${io.adc_inputs}`} />}
         </div>
       </section>
 

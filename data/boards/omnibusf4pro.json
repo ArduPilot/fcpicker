@@ -40,8 +40,45 @@
     "sbus_out": false,
     "iomcu": false,
     "bdshot": false,
-    "bdshot_variant": "omnibusf4pro-bdshot",
     "adc_inputs": 3
+  },
+  "bdshot_target": {
+    "slug": "omnibusf4pro-bdshot",
+    "notes": "Bi-directional dshot version of omnibusf4pro Buzzer timer is required so becomes single tone",
+    "io": {
+      "uart_count": 4,
+      "uart_buses": [
+        "USART1",
+        "USART3",
+        "USART6",
+        "UART4"
+      ],
+      "i2c_count": 1,
+      "i2c_buses": [
+        "I2C2"
+      ],
+      "spi_count": 3,
+      "spi_buses": [
+        "SPI1",
+        "SPI2",
+        "SPI3"
+      ],
+      "can_count": 0,
+      "can_buses": [],
+      "canfd": false,
+      "usb_count": 1,
+      "pwm": {
+        "fmu": 7,
+        "io": 0,
+        "total": 7
+      },
+      "ethernet": false,
+      "sdcard": true,
+      "sbus_out": false,
+      "iomcu": false,
+      "bdshot": true,
+      "adc_inputs": 2
+    }
   },
   "power": {
     "monitor_inputs": 1,

@@ -42,9 +42,9 @@
     "sbus_out": false,
     "iomcu": false,
     "bdshot": false,
-    "bdshot_variant": null,
     "adc_inputs": 4
   },
+  "bdshot_target": null,
   "power": {
     "monitor_inputs": 1,
     "bec": []

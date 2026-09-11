@@ -38,14 +38,14 @@
       "io": 0,
       "total": 9
     },
-    "ethernet": true,
+    "ethernet": false,
     "sdcard": true,
     "sbus_out": false,
     "iomcu": false,
     "bdshot": true,
-    "bdshot_variant": null,
     "adc_inputs": 5
   },
+  "bdshot_target": null,
   "power": {
     "monitor_inputs": 1,
     "bec": []

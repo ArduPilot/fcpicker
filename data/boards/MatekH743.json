@@ -47,8 +47,52 @@
     "sbus_out": false,
     "iomcu": false,
     "bdshot": false,
-    "bdshot_variant": "MatekH743-bdshot",
     "adc_inputs": 6
+  },
+  "bdshot_target": {
+    "slug": "MatekH743-bdshot",
+    "notes": "Bi-directional dshot version of MatekH743 RC input and buzzer timers need to be used so buzzer becomes single tone and UART is used for RCIN",
+    "io": {
+      "uart_count": 7,
+      "uart_buses": [
+        "UART7",
+        "USART1",
+        "USART2",
+        "USART3",
+        "UART8",
+        "UART4",
+        "USART6"
+      ],
+      "i2c_count": 2,
+      "i2c_buses": [
+        "I2C2",
+        "I2C1"
+      ],
+      "spi_count": 4,
+      "spi_buses": [
+        "SPI1",
+        "SPI2",
+        "SPI3",
+        "SPI4"
+      ],
+      "can_count": 1,
+      "can_buses": [
+        "CAN1"
+      ],
+      "canfd": false,
+      "usb_count": 2,
+      "pwm": {
+        "fmu": 13,
+        "io": 0,
+        "total": 13
+      },
+      "ethernet": false,
+      "sdcard": true,
+      "sbus_out": false,
+      "iomcu": false,
+      "bdshot": true,
+      "adc_inputs": 6
+    }
   },
   "power": {
     "monitor_inputs": 1,

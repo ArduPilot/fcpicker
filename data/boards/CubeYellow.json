@@ -45,8 +45,50 @@
     "sbus_out": false,
     "iomcu": true,
     "bdshot": false,
-    "bdshot_variant": "CubeYellow-bdshot",
     "adc_inputs": 6
+  },
+  "bdshot_target": {
+    "slug": "CubeYellow-bdshot",
+    "notes": "Bi-directional dshot version of CubeYellow",
+    "io": {
+      "uart_count": 5,
+      "uart_buses": [
+        "USART2",
+        "USART3",
+        "UART4",
+        "UART8",
+        "UART7"
+      ],
+      "i2c_count": 2,
+      "i2c_buses": [
+        "I2C2",
+        "I2C1"
+      ],
+      "spi_count": 3,
+      "spi_buses": [
+        "SPI1",
+        "SPI2",
+        "SPI4"
+      ],
+      "can_count": 2,
+      "can_buses": [
+        "CAN1",
+        "CAN2"
+      ],
+      "canfd": false,
+      "usb_count": 2,
+      "pwm": {
+        "fmu": 6,
+        "io": 8,
+        "total": 14
+      },
+      "ethernet": false,
+      "sdcard": true,
+      "sbus_out": false,
+      "iomcu": true,
+      "bdshot": true,
+      "adc_inputs": 6
+    }
   },
   "power": {
     "monitor_inputs": 2,

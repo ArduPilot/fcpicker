@@ -17,10 +17,11 @@
       "UART8",
       "UART7"
     ],
-    "i2c_count": 2,
+    "i2c_count": 3,
     "i2c_buses": [
       "I2C2",
-      "I2C1"
+      "I2C1",
+      "I2C4"
     ],
     "spi_count": 3,
     "spi_buses": [
@@ -45,9 +46,9 @@
     "sbus_out": false,
     "iomcu": true,
     "bdshot": false,
-    "bdshot_variant": null,
     "adc_inputs": 8
   },
+  "bdshot_target": null,
   "power": {
     "monitor_inputs": 2,
     "bec": []

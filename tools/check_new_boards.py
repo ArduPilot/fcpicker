@@ -48,6 +48,10 @@ def find_new_boards(hwdef_dirs: list[Path]) -> list[dict]:
             slug = board_dir.name
             if slug in known or slug in seen:
                 continue
+            # "<slug>-bdshot" is folded into its base board by build.py, so it
+            # is never its own catalog entry (see merge_bdshot_targets).
+            if slug.endswith("-bdshot") and (hwdef_dir / slug[: -len("-bdshot")]).is_dir():
+                continue
             try:
                 parsed = build.parse_board(board_dir, platform=platform)
             except Exception as exc:  # a malformed upstream hwdef shouldn't fail the run

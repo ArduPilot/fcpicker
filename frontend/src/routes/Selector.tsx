@@ -193,7 +193,7 @@ const TABLE_COLUMNS: TableColumn[] = [
 
 // true when the board supports bidirectional DShot directly or via a sibling
 // "<slug>-bdshot" firmware target.
-const hasBdshot = (b: Board) => b.io.bdshot || b.io.bdshot_variant != null;
+const hasBdshot = (b: Board) => b.io.bdshot || b.bdshot_target != null;
 const DEFAULT_COL_ORDER = TABLE_COLUMNS.map((c) => c.id);
 const COL_ORDER_KEY = "fcpicker.columnOrder.v1";
 
@@ -238,7 +238,7 @@ const CSV_COLUMNS: CsvColumn[] = [
   { id: "ethernet",   label: "Ethernet",           get: (b) => (b.io.ethernet ? "yes" : "no") },
   { id: "sdcard",     label: "microSD",            get: (b) => (b.io.sdcard ? "yes" : "no") },
   { id: "sbus_out",   label: "SBUS out",           get: (b) => (b.io.sbus_out ? "yes" : "no") },
-  { id: "bdshot",     label: "BDShot",             get: (b) => (b.io.bdshot ? "yes" : b.io.bdshot_variant ? `via ${b.io.bdshot_variant}` : "no") },
+  { id: "bdshot",     label: "BDShot",             get: (b) => (b.io.bdshot ? "yes" : b.bdshot_target ? `via ${b.bdshot_target.slug}` : "no") },
   { id: "usb",        label: "USB ports",          get: (b) => b.io.usb_count },
   { id: "power",      label: "Power inputs",       get: (b) => b.power.monitor_inputs },
   { id: "imus",       label: "IMU count",          get: (b) => imuSlotCount(b) },
@@ -293,6 +293,7 @@ function passes(b: Board, f: Filters): boolean {
     if (
       q &&
       !b.slug.toLowerCase().includes(q) &&
+      !(b.bdshot_target?.slug ?? "").toLowerCase().includes(q) &&
       !(b.manufacturer ?? "").toLowerCase().includes(q)
     )
       return false;
@@ -1028,13 +1029,14 @@ function Cell({ col, board }: { col: TableColumn; board: Board }) {
   return col.cell(board);
 }
 
-// BDShot cell: ● native, "var" when only a sibling -bdshot target has it.
+// BDShot cell: ✓ in the default firmware, "opt" when it needs the board's
+// -bdshot firmware target (toggle on the board page).
 function BdshotCell({ board: b }: { board: Board }) {
   if (b.io.bdshot) return <BoolCell on />;
-  if (b.io.bdshot_variant) {
+  if (b.bdshot_target) {
     return (
       <td className="td-bool td-bool-yes">
-        <Link to={`/board/${b.io.bdshot_variant}`} className="bdshot-var" title={`Via ${b.io.bdshot_variant}`}>var</Link>
+        <Link to={`/board/${b.slug}`} className="bdshot-var" title={`Optional: ${b.bdshot_target.slug} firmware target`}>opt</Link>
       </td>
     );
   }

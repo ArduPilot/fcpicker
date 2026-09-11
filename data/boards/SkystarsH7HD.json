@@ -46,8 +46,51 @@
     "sbus_out": false,
     "iomcu": false,
     "bdshot": false,
-    "bdshot_variant": "SkystarsH7HD-bdshot",
     "adc_inputs": 3
+  },
+  "bdshot_target": {
+    "slug": "SkystarsH7HD-bdshot",
+    "notes": "hw definition file for processing by chibios_pins.py for SkystarsH7HD",
+    "io": {
+      "uart_count": 8,
+      "uart_buses": [
+        "USART1",
+        "USART2",
+        "USART3",
+        "UART4",
+        "UART5",
+        "USART6",
+        "UART7",
+        "UART8"
+      ],
+      "i2c_count": 2,
+      "i2c_buses": [
+        "I2C2",
+        "I2C1"
+      ],
+      "spi_count": 4,
+      "spi_buses": [
+        "SPI1",
+        "SPI2",
+        "SPI3",
+        "SPI4"
+      ],
+      "can_count": 0,
+      "can_buses": [],
+      "canfd": false,
+      "usb_count": 1,
+      "pwm": {
+        "fmu": 9,
+        "io": 0,
+        "total": 9
+      },
+      "ethernet": false,
+      "sdcard": false,
+      "sbus_out": false,
+      "iomcu": false,
+      "bdshot": true,
+      "adc_inputs": 3
+    }
   },
   "power": {
     "monitor_inputs": 1,

@@ -50,8 +50,55 @@
     "sbus_out": false,
     "iomcu": false,
     "bdshot": false,
-    "bdshot_variant": "CUAV-Nora-bdshot",
     "adc_inputs": 8
+  },
+  "bdshot_target": {
+    "slug": "CUAV-Nora-bdshot",
+    "notes": "Bi-directional dshot version of CUAV-Nora",
+    "io": {
+      "uart_count": 7,
+      "uart_buses": [
+        "USART2",
+        "USART6",
+        "USART1",
+        "UART4",
+        "UART8",
+        "UART7",
+        "USART3"
+      ],
+      "i2c_count": 4,
+      "i2c_buses": [
+        "I2C3",
+        "I2C1",
+        "I2C2",
+        "I2C4"
+      ],
+      "spi_count": 4,
+      "spi_buses": [
+        "SPI1",
+        "SPI2",
+        "SPI4",
+        "SPI6"
+      ],
+      "can_count": 2,
+      "can_buses": [
+        "CAN1",
+        "CAN2"
+      ],
+      "canfd": false,
+      "usb_count": 2,
+      "pwm": {
+        "fmu": 14,
+        "io": 0,
+        "total": 14
+      },
+      "ethernet": false,
+      "sdcard": true,
+      "sbus_out": false,
+      "iomcu": false,
+      "bdshot": true,
+      "adc_inputs": 8
+    }
   },
   "power": {
     "monitor_inputs": 2,

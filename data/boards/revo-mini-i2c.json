@@ -41,8 +41,46 @@
     "sbus_out": false,
     "iomcu": false,
     "bdshot": false,
-    "bdshot_variant": "revo-mini-i2c-bdshot",
     "adc_inputs": 4
+  },
+  "bdshot_target": {
+    "slug": "revo-mini-i2c-bdshot",
+    "notes": "Bi-directional dshot version of revo-mini-i2c",
+    "io": {
+      "uart_count": 5,
+      "uart_buses": [
+        "USART1",
+        "USART3",
+        "USART6",
+        "USART2",
+        "UART4"
+      ],
+      "i2c_count": 2,
+      "i2c_buses": [
+        "I2C1",
+        "I2C2"
+      ],
+      "spi_count": 2,
+      "spi_buses": [
+        "SPI1",
+        "SPI3"
+      ],
+      "can_count": 0,
+      "can_buses": [],
+      "canfd": false,
+      "usb_count": 1,
+      "pwm": {
+        "fmu": 6,
+        "io": 0,
+        "total": 6
+      },
+      "ethernet": false,
+      "sdcard": false,
+      "sbus_out": false,
+      "iomcu": false,
+      "bdshot": true,
+      "adc_inputs": 4
+    }
   },
   "power": {
     "monitor_inputs": 1,

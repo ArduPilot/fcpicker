@@ -43,8 +43,48 @@
     "sbus_out": false,
     "iomcu": false,
     "bdshot": false,
-    "bdshot_variant": "mRoControlZeroH7-bdshot",
     "adc_inputs": 4
+  },
+  "bdshot_target": {
+    "slug": "mRoControlZeroH7-bdshot",
+    "notes": "Bi-directional dshot version of mRoControlZeroH7",
+    "io": {
+      "uart_count": 5,
+      "uart_buses": [
+        "USART2",
+        "USART3",
+        "UART4",
+        "UART8",
+        "UART7"
+      ],
+      "i2c_count": 1,
+      "i2c_buses": [
+        "I2C1"
+      ],
+      "spi_count": 3,
+      "spi_buses": [
+        "SPI1",
+        "SPI2",
+        "SPI5"
+      ],
+      "can_count": 1,
+      "can_buses": [
+        "CAN1"
+      ],
+      "canfd": false,
+      "usb_count": 2,
+      "pwm": {
+        "fmu": 8,
+        "io": 0,
+        "total": 8
+      },
+      "ethernet": false,
+      "sdcard": true,
+      "sbus_out": false,
+      "iomcu": false,
+      "bdshot": true,
+      "adc_inputs": 4
+    }
   },
   "power": {
     "monitor_inputs": 1,

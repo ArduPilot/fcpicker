@@ -796,6 +796,18 @@
 .td-bool-no  { color: var(--ink-dim); }
 .bdshot-var { font-size: 11px; text-decoration: none; border-bottom: 1px dotted currentColor; }
 
+/* Firmware-target toggle on the board page (BDShot on/off) */
+.bd-target {
+  margin: 0 0 12px;
+  padding: 10px 12px;
+  border: 1px dashed var(--border);
+  border-radius: 8px;
+  background: var(--bg-soft);
+}
+.bd-target .toggle-label { font-weight: 600; }
+.bd-target-slug { font-weight: 400; color: var(--ink-mute); }
+.bd-target-note { margin: 8px 0 0; font-size: 12.5px; color: var(--ink-mute); line-height: 1.45; }
+
 .td-name { white-space: nowrap; }
 /* Suggested manufacturer — secondary discovery hint, not authoritative. */
 .row-maker {

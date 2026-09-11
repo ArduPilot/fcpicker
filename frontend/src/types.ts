@@ -35,9 +35,15 @@ export interface BoardIO {
   iomcu: boolean;
   // Bidirectional DShot in this hwdef (BIDIR-tagged PWM pin or IOMCU flag).
   bdshot: boolean;
-  // Slug of a sibling "<slug>-bdshot" hwdef that adds it, if one exists.
-  bdshot_variant: string | null;
   adc_inputs: number;
+}
+
+// A "<slug>-bdshot" firmware target folded into its base board: same PCB,
+// different pin map. `io` is the target's own io block.
+export interface BdshotTarget {
+  slug: string;
+  notes: string | null;
+  io: BoardIO;
 }
 
 export interface BecRail {
@@ -141,6 +147,8 @@ export interface Board {
   mcu: { family: string | null; part: string | null };
   flash_kb: number | null;
   io: BoardIO;
+  // "<slug>-bdshot" firmware target folded into this board, or null.
+  bdshot_target: BdshotTarget | null;
   power: BoardPower;
   imus: SensorEntry[];
   baros: SensorEntry[];

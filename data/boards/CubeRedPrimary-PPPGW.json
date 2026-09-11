@@ -38,17 +38,17 @@
     "usb_count": 2,
     "pwm": {
       "fmu": 6,
-      "io": 8,
-      "total": 14
+      "io": 0,
+      "total": 6
     },
     "ethernet": true,
     "sdcard": true,
     "sbus_out": false,
-    "iomcu": true,
+    "iomcu": false,
     "bdshot": true,
-    "bdshot_variant": null,
     "adc_inputs": 7
   },
+  "bdshot_target": null,
   "power": {
     "monitor_inputs": 2,
     "bec": []

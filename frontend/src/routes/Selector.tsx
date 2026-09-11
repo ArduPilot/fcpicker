@@ -33,8 +33,9 @@ function imuSlotCount(b: Board): number {
 
 interface Filters {
   query: string;
-  // Canonical manufacturer key (see manufacturerKey); "ANY" = no filter.
-  manufacturer: string;
+  // Ticked manufacturer keys (see manufacturerKey). null = everything ticked,
+  // i.e. no filter. "" is the key for boards with no manufacturer.
+  manufacturers: string[] | null;
   platform: string;
   mcu: string;
   vehicles: VehicleType[];
@@ -75,7 +76,7 @@ interface Filters {
 
 const DEFAULTS: Filters = {
   query: "",
-  manufacturer: "ANY",
+  manufacturers: null,
   platform: "ANY",
   mcu: "ANY",
   vehicles: [],
@@ -296,7 +297,7 @@ function passes(b: Board, f: Filters): boolean {
     )
       return false;
   }
-  if (f.manufacturer !== "ANY" && manufacturerKey(b.manufacturer) !== f.manufacturer) return false;
+  if (f.manufacturers != null && !f.manufacturers.includes(manufacturerKey(b.manufacturer))) return false;
   if (f.platform !== "ANY" && b.platform !== f.platform) return false;
   if (f.mcu !== "ANY" && mcuFamilyLabel(b.mcu.family) !== f.mcu) return false;
   if (f.vehicles.length > 0) {
@@ -396,9 +397,8 @@ export default function Selector() {
     if (!boards) return [];
     const groups = new Map<string, { spellings: Map<string, number>; count: number }>();
     for (const b of boards) {
-      const raw = (b.manufacturer ?? "").trim();
-      if (!raw) continue;
-      const key = manufacturerKey(raw);
+      const raw = (b.manufacturer ?? "").trim() || "Unknown";
+      const key = manufacturerKey(b.manufacturer);
       const g = groups.get(key) ?? { spellings: new Map(), count: 0 };
       g.spellings.set(raw, (g.spellings.get(raw) ?? 0) + 1);
       g.count += 1;
@@ -408,7 +408,11 @@ export default function Selector() {
       const label = Array.from(g.spellings)
         .sort((a, b) => b[1] - a[1] || a[0].length - b[0].length)[0][0];
       return { key, label, count: g.count };
-    }).sort((a, b) => a.label.localeCompare(b.label, undefined, { sensitivity: "base" }));
+    }).sort((a, b) =>
+      // "Unknown" (empty key) always last.
+      (a.key === "") === (b.key === "")
+        ? a.label.localeCompare(b.label, undefined, { sensitivity: "base" })
+        : a.key === "" ? 1 : -1);
   }, [boards]);
 
   const mcuOptions = useMemo(() => {
@@ -478,17 +482,11 @@ export default function Selector() {
 
         <div className="sidebar-block">
           <h3 className="block-title">Manufacturer</h3>
-          <select
-            className="input-select"
-            value={f.manufacturer}
-            onChange={(e) => set("manufacturer", e.target.value)}
-            aria-label="Manufacturer"
-          >
-            <option value="ANY">Any manufacturer</option>
-            {manufacturerOptions.map((m) => (
-              <option key={m.key} value={m.key}>{m.label} ({m.count})</option>
-            ))}
-          </select>
+          <ManufacturerPicker
+            options={manufacturerOptions}
+            value={f.manufacturers}
+            onChange={(v) => set("manufacturers", v)}
+          />
         </div>
 
         <div className="sidebar-block">
@@ -1111,6 +1109,83 @@ function Stepper({
           aria-label={`${label} increase`}
         >+</button>
       </div>
+    </div>
+  );
+}
+
+// Tick-list dropdown of manufacturers. Everything is ticked by default (value
+// null); "None" clears the list so the user can tick just the ones they want.
+function ManufacturerPicker({
+  options, value, onChange,
+}: {
+  options: { key: string; label: string; count: number }[];
+  value: string[] | null;
+  onChange: (v: string[] | null) => void;
+}) {
+  const [open, setOpen] = useState(false);
+  const [q, setQ] = useState("");
+  const allKeys = options.map((o) => o.key);
+  const ticked = value ?? allKeys;
+  const tickedSet = new Set(ticked);
+  const allTicked = value == null || ticked.length === allKeys.length;
+
+  const toggle = (key: string) => {
+    const next = tickedSet.has(key) ? ticked.filter((k) => k !== key) : [...ticked, key];
+    onChange(next.length === allKeys.length ? null : next);
+  };
+
+  const needle = q.trim().toLowerCase();
+  const visible = needle ? options.filter((o) => o.label.toLowerCase().includes(needle)) : options;
+
+  const summary = allTicked
+    ? `All manufacturers (${allKeys.length})`
+    : ticked.length === 0
+      ? "None selected"
+      : ticked.length === 1
+        ? options.find((o) => o.key === ticked[0])?.label ?? "1 selected"
+        : `${ticked.length} of ${allKeys.length} selected`;
+
+  return (
+    <div className={"ms " + (open ? "ms-open" : "")}>
+      <button
+        type="button"
+        className="ms-summary"
+        aria-expanded={open}
+        onClick={() => setOpen((o) => !o)}
+      >
+        <span className="ms-summary-text">{summary}</span>
+        <span className="ms-caret" aria-hidden>{open ? "▴" : "▾"}</span>
+      </button>
+      {open && (
+        <div className="ms-panel">
+          <div className="ms-tools">
+            <input
+              type="search"
+              className="input-text ms-search"
+              placeholder="Filter list…"
+              value={q}
+              onChange={(e) => setQ(e.target.value)}
+              aria-label="Filter manufacturers"
+            />
+            <button type="button" className="chip" onClick={() => onChange(null)} disabled={allTicked}>All</button>
+            <button type="button" className="chip" onClick={() => onChange([])} disabled={ticked.length === 0}>None</button>
+          </div>
+          <div className="ms-list" role="group" aria-label="Manufacturers">
+            {visible.map((o) => (
+              <label key={o.key} className="ms-item">
+                <input
+                  type="checkbox"
+                  checked={tickedSet.has(o.key)}
+                  onChange={() => toggle(o.key)}
+                />
+                <span className="ms-item-label">{o.label}</span>
+                <span className="ms-item-count">{o.count}</span>
+              </label>
+            ))}
+            {visible.length === 0 && <p className="ms-empty">No match</p>}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

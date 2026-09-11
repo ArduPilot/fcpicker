@@ -6,6 +6,10 @@ name: Detect new ArduPilot boards
 #
 # Issues are the dedup state: a board already having an open-or-closed issue is
 # not re-filed. Run it by hand any time from the Actions tab (workflow_dispatch).
+#
+# Each issue is assigned to NOTIFY_USER and @mentions them in the body so
+# GitHub sends an email notification (bot-authored issues only notify on
+# assignment / mention, not on creation).
 
 on:
   schedule:
@@ -21,6 +25,7 @@ permissions:
 # (e.g. an empty "known" set) and would otherwise open hundreds of issues.
 env:
   MAX_INDIVIDUAL_ISSUES: 25
+  NOTIFY_USER: freddygaffey
 
 jobs:
   check:
@@ -87,7 +92,9 @@ jobs:
                 new_boards.json
               echo
               echo "To import: run \`.venv/bin/python tools/build.py\` against an ArduPilot checkout, then commit the new \`data/boards/<slug>.json\` files."
-            } | gh issue create --title "$title" --label new-board --body-file -
+              echo
+              echo "cc @$NOTIFY_USER"
+            } | gh issue create --title "$title" --label new-board --assignee "$NOTIFY_USER" --body-file -
             echo "Opened rollup issue."
             exit 0
           fi
@@ -111,7 +118,9 @@ jobs:
               echo "- **hwdef:** $tree/$hal/hwdef/$slug"
               echo
               echo "To import: run \`.venv/bin/python tools/build.py\` against an ArduPilot checkout containing this board, then commit the generated \`data/boards/$slug.json\`."
-            } | gh issue create --title "$title" --label new-board --body-file -
+              echo
+              echo "cc @$NOTIFY_USER"
+            } | gh issue create --title "$title" --label new-board --assignee "$NOTIFY_USER" --body-file -
             echo "opened: $slug"
             created=$((created + 1))
           done < <(jq -r '.[] | "\(.slug) \(.platform) \(.mcu) \(.flash_kb)"' new_boards.json)

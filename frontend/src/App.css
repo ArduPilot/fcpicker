@@ -129,28 +129,45 @@
   padding-top: 10px;
 }
 .ai-card-hint { margin: 0; font-size: 12px; color: var(--ink-mute); }
-.ai-query {
-  width: 100%;
-  resize: vertical;
+.ai-cells { align-items: center; }
+.ai-cells-label { font-size: 11px; color: var(--ink-mute); margin-right: 2px; }
+
+/* min / max number boxes for an optional numeric bound */
+.num-range { display: flex; flex-direction: column; gap: 4px; }
+.num-range-ctrl { display: flex; align-items: center; gap: 6px; }
+.num-range-input {
+  width: 0;
+  flex: 1 1 0;
+  min-width: 44px;
   font: inherit;
   font-size: 13px;
-  padding: 8px 10px;
+  font-family: var(--mono);
+  padding: 5px 7px;
   border: 1px solid var(--border);
   border-radius: 6px;
   background: #fff;
   color: var(--ink);
+  -moz-appearance: textfield;
+  appearance: textfield;
 }
-.ai-query:focus { outline: none; border-color: var(--ap-blue); }
-.ai-chips { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
-.ai-chips-label { font-size: 11px; color: var(--ink-mute); }
-.ai-chip {
-  font-size: 11px;
-  padding: 2px 8px;
-  border-radius: 999px;
-  background: var(--ap-blue);
-  color: #fff;
-  white-space: nowrap;
+.num-range-input::-webkit-outer-spin-button,
+.num-range-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.num-range-input:focus { outline: none; border-color: var(--ap-blue); }
+.num-range-input::placeholder { color: var(--ink-mute); font-family: inherit; }
+.num-range-sep, .num-range-unit { font-size: 12px; color: var(--ink-mute); white-space: nowrap; }
+.num-range-unit { min-width: 2ch; }
+.num-range-clear {
+  border: 0;
+  background: transparent;
+  color: var(--ink-mute);
+  font-size: 15px;
+  line-height: 1;
+  padding: 2px 4px;
+  cursor: pointer;
+  border-radius: 4px;
 }
+.num-range-clear:hover { color: var(--ink); background: var(--ap-blue-soft); }
+
 .block-title {
   margin: 0 0 4px;
   font-size: 13px;

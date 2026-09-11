@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, type ReactNode } from "react";
+import { useEffect, useMemo, useState, type KeyboardEvent, type ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { mcuFamilyLabel, physicalSensorCount, useBoards } from "../data";
 import type { Board, VehicleType } from "../types";
@@ -52,13 +52,17 @@ interface Filters {
   // Experimental — filters over the unverified, AI-gathered `ai` spec block.
   // Off by default; the controls are disabled until aiEnabled is turned on.
   aiEnabled: boolean;
-  aiQuery: string;
-  aiWeightMin: number;
-  aiWeightMax: number;
-  aiSizeMin: number;
-  aiSizeMax: number;
-  aiVoltMin: number;
-  aiVoltMax: number;
+  // Numeric bounds: null = no bound on that side.
+  aiWeightMin: number | null;
+  aiWeightMax: number | null;
+  aiSizeMin: number | null;
+  aiSizeMax: number | null;
+  aiVoltMin: number | null;
+  aiVoltMax: number | null;
+  // Mounting-hole pattern, e.g. "30.5x30.5"; "ANY" = no filter.
+  aiMount: string;
+  // Minimum number of BEC outputs listed for the board.
+  aiBecMin: number;
   aiHasOsd: boolean;
   aiHasWireless: boolean;
   aiHasBlackbox: boolean;
@@ -85,81 +89,31 @@ const DEFAULTS: Filters = {
   minFlash: 0,
   includeDiscontinued: false,
   aiEnabled: false,
-  aiQuery: "",
-  aiWeightMin: 0,
-  aiWeightMax: 200,
-  aiSizeMin: 0,
-  aiSizeMax: 120,
-  aiVoltMin: 0,
-  aiVoltMax: 60,
+  aiWeightMin: null,
+  aiWeightMax: null,
+  aiSizeMin: null,
+  aiSizeMax: null,
+  aiVoltMin: null,
+  aiVoltMax: null,
+  aiMount: "ANY",
+  aiBecMin: 0,
   aiHasOsd: false,
   aiHasWireless: false,
   aiHasBlackbox: false,
 };
 
-// Reset value for just the AI-spec fields — re-applied before each parse so
-// removing a word from the query clears its filter.
-const AI_RESET = {
-  aiWeightMin: 0, aiWeightMax: 200, aiSizeMin: 0, aiSizeMax: 120,
-  aiVoltMin: 0, aiVoltMax: 60, aiHasOsd: false, aiHasWireless: false, aiHasBlackbox: false,
-} as const;
+// Mounting-hole patterns offered as quick chips. Matched as a substring of
+// the AI-gathered `mounting_pattern_mm` string (which may list several).
+const AI_MOUNT_OPTIONS = ["16x16", "20x20", "25.5x25.5", "30.5x30.5"] as const;
 
-// Heuristic natural-language → AI-spec filters. Deliberately conservative:
-// only sets a field when the phrasing is clear. No network, no model.
-function parseAiQuery(q: string): Partial<Filters> {
-  const s = " " + q.toLowerCase() + " ";
-  const out: Partial<Filters> = {};
-  const n = (re: RegExp): number | null => { const m = s.match(re); return m ? Number(m[1]) : null; };
+// Battery cell-count shortcuts for the input-voltage filter. A board must
+// accept at least the full-charge voltage of that pack (4.2 V per cell).
+const AI_CELL_OPTIONS = [2, 3, 4, 6, 8, 12] as const;
+const cellsToVolts = (cells: number) => Math.round(cells * 4.2 * 10) / 10;
 
-  // Weight (g)
-  const wr = s.match(/(\d+)\s*(?:-|to|–|—)\s*(\d+)\s*g\b/);
-  if (wr) { out.aiWeightMin = +wr[1]; out.aiWeightMax = +wr[2]; }
-  else {
-    const wmax = n(/(?:under|below|less than|lighter than|up to|max|≤|<)\s*(\d+)\s*g\b/);
-    const wmin = n(/(?:over|above|more than|heavier than|at least|min|≥|>)\s*(\d+)\s*g\b/);
-    if (wmax != null) out.aiWeightMax = wmax;
-    if (wmin != null) out.aiWeightMin = wmin;
-  }
-  if (/\b(light(weight)?|tiny|nano|micro|whoop)\b/.test(s))
-    out.aiWeightMax = Math.min(out.aiWeightMax ?? 200, 20);
-
-  // Size (mm, longest side)
-  const sr = s.match(/(\d+)\s*(?:-|to|–)\s*(\d+)\s*mm\b/);
-  if (sr) { out.aiSizeMin = +sr[1]; out.aiSizeMax = +sr[2]; }
-  else {
-    const smax = n(/(?:under|below|less than|smaller than|up to|max|≤|<)\s*(\d+)\s*mm\b/);
-    const smin = n(/(?:over|above|more than|larger than|at least|≥|>)\s*(\d+)\s*mm\b/);
-    if (smax != null) out.aiSizeMax = smax;
-    if (smin != null) out.aiSizeMin = smin;
-  }
-  if (/\b(small|compact|mini)\b/.test(s)) out.aiSizeMax = Math.min(out.aiSizeMax ?? 120, 40);
-
-  // Voltage: "6s" (cells) → supports ≥ ~that voltage; explicit volts too.
-  const cells = s.match(/(\d+)\s*s\b/);
-  if (cells) out.aiVoltMin = Math.min(60, Math.round(+cells[1] * 4.2));
-  const vmin = n(/(?:over|above|at least|≥|min)\s*(\d+)\s*v\b/);
-  const vmax = n(/(?:under|below|up to|max|≤|<)\s*(\d+)\s*v\b/);
-  if (vmin != null) out.aiVoltMin = vmin;
-  if (vmax != null) out.aiVoltMax = vmax;
-
-  // Features
-  if (/\bosd\b/.test(s)) out.aiHasOsd = true;
-  if (/\b(wireless|elrs|expresslrs|wi-?fi|bluetooth|crossfire)\b/.test(s)) out.aiHasWireless = true;
-  if (/\b(black ?box|flash ?log|logging|dataflash)\b/.test(s)) out.aiHasBlackbox = true;
-
-  return out;
-}
-
-// Human-readable chips of the currently-active AI-spec filters.
-function aiFilterChips(f: Filters): string[] {
-  const c: string[] = [];
-  if (f.aiWeightMin > 0 || f.aiWeightMax < 200) c.push(`${f.aiWeightMin}–${f.aiWeightMax} g`);
-  if (f.aiSizeMin > 0 || f.aiSizeMax < 120) c.push(`${f.aiSizeMin}–${f.aiSizeMax} mm`);
-  if (f.aiVoltMin > 0 || f.aiVoltMax < 60) c.push(`${f.aiVoltMin}–${f.aiVoltMax} V`);
-  if (f.aiHasOsd) c.push("OSD");
-  if (f.aiHasWireless) c.push("wireless");
-  if (f.aiHasBlackbox) c.push("blackbox");
-  return c;
+// true when v lies inside [lo, hi] (either bound may be absent).
+function inBounds(v: number, lo: number | null, hi: number | null): boolean {
+  return (lo == null || v >= lo) && (hi == null || v <= hi);
 }
 
 const VEHICLES: { id: VehicleType; label: string }[] = [
@@ -355,21 +309,28 @@ function passes(b: Board, f: Filters): boolean {
   // (we can't confirm it matches).
   if (f.aiEnabled) {
     const ai = b.ai;
-    if (f.aiWeightMin > 0 || f.aiWeightMax < 200) {
+    if (f.aiWeightMin != null || f.aiWeightMax != null) {
       const w = ai?.weight_g;
-      if (w == null || w < f.aiWeightMin || w > f.aiWeightMax) return false;
+      if (w == null || !inBounds(w, f.aiWeightMin, f.aiWeightMax)) return false;
     }
-    if (f.aiSizeMin > 0 || f.aiSizeMax < 120) {
+    if (f.aiSizeMin != null || f.aiSizeMax != null) {
       const dims = [ai?.dimensions_mm?.length, ai?.dimensions_mm?.width].filter((x): x is number => x != null);
       const size = dims.length ? Math.max(...dims) : null;
-      if (size == null || size < f.aiSizeMin || size > f.aiSizeMax) return false;
+      if (size == null || !inBounds(size, f.aiSizeMin, f.aiSizeMax)) return false;
     }
-    if (f.aiVoltMin > 0 || f.aiVoltMax < 60) {
+    if (f.aiVoltMin != null || f.aiVoltMax != null) {
       // Board's accepted input-voltage span must overlap the selected range.
       const bMax = ai?.voltage_max_v;
       const bMin = ai?.voltage_min_v ?? 0;
-      if (bMax == null || !(bMax >= f.aiVoltMin && bMin <= f.aiVoltMax)) return false;
+      if (bMax == null) return false;
+      if (f.aiVoltMin != null && bMax < f.aiVoltMin) return false;
+      if (f.aiVoltMax != null && bMin > f.aiVoltMax) return false;
     }
+    if (f.aiMount !== "ANY") {
+      const m = (ai?.mounting_pattern_mm ?? "").replace(/\s+/g, "").toLowerCase();
+      if (!m.includes(f.aiMount.toLowerCase())) return false;
+    }
+    if (f.aiBecMin > 0 && (ai?.bec_outputs?.length ?? 0) < f.aiBecMin) return false;
     if (f.aiHasOsd && !(ai?.has_osd || ai?.osd_chip)) return false;
     if (f.aiHasWireless && !ai?.wireless) return false;
     if (f.aiHasBlackbox && !ai?.blackbox_flash) return false;
@@ -592,29 +553,72 @@ export default function Selector() {
           {f.aiEnabled ? (
             <div className="ai-card-body">
               <p className="filter-note" style={{ marginTop: 0 }}>
-                Describe the board in plain English — unverified AI specs, confirm in docs.
+                Unverified AI-gathered specs — boards missing a spec are excluded. Confirm in the docs.
               </p>
-              <textarea
-                className="ai-query"
-                rows={2}
-                placeholder={'e.g. "light board under 20g with OSD, up to 6S"'}
-                value={f.aiQuery}
-                onChange={(e) => {
-                  const text = e.target.value;
-                  setF((p) => ({ ...p, ...AI_RESET, ...parseAiQuery(text), aiQuery: text }));
-                }}
+
+              <NumRange
+                label="Weight" unit="g"
+                lo={f.aiWeightMin} hi={f.aiWeightMax}
+                onChange={(lo, hi) => setF((p) => ({ ...p, aiWeightMin: lo, aiWeightMax: hi }))}
               />
-              {(() => {
-                const chips = aiFilterChips(f);
-                return chips.length ? (
-                  <div className="ai-chips">
-                    <span className="ai-chips-label">Interpreted as</span>
-                    {chips.map((c) => <span key={c} className="ai-chip">{c}</span>)}
-                  </div>
-                ) : f.aiQuery ? (
-                  <p className="ai-card-hint">Nothing recognised yet — try weight, size, voltage, OSD, wireless or blackbox.</p>
-                ) : null;
-              })()}
+              <NumRange
+                label="Size (longest side)" unit="mm"
+                lo={f.aiSizeMin} hi={f.aiSizeMax}
+                onChange={(lo, hi) => setF((p) => ({ ...p, aiSizeMin: lo, aiSizeMax: hi }))}
+              />
+              <NumRange
+                label="Input voltage" unit="V" step={0.1}
+                lo={f.aiVoltMin} hi={f.aiVoltMax}
+                onChange={(lo, hi) => setF((p) => ({ ...p, aiVoltMin: lo, aiVoltMax: hi }))}
+              />
+              <div className="chip-row ai-cells">
+                <span className="ai-cells-label">Pack</span>
+                {AI_CELL_OPTIONS.map((c) => {
+                  const v = cellsToVolts(c);
+                  const on = f.aiVoltMin === v;
+                  return (
+                    <button
+                      key={c}
+                      className={"chip " + (on ? "chip-on" : "")}
+                      title={`Accepts at least ${v} V (${c}S full charge)`}
+                      onClick={() => set("aiVoltMin", on ? null : v)}
+                    >
+                      {c}S
+                    </button>
+                  );
+                })}
+              </div>
+
+              <div className="stepper-label">Mounting pattern</div>
+              <div className="chip-row">
+                {(["ANY", ...AI_MOUNT_OPTIONS] as const).map((m) => (
+                  <button
+                    key={m}
+                    className={"chip " + (f.aiMount === m ? "chip-on" : "")}
+                    onClick={() => set("aiMount", m)}
+                  >
+                    {m === "ANY" ? "Any" : `${m} mm`}
+                  </button>
+                ))}
+              </div>
+
+              <Stepper label="BEC outputs" value={f.aiBecMin} max={6} onChange={(v) => set("aiBecMin", v)} />
+
+              <label className="toggle">
+                <input type="checkbox" checked={f.aiHasOsd} onChange={(e) => set("aiHasOsd", e.target.checked)} />
+                <span className="toggle-mark" aria-hidden />
+                <span className="toggle-label">Has OSD</span>
+              </label>
+              <label className="toggle">
+                <input type="checkbox" checked={f.aiHasWireless} onChange={(e) => set("aiHasWireless", e.target.checked)} />
+                <span className="toggle-mark" aria-hidden />
+                <span className="toggle-label">Has wireless (ELRS / Wi-Fi / BT)</span>
+              </label>
+              <label className="toggle">
+                <input type="checkbox" checked={f.aiHasBlackbox} onChange={(e) => set("aiHasBlackbox", e.target.checked)} />
+                <span className="toggle-mark" aria-hidden />
+                <span className="toggle-label">Has blackbox flash</span>
+              </label>
             </div>
           ) : (
             <p className="ai-card-hint">
@@ -1035,6 +1039,75 @@ function Stepper({
           onClick={() => onChange(Math.min(max, value + 1))}
           aria-label={`${label} increase`}
         >+</button>
+      </div>
+    </div>
+  );
+}
+
+// Two number boxes ("min" / "max") for an optional numeric bound. Blank = no
+// bound on that side. Commits on blur / Enter, like Stepper.
+function NumRange({
+  label, unit, lo, hi, onChange, step = 1,
+}: {
+  label: string; unit: string; lo: number | null; hi: number | null;
+  step?: number; onChange: (lo: number | null, hi: number | null) => void;
+}) {
+  const fmt = (n: number | null) => (n == null ? "" : String(n));
+  const [loText, setLoText] = useState(fmt(lo));
+  const [hiText, setHiText] = useState(fmt(hi));
+  const [lastSeen, setLastSeen] = useState({ lo, hi });
+  if (lastSeen.lo !== lo || lastSeen.hi !== hi) {
+    setLastSeen({ lo, hi });
+    setLoText(fmt(lo));
+    setHiText(fmt(hi));
+  }
+
+  const parse = (raw: string): number | null => {
+    const t = raw.trim();
+    if (t === "") return null;
+    const n = Number(t);
+    return Number.isFinite(n) && n >= 0 ? n : null;
+  };
+  const commit = () => {
+    let nlo = parse(loText);
+    let nhi = parse(hiText);
+    if (nlo != null && nhi != null && nlo > nhi) [nlo, nhi] = [nhi, nlo];
+    setLoText(fmt(nlo));
+    setHiText(fmt(nhi));
+    if (nlo !== lo || nhi !== hi) onChange(nlo, nhi);
+  };
+  const onKey = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      (e.target as HTMLInputElement).blur();
+    }
+  };
+
+  return (
+    <div className="num-range">
+      <span className="stepper-label">{label}</span>
+      <div className="num-range-ctrl">
+        <input
+          type="number" inputMode="decimal" min={0} step={step}
+          className="num-range-input" placeholder="min"
+          value={loText}
+          onChange={(e) => setLoText(e.target.value)}
+          onBlur={commit} onKeyDown={onKey}
+          aria-label={`${label} minimum (${unit})`}
+        />
+        <span className="num-range-sep">to</span>
+        <input
+          type="number" inputMode="decimal" min={0} step={step}
+          className="num-range-input" placeholder="max"
+          value={hiText}
+          onChange={(e) => setHiText(e.target.value)}
+          onBlur={commit} onKeyDown={onKey}
+          aria-label={`${label} maximum (${unit})`}
+        />
+        <span className="num-range-unit">{unit}</span>
+        {(lo != null || hi != null) && (
+          <button className="num-range-clear" onClick={() => onChange(null, null)} aria-label={`Clear ${label}`}>×</button>
+        )}
       </div>
     </div>
   );

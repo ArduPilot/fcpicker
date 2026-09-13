@@ -11,6 +11,7 @@ import { extract, type ExtractResult } from "./extract";
 
 const EMPTY_MANUAL: BoardManual = {
   status: "not_started",
+  manufacturer: null,
   form_factor: null,
   mounting: null,
   assembly: null,

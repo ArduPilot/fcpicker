@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import {
+  boardManufacturer,
   isOnboardSensor,
   manufacturerFor,
   mcuFamilyLabel,
@@ -73,9 +74,9 @@ export default function BoardDetail() {
       <header className="bd-head">
         <p className="bd-eyebrow">ArduPilot-supported autopilot</p>
         <h1 className="bd-title">{b.slug}</h1>
-        {b.manufacturer && (
+        {boardManufacturer(b) && (
           <p className="bd-maker" title="Manufacturer — suggested for discovery; verify in docs">
-            by {b.manufacturer}
+            by {boardManufacturer(b)}
           </p>
         )}
         <p className="bd-subtitle">
@@ -129,7 +130,7 @@ export default function BoardDetail() {
         </a>
       )}
 
-      <BuyLink manufacturer={manufacturerFor(b.manufacturer, mfrIndex)} />
+      <BuyLink manufacturer={manufacturerFor(boardManufacturer(b), mfrIndex)} />
 
       <Variants variants={b.manual?.variants ?? []} />
 
@@ -564,6 +565,13 @@ function BuyLink({ manufacturer }: { manufacturer: Manufacturer | null }) {
   );
 }
 
+// Mounting is either a hole pattern ("30.5x30.5", which wants a mm unit) or a
+// named standard ("Pixhawk Autopilot Bus", which does not).
+function formatMounting(m: string | null): string {
+  if (!m) return "—";
+  return /^[\d.]+\s*[x×]\s*[\d.]+$/i.test(m.trim()) ? `${m} mm` : m;
+}
+
 // Retail products sharing this firmware target. ArduPilot builds one firmware
 // per hwdef, so several physically different boards can land on one entry —
 // this is where a buyer finds out which one they actually have.
@@ -596,7 +604,7 @@ function Variants({ variants }: { variants: BoardVariant[] }) {
                   {v.discontinued && <span className="bd-chip bd-chip-muted">discontinued</span>}
                 </td>
                 <td>{v.differences ?? "—"}</td>
-                <td>{v.mounting ? `${v.mounting} mm` : "—"}</td>
+                <td>{formatMounting(v.mounting)}</td>
                 <td>{v.weight_g != null ? `${v.weight_g} g` : "—"}</td>
                 <td>
                   {v.product_url ? (

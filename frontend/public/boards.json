@@ -1466,7 +1466,8 @@
         "ardupilot_repo_url": null,
         "discontinued": false,
         "imu_count": null,
-        "notes": null
+        "notes": null,
+        "manufacturer": "Intel"
       }
     },
     {
@@ -2677,7 +2678,8 @@
         "ardupilot_repo_url": null,
         "discontinued": false,
         "imu_count": null,
-        "notes": null
+        "notes": null,
+        "manufacturer": "AeroEggTech"
       }
     },
     {
@@ -2790,7 +2792,8 @@
         "ardupilot_repo_url": null,
         "discontinued": false,
         "imu_count": null,
-        "notes": null
+        "notes": null,
+        "manufacturer": "Agam Robotics"
       }
     },
     {
@@ -4985,7 +4988,8 @@
         "ardupilot_repo_url": null,
         "discontinued": false,
         "imu_count": null,
-        "notes": null
+        "notes": null,
+        "manufacturer": "ARK Electronics"
       }
     },
     {
@@ -6303,7 +6307,8 @@
         "ardupilot_repo_url": null,
         "discontinued": false,
         "imu_count": null,
-        "notes": null
+        "notes": null,
+        "manufacturer": "B-Cube"
       }
     },
     {
@@ -7433,7 +7438,8 @@
         "ardupilot_repo_url": null,
         "discontinued": false,
         "imu_count": null,
-        "notes": null
+        "notes": null,
+        "manufacturer": "Parrot"
       }
     },
     {
@@ -9471,7 +9477,8 @@
         "ardupilot_repo_url": null,
         "discontinued": false,
         "imu_count": null,
-        "notes": null
+        "notes": null,
+        "manufacturer": "BeagleBoard.org"
       }
     },
     {
@@ -11749,7 +11756,8 @@
         "ardupilot_repo_url": null,
         "discontinued": false,
         "imu_count": null,
-        "notes": null
+        "notes": null,
+        "manufacturer": "CORVON"
       }
     },
     {
@@ -11878,7 +11886,8 @@
         "ardupilot_repo_url": null,
         "discontinued": false,
         "imu_count": null,
-        "notes": null
+        "notes": null,
+        "manufacturer": "CORVON"
       }
     },
     {
@@ -15097,7 +15106,8 @@
         "ardupilot_repo_url": null,
         "discontinued": false,
         "imu_count": null,
-        "notes": null
+        "notes": null,
+        "manufacturer": "CUAV"
       }
     },
     {
@@ -15234,7 +15244,8 @@
         "ardupilot_repo_url": null,
         "discontinued": false,
         "imu_count": null,
-        "notes": null
+        "notes": null,
+        "manufacturer": "CUAV"
       }
     },
     {
@@ -23647,7 +23658,8 @@
         "ardupilot_repo_url": null,
         "discontinued": false,
         "imu_count": null,
-        "notes": null
+        "notes": null,
+        "manufacturer": "Emlid"
       }
     },
     {
@@ -23743,7 +23755,8 @@
         "ardupilot_repo_url": null,
         "discontinued": false,
         "imu_count": null,
-        "notes": null
+        "notes": null,
+        "manufacturer": "Erle Robotics"
       }
     },
     {
@@ -23839,7 +23852,8 @@
         "ardupilot_repo_url": null,
         "discontinued": false,
         "imu_count": null,
-        "notes": null
+        "notes": null,
+        "manufacturer": "Erle Robotics"
       }
     },
     {
@@ -24936,7 +24950,8 @@
         "ardupilot_repo_url": null,
         "discontinued": false,
         "imu_count": null,
-        "notes": null
+        "notes": null,
+        "manufacturer": "AMOV Lab"
       }
     },
     {
@@ -25037,7 +25052,8 @@
         "ardupilot_repo_url": null,
         "discontinued": false,
         "imu_count": null,
-        "notes": null
+        "notes": null,
+        "manufacturer": "FlyFishRC"
       }
     },
     {
@@ -25144,7 +25160,8 @@
         "ardupilot_repo_url": null,
         "discontinued": false,
         "imu_count": null,
-        "notes": null
+        "notes": null,
+        "manufacturer": "FlyingMoon"
       },
       "ai": {
         "source": "fc-verify-enrich workflow: hwdef+README+local-wiki+manufacturer cross-correlation",
@@ -25644,7 +25661,8 @@
         "ardupilot_repo_url": null,
         "discontinued": false,
         "imu_count": null,
-        "notes": null
+        "notes": null,
+        "manufacturer": "FlyingMoon"
       },
       "ai": {
         "source": "fc-verify-enrich workflow: hwdef+README+local-wiki+manufacturer cross-correlation",
@@ -26946,7 +26964,7 @@
       "docs_url": "https://ardupilot.org/copter/docs/common-flywoo-f745.html",
       "repo_url": "https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_HAL_ChibiOS/hwdef/FlywooF745/README.md",
       "manual": {
-        "status": "not_started",
+        "status": "partial",
         "form_factor": null,
         "mounting": null,
         "assembly": null,
@@ -26957,7 +26975,37 @@
         "ardupilot_repo_url": null,
         "discontinued": false,
         "imu_count": null,
-        "notes": null
+        "notes": null,
+        "variants": [
+          {
+            "name": "GOKU GN 745 AIO 40A",
+            "aliases": [
+              "goku gn 745 40a",
+              "gn745 40a",
+              "flywoo goku gn 745 40a"
+            ],
+            "differences": "AIO with integrated 40A ESC.",
+            "dimensions_mm": null,
+            "weight_g": null,
+            "mounting": null,
+            "product_url": null,
+            "discontinued": false
+          },
+          {
+            "name": "GOKU GN 745 AIO 45A",
+            "aliases": [
+              "goku gn 745 45a",
+              "gn745 45a",
+              "flywoo goku gn 745 45a"
+            ],
+            "differences": "AIO with integrated 45A ESC.",
+            "dimensions_mm": null,
+            "weight_g": null,
+            "mounting": null,
+            "product_url": null,
+            "discontinued": false
+          }
+        ]
       },
       "ai": {
         "source": "fc-verify-enrich workflow: hwdef+README+local-wiki+manufacturer cross-correlation",
@@ -27834,7 +27882,8 @@
         "ardupilot_repo_url": null,
         "discontinued": false,
         "imu_count": null,
-        "notes": null
+        "notes": null,
+        "manufacturer": "CUAV"
       },
       "ai": {
         "source": "fc-verify-enrich workflow: hwdef+README+local-wiki+manufacturer cross-correlation",
@@ -29133,7 +29182,8 @@
         "ardupilot_repo_url": null,
         "discontinued": false,
         "imu_count": null,
-        "notes": null
+        "notes": null,
+        "manufacturer": "G-Pilot"
       }
     },
     {
@@ -30182,7 +30232,8 @@
         "ardupilot_repo_url": null,
         "discontinued": false,
         "imu_count": null,
-        "notes": null
+        "notes": null,
+        "manufacturer": "HGLRC"
       }
     },
     {
@@ -31417,7 +31468,8 @@
         "ardupilot_repo_url": null,
         "discontinued": false,
         "imu_count": null,
-        "notes": null
+        "notes": null,
+        "manufacturer": "JAE (Japan Aviation Electronics)"
       }
     },
     {
@@ -35981,7 +36033,8 @@
         "ardupilot_repo_url": null,
         "discontinued": false,
         "imu_count": null,
-        "notes": null
+        "notes": null,
+        "manufacturer": "Karshak Drones"
       }
     },
     {
@@ -36386,7 +36439,8 @@
         "ardupilot_repo_url": null,
         "discontinued": false,
         "imu_count": null,
-        "notes": null
+        "notes": null,
+        "manufacturer": "Lectron Technologies"
       }
     },
     {
@@ -38968,7 +39022,7 @@
       "docs_url": "https://ardupilot.org/copter/docs/common-matekf405.html",
       "repo_url": null,
       "manual": {
-        "status": "not_started",
+        "status": "partial",
         "form_factor": null,
         "mounting": null,
         "assembly": null,
@@ -38979,7 +39033,37 @@
         "ardupilot_repo_url": null,
         "discontinued": false,
         "imu_count": null,
-        "notes": null
+        "notes": null,
+        "variants": [
+          {
+            "name": "F405-STD",
+            "aliases": [
+              "f405 std",
+              "f405std",
+              "matek f405 std"
+            ],
+            "differences": "ICM20602 IMU, BMP280 baro, 7 PWM outputs.",
+            "dimensions_mm": null,
+            "weight_g": null,
+            "mounting": "30.5x30.5",
+            "product_url": "http://www.mateksys.com/?portfolio=f405-std",
+            "discontinued": true
+          },
+          {
+            "name": "F405-CTR",
+            "aliases": [
+              "f405 ctr",
+              "f405ctr",
+              "matek f405 ctr"
+            ],
+            "differences": "MPU6000 IMU, BMP280 baro, integrated 184A voltage & current sensor.",
+            "dimensions_mm": null,
+            "weight_g": null,
+            "mounting": "30.5x30.5",
+            "product_url": "http://www.mateksys.com/?portfolio=f405-ctr",
+            "discontinued": true
+          }
+        ]
       },
       "ai": {
         "source": "fc-verify-enrich workflow: hwdef+README+local-wiki+manufacturer cross-correlation",
@@ -47508,7 +47592,8 @@
         "ardupilot_repo_url": null,
         "discontinued": false,
         "imu_count": null,
-        "notes": null
+        "notes": null,
+        "manufacturer": "Blue Robotics"
       }
     },
     {
@@ -47632,7 +47717,8 @@
         "ardupilot_repo_url": null,
         "discontinued": false,
         "imu_count": null,
-        "notes": null
+        "notes": null,
+        "manufacturer": "Blue Robotics"
       }
     },
     {
@@ -47728,7 +47814,8 @@
         "ardupilot_repo_url": null,
         "discontinued": false,
         "imu_count": null,
-        "notes": null
+        "notes": null,
+        "manufacturer": "Emlid"
       }
     },
     {
@@ -47831,7 +47918,8 @@
         "ardupilot_repo_url": null,
         "discontinued": false,
         "imu_count": null,
-        "notes": null
+        "notes": null,
+        "manufacturer": "Emlid"
       }
     },
     {
@@ -48346,7 +48434,8 @@
         "ardupilot_repo_url": null,
         "discontinued": false,
         "imu_count": null,
-        "notes": null
+        "notes": null,
+        "manufacturer": "NW Blue"
       }
     },
     {
@@ -48805,7 +48894,8 @@
         "ardupilot_repo_url": null,
         "discontinued": false,
         "imu_count": null,
-        "notes": null
+        "notes": null,
+        "manufacturer": "Aerotenna"
       }
     },
     {
@@ -50733,7 +50823,8 @@
         "ardupilot_repo_url": null,
         "discontinued": false,
         "imu_count": null,
-        "notes": null
+        "notes": null,
+        "manufacturer": "Orbit Teknoloji"
       }
     },
     {
@@ -54696,7 +54787,7 @@
       "docs_url": "https://ardupilot.org/copter/docs/common-holybro-pixhawk6X.html",
       "repo_url": null,
       "manual": {
-        "status": "not_started",
+        "status": "partial",
         "form_factor": null,
         "mounting": null,
         "assembly": null,
@@ -54707,7 +54798,37 @@
         "ardupilot_repo_url": null,
         "discontinued": false,
         "imu_count": null,
-        "notes": null
+        "notes": null,
+        "variants": [
+          {
+            "name": "Pixhawk 6X",
+            "aliases": [
+              "pixhawk 6x",
+              "pixhawk6x"
+            ],
+            "differences": "Base model. STM32H7, triple redundant IMUs, dual barometers, Ethernet.",
+            "dimensions_mm": null,
+            "weight_g": null,
+            "mounting": "Pixhawk Autopilot Bus",
+            "product_url": "https://holybro.com/products/pixhawk-6x",
+            "discontinued": false
+          },
+          {
+            "name": "Pixhawk 6X Pro",
+            "aliases": [
+              "pixhawk 6x pro",
+              "pixhawk6x pro",
+              "pixhawk6xpro",
+              "6x pro"
+            ],
+            "differences": "Higher-grade IMU set over the base 6X.",
+            "dimensions_mm": null,
+            "weight_g": null,
+            "mounting": "Pixhawk Autopilot Bus",
+            "product_url": "https://holybro.com/products/pixhawk-6x-pro",
+            "discontinued": false
+          }
+        ]
       },
       "ai": {
         "source": "fc-verify-enrich workflow: hwdef+README+local-wiki+manufacturer cross-correlation",
@@ -57575,7 +57696,8 @@
         "ardupilot_repo_url": null,
         "discontinued": false,
         "imu_count": null,
-        "notes": null
+        "notes": null,
+        "manufacturer": "BeagleBoard.org"
       }
     },
     {
@@ -57671,7 +57793,8 @@
         "ardupilot_repo_url": null,
         "discontinued": false,
         "imu_count": null,
-        "notes": null
+        "notes": null,
+        "manufacturer": "BeagleBoard.org"
       }
     },
     {
@@ -58150,7 +58273,8 @@
         "ardupilot_repo_url": null,
         "discontinued": false,
         "imu_count": null,
-        "notes": null
+        "notes": null,
+        "manufacturer": "Erle Robotics"
       }
     },
     {
@@ -61868,7 +61992,8 @@
         "ardupilot_repo_url": null,
         "discontinued": false,
         "imu_count": null,
-        "notes": null
+        "notes": null,
+        "manufacturer": "SAAM Drones"
       }
     },
     {
@@ -63000,7 +63125,8 @@
         "ardupilot_repo_url": null,
         "discontinued": false,
         "imu_count": null,
-        "notes": null
+        "notes": null,
+        "manufacturer": "SimpliFly"
       }
     },
     {
@@ -63128,7 +63254,8 @@
         "ardupilot_repo_url": null,
         "discontinued": false,
         "imu_count": null,
-        "notes": null
+        "notes": null,
+        "manufacturer": "SIYI"
       }
     },
     {
@@ -63256,7 +63383,8 @@
         "ardupilot_repo_url": null,
         "discontinued": false,
         "imu_count": null,
-        "notes": null
+        "notes": null,
+        "manufacturer": "SIYI"
       }
     },
     {
@@ -63650,7 +63778,8 @@
         "ardupilot_repo_url": null,
         "discontinued": false,
         "imu_count": null,
-        "notes": null
+        "notes": null,
+        "manufacturer": "SIYI"
       }
     },
     {
@@ -63752,7 +63881,8 @@
         "ardupilot_repo_url": null,
         "discontinued": false,
         "imu_count": null,
-        "notes": null
+        "notes": null,
+        "manufacturer": "Skydroid"
       }
     },
     {
@@ -64961,7 +65091,7 @@
       "docs_url": "https://ardupilot.org/copter/docs/common-skystarsh7hdv2.html",
       "repo_url": "https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_HAL_ChibiOS/hwdef/SkystarsH7HDv2/README.md",
       "manual": {
-        "status": "not_started",
+        "status": "partial",
         "form_factor": null,
         "mounting": null,
         "assembly": null,
@@ -64972,7 +65102,37 @@
         "ardupilot_repo_url": null,
         "discontinued": false,
         "imu_count": null,
-        "notes": null
+        "notes": null,
+        "variants": [
+          {
+            "name": "H7HD V2",
+            "aliases": [
+              "h7hd v2",
+              "h7hdv2",
+              "skystars h7hd v2"
+            ],
+            "differences": "BMP280 barometer.",
+            "dimensions_mm": null,
+            "weight_g": null,
+            "mounting": null,
+            "product_url": null,
+            "discontinued": false
+          },
+          {
+            "name": "H7HD V3",
+            "aliases": [
+              "h7hd v3",
+              "h7hdv3",
+              "skystars h7hd v3"
+            ],
+            "differences": "SPL-06 barometer in place of the V2's BMP280.",
+            "dimensions_mm": null,
+            "weight_g": null,
+            "mounting": null,
+            "product_url": null,
+            "discontinued": false
+          }
+        ]
       },
       "ai": {
         "source": "fc-verify-enrich workflow: hwdef+README+local-wiki+manufacturer cross-correlation",
@@ -70229,7 +70389,7 @@
       "docs_url": "https://ardupilot.org/copter/docs/common-suligh7.html",
       "repo_url": "https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_HAL_ChibiOS/hwdef/SULILGH7-P1-P2/README.md",
       "manual": {
-        "status": "not_started",
+        "status": "partial",
         "form_factor": null,
         "mounting": null,
         "assembly": null,
@@ -70240,7 +70400,37 @@
         "ardupilot_repo_url": null,
         "discontinued": false,
         "imu_count": null,
-        "notes": null
+        "notes": null,
+        "variants": [
+          {
+            "name": "SULILGH7-P1",
+            "aliases": [
+              "sulilgh7 p1",
+              "sulilgh7p1",
+              "p1"
+            ],
+            "differences": "Open-source design; see the OSHWHub project.",
+            "dimensions_mm": null,
+            "weight_g": null,
+            "mounting": null,
+            "product_url": null,
+            "discontinued": false
+          },
+          {
+            "name": "SULILGH7-P2",
+            "aliases": [
+              "sulilgh7 p2",
+              "sulilgh7p2",
+              "p2"
+            ],
+            "differences": "Open-source design; see the OSHWHub project.",
+            "dimensions_mm": null,
+            "weight_g": null,
+            "mounting": null,
+            "product_url": null,
+            "discontinued": false
+          }
+        ]
       },
       "ai": {
         "source": "fc-verify-enrich workflow: hwdef+README+local-wiki+manufacturer cross-correlation",
@@ -70950,7 +71140,8 @@
         "ardupilot_repo_url": null,
         "discontinued": false,
         "imu_count": null,
-        "notes": null
+        "notes": null,
+        "manufacturer": "T3 Foundation"
       }
     },
     {
@@ -71360,7 +71551,8 @@
         "ardupilot_repo_url": null,
         "discontinued": false,
         "imu_count": null,
-        "notes": null
+        "notes": null,
+        "manufacturer": "Team BlackSheep"
       }
     },
     {
@@ -72026,7 +72218,8 @@
         "ardupilot_repo_url": null,
         "discontinued": false,
         "imu_count": null,
-        "notes": null
+        "notes": null,
+        "manufacturer": "Team BlackSheep"
       }
     },
     {
@@ -73179,7 +73372,8 @@
         "ardupilot_repo_url": null,
         "discontinued": false,
         "imu_count": null,
-        "notes": null
+        "notes": null,
+        "manufacturer": "Tustin Dynamics"
       }
     },
     {
@@ -75743,7 +75937,8 @@
         "ardupilot_repo_url": null,
         "discontinued": false,
         "imu_count": null,
-        "notes": null
+        "notes": null,
+        "manufacturer": "X-MAV"
       }
     },
     {
@@ -77662,7 +77857,8 @@
         "ardupilot_repo_url": null,
         "discontinued": false,
         "imu_count": null,
-        "notes": null
+        "notes": null,
+        "manufacturer": "ZeroOne"
       }
     },
     {
@@ -77809,7 +78005,7 @@
       "docs_url": "https://ardupilot.org/copter/docs/common-zeroonex6-air.html",
       "repo_url": "https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_HAL_ChibiOS/hwdef/ZeroOneX6_Air/README.md",
       "manual": {
-        "status": "not_started",
+        "status": "partial",
         "form_factor": null,
         "mounting": null,
         "assembly": null,
@@ -77820,7 +78016,38 @@
         "ardupilot_repo_url": null,
         "discontinued": false,
         "imu_count": null,
-        "notes": null
+        "notes": null,
+        "variants": [
+          {
+            "name": "X6 Air",
+            "aliases": [
+              "x6 air",
+              "x6air",
+              "zeroone x6 air"
+            ],
+            "differences": "Base Air model.",
+            "dimensions_mm": null,
+            "weight_g": null,
+            "mounting": null,
+            "product_url": null,
+            "discontinued": false
+          },
+          {
+            "name": "X6 Air+",
+            "aliases": [
+              "x6 air+",
+              "x6 airplus",
+              "x6 air plus",
+              "zeroone x6 air+"
+            ],
+            "differences": "Dual ICM45686 IMUs, one vibration-isolated, with 1 W IMU heating; dual barometers.",
+            "dimensions_mm": null,
+            "weight_g": null,
+            "mounting": null,
+            "product_url": null,
+            "discontinued": false
+          }
+        ]
       },
       "ai": {
         "source": "fc-verify-enrich workflow: hwdef+README+local-wiki+manufacturer cross-correlation",

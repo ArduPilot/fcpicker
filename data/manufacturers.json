@@ -14,6 +14,103 @@
       "verified": true
     },
     {
+      "id": "accton iot",
+      "aliases": [
+        "accton iot"
+      ],
+      "name": "Accton-IoT",
+      "website": null,
+      "store_url": null,
+      "distributors_url": null,
+      "country": "TW",
+      "verified": false
+    },
+    {
+      "id": "acns",
+      "aliases": [
+        "acns"
+      ],
+      "name": "ACNS",
+      "website": null,
+      "store_url": null,
+      "distributors_url": null,
+      "country": null,
+      "verified": false
+    },
+    {
+      "id": "aedrox",
+      "aliases": [
+        "aedrox"
+      ],
+      "name": "Aedrox",
+      "website": null,
+      "store_url": null,
+      "distributors_url": null,
+      "country": null,
+      "verified": false
+    },
+    {
+      "id": "aerocogito",
+      "aliases": [
+        "aerocogito"
+      ],
+      "name": "AeroCogito",
+      "website": "https://www.aerocogito.com/",
+      "store_url": null,
+      "distributors_url": null,
+      "country": "US",
+      "verified": true
+    },
+    {
+      "id": "aeroeggtech",
+      "aliases": [
+        "aeroeggtech"
+      ],
+      "name": "AeroEggTech",
+      "website": "https://www.aeroeggtech.com/",
+      "store_url": null,
+      "distributors_url": null,
+      "country": "CN",
+      "verified": true
+    },
+    {
+      "id": "aerofox",
+      "aliases": [
+        "aerofox"
+      ],
+      "name": "AEROFOX",
+      "website": null,
+      "store_url": null,
+      "distributors_url": null,
+      "country": "CN",
+      "verified": false
+    },
+    {
+      "id": "aerotenna",
+      "aliases": [
+        "aerotenna"
+      ],
+      "name": "Aerotenna",
+      "website": null,
+      "store_url": null,
+      "distributors_url": null,
+      "country": "US",
+      "verified": false,
+      "note": "aerotenna.com rate-limited; company may be defunct."
+    },
+    {
+      "id": "agam robotics",
+      "aliases": [
+        "agam robotics"
+      ],
+      "name": "Agam Robotics",
+      "website": "https://www.agamrobotics.com/",
+      "store_url": null,
+      "distributors_url": null,
+      "country": "IL",
+      "verified": true
+    },
+    {
       "id": "airbot",
       "name": "Airbot Systems",
       "aliases": [
@@ -21,6 +118,18 @@
         "airbot systems"
       ],
       "website": "https://www.airbotsystems.com/",
+      "store_url": null,
+      "distributors_url": null,
+      "country": "CN",
+      "verified": true
+    },
+    {
+      "id": "airmind",
+      "aliases": [
+        "airmind"
+      ],
+      "name": "AirMind",
+      "website": "https://www.airmind.mindpx.net/",
       "store_url": null,
       "distributors_url": null,
       "country": "CN",
@@ -36,6 +145,18 @@
       "store_url": null,
       "distributors_url": null,
       "country": "SK",
+      "verified": true
+    },
+    {
+      "id": "amov lab",
+      "aliases": [
+        "amov lab"
+      ],
+      "name": "AMOV Lab",
+      "website": "https://amovlab.com/",
+      "store_url": null,
+      "distributors_url": null,
+      "country": "CN",
       "verified": true
     },
     {
@@ -75,6 +196,30 @@
       "verified": true
     },
     {
+      "id": "arkin labs private limited",
+      "aliases": [
+        "arkin labs private limited"
+      ],
+      "name": "Arkin Labs",
+      "website": null,
+      "store_url": null,
+      "distributors_url": null,
+      "country": "IN",
+      "verified": false
+    },
+    {
+      "id": "atlasflight",
+      "aliases": [
+        "atlasflight"
+      ],
+      "name": "AtlasFlight",
+      "website": null,
+      "store_url": null,
+      "distributors_url": null,
+      "country": null,
+      "verified": false
+    },
+    {
       "id": "atomrc",
       "name": "AtomRC",
       "aliases": [
@@ -84,6 +229,30 @@
       "store_url": null,
       "distributors_url": null,
       "country": "CN",
+      "verified": true
+    },
+    {
+      "id": "b cube",
+      "aliases": [
+        "b cube"
+      ],
+      "name": "B-Cube",
+      "website": null,
+      "store_url": null,
+      "distributors_url": null,
+      "country": null,
+      "verified": false
+    },
+    {
+      "id": "beagleboard org",
+      "aliases": [
+        "beagleboard org"
+      ],
+      "name": "BeagleBoard.org",
+      "website": "https://www.beagleboard.org/",
+      "store_url": null,
+      "distributors_url": null,
+      "country": "US",
       "verified": true
     },
     {
@@ -111,6 +280,30 @@
       "verified": true
     },
     {
+      "id": "blue robotics",
+      "aliases": [
+        "blue robotics"
+      ],
+      "name": "Blue Robotics",
+      "website": "https://bluerobotics.com/",
+      "store_url": "https://bluerobotics.com/",
+      "distributors_url": null,
+      "country": "US",
+      "verified": true
+    },
+    {
+      "id": "botlab dynamics",
+      "aliases": [
+        "botlab dynamics"
+      ],
+      "name": "BOTLAB DYNAMICS",
+      "website": "https://botlabdynamics.com/",
+      "store_url": null,
+      "distributors_url": null,
+      "country": "IN",
+      "verified": true
+    },
+    {
       "id": "brainfpv",
       "name": "BrainFPV",
       "aliases": [
@@ -133,6 +326,54 @@
       "distributors_url": null,
       "country": "CN",
       "verified": true
+    },
+    {
+      "id": "cbunmanned",
+      "aliases": [
+        "cbunmanned"
+      ],
+      "name": "CBUnmanned",
+      "website": "https://www.cbunmanned.com/",
+      "store_url": null,
+      "distributors_url": null,
+      "country": "GB",
+      "verified": true
+    },
+    {
+      "id": "clearsky",
+      "aliases": [
+        "clearsky"
+      ],
+      "name": "ClearSky",
+      "website": null,
+      "store_url": null,
+      "distributors_url": null,
+      "country": null,
+      "verified": false
+    },
+    {
+      "id": "coolfly",
+      "aliases": [
+        "coolfly"
+      ],
+      "name": "Coolfly",
+      "website": null,
+      "store_url": null,
+      "distributors_url": null,
+      "country": null,
+      "verified": false
+    },
+    {
+      "id": "corvon",
+      "aliases": [
+        "corvon"
+      ],
+      "name": "CORVON",
+      "website": null,
+      "store_url": null,
+      "distributors_url": null,
+      "country": null,
+      "verified": false
     },
     {
       "id": "cuav",
@@ -174,6 +415,30 @@
       "verified": true
     },
     {
+      "id": "darkmatter",
+      "aliases": [
+        "darkmatter"
+      ],
+      "name": "Darkmatter",
+      "website": null,
+      "store_url": null,
+      "distributors_url": null,
+      "country": null,
+      "verified": false
+    },
+    {
+      "id": "dheeran labs",
+      "aliases": [
+        "dheeran labs"
+      ],
+      "name": "Dheeran Labs",
+      "website": null,
+      "store_url": null,
+      "distributors_url": null,
+      "country": "IN",
+      "verified": false
+    },
+    {
       "id": "diatone",
       "name": "Diatone",
       "aliases": [
@@ -186,6 +451,18 @@
       "verified": true
     },
     {
+      "id": "droneer",
+      "aliases": [
+        "droneer"
+      ],
+      "name": "Droneer",
+      "website": null,
+      "store_url": null,
+      "distributors_url": null,
+      "country": null,
+      "verified": false
+    },
+    {
       "id": "drotek",
       "name": "Drotek",
       "aliases": [
@@ -196,6 +473,90 @@
       "distributors_url": null,
       "country": "FR",
       "verified": true
+    },
+    {
+      "id": "emlid",
+      "aliases": [
+        "emlid"
+      ],
+      "name": "Emlid",
+      "website": "https://emlid.com/",
+      "store_url": "https://store.emlid.com/",
+      "distributors_url": null,
+      "country": "LT",
+      "verified": true
+    },
+    {
+      "id": "erle robotics",
+      "aliases": [
+        "erle robotics"
+      ],
+      "name": "Erle Robotics",
+      "website": "https://erlerobotics.com/",
+      "store_url": null,
+      "distributors_url": null,
+      "country": "ES",
+      "verified": true
+    },
+    {
+      "id": "f4by team",
+      "aliases": [
+        "f4by team"
+      ],
+      "name": "F4BY Team",
+      "website": null,
+      "store_url": null,
+      "distributors_url": null,
+      "country": null,
+      "verified": false
+    },
+    {
+      "id": "flyfishrc",
+      "aliases": [
+        "flyfishrc"
+      ],
+      "name": "FlyFishRC",
+      "website": "https://www.flyfishrc.com/",
+      "store_url": null,
+      "distributors_url": null,
+      "country": "CN",
+      "verified": true
+    },
+    {
+      "id": "flyfocus",
+      "aliases": [
+        "flyfocus"
+      ],
+      "name": "Flyfocus",
+      "website": "https://flyfocus.pl/",
+      "store_url": null,
+      "distributors_url": null,
+      "country": "PL",
+      "verified": true
+    },
+    {
+      "id": "flyingmoon",
+      "aliases": [
+        "flyingmoon"
+      ],
+      "name": "FlyingMoon",
+      "website": null,
+      "store_url": null,
+      "distributors_url": null,
+      "country": "CN",
+      "verified": false
+    },
+    {
+      "id": "flyspark",
+      "aliases": [
+        "flyspark"
+      ],
+      "name": "FlySpark",
+      "website": null,
+      "store_url": null,
+      "distributors_url": null,
+      "country": null,
+      "verified": false
     },
     {
       "id": "flywoo",
@@ -235,6 +596,42 @@
       "verified": true
     },
     {
+      "id": "furious fpv",
+      "aliases": [
+        "furious fpv"
+      ],
+      "name": "Furious FPV",
+      "website": null,
+      "store_url": null,
+      "distributors_url": null,
+      "country": null,
+      "verified": false
+    },
+    {
+      "id": "g pilot",
+      "aliases": [
+        "g pilot"
+      ],
+      "name": "G-Pilot",
+      "website": null,
+      "store_url": null,
+      "distributors_url": null,
+      "country": null,
+      "verified": false
+    },
+    {
+      "id": "gear up",
+      "aliases": [
+        "gear up"
+      ],
+      "name": "Gear Up",
+      "website": null,
+      "store_url": null,
+      "distributors_url": null,
+      "country": null,
+      "verified": false
+    },
+    {
       "id": "geprc",
       "name": "GEPRC",
       "aliases": [
@@ -244,6 +641,18 @@
       "store_url": null,
       "distributors_url": null,
       "country": "CN",
+      "verified": true
+    },
+    {
+      "id": "greensight",
+      "aliases": [
+        "greensight"
+      ],
+      "name": "GreenSight",
+      "website": "https://www.greensightag.com/",
+      "store_url": null,
+      "distributors_url": null,
+      "country": "US",
       "verified": true
     },
     {
@@ -271,6 +680,18 @@
       "verified": true
     },
     {
+      "id": "hglrc",
+      "aliases": [
+        "hglrc"
+      ],
+      "name": "HGLRC",
+      "website": "https://www.hglrc.com/",
+      "store_url": null,
+      "distributors_url": null,
+      "country": "CN",
+      "verified": true
+    },
+    {
       "id": "holybro",
       "name": "Holybro",
       "aliases": [
@@ -281,6 +702,30 @@
       "distributors_url": null,
       "country": "CN",
       "verified": true
+    },
+    {
+      "id": "horizon31",
+      "aliases": [
+        "horizon31"
+      ],
+      "name": "Horizon31",
+      "website": null,
+      "store_url": null,
+      "distributors_url": null,
+      "country": "US",
+      "verified": false
+    },
+    {
+      "id": "hw",
+      "aliases": [
+        "hw"
+      ],
+      "name": "HW",
+      "website": null,
+      "store_url": null,
+      "distributors_url": null,
+      "country": null,
+      "verified": false
     },
     {
       "id": "iflight",
@@ -295,18 +740,32 @@
       "verified": true
     },
     {
+      "id": "intel",
+      "aliases": [
+        "intel"
+      ],
+      "name": "Intel",
+      "website": "https://www.intel.com/",
+      "store_url": null,
+      "distributors_url": null,
+      "country": "US",
+      "verified": false,
+      "note": "intel.com blocks automated requests. The Intel Aero is discontinued."
+    },
+    {
       "id": "jae",
       "name": "JAE (Japan Aviation Electronics)",
       "aliases": [
         "jae",
+        "jae japan aviation electronics",
         "jae japan aviation electronics industry",
         "japan aviation electronics industry jae"
       ],
-      "website": null,
+      "website": "https://www.jae.com/",
       "store_url": null,
       "distributors_url": null,
       "country": "JP",
-      "verified": false
+      "verified": true
     },
     {
       "id": "jhemcu",
@@ -318,6 +777,18 @@
       "store_url": null,
       "distributors_url": null,
       "country": "CN",
+      "verified": true
+    },
+    {
+      "id": "karshak drones",
+      "aliases": [
+        "karshak drones"
+      ],
+      "name": "Karshak Drones",
+      "website": "https://www.karshakdrones.com/",
+      "store_url": null,
+      "distributors_url": null,
+      "country": "IN",
       "verified": true
     },
     {
@@ -333,6 +804,30 @@
       "verified": true
     },
     {
+      "id": "lectron technologies",
+      "aliases": [
+        "lectron technologies"
+      ],
+      "name": "Lectron Technologies",
+      "website": "https://lectrontech.com/",
+      "store_url": null,
+      "distributors_url": null,
+      "country": "TR",
+      "verified": true
+    },
+    {
+      "id": "lefei rc",
+      "aliases": [
+        "lefei rc"
+      ],
+      "name": "lefei rc",
+      "website": null,
+      "store_url": null,
+      "distributors_url": null,
+      "country": null,
+      "verified": false
+    },
+    {
       "id": "lumenier",
       "name": "Lumenier",
       "aliases": [
@@ -342,6 +837,18 @@
       "store_url": null,
       "distributors_url": null,
       "country": "US",
+      "verified": true
+    },
+    {
+      "id": "luminousbees",
+      "aliases": [
+        "luminousbees"
+      ],
+      "name": "LuminousBees",
+      "website": "https://www.luminousbees.com/",
+      "store_url": null,
+      "distributors_url": null,
+      "country": "IN",
       "verified": true
     },
     {
@@ -372,6 +879,18 @@
       "note": "No direct store — the Resellers page is the buy route."
     },
     {
+      "id": "mft savunma ve havac l k ltd ti",
+      "aliases": [
+        "mft savunma ve havac l k ltd ti"
+      ],
+      "name": "MFT Savunma ve Havacılık",
+      "website": null,
+      "store_url": null,
+      "distributors_url": null,
+      "country": "TR",
+      "verified": false
+    },
+    {
       "id": "micoair",
       "name": "MicoAir Tech",
       "aliases": [
@@ -397,6 +916,19 @@
       "verified": true
     },
     {
+      "id": "mphibr",
+      "aliases": [
+        "mphibr"
+      ],
+      "name": "Raphe mPhibr",
+      "website": "https://www.raphe.com/",
+      "store_url": null,
+      "distributors_url": null,
+      "country": "IN",
+      "verified": true,
+      "note": "mphibr.com redirects to raphe.com (Raphe mPhibr)."
+    },
+    {
       "id": "mro",
       "name": "mRo (mRobotics)",
       "aliases": [
@@ -409,6 +941,30 @@
       "country": "US",
       "verified": true,
       "note": "store.mrobotics.io now redirects to store.3dr.com."
+    },
+    {
+      "id": "mugin uav",
+      "aliases": [
+        "mugin uav"
+      ],
+      "name": "MUGIN UAV",
+      "website": "https://www.muginuav.com/",
+      "store_url": null,
+      "distributors_url": null,
+      "country": "CN",
+      "verified": true
+    },
+    {
+      "id": "nw blue",
+      "aliases": [
+        "nw blue"
+      ],
+      "name": "NW Blue",
+      "website": "https://nwblue.com/",
+      "store_url": null,
+      "distributors_url": null,
+      "country": "US",
+      "verified": true
     },
     {
       "id": "openpilot",
@@ -425,6 +981,19 @@
       "note": "Discontinued open-source project; no vendor."
     },
     {
+      "id": "orbit teknoloji",
+      "aliases": [
+        "orbit technology",
+        "orbit teknoloji"
+      ],
+      "name": "Orbit Teknoloji",
+      "website": "https://orbitteknoloji.com.tr/",
+      "store_url": null,
+      "distributors_url": null,
+      "country": "TR",
+      "verified": true
+    },
+    {
       "id": "orqa",
       "name": "Orqa",
       "aliases": [
@@ -435,6 +1004,42 @@
       "distributors_url": null,
       "country": "HR",
       "verified": true
+    },
+    {
+      "id": "parrot",
+      "aliases": [
+        "parrot"
+      ],
+      "name": "Parrot",
+      "website": "https://www.parrot.com/",
+      "store_url": null,
+      "distributors_url": null,
+      "country": "FR",
+      "verified": true
+    },
+    {
+      "id": "pilotgaea",
+      "aliases": [
+        "pilotgaea"
+      ],
+      "name": "PilotGaea",
+      "website": null,
+      "store_url": null,
+      "distributors_url": null,
+      "country": "TW",
+      "verified": false
+    },
+    {
+      "id": "principiot",
+      "aliases": [
+        "principiot"
+      ],
+      "name": "PrincipIoT",
+      "website": null,
+      "store_url": null,
+      "distributors_url": null,
+      "country": null,
+      "verified": false
     },
     {
       "id": "qiotek",
@@ -461,6 +1066,54 @@
       "verified": true
     },
     {
+      "id": "s vehicle",
+      "aliases": [
+        "s vehicle"
+      ],
+      "name": "S-Vehicle",
+      "website": null,
+      "store_url": null,
+      "distributors_url": null,
+      "country": null,
+      "verified": false
+    },
+    {
+      "id": "saam drones",
+      "aliases": [
+        "saam drones"
+      ],
+      "name": "SAAM Drones",
+      "website": "https://www.saamdrones.com/",
+      "store_url": null,
+      "distributors_url": null,
+      "country": "IN",
+      "verified": true
+    },
+    {
+      "id": "sdmodel",
+      "aliases": [
+        "sdmodel"
+      ],
+      "name": "SDMODEL",
+      "website": null,
+      "store_url": null,
+      "distributors_url": null,
+      "country": "CN",
+      "verified": false
+    },
+    {
+      "id": "sequre",
+      "aliases": [
+        "sequre"
+      ],
+      "name": "Sequre",
+      "website": "https://sequremall.com/",
+      "store_url": "https://sequremall.com/",
+      "distributors_url": null,
+      "country": "CN",
+      "verified": true
+    },
+    {
       "id": "seriously pro racing",
       "name": "Seriously Pro Racing",
       "aliases": [
@@ -471,6 +1124,30 @@
       "distributors_url": null,
       "country": "GB",
       "verified": true
+    },
+    {
+      "id": "sierra aerospace",
+      "aliases": [
+        "sierra aerospace"
+      ],
+      "name": "Sierra Aerospace",
+      "website": null,
+      "store_url": null,
+      "distributors_url": null,
+      "country": null,
+      "verified": false
+    },
+    {
+      "id": "simplifly",
+      "aliases": [
+        "simplifly"
+      ],
+      "name": "SimpliFly",
+      "website": null,
+      "store_url": null,
+      "distributors_url": null,
+      "country": "IN",
+      "verified": false
     },
     {
       "id": "siyi",
@@ -485,6 +1162,67 @@
       "verified": true
     },
     {
+      "id": "sky drones",
+      "aliases": [
+        "sky drones"
+      ],
+      "name": "Sky-Drones",
+      "website": "https://sky-drones.com/",
+      "store_url": null,
+      "distributors_url": null,
+      "country": "GB",
+      "verified": false,
+      "note": "Cloudflare challenge blocks automated checks."
+    },
+    {
+      "id": "skydroid",
+      "aliases": [
+        "skydroid"
+      ],
+      "name": "Skydroid",
+      "website": "https://www.skydroid.xin/",
+      "store_url": null,
+      "distributors_url": null,
+      "country": "CN",
+      "verified": true
+    },
+    {
+      "id": "skyrocket",
+      "aliases": [
+        "skyrocket"
+      ],
+      "name": "SkyRocket",
+      "website": null,
+      "store_url": null,
+      "distributors_url": null,
+      "country": "US",
+      "verified": false
+    },
+    {
+      "id": "skyrukh",
+      "aliases": [
+        "skyrukh"
+      ],
+      "name": "SkyRukh",
+      "website": null,
+      "store_url": null,
+      "distributors_url": null,
+      "country": null,
+      "verified": false
+    },
+    {
+      "id": "skysakurarc",
+      "aliases": [
+        "skysakurarc"
+      ],
+      "name": "SkySakuraRC",
+      "website": null,
+      "store_url": null,
+      "distributors_url": null,
+      "country": "JP",
+      "verified": false
+    },
+    {
       "id": "skystars",
       "name": "Skystars",
       "aliases": [
@@ -496,6 +1234,18 @@
       "country": "CN",
       "verified": false,
       "note": "No working domain found."
+    },
+    {
+      "id": "sparknavi",
+      "aliases": [
+        "sparknavi"
+      ],
+      "name": "SparkNavi",
+      "website": null,
+      "store_url": null,
+      "distributors_url": null,
+      "country": "KR",
+      "verified": false
     },
     {
       "id": "spedix",
@@ -523,6 +1273,18 @@
       "verified": true
     },
     {
+      "id": "standard systems",
+      "aliases": [
+        "standard systems"
+      ],
+      "name": "Standard Systems",
+      "website": null,
+      "store_url": null,
+      "distributors_url": null,
+      "country": null,
+      "verified": false
+    },
+    {
       "id": "stingbee",
       "name": "StingBee",
       "aliases": [
@@ -548,6 +1310,18 @@
       "note": "st.com blocks automated requests; confirm by hand."
     },
     {
+      "id": "swift flyer",
+      "aliases": [
+        "swift flyer"
+      ],
+      "name": "Swift-Flyer",
+      "website": null,
+      "store_url": null,
+      "distributors_url": null,
+      "country": null,
+      "verified": false
+    },
+    {
       "id": "t motor",
       "name": "T-Motor",
       "aliases": [
@@ -558,6 +1332,43 @@
       "distributors_url": null,
       "country": "CN",
       "verified": true
+    },
+    {
+      "id": "t3 foundation",
+      "aliases": [
+        "t3 foundation"
+      ],
+      "name": "T3 Foundation",
+      "website": "https://t3gemstone.org/",
+      "store_url": null,
+      "distributors_url": null,
+      "country": "TR",
+      "verified": true
+    },
+    {
+      "id": "taiphoon",
+      "aliases": [
+        "taiphoon"
+      ],
+      "name": "Taiphoon",
+      "website": null,
+      "store_url": null,
+      "distributors_url": null,
+      "country": null,
+      "verified": false
+    },
+    {
+      "id": "taulabs",
+      "aliases": [
+        "taulabs"
+      ],
+      "name": "TauLabs",
+      "website": "https://taulabs.org/",
+      "store_url": null,
+      "distributors_url": null,
+      "country": null,
+      "verified": false,
+      "note": "Defunct open-source project, not a vendor."
     },
     {
       "id": "team blacksheep",
@@ -575,6 +1386,66 @@
       "verified": true
     },
     {
+      "id": "thepeach",
+      "aliases": [
+        "thepeach"
+      ],
+      "name": "ThePeach",
+      "website": null,
+      "store_url": null,
+      "distributors_url": null,
+      "country": "KR",
+      "verified": false
+    },
+    {
+      "id": "tustin dynamics",
+      "aliases": [
+        "tustin dynamics"
+      ],
+      "name": "Tustin Dynamics",
+      "website": "https://tustindynamics.com/",
+      "store_url": null,
+      "distributors_url": null,
+      "country": "US",
+      "verified": true
+    },
+    {
+      "id": "uav dev gmbh",
+      "aliases": [
+        "uav dev gmbh"
+      ],
+      "name": "UAV-DEV GmbH",
+      "website": null,
+      "store_url": null,
+      "distributors_url": null,
+      "country": "DE",
+      "verified": false
+    },
+    {
+      "id": "v uav",
+      "aliases": [
+        "v uav"
+      ],
+      "name": "V-UAV",
+      "website": null,
+      "store_url": null,
+      "distributors_url": null,
+      "country": null,
+      "verified": false
+    },
+    {
+      "id": "vimdrones",
+      "aliases": [
+        "vimdrones"
+      ],
+      "name": "VimDrones",
+      "website": "https://vimdrones.com/",
+      "store_url": null,
+      "distributors_url": null,
+      "country": "US",
+      "verified": true
+    },
+    {
       "id": "vololand",
       "name": "VOLOLAND",
       "aliases": [
@@ -585,6 +1456,30 @@
       "store_url": null,
       "distributors_url": null,
       "country": "KR",
+      "verified": false
+    },
+    {
+      "id": "x mav",
+      "aliases": [
+        "x mav"
+      ],
+      "name": "X-MAV",
+      "website": "https://www.x-mav.cn/",
+      "store_url": null,
+      "distributors_url": null,
+      "country": "CN",
+      "verified": true
+    },
+    {
+      "id": "yari robotics",
+      "aliases": [
+        "yari robotics"
+      ],
+      "name": "YARI Robotics",
+      "website": null,
+      "store_url": null,
+      "distributors_url": null,
+      "country": null,
       "verified": false
     },
     {
@@ -599,6 +1494,18 @@
       "country": "CN",
       "verified": false,
       "note": "yjuav.net returns a database error; no working domain found."
+    },
+    {
+      "id": "zeroone",
+      "aliases": [
+        "zeroone"
+      ],
+      "name": "ZeroOne",
+      "website": "https://www.01aero.cn/",
+      "store_url": null,
+      "distributors_url": null,
+      "country": "CN",
+      "verified": true
     }
   ]
 }

@@ -287,7 +287,7 @@
   "docs_url": "https://ardupilot.org/copter/docs/common-holybro-pixhawk6X.html",
   "repo_url": null,
   "manual": {
-    "status": "not_started",
+    "status": "partial",
     "form_factor": null,
     "mounting": null,
     "assembly": null,
@@ -298,7 +298,37 @@
     "ardupilot_repo_url": null,
     "discontinued": false,
     "imu_count": null,
-    "notes": null
+    "notes": null,
+    "variants": [
+      {
+        "name": "Pixhawk 6X",
+        "aliases": [
+          "pixhawk 6x",
+          "pixhawk6x"
+        ],
+        "differences": "Base model. STM32H7, triple redundant IMUs, dual barometers, Ethernet.",
+        "dimensions_mm": null,
+        "weight_g": null,
+        "mounting": "Pixhawk Autopilot Bus",
+        "product_url": "https://holybro.com/products/pixhawk-6x",
+        "discontinued": false
+      },
+      {
+        "name": "Pixhawk 6X Pro",
+        "aliases": [
+          "pixhawk 6x pro",
+          "pixhawk6x pro",
+          "pixhawk6xpro",
+          "6x pro"
+        ],
+        "differences": "Higher-grade IMU set over the base 6X.",
+        "dimensions_mm": null,
+        "weight_g": null,
+        "mounting": "Pixhawk Autopilot Bus",
+        "product_url": "https://holybro.com/products/pixhawk-6x-pro",
+        "discontinued": false
+      }
+    ]
   },
   "ai": {
     "source": "fc-verify-enrich workflow: hwdef+README+local-wiki+manufacturer cross-correlation",

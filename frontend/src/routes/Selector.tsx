@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 import {
+  boardManufacturer,
   manufacturerKey,
   mcuFamilyLabel,
   physicalSensorCount,
@@ -231,7 +232,7 @@ interface CsvColumn {
 
 const CSV_COLUMNS: CsvColumn[] = [
   { id: "slug",       label: "Board name",         get: (b) => b.slug },
-  { id: "manufacturer", label: "Manufacturer",     get: (b) => b.manufacturer ?? "" },
+  { id: "manufacturer", label: "Manufacturer",     get: (b) => boardManufacturer(b) ?? "" },
   { id: "platform",   label: "Platform",           get: (b) => b.platform },
   { id: "mcu_family", label: "MCU family",         get: (b) => b.mcu.family ?? "" },
   { id: "mcu_part",   label: "MCU part",           get: (b) => b.mcu.part ?? "" },
@@ -307,7 +308,7 @@ function searchFold(s: string): string {
 // product like the H743-SLIM has no hwdef of its own, so this is the only
 // place its name appears.
 function searchHaystack(b: Board): string {
-  const parts: string[] = [b.slug, b.name, b.manufacturer ?? "", b.bdshot_target?.slug ?? ""];
+  const parts: string[] = [b.slug, b.name, boardManufacturer(b) ?? "", b.bdshot_target?.slug ?? ""];
   if (b.ai?.marketing_name) parts.push(b.ai.marketing_name);
   if (b.ai?.family) parts.push(b.ai.family);
   for (const v of b.manual?.variants ?? []) {
@@ -329,7 +330,7 @@ function matchesQuery(b: Board, query: string): boolean {
 function passes(b: Board, f: Filters, mfrIndex?: ManufacturerIndex): boolean {
   if (!f.includeDiscontinued && b.manual?.discontinued) return false;
   if (f.query && !matchesQuery(b, f.query)) return false;
-  if (f.manufacturers != null && !f.manufacturers.includes(manufacturerKey(b.manufacturer, mfrIndex)))
+  if (f.manufacturers != null && !f.manufacturers.includes(manufacturerKey(boardManufacturer(b), mfrIndex)))
     return false;
   if (f.platform !== "ANY" && b.platform !== f.platform) return false;
   if (f.mcus.length > 0 && !f.mcus.includes(mcuFamilyLabel(b.mcu.family))) return false;
@@ -431,8 +432,8 @@ export default function Selector() {
     if (!boards) return [];
     const groups = new Map<string, { spellings: Map<string, number>; count: number }>();
     for (const b of boards) {
-      const raw = (b.manufacturer ?? "").trim() || "Unknown";
-      const key = manufacturerKey(b.manufacturer, mfrIndex);
+      const raw = (boardManufacturer(b) ?? "").trim() || "Unknown";
+      const key = manufacturerKey(boardManufacturer(b), mfrIndex);
       const g = groups.get(key) ?? { spellings: new Map(), count: 0 };
       g.spellings.set(raw, (g.spellings.get(raw) ?? 0) + 1);
       g.count += 1;
@@ -845,12 +846,12 @@ export default function Selector() {
                         <span className="row-bracket">]</span>
                       </Link>
                       {b.manual?.discontinued && <span className="row-disc-tag" title="Discontinued">DISC</span>}
-                      {b.manufacturer && (
+                      {boardManufacturer(b) && (
                         <span
                           className="row-maker"
                           title="Manufacturer — suggested for discovery; verify exact specs in the linked docs"
                         >
-                          {b.manufacturer}
+                          {boardManufacturer(b)}
                         </span>
                       )}
                     </td>

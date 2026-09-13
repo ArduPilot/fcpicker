@@ -138,7 +138,8 @@
     "ardupilot_repo_url": null,
     "discontinued": false,
     "imu_count": null,
-    "notes": null
+    "notes": null,
+    "manufacturer": "CUAV"
   },
   "ai": {
     "source": "fc-verify-enrich workflow: hwdef+README+local-wiki+manufacturer cross-correlation",

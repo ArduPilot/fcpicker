@@ -142,7 +142,7 @@
   "docs_url": "https://ardupilot.org/copter/docs/common-zeroonex6-air.html",
   "repo_url": "https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_HAL_ChibiOS/hwdef/ZeroOneX6_Air/README.md",
   "manual": {
-    "status": "not_started",
+    "status": "partial",
     "form_factor": null,
     "mounting": null,
     "assembly": null,
@@ -153,7 +153,38 @@
     "ardupilot_repo_url": null,
     "discontinued": false,
     "imu_count": null,
-    "notes": null
+    "notes": null,
+    "variants": [
+      {
+        "name": "X6 Air",
+        "aliases": [
+          "x6 air",
+          "x6air",
+          "zeroone x6 air"
+        ],
+        "differences": "Base Air model.",
+        "dimensions_mm": null,
+        "weight_g": null,
+        "mounting": null,
+        "product_url": null,
+        "discontinued": false
+      },
+      {
+        "name": "X6 Air+",
+        "aliases": [
+          "x6 air+",
+          "x6 airplus",
+          "x6 air plus",
+          "zeroone x6 air+"
+        ],
+        "differences": "Dual ICM45686 IMUs, one vibration-isolated, with 1 W IMU heating; dual barometers.",
+        "dimensions_mm": null,
+        "weight_g": null,
+        "mounting": null,
+        "product_url": null,
+        "discontinued": false
+      }
+    ]
   },
   "ai": {
     "source": "fc-verify-enrich workflow: hwdef+README+local-wiki+manufacturer cross-correlation",

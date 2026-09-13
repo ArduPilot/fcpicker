@@ -122,6 +122,7 @@
     "ardupilot_repo_url": null,
     "discontinued": false,
     "imu_count": null,
-    "notes": null
+    "notes": null,
+    "manufacturer": "HGLRC"
   }
 }

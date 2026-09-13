@@ -215,6 +215,12 @@ export function useManufacturers(): ManufacturerIndex {
   return useMemo(() => (list ? buildManufacturerIndex(list) : EMPTY_INDEX), [list]);
 }
 
+// The vendor name to use for a board: the curated manual value wins, since
+// the top-level key is build-derived and hwdef rarely carries a vendor.
+export function boardManufacturer(b: Board): string | null {
+  return b.manual?.manufacturer ?? b.manufacturer ?? null;
+}
+
 // Normalise a free-text manufacturer string to a grouping key. Pass the
 // registry index to fold aliases onto the canonical id; without it this is
 // plain normalisation, which still groups identical spellings.

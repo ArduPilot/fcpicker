@@ -114,7 +114,7 @@
   "docs_url": "https://ardupilot.org/copter/docs/common-flywoo-f745.html",
   "repo_url": "https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_HAL_ChibiOS/hwdef/FlywooF745/README.md",
   "manual": {
-    "status": "not_started",
+    "status": "partial",
     "form_factor": null,
     "mounting": null,
     "assembly": null,
@@ -125,7 +125,37 @@
     "ardupilot_repo_url": null,
     "discontinued": false,
     "imu_count": null,
-    "notes": null
+    "notes": null,
+    "variants": [
+      {
+        "name": "GOKU GN 745 AIO 40A",
+        "aliases": [
+          "goku gn 745 40a",
+          "gn745 40a",
+          "flywoo goku gn 745 40a"
+        ],
+        "differences": "AIO with integrated 40A ESC.",
+        "dimensions_mm": null,
+        "weight_g": null,
+        "mounting": null,
+        "product_url": null,
+        "discontinued": false
+      },
+      {
+        "name": "GOKU GN 745 AIO 45A",
+        "aliases": [
+          "goku gn 745 45a",
+          "gn745 45a",
+          "flywoo goku gn 745 45a"
+        ],
+        "differences": "AIO with integrated 45A ESC.",
+        "dimensions_mm": null,
+        "weight_g": null,
+        "mounting": null,
+        "product_url": null,
+        "discontinued": false
+      }
+    ]
   },
   "ai": {
     "source": "fc-verify-enrich workflow: hwdef+README+local-wiki+manufacturer cross-correlation",

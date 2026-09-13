@@ -84,7 +84,7 @@
   "docs_url": "https://ardupilot.org/copter/docs/common-matekf405.html",
   "repo_url": null,
   "manual": {
-    "status": "not_started",
+    "status": "partial",
     "form_factor": null,
     "mounting": null,
     "assembly": null,
@@ -95,7 +95,37 @@
     "ardupilot_repo_url": null,
     "discontinued": false,
     "imu_count": null,
-    "notes": null
+    "notes": null,
+    "variants": [
+      {
+        "name": "F405-STD",
+        "aliases": [
+          "f405 std",
+          "f405std",
+          "matek f405 std"
+        ],
+        "differences": "ICM20602 IMU, BMP280 baro, 7 PWM outputs.",
+        "dimensions_mm": null,
+        "weight_g": null,
+        "mounting": "30.5x30.5",
+        "product_url": "http://www.mateksys.com/?portfolio=f405-std",
+        "discontinued": true
+      },
+      {
+        "name": "F405-CTR",
+        "aliases": [
+          "f405 ctr",
+          "f405ctr",
+          "matek f405 ctr"
+        ],
+        "differences": "MPU6000 IMU, BMP280 baro, integrated 184A voltage & current sensor.",
+        "dimensions_mm": null,
+        "weight_g": null,
+        "mounting": "30.5x30.5",
+        "product_url": "http://www.mateksys.com/?portfolio=f405-ctr",
+        "discontinued": true
+      }
+    ]
   },
   "ai": {
     "source": "fc-verify-enrich workflow: hwdef+README+local-wiki+manufacturer cross-correlation",

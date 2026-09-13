@@ -129,7 +129,7 @@
   "docs_url": "https://ardupilot.org/copter/docs/common-suligh7.html",
   "repo_url": "https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_HAL_ChibiOS/hwdef/SULILGH7-P1-P2/README.md",
   "manual": {
-    "status": "not_started",
+    "status": "partial",
     "form_factor": null,
     "mounting": null,
     "assembly": null,
@@ -140,7 +140,37 @@
     "ardupilot_repo_url": null,
     "discontinued": false,
     "imu_count": null,
-    "notes": null
+    "notes": null,
+    "variants": [
+      {
+        "name": "SULILGH7-P1",
+        "aliases": [
+          "sulilgh7 p1",
+          "sulilgh7p1",
+          "p1"
+        ],
+        "differences": "Open-source design; see the OSHWHub project.",
+        "dimensions_mm": null,
+        "weight_g": null,
+        "mounting": null,
+        "product_url": null,
+        "discontinued": false
+      },
+      {
+        "name": "SULILGH7-P2",
+        "aliases": [
+          "sulilgh7 p2",
+          "sulilgh7p2",
+          "p2"
+        ],
+        "differences": "Open-source design; see the OSHWHub project.",
+        "dimensions_mm": null,
+        "weight_g": null,
+        "mounting": null,
+        "product_url": null,
+        "discontinued": false
+      }
+    ]
   },
   "ai": {
     "source": "fc-verify-enrich workflow: hwdef+README+local-wiki+manufacturer cross-correlation",

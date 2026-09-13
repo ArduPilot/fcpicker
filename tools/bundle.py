@@ -60,7 +60,9 @@ def report_manufacturer_coverage(boards: list[dict], src: Path = MFR_SRC) -> Non
     unmapped: dict[str, int] = {}
     linked = blank = 0
     for b in boards:
-        raw = b.get("manufacturer")
+        # manual.manufacturer wins: the top-level key is build-derived and is
+        # still always null out of hwdef.
+        raw = (b.get("manual") or {}).get("manufacturer") or b.get("manufacturer")
         key = manufacturer_key(raw)
         if not key:
             blank += 1

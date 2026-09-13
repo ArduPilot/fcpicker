@@ -1034,6 +1034,10 @@ GENERATED_KEYS = {
 
 MANUAL_TEMPLATE = {
     "status": "not_started",
+    # Vendor name recovered from the hwdef README / wiki. The top-level
+    # `manufacturer` is build-derived (and still always None), so a name put
+    # there would be lost on the next import; this one is preserved.
+    "manufacturer": None,
     "form_factor": None,
     "mounting": None,
     "assembly": None,

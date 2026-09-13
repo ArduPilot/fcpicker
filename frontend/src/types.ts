@@ -103,6 +103,10 @@ export interface BoardVariant {
 export interface BoardManual {
   // Explicit completion state — set by the human, not inferred.
   status: ManualStatus;
+  // Vendor name. The top-level `manufacturer` is build-derived and currently
+  // always null from hwdef, so this is where a recovered name lives — it
+  // survives re-imports, which the top-level key does not.
+  manufacturer: string | null;
   form_factor: string | null;
   // Mounting hole pattern (industry standards: 20×20, 30.5×30.5, etc.)
   mounting: string | null;

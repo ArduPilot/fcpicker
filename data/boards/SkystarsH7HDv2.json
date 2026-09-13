@@ -117,7 +117,7 @@
   "docs_url": "https://ardupilot.org/copter/docs/common-skystarsh7hdv2.html",
   "repo_url": "https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_HAL_ChibiOS/hwdef/SkystarsH7HDv2/README.md",
   "manual": {
-    "status": "not_started",
+    "status": "partial",
     "form_factor": null,
     "mounting": null,
     "assembly": null,
@@ -128,7 +128,37 @@
     "ardupilot_repo_url": null,
     "discontinued": false,
     "imu_count": null,
-    "notes": null
+    "notes": null,
+    "variants": [
+      {
+        "name": "H7HD V2",
+        "aliases": [
+          "h7hd v2",
+          "h7hdv2",
+          "skystars h7hd v2"
+        ],
+        "differences": "BMP280 barometer.",
+        "dimensions_mm": null,
+        "weight_g": null,
+        "mounting": null,
+        "product_url": null,
+        "discontinued": false
+      },
+      {
+        "name": "H7HD V3",
+        "aliases": [
+          "h7hd v3",
+          "h7hdv3",
+          "skystars h7hd v3"
+        ],
+        "differences": "SPL-06 barometer in place of the V2's BMP280.",
+        "dimensions_mm": null,
+        "weight_g": null,
+        "mounting": null,
+        "product_url": null,
+        "discontinued": false
+      }
+    ]
   },
   "ai": {
     "source": "fc-verify-enrich workflow: hwdef+README+local-wiki+manufacturer cross-correlation",

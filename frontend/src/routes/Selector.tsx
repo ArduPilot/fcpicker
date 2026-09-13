@@ -66,6 +66,11 @@ interface Filters {
   bdshot: boolean;
   minFlash: number;
   includeDiscontinued: boolean;
+  // Show only boards whose maker is an ArduPilot Corporate Partner.
+  partnersOnly: boolean;
+  // Rank partner boards above non-partners, before the column sort applies.
+  // Opt-in: the default listing stays a neutral spec comparison.
+  partnersFirst: boolean;
   // Experimental — filters over the unverified, AI-gathered `ai` spec block.
   // Off by default; the controls are disabled until aiEnabled is turned on.
   aiEnabled: boolean;
@@ -107,6 +112,8 @@ const DEFAULTS: Filters = {
   bdshot: false,
   minFlash: 0,
   includeDiscontinued: false,
+  partnersOnly: false,
+  partnersFirst: false,
   aiEnabled: false,
   aiWeightMin: null,
   aiWeightMax: null,
@@ -330,6 +337,7 @@ function matchesQuery(b: Board, query: string): boolean {
 
 function passes(b: Board, f: Filters, mfrIndex?: ManufacturerIndex): boolean {
   if (!f.includeDiscontinued && b.manual?.discontinued) return false;
+  if (f.partnersOnly && !(mfrIndex && isPartnerBoard(b, mfrIndex))) return false;
   if (f.query && !matchesQuery(b, f.query)) return false;
   if (f.manufacturers != null && !f.manufacturers.includes(manufacturerKey(boardManufacturer(b), mfrIndex)))
     return false;
@@ -451,6 +459,11 @@ export default function Selector() {
         : a.key === "" ? 1 : -1);
   }, [boards, mfrIndex]);
 
+  const partnerCount = useMemo(
+    () => (boards ?? []).filter((b) => isPartnerBoard(b, mfrIndex)).length,
+    [boards, mfrIndex],
+  );
+
   const mcuOptions = useMemo(() => {
     if (!boards) return [];
     const set = new Set<string>();
@@ -465,6 +478,13 @@ export default function Selector() {
     const out = boards.filter((b) => passes(b, f, mfrIndex));
     const dir = sort.dir;
     out.sort((a, b) => {
+      // Partner rank is a primary key when opted into, so the column sort
+      // still orders within each group rather than being overridden.
+      if (f.partnersFirst) {
+        const pa = isPartnerBoard(a, mfrIndex) ? 0 : 1;
+        const pb = isPartnerBoard(b, mfrIndex) ? 0 : 1;
+        if (pa !== pb) return pa - pb;
+      }
       switch (sort.key) {
         case "slug":  return a.slug.localeCompare(b.slug) * dir;
         case "mcu":   return mcuFamilyLabel(a.mcu.family).localeCompare(mcuFamilyLabel(b.mcu.family)) * dir;
@@ -752,6 +772,39 @@ export default function Selector() {
         </div>
 
         <div className="sidebar-block">
+          <h3 className="block-title">ArduPilot partners</h3>
+          <label className="toggle">
+            <input
+              type="checkbox"
+              checked={f.partnersOnly}
+              onChange={(e) => set("partnersOnly", e.target.checked)}
+            />
+            <span className="toggle-mark" aria-hidden />
+            <span className="toggle-label">Partners only{partnerCount > 0 && ` (${partnerCount})`}</span>
+          </label>
+          <label className="toggle">
+            <input
+              type="checkbox"
+              checked={f.partnersFirst}
+              onChange={(e) => set("partnersFirst", e.target.checked)}
+            />
+            <span className="toggle-mark" aria-hidden />
+            <span className="toggle-label">List partners first</span>
+          </label>
+          <p className="filter-note">
+            Corporate Partners fund the ArduPilot project. Both options are off by
+            default, so the standard listing ranks no manufacturer above another.{" "}
+            <a
+              href="https://ardupilot.org/copter/docs/common-partners.html"
+              target="_blank"
+              rel="noreferrer"
+            >
+              See the partners page ↗
+            </a>
+          </p>
+        </div>
+
+        <div className="sidebar-block">
           <h3 className="block-title">Availability</h3>
           <label className="toggle">
             <input
@@ -777,6 +830,14 @@ export default function Selector() {
               <strong>{filtered.length}</strong> of {boards?.length ?? 0} ArduPilot-supported boards
               match your filters.
             </p>
+            {f.partnersFirst && (
+              <p className="results-note">
+                Ordered with ArduPilot Corporate Partners first.{" "}
+                <button type="button" className="link-btn" onClick={() => set("partnersFirst", false)}>
+                  Show neutral order
+                </button>
+              </p>
+            )}
           </div>
           <div className="results-actions">
             <button

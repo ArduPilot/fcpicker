@@ -21,6 +21,7 @@ const EMPTY_MANUAL: BoardManual = {
   ardupilot_repo_url: null,
   discontinued: false,
   imu_count: null,
+  variants: [],
   notes: null,
 };
 

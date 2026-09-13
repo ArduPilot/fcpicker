@@ -79,6 +79,27 @@ export interface BoardDimensions {
 
 export type ManualStatus = "not_started" | "partial" | "complete";
 
+// A retail product that ships against this board's firmware target.
+//
+// ArduPilot builds one firmware per hwdef, but vendors often sell several
+// physically different boards against it — the MatekH743 target covers the
+// H743-WING, -SLIM, -MINI and -WLITE. Those products have no hwdef of their
+// own, so without this they are invisible to search. Human/AI-curated.
+export interface BoardVariant {
+  // Retail name as the vendor prints it, e.g. "H743-SLIM".
+  name: string;
+  // Other spellings people search for ("H743 Slim V3", "H743SLIM").
+  aliases: string[];
+  // What physically differs from the other variants. One line, buyer-facing.
+  differences: string | null;
+  dimensions_mm: BoardDimensions | null;
+  weight_g: number | null;
+  mounting: string | null;
+  // Vendor product page for this specific variant.
+  product_url: string | null;
+  discontinued: boolean;
+}
+
 export interface BoardManual {
   // Explicit completion state — set by the human, not inferred.
   status: ManualStatus;
@@ -101,6 +122,9 @@ export interface BoardManual {
   // doesn't map cleanly to physical reality (alt chips with idiosyncratic
   // SPIDEV layouts, etc). null = use the parser's slot count.
   imu_count: number | null;
+  // Retail products covered by this firmware target. Empty = the board is
+  // sold as a single product under its own name.
+  variants: BoardVariant[];
   notes: string | null;
 }
 
@@ -159,6 +183,31 @@ export interface Board {
   repo_url: string | null;
   manual?: BoardManual;
   ai?: BoardAi;
+}
+
+// One company, keyed by a canonical id. `aliases` fold the free-text spellings
+// that appear in hwdef comments ("Matek", "Mateksys", "Matek Systems") onto a
+// single entry, so the filter lists each company once and purchase links
+// resolve regardless of which spelling a board carries.
+export interface Manufacturer {
+  id: string;
+  name: string;
+  // Normalised alias keys (lowercase, non-alphanumerics collapsed to spaces).
+  aliases: string[];
+  // Company home page.
+  website: string | null;
+  // Where to buy direct. Null when the vendor sells only via distributors.
+  store_url: string | null;
+  // Vendor page listing authorised resellers — the right link for companies
+  // with a large distribution network and no meaningful direct store.
+  distributors_url: string | null;
+  country: string | null;
+  // False until a human has confirmed the URLs resolve to the right company.
+  verified: boolean;
+}
+
+export interface ManufacturersPayload {
+  manufacturers: Manufacturer[];
 }
 
 export interface BoardsPayload {

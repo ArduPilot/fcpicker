@@ -1,7 +1,16 @@
 import { useMemo, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { isOnboardSensor, mcuFamilyLabel, sensorSlotKey, useBoardImages, useBoards } from "../data";
-import type { Board, BoardAi, SensorEntry } from "../types";
+import {
+  isOnboardSensor,
+  manufacturerFor,
+  mcuFamilyLabel,
+  purchaseUrl,
+  sensorSlotKey,
+  useBoardImages,
+  useBoards,
+  useManufacturers,
+} from "../data";
+import type { Board, BoardAi, BoardVariant, Manufacturer, SensorEntry } from "../types";
 import { SiblingNav } from "../SiblingNav";
 import { ReportIssue } from "../ReportIssue";
 
@@ -20,6 +29,7 @@ export default function BoardDetail() {
   const { slug = "" } = useParams();
   const { boards, loading, error } = useBoards();
   const boardImages = useBoardImages(slug);
+  const mfrIndex = useManufacturers();
   // Show the "<slug>-bdshot" firmware target's pin map instead of the default.
   const [bdshotOn, setBdshotOn] = useState(false);
 
@@ -118,6 +128,10 @@ export default function BoardDetail() {
           <span className="bd-doc-cta-arrow">↗</span>
         </a>
       )}
+
+      <BuyLink manufacturer={manufacturerFor(b.manufacturer, mfrIndex)} />
+
+      <Variants variants={b.manual?.variants ?? []} />
 
       {/* Board images — admin uploads first, then hwdef images from GitHub */}
       <BoardGallery
@@ -522,5 +536,82 @@ function prettyVariant(token: string): string {
   s = s.replace(/_/g, " ");
   return s.replace(/\b([a-z])([a-z]*)/gi, (_, a: string, rest: string) =>
     a.toUpperCase() + rest.toLowerCase(),
+  );
+}
+
+
+// Where-to-buy link. Vendors with a large distribution network (Matek,
+// CubePilot) have no direct store, so the reseller list is the buy route —
+// purchaseUrl() picks store → resellers → home page in that order.
+function BuyLink({ manufacturer }: { manufacturer: Manufacturer | null }) {
+  const url = purchaseUrl(manufacturer);
+  if (!manufacturer || !url) return null;
+
+  const kind = manufacturer.store_url
+    ? `Buy direct from ${manufacturer.name}`
+    : manufacturer.distributors_url
+      ? `Find a ${manufacturer.name} reseller`
+      : `${manufacturer.name} website`;
+
+  return (
+    <a className="bd-doc-cta" href={url} target="_blank" rel="noreferrer" style={{ marginTop: 8 }}>
+      <span className="bd-doc-cta-label">
+        {kind}
+        {!manufacturer.verified && " (link unverified)"}
+      </span>
+      <span className="bd-doc-cta-arrow">↗</span>
+    </a>
+  );
+}
+
+// Retail products sharing this firmware target. ArduPilot builds one firmware
+// per hwdef, so several physically different boards can land on one entry —
+// this is where a buyer finds out which one they actually have.
+function Variants({ variants }: { variants: BoardVariant[] }) {
+  if (variants.length === 0) return null;
+  return (
+    <section className="bd-section">
+      <h2 className="bd-h2">Retail versions</h2>
+      <p className="bd-target-note" style={{ marginTop: 0, marginBottom: 12 }}>
+        These are sold as separate products but all run this board&rsquo;s firmware
+        target. Pinouts and on-board resources differ — check the vendor page for
+        the exact version you own.
+      </p>
+      <div className="bd-table-wrap">
+        <table className="bd-table">
+          <thead>
+            <tr>
+              <th>Version</th>
+              <th>Differences</th>
+              <th>Mounting</th>
+              <th>Weight</th>
+              <th />
+            </tr>
+          </thead>
+          <tbody>
+            {variants.map((v) => (
+              <tr key={v.name}>
+                <td>
+                  <strong>{v.name}</strong>
+                  {v.discontinued && <span className="bd-chip bd-chip-muted">discontinued</span>}
+                </td>
+                <td>{v.differences ?? "—"}</td>
+                <td>{v.mounting ? `${v.mounting} mm` : "—"}</td>
+                <td>{v.weight_g != null ? `${v.weight_g} g` : "—"}</td>
+                <td>
+                  {v.product_url ? (
+                    <a href={v.product_url} target="_blank" rel="noreferrer">
+                      Product page ↗
+                    </a>
+                  ) : (
+                    "—"
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
   );
 }

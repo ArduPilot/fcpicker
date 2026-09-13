@@ -2,7 +2,14 @@ import { useEffect, useMemo, useState, type KeyboardEvent, type ReactNode } from
 import { Link } from "react-router-dom";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
-import { manufacturerKey, mcuFamilyLabel, physicalSensorCount, useBoards } from "../data";
+import {
+  manufacturerKey,
+  mcuFamilyLabel,
+  physicalSensorCount,
+  useBoards,
+  useManufacturers,
+  type ManufacturerIndex,
+} from "../data";
 import type { Board, VehicleType } from "../types";
 
 // Physical maximum number of IMU slots any ArduPilot autopilot ships with.
@@ -37,7 +44,9 @@ interface Filters {
   // i.e. no filter. "" is the key for boards with no manufacturer.
   manufacturers: string[] | null;
   platform: string;
-  mcu: string;
+  // Selected MCU family labels. Empty = no filter. A board has exactly one
+  // family, so these are OR'd (unlike vehicles, which are AND'd).
+  mcus: string[];
   vehicles: VehicleType[];
   uart: number;
   i2c: number;
@@ -78,7 +87,7 @@ const DEFAULTS: Filters = {
   query: "",
   manufacturers: null,
   platform: "ANY",
-  mcu: "ANY",
+  mcus: [],
   vehicles: [],
   uart: 0,
   i2c: 0,
@@ -286,21 +295,44 @@ function downloadCsv(boards: Board[], columnIds: string[]) {
   URL.revokeObjectURL(url);
 }
 
-function passes(b: Board, f: Filters): boolean {
-  if (!f.includeDiscontinued && b.manual?.discontinued) return false;
-  if (f.query) {
-    const q = f.query.trim().toLowerCase();
-    if (
-      q &&
-      !b.slug.toLowerCase().includes(q) &&
-      !(b.bdshot_target?.slug ?? "").toLowerCase().includes(q) &&
-      !(b.manufacturer ?? "").toLowerCase().includes(q)
-    )
-      return false;
+// Fold a string to its searchable form: lowercase, with every separator
+// removed. Slugs are written solid ("MatekH743") while people type the product
+// name with spaces and hyphens ("Matek H743", "H743-SLIM"), so both sides have
+// to lose their separators before they can be compared.
+function searchFold(s: string): string {
+  return s.toLowerCase().replace(/[^a-z0-9]+/g, "");
+}
+
+// Everything a board can be found by. Variant names matter most: a retail
+// product like the H743-SLIM has no hwdef of its own, so this is the only
+// place its name appears.
+function searchHaystack(b: Board): string {
+  const parts: string[] = [b.slug, b.name, b.manufacturer ?? "", b.bdshot_target?.slug ?? ""];
+  if (b.ai?.marketing_name) parts.push(b.ai.marketing_name);
+  if (b.ai?.family) parts.push(b.ai.family);
+  for (const v of b.manual?.variants ?? []) {
+    parts.push(v.name, ...v.aliases);
   }
-  if (f.manufacturers != null && !f.manufacturers.includes(manufacturerKey(b.manufacturer))) return false;
+  return parts.map(searchFold).join(" ");
+}
+
+// Every whitespace-separated token must appear, so "matek h743" narrows rather
+// than widening — each token is matched against the folded haystack, which is
+// why a query with separators still finds a solid slug.
+function matchesQuery(b: Board, query: string): boolean {
+  const tokens = query.trim().split(/\s+/).map(searchFold).filter(Boolean);
+  if (tokens.length === 0) return true;
+  const hay = searchHaystack(b);
+  return tokens.every((t) => hay.includes(t));
+}
+
+function passes(b: Board, f: Filters, mfrIndex?: ManufacturerIndex): boolean {
+  if (!f.includeDiscontinued && b.manual?.discontinued) return false;
+  if (f.query && !matchesQuery(b, f.query)) return false;
+  if (f.manufacturers != null && !f.manufacturers.includes(manufacturerKey(b.manufacturer, mfrIndex)))
+    return false;
   if (f.platform !== "ANY" && b.platform !== f.platform) return false;
-  if (f.mcu !== "ANY" && mcuFamilyLabel(b.mcu.family) !== f.mcu) return false;
+  if (f.mcus.length > 0 && !f.mcus.includes(mcuFamilyLabel(b.mcu.family))) return false;
   if (f.vehicles.length > 0) {
     for (const v of f.vehicles) {
       if (!b.vehicles.includes(v)) return false;
@@ -358,6 +390,7 @@ function passes(b: Board, f: Filters): boolean {
 
 export default function Selector() {
   const { boards, loading, error } = useBoards();
+  const mfrIndex = useManufacturers();
   const [f, setF] = useState<Filters>(DEFAULTS);
   const [sort, setSort] = useState<{ key: SortKey; dir: 1 | -1 }>({ key: "slug", dir: 1 });
   const [csvOpen, setCsvOpen] = useState(false);
@@ -399,7 +432,7 @@ export default function Selector() {
     const groups = new Map<string, { spellings: Map<string, number>; count: number }>();
     for (const b of boards) {
       const raw = (b.manufacturer ?? "").trim() || "Unknown";
-      const key = manufacturerKey(b.manufacturer);
+      const key = manufacturerKey(b.manufacturer, mfrIndex);
       const g = groups.get(key) ?? { spellings: new Map(), count: 0 };
       g.spellings.set(raw, (g.spellings.get(raw) ?? 0) + 1);
       g.count += 1;
@@ -414,7 +447,7 @@ export default function Selector() {
       (a.key === "") === (b.key === "")
         ? a.label.localeCompare(b.label, undefined, { sensitivity: "base" })
         : a.key === "" ? 1 : -1);
-  }, [boards]);
+  }, [boards, mfrIndex]);
 
   const mcuOptions = useMemo(() => {
     if (!boards) return [];
@@ -427,7 +460,7 @@ export default function Selector() {
 
   const filtered = useMemo(() => {
     if (!boards) return [];
-    const out = boards.filter((b) => passes(b, f));
+    const out = boards.filter((b) => passes(b, f, mfrIndex));
     const dir = sort.dir;
     out.sort((a, b) => {
       switch (sort.key) {
@@ -450,7 +483,7 @@ export default function Selector() {
       }
     });
     return out;
-  }, [boards, f, sort]);
+  }, [boards, f, sort, mfrIndex]);
 
   const siblingIds = useMemo(() => filtered.map((b) => b.slug), [filtered]);
 
@@ -538,16 +571,31 @@ export default function Selector() {
         <div className="sidebar-block">
           <h3 className="block-title">MCU family</h3>
           <div className="chip-row">
-            {(["ANY", ...mcuOptions]).map((m) => (
-              <button
-                key={m}
-                className={"chip " + (f.mcu === m ? "chip-on" : "")}
-                onClick={() => set("mcu", m)}
-              >
-                {m === "ANY" ? "Any" : m.replace("STM32 ", "")}
-              </button>
-            ))}
+            <button
+              className={"chip " + (f.mcus.length === 0 ? "chip-on" : "")}
+              onClick={() => set("mcus", [])}
+            >
+              Any
+            </button>
+            {mcuOptions.map((m) => {
+              const on = f.mcus.includes(m);
+              return (
+                <button
+                  key={m}
+                  className={"chip " + (on ? "chip-on" : "")}
+                  aria-pressed={on}
+                  onClick={() =>
+                    set("mcus", on ? f.mcus.filter((x) => x !== m) : [...f.mcus, m])
+                  }
+                >
+                  {m.replace("STM32 ", "")}
+                </button>
+              );
+            })}
           </div>
+          {f.mcus.length > 1 && (
+            <p className="filter-note">Showing boards on any of these families.</p>
+          )}
         </div>
 
         <div className="sidebar-block">

@@ -1,5 +1,13 @@
-import { useEffect, useState } from "react";
-import type { Board, BoardsPayload, Rangefinder, RangefindersPayload, SensorEntry } from "./types";
+import { useEffect, useMemo, useState } from "react";
+import type {
+  Board,
+  BoardsPayload,
+  Manufacturer,
+  ManufacturersPayload,
+  Rangefinder,
+  RangefindersPayload,
+  SensorEntry,
+} from "./types";
 
 // Physical-position key for a sensor: its SPI chip-select slot, or — for I2C
 // sensors, which have no slot — the I2C bus channel. hwdef probes several
@@ -148,29 +156,92 @@ export function mcuFamilyLabel(family: string | null): string {
 
 // Manufacturer names in hwdef files are free text, so the same company
 // appears under several spellings ("Matek", "Matek Systems", "Mateksys").
-// Fold them onto one key so a filter dropdown lists each company once.
-const MANUFACTURER_ALIASES: Record<string, string> = {
-  "3dr mro": "3dr",
-  "airbot systems": "airbot",
-  "cubepilot hex proficnc": "cubepilot",
-  "hex proficnc": "cubepilot",
-  "jae japan aviation electronics industry": "jae",
-  "japan aviation electronics industry jae": "jae",
-  "matek systems": "matek",
-  "mateksys": "matek",
-  "micoair tech": "micoair",
-  "mrobotics": "mro",
-  "openpilot open source hardware sold by hobbyking and others": "openpilot",
-  "tbs team blacksheep": "team blacksheep",
-  "team black sheep": "team blacksheep",
-  "team blacksheep tbs": "team blacksheep",
-  "vololand co ltd": "vololand",
-};
+// data/manufacturers.json is the registry that folds them onto one id and
+// carries the purchase links; this is its client side.
+let mfrCache: Manufacturer[] | null = null;
+let mfrInflight: Promise<Manufacturer[]> | null = null;
 
-export function manufacturerKey(raw: string | null | undefined): string {
+export function loadManufacturers(): Promise<Manufacturer[]> {
+  if (mfrCache) return Promise.resolve(mfrCache);
+  if (mfrInflight) return mfrInflight;
+  mfrInflight = fetch("/manufacturers.json")
+    .then((r) => {
+      if (!r.ok) throw new Error(`HTTP ${r.status}`);
+      return r.json() as Promise<ManufacturersPayload>;
+    })
+    .then((p) => {
+      mfrCache = p.manufacturers;
+      return mfrCache;
+    })
+    .catch(() => {
+      // A missing registry costs purchase links, not the catalog. Degrade to
+      // plain normalisation rather than failing the page.
+      mfrCache = [];
+      return mfrCache;
+    });
+  return mfrInflight;
+}
+
+export interface ManufacturerIndex {
+  byId: Map<string, Manufacturer>;
+  // Normalised alias key -> canonical id.
+  aliasToId: Map<string, string>;
+}
+
+export function buildManufacturerIndex(list: Manufacturer[]): ManufacturerIndex {
+  const byId = new Map<string, Manufacturer>();
+  const aliasToId = new Map<string, string>();
+  for (const m of list) {
+    byId.set(m.id, m);
+    for (const a of m.aliases) aliasToId.set(a, m.id);
+  }
+  return { byId, aliasToId };
+}
+
+const EMPTY_INDEX: ManufacturerIndex = { byId: new Map(), aliasToId: new Map() };
+
+export function useManufacturers(): ManufacturerIndex {
+  const [list, setList] = useState<Manufacturer[] | null>(mfrCache);
+  useEffect(() => {
+    if (mfrCache) return;
+    let cancelled = false;
+    loadManufacturers().then((m) => {
+      if (!cancelled) setList(m);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+  return useMemo(() => (list ? buildManufacturerIndex(list) : EMPTY_INDEX), [list]);
+}
+
+// Normalise a free-text manufacturer string to a grouping key. Pass the
+// registry index to fold aliases onto the canonical id; without it this is
+// plain normalisation, which still groups identical spellings.
+//
+// Must stay in sync with manufacturer_key() in tools/bundle.py.
+export function manufacturerKey(
+  raw: string | null | undefined,
+  index?: ManufacturerIndex,
+): string {
   const k = (raw ?? "")
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, " ")
     .trim();
-  return MANUFACTURER_ALIASES[k] ?? k;
+  return index?.aliasToId.get(k) ?? k;
+}
+
+// The registry entry for a board's manufacturer, or null when unmapped.
+export function manufacturerFor(
+  raw: string | null | undefined,
+  index: ManufacturerIndex,
+): Manufacturer | null {
+  return index.byId.get(manufacturerKey(raw, index)) ?? null;
+}
+
+// Best single "where to buy" link: direct store first, then the reseller list
+// for vendors who only sell through distributors, then the home page.
+export function purchaseUrl(m: Manufacturer | null): string | null {
+  if (!m) return null;
+  return m.store_url ?? m.distributors_url ?? m.website ?? null;
 }

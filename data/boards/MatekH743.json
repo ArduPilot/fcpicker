@@ -169,7 +169,7 @@
   "docs_url": "https://ardupilot.org/copter/docs/common-matekh743-wing.html",
   "repo_url": null,
   "manual": {
-    "status": "not_started",
+    "status": "partial",
     "form_factor": null,
     "mounting": null,
     "assembly": null,
@@ -180,7 +180,69 @@
     "ardupilot_repo_url": null,
     "discontinued": false,
     "imu_count": null,
-    "notes": null
+    "notes": null,
+    "variants": [
+      {
+        "name": "H743-WING",
+        "aliases": [
+          "h743 wing",
+          "h743wing",
+          "matek h743 wing",
+          "h743-wing-v3"
+        ],
+        "differences": "Full-size fixed-wing layout. Integrated 132A current sensor on V2/V3.",
+        "dimensions_mm": null,
+        "weight_g": null,
+        "mounting": "30.5x30.5",
+        "product_url": null,
+        "discontinued": false
+      },
+      {
+        "name": "H743-SLIM",
+        "aliases": [
+          "h743 slim",
+          "h743slim",
+          "matek h743 slim",
+          "h743-slim-v3",
+          "h743-slim-v4"
+        ],
+        "differences": "Slim stack-mount form factor.",
+        "dimensions_mm": null,
+        "weight_g": null,
+        "mounting": "30.5x30.5",
+        "product_url": "https://www.mateksys.com/?portfolio=h743-slim-v4",
+        "discontinued": true
+      },
+      {
+        "name": "H743-MINI",
+        "aliases": [
+          "h743 mini",
+          "h743mini",
+          "matek h743 mini"
+        ],
+        "differences": "Compact 20x20 stack version.",
+        "dimensions_mm": null,
+        "weight_g": null,
+        "mounting": "20x20",
+        "product_url": "https://www.mateksys.com/?portfolio=h743-mini",
+        "discontinued": true
+      },
+      {
+        "name": "H743-WLITE",
+        "aliases": [
+          "h743 wlite",
+          "h743wlite",
+          "matek h743 wlite",
+          "h743 w-lite"
+        ],
+        "differences": "Lightweight wing variant with integrated current sensor.",
+        "dimensions_mm": null,
+        "weight_g": null,
+        "mounting": "30.5x30.5",
+        "product_url": "https://www.mateksys.com/?portfolio=h743-wlite",
+        "discontinued": true
+      }
+    ]
   },
   "ai": {
     "source": "fc-verify-enrich workflow: hwdef+README+local-wiki+manufacturer cross-correlation",

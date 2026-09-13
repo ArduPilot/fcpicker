@@ -1361,3 +1361,47 @@
   .site-nav { gap: 14px; font-size: 13px; }
   .results-head { flex-direction: column; align-items: flex-start; }
 }
+
+/* Retail-version table on the board detail page. One ArduPilot firmware target
+   can cover several physically different products (MatekH743 covers the
+   H743-WING/SLIM/MINI/WLITE), so the variants are listed rather than hidden. */
+.bd-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--rule, #e6e6e6);
+  border-radius: 8px;
+}
+.bd-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.bd-table th {
+  text-align: left;
+  font-size: 11.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ink-dim);
+  font-weight: 700;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--rule, #e6e6e6);
+  white-space: nowrap;
+}
+.bd-table td {
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--rule, #f0f0f0);
+  vertical-align: top;
+}
+.bd-table tr:last-child td { border-bottom: none; }
+.bd-chip {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 1px 7px;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.bd-chip-muted {
+  background: var(--rule, #eee);
+  color: var(--ink-mute);
+}

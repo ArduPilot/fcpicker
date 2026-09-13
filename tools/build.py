@@ -1047,6 +1047,11 @@ MANUAL_TEMPLATE = {
     # doesn't match physical reality (alt chips on idiosyncratic SPI layouts,
     # aspirational hwdef comments, etc). null = use parser's count.
     "imu_count": None,
+    # Retail products sold against this firmware target. ArduPilot ships one
+    # hwdef per target, but vendors often sell several physically different
+    # boards against it (the MatekH743 target covers -WING/-SLIM/-MINI/-WLITE),
+    # and those products have no hwdef of their own. Empty = single product.
+    "variants": [],
     "notes": None,
 }
 

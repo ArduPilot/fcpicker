@@ -208,6 +208,10 @@ export interface Manufacturer {
   country: string | null;
   // False until a human has confirmed the URLs resolve to the right company.
   verified: boolean;
+  // Listed as a Corporate Partner on ArduPilot's own partners page. Matched by
+  // domain (or name where the logo filename differs) against
+  // common-partners.rst in the wiki — see tools/partners.py.
+  ardupilot_partner: boolean;
 }
 
 export interface ManufacturersPayload {

@@ -4,6 +4,7 @@ import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 import {
   boardManufacturer,
+  isPartnerBoard,
   manufacturerKey,
   mcuFamilyLabel,
   physicalSensorCount,
@@ -852,6 +853,15 @@ export default function Selector() {
                           title="Manufacturer — suggested for discovery; verify exact specs in the linked docs"
                         >
                           {boardManufacturer(b)}
+                        </span>
+                      )}
+                      {isPartnerBoard(b, mfrIndex) && (
+                        <span
+                          className="row-partner"
+                          title="ArduPilot Corporate Partner — this manufacturer supports the project"
+                          aria-label="ArduPilot Corporate Partner"
+                        >
+                          ✓
                         </span>
                       )}
                     </td>

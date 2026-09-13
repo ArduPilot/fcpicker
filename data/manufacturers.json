@@ -11,7 +11,8 @@
       "store_url": "https://store.3dr.com/",
       "distributors_url": null,
       "country": "US",
-      "verified": true
+      "verified": true,
+      "ardupilot_partner": false
     },
     {
       "id": "accton iot",
@@ -23,7 +24,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "TW",
-      "verified": false
+      "verified": false,
+      "ardupilot_partner": false
     },
     {
       "id": "acns",
@@ -35,7 +37,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": null,
-      "verified": false
+      "verified": false,
+      "ardupilot_partner": false
     },
     {
       "id": "aedrox",
@@ -47,7 +50,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": null,
-      "verified": false
+      "verified": false,
+      "ardupilot_partner": false
     },
     {
       "id": "aerocogito",
@@ -59,7 +63,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "US",
-      "verified": true
+      "verified": true,
+      "ardupilot_partner": false
     },
     {
       "id": "aeroeggtech",
@@ -71,7 +76,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "CN",
-      "verified": true
+      "verified": true,
+      "ardupilot_partner": true
     },
     {
       "id": "aerofox",
@@ -79,11 +85,12 @@
         "aerofox"
       ],
       "name": "AEROFOX",
-      "website": null,
+      "website": "https://www.aero-fox.com/",
       "store_url": null,
       "distributors_url": null,
       "country": "CN",
-      "verified": false
+      "verified": true,
+      "ardupilot_partner": true
     },
     {
       "id": "aerotenna",
@@ -96,7 +103,8 @@
       "distributors_url": null,
       "country": "US",
       "verified": false,
-      "note": "aerotenna.com rate-limited; company may be defunct."
+      "note": "aerotenna.com rate-limited; company may be defunct.",
+      "ardupilot_partner": false
     },
     {
       "id": "agam robotics",
@@ -108,7 +116,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "IL",
-      "verified": true
+      "verified": true,
+      "ardupilot_partner": false
     },
     {
       "id": "airbot",
@@ -121,7 +130,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "CN",
-      "verified": true
+      "verified": true,
+      "ardupilot_partner": false
     },
     {
       "id": "airmind",
@@ -133,7 +143,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "CN",
-      "verified": true
+      "verified": true,
+      "ardupilot_partner": false
     },
     {
       "id": "airvolute",
@@ -145,7 +156,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "SK",
-      "verified": true
+      "verified": true,
+      "ardupilot_partner": true
     },
     {
       "id": "amov lab",
@@ -157,7 +169,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "CN",
-      "verified": true
+      "verified": true,
+      "ardupilot_partner": false
     },
     {
       "id": "anyleaf",
@@ -169,7 +182,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "US",
-      "verified": true
+      "verified": true,
+      "ardupilot_partner": false
     },
     {
       "id": "aocoda rc",
@@ -181,7 +195,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "CN",
-      "verified": true
+      "verified": true,
+      "ardupilot_partner": true
     },
     {
       "id": "ark electronics",
@@ -193,7 +208,8 @@
       "store_url": "https://arkelectron.com/product-category/flight-controllers/",
       "distributors_url": null,
       "country": "US",
-      "verified": true
+      "verified": true,
+      "ardupilot_partner": false
     },
     {
       "id": "arkin labs private limited",
@@ -205,7 +221,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "IN",
-      "verified": false
+      "verified": false,
+      "ardupilot_partner": false
     },
     {
       "id": "atlasflight",
@@ -217,7 +234,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": null,
-      "verified": false
+      "verified": false,
+      "ardupilot_partner": false
     },
     {
       "id": "atomrc",
@@ -229,7 +247,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "CN",
-      "verified": true
+      "verified": true,
+      "ardupilot_partner": false
     },
     {
       "id": "b cube",
@@ -241,7 +260,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": null,
-      "verified": false
+      "verified": false,
+      "ardupilot_partner": false
     },
     {
       "id": "beagleboard org",
@@ -253,7 +273,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "US",
-      "verified": true
+      "verified": true,
+      "ardupilot_partner": false
     },
     {
       "id": "betafpv",
@@ -265,7 +286,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "CN",
-      "verified": true
+      "verified": true,
+      "ardupilot_partner": false
     },
     {
       "id": "bitcraze",
@@ -277,7 +299,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "SE",
-      "verified": true
+      "verified": true,
+      "ardupilot_partner": false
     },
     {
       "id": "blue robotics",
@@ -289,7 +312,8 @@
       "store_url": "https://bluerobotics.com/",
       "distributors_url": null,
       "country": "US",
-      "verified": true
+      "verified": true,
+      "ardupilot_partner": true
     },
     {
       "id": "botlab dynamics",
@@ -301,7 +325,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "IN",
-      "verified": true
+      "verified": true,
+      "ardupilot_partner": false
     },
     {
       "id": "brainfpv",
@@ -313,7 +338,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "US",
-      "verified": true
+      "verified": true,
+      "ardupilot_partner": false
     },
     {
       "id": "brotherhobby",
@@ -325,7 +351,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "CN",
-      "verified": true
+      "verified": true,
+      "ardupilot_partner": true
     },
     {
       "id": "cbunmanned",
@@ -337,7 +364,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "GB",
-      "verified": true
+      "verified": true,
+      "ardupilot_partner": false
     },
     {
       "id": "clearsky",
@@ -349,7 +377,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": null,
-      "verified": false
+      "verified": false,
+      "ardupilot_partner": false
     },
     {
       "id": "coolfly",
@@ -361,7 +390,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": null,
-      "verified": false
+      "verified": false,
+      "ardupilot_partner": false
     },
     {
       "id": "corvon",
@@ -369,11 +399,12 @@
         "corvon"
       ],
       "name": "CORVON",
-      "website": null,
+      "website": "https://www.corvon.tech/",
       "store_url": null,
       "distributors_url": null,
       "country": null,
-      "verified": false
+      "verified": true,
+      "ardupilot_partner": true
     },
     {
       "id": "cuav",
@@ -385,7 +416,8 @@
       "store_url": "https://store.cuav.net/",
       "distributors_url": null,
       "country": "CN",
-      "verified": true
+      "verified": true,
+      "ardupilot_partner": true
     },
     {
       "id": "cubepilot",
@@ -400,7 +432,8 @@
       "distributors_url": "https://www.cubepilot.org/#/reseller/list",
       "country": "AU",
       "verified": true,
-      "note": "Sells through resellers; the Cube is manufactured by Hex/ProfiCNC."
+      "note": "Sells through resellers; the Cube is manufactured by Hex/ProfiCNC.",
+      "ardupilot_partner": true
     },
     {
       "id": "dakefpv",
@@ -412,7 +445,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "CN",
-      "verified": true
+      "verified": true,
+      "ardupilot_partner": true
     },
     {
       "id": "darkmatter",
@@ -420,11 +454,12 @@
         "darkmatter"
       ],
       "name": "Darkmatter",
-      "website": null,
+      "website": "https://thedarkmatter.in/",
       "store_url": null,
       "distributors_url": null,
       "country": null,
-      "verified": false
+      "verified": true,
+      "ardupilot_partner": true
     },
     {
       "id": "dheeran labs",
@@ -436,7 +471,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "IN",
-      "verified": false
+      "verified": false,
+      "ardupilot_partner": false
     },
     {
       "id": "diatone",
@@ -448,7 +484,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "CN",
-      "verified": true
+      "verified": true,
+      "ardupilot_partner": false
     },
     {
       "id": "droneer",
@@ -460,7 +497,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": null,
-      "verified": false
+      "verified": false,
+      "ardupilot_partner": true
     },
     {
       "id": "drotek",
@@ -472,7 +510,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "FR",
-      "verified": true
+      "verified": true,
+      "ardupilot_partner": false
     },
     {
       "id": "emlid",
@@ -484,7 +523,8 @@
       "store_url": "https://store.emlid.com/",
       "distributors_url": null,
       "country": "LT",
-      "verified": true
+      "verified": true,
+      "ardupilot_partner": false
     },
     {
       "id": "erle robotics",
@@ -496,7 +536,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "ES",
-      "verified": true
+      "verified": true,
+      "ardupilot_partner": false
     },
     {
       "id": "f4by team",
@@ -508,7 +549,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": null,
-      "verified": false
+      "verified": false,
+      "ardupilot_partner": false
     },
     {
       "id": "flyfishrc",
@@ -520,7 +562,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "CN",
-      "verified": true
+      "verified": true,
+      "ardupilot_partner": false
     },
     {
       "id": "flyfocus",
@@ -532,7 +575,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "PL",
-      "verified": true
+      "verified": true,
+      "ardupilot_partner": false
     },
     {
       "id": "flyingmoon",
@@ -544,7 +588,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "CN",
-      "verified": false
+      "verified": false,
+      "ardupilot_partner": false
     },
     {
       "id": "flyspark",
@@ -556,7 +601,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": null,
-      "verified": false
+      "verified": false,
+      "ardupilot_partner": false
     },
     {
       "id": "flywoo",
@@ -569,7 +615,8 @@
       "distributors_url": null,
       "country": "CN",
       "verified": false,
-      "note": "Cloudflare JS challenge blocks automated checks; confirm by hand."
+      "note": "Cloudflare JS challenge blocks automated checks; confirm by hand.",
+      "ardupilot_partner": false
     },
     {
       "id": "foxeer",
@@ -581,7 +628,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "CN",
-      "verified": true
+      "verified": true,
+      "ardupilot_partner": false
     },
     {
       "id": "frsky",
@@ -593,7 +641,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "CN",
-      "verified": true
+      "verified": true,
+      "ardupilot_partner": true
     },
     {
       "id": "furious fpv",
@@ -605,7 +654,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": null,
-      "verified": false
+      "verified": false,
+      "ardupilot_partner": false
     },
     {
       "id": "g pilot",
@@ -617,7 +667,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": null,
-      "verified": false
+      "verified": false,
+      "ardupilot_partner": false
     },
     {
       "id": "gear up",
@@ -629,7 +680,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": null,
-      "verified": false
+      "verified": false,
+      "ardupilot_partner": false
     },
     {
       "id": "geprc",
@@ -641,7 +693,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "CN",
-      "verified": true
+      "verified": true,
+      "ardupilot_partner": true
     },
     {
       "id": "greensight",
@@ -653,7 +706,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "US",
-      "verified": true
+      "verified": true,
+      "ardupilot_partner": false
     },
     {
       "id": "happymodel",
@@ -665,7 +719,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "CN",
-      "verified": true
+      "verified": true,
+      "ardupilot_partner": false
     },
     {
       "id": "heewing",
@@ -677,7 +732,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "CN",
-      "verified": true
+      "verified": true,
+      "ardupilot_partner": false
     },
     {
       "id": "hglrc",
@@ -689,7 +745,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "CN",
-      "verified": true
+      "verified": true,
+      "ardupilot_partner": false
     },
     {
       "id": "holybro",
@@ -701,7 +758,8 @@
       "store_url": "https://holybro.com/collections/flight-controllers",
       "distributors_url": null,
       "country": "CN",
-      "verified": true
+      "verified": true,
+      "ardupilot_partner": true
     },
     {
       "id": "horizon31",
@@ -713,7 +771,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "US",
-      "verified": false
+      "verified": false,
+      "ardupilot_partner": false
     },
     {
       "id": "hw",
@@ -725,7 +784,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": null,
-      "verified": false
+      "verified": false,
+      "ardupilot_partner": false
     },
     {
       "id": "iflight",
@@ -737,7 +797,8 @@
       "store_url": "https://shop.iflight.com/",
       "distributors_url": null,
       "country": "CN",
-      "verified": true
+      "verified": true,
+      "ardupilot_partner": false
     },
     {
       "id": "intel",
@@ -750,7 +811,8 @@
       "distributors_url": null,
       "country": "US",
       "verified": false,
-      "note": "intel.com blocks automated requests. The Intel Aero is discontinued."
+      "note": "intel.com blocks automated requests. The Intel Aero is discontinued.",
+      "ardupilot_partner": false
     },
     {
       "id": "jae",
@@ -765,7 +827,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "JP",
-      "verified": true
+      "verified": true,
+      "ardupilot_partner": true
     },
     {
       "id": "jhemcu",
@@ -777,7 +840,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "CN",
-      "verified": true
+      "verified": true,
+      "ardupilot_partner": false
     },
     {
       "id": "karshak drones",
@@ -789,7 +853,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "IN",
-      "verified": true
+      "verified": true,
+      "ardupilot_partner": true
     },
     {
       "id": "laser navigation",
@@ -801,7 +866,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "IT",
-      "verified": true
+      "verified": true,
+      "ardupilot_partner": false
     },
     {
       "id": "lectron technologies",
@@ -813,7 +879,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "TR",
-      "verified": true
+      "verified": true,
+      "ardupilot_partner": false
     },
     {
       "id": "lefei rc",
@@ -825,7 +892,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": null,
-      "verified": false
+      "verified": false,
+      "ardupilot_partner": false
     },
     {
       "id": "lumenier",
@@ -837,7 +905,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "US",
-      "verified": true
+      "verified": true,
+      "ardupilot_partner": false
     },
     {
       "id": "luminousbees",
@@ -849,7 +918,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "IN",
-      "verified": true
+      "verified": true,
+      "ardupilot_partner": false
     },
     {
       "id": "makeflyeasy",
@@ -861,7 +931,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "CN",
-      "verified": true
+      "verified": true,
+      "ardupilot_partner": true
     },
     {
       "id": "matek",
@@ -876,7 +947,8 @@
       "distributors_url": "http://www.mateksys.com/?page_id=1212",
       "country": "CN",
       "verified": true,
-      "note": "No direct store — the Resellers page is the buy route."
+      "note": "No direct store — the Resellers page is the buy route.",
+      "ardupilot_partner": true
     },
     {
       "id": "mft savunma ve havac l k ltd ti",
@@ -888,7 +960,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "TR",
-      "verified": false
+      "verified": false,
+      "ardupilot_partner": false
     },
     {
       "id": "micoair",
@@ -901,7 +974,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "CN",
-      "verified": true
+      "verified": true,
+      "ardupilot_partner": false
     },
     {
       "id": "modalai",
@@ -913,7 +987,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "US",
-      "verified": true
+      "verified": true,
+      "ardupilot_partner": true
     },
     {
       "id": "mphibr",
@@ -926,7 +1001,8 @@
       "distributors_url": null,
       "country": "IN",
       "verified": true,
-      "note": "mphibr.com redirects to raphe.com (Raphe mPhibr)."
+      "note": "mphibr.com redirects to raphe.com (Raphe mPhibr).",
+      "ardupilot_partner": false
     },
     {
       "id": "mro",
@@ -940,7 +1016,8 @@
       "distributors_url": null,
       "country": "US",
       "verified": true,
-      "note": "store.mrobotics.io now redirects to store.3dr.com."
+      "note": "store.mrobotics.io now redirects to store.3dr.com.",
+      "ardupilot_partner": true
     },
     {
       "id": "mugin uav",
@@ -952,7 +1029,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "CN",
-      "verified": true
+      "verified": true,
+      "ardupilot_partner": false
     },
     {
       "id": "nw blue",
@@ -964,7 +1042,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "US",
-      "verified": true
+      "verified": true,
+      "ardupilot_partner": false
     },
     {
       "id": "openpilot",
@@ -978,7 +1057,8 @@
       "distributors_url": null,
       "country": null,
       "verified": false,
-      "note": "Discontinued open-source project; no vendor."
+      "note": "Discontinued open-source project; no vendor.",
+      "ardupilot_partner": false
     },
     {
       "id": "orbit teknoloji",
@@ -991,7 +1071,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "TR",
-      "verified": true
+      "verified": true,
+      "ardupilot_partner": false
     },
     {
       "id": "orqa",
@@ -1003,7 +1084,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "HR",
-      "verified": true
+      "verified": true,
+      "ardupilot_partner": false
     },
     {
       "id": "parrot",
@@ -1015,7 +1097,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "FR",
-      "verified": true
+      "verified": true,
+      "ardupilot_partner": false
     },
     {
       "id": "pilotgaea",
@@ -1027,7 +1110,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "TW",
-      "verified": false
+      "verified": false,
+      "ardupilot_partner": false
     },
     {
       "id": "principiot",
@@ -1039,7 +1123,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": null,
-      "verified": false
+      "verified": false,
+      "ardupilot_partner": false
     },
     {
       "id": "qiotek",
@@ -1051,7 +1136,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "TW",
-      "verified": true
+      "verified": true,
+      "ardupilot_partner": true
     },
     {
       "id": "radiolink",
@@ -1063,7 +1149,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "CN",
-      "verified": true
+      "verified": true,
+      "ardupilot_partner": false
     },
     {
       "id": "s vehicle",
@@ -1075,7 +1162,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": null,
-      "verified": false
+      "verified": false,
+      "ardupilot_partner": false
     },
     {
       "id": "saam drones",
@@ -1087,7 +1175,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "IN",
-      "verified": true
+      "verified": true,
+      "ardupilot_partner": false
     },
     {
       "id": "sdmodel",
@@ -1099,7 +1188,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "CN",
-      "verified": false
+      "verified": false,
+      "ardupilot_partner": false
     },
     {
       "id": "sequre",
@@ -1111,7 +1201,8 @@
       "store_url": "https://sequremall.com/",
       "distributors_url": null,
       "country": "CN",
-      "verified": true
+      "verified": true,
+      "ardupilot_partner": true
     },
     {
       "id": "seriously pro racing",
@@ -1123,7 +1214,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "GB",
-      "verified": true
+      "verified": true,
+      "ardupilot_partner": false
     },
     {
       "id": "sierra aerospace",
@@ -1135,7 +1227,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": null,
-      "verified": false
+      "verified": false,
+      "ardupilot_partner": false
     },
     {
       "id": "simplifly",
@@ -1147,7 +1240,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "IN",
-      "verified": false
+      "verified": false,
+      "ardupilot_partner": false
     },
     {
       "id": "siyi",
@@ -1159,7 +1253,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "CN",
-      "verified": true
+      "verified": true,
+      "ardupilot_partner": false
     },
     {
       "id": "sky drones",
@@ -1172,7 +1267,8 @@
       "distributors_url": null,
       "country": "GB",
       "verified": false,
-      "note": "Cloudflare challenge blocks automated checks."
+      "note": "Cloudflare challenge blocks automated checks.",
+      "ardupilot_partner": true
     },
     {
       "id": "skydroid",
@@ -1184,7 +1280,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "CN",
-      "verified": true
+      "verified": true,
+      "ardupilot_partner": true
     },
     {
       "id": "skyrocket",
@@ -1196,7 +1293,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "US",
-      "verified": false
+      "verified": false,
+      "ardupilot_partner": false
     },
     {
       "id": "skyrukh",
@@ -1208,7 +1306,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": null,
-      "verified": false
+      "verified": false,
+      "ardupilot_partner": false
     },
     {
       "id": "skysakurarc",
@@ -1220,7 +1319,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "JP",
-      "verified": false
+      "verified": false,
+      "ardupilot_partner": false
     },
     {
       "id": "skystars",
@@ -1233,7 +1333,8 @@
       "distributors_url": null,
       "country": "CN",
       "verified": false,
-      "note": "No working domain found."
+      "note": "No working domain found.",
+      "ardupilot_partner": false
     },
     {
       "id": "sparknavi",
@@ -1241,11 +1342,12 @@
         "sparknavi"
       ],
       "name": "SparkNavi",
-      "website": null,
+      "website": "https://www.sparknavi.com/",
       "store_url": null,
       "distributors_url": null,
       "country": "KR",
-      "verified": false
+      "verified": true,
+      "ardupilot_partner": true
     },
     {
       "id": "spedix",
@@ -1258,7 +1360,8 @@
       "distributors_url": null,
       "country": "CN",
       "verified": false,
-      "note": "No working domain found."
+      "note": "No working domain found.",
+      "ardupilot_partner": false
     },
     {
       "id": "speedybee",
@@ -1270,7 +1373,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "CN",
-      "verified": true
+      "verified": true,
+      "ardupilot_partner": true
     },
     {
       "id": "standard systems",
@@ -1282,7 +1386,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": null,
-      "verified": false
+      "verified": false,
+      "ardupilot_partner": false
     },
     {
       "id": "stingbee",
@@ -1294,7 +1399,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": null,
-      "verified": false
+      "verified": false,
+      "ardupilot_partner": false
     },
     {
       "id": "stmicroelectronics",
@@ -1307,7 +1413,8 @@
       "distributors_url": null,
       "country": "CH",
       "verified": false,
-      "note": "st.com blocks automated requests; confirm by hand."
+      "note": "st.com blocks automated requests; confirm by hand.",
+      "ardupilot_partner": false
     },
     {
       "id": "swift flyer",
@@ -1319,7 +1426,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": null,
-      "verified": false
+      "verified": false,
+      "ardupilot_partner": false
     },
     {
       "id": "t motor",
@@ -1331,7 +1439,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "CN",
-      "verified": true
+      "verified": true,
+      "ardupilot_partner": false
     },
     {
       "id": "t3 foundation",
@@ -1343,7 +1452,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "TR",
-      "verified": true
+      "verified": true,
+      "ardupilot_partner": false
     },
     {
       "id": "taiphoon",
@@ -1351,11 +1461,12 @@
         "taiphoon"
       ],
       "name": "Taiphoon",
-      "website": null,
+      "website": "https://taiphoon.com.tw/",
       "store_url": null,
       "distributors_url": null,
       "country": null,
-      "verified": false
+      "verified": true,
+      "ardupilot_partner": true
     },
     {
       "id": "taulabs",
@@ -1368,7 +1479,8 @@
       "distributors_url": null,
       "country": null,
       "verified": false,
-      "note": "Defunct open-source project, not a vendor."
+      "note": "Defunct open-source project, not a vendor.",
+      "ardupilot_partner": false
     },
     {
       "id": "team blacksheep",
@@ -1383,7 +1495,8 @@
       "store_url": "https://www.team-blacksheep.com/shop",
       "distributors_url": null,
       "country": "CH",
-      "verified": true
+      "verified": true,
+      "ardupilot_partner": true
     },
     {
       "id": "thepeach",
@@ -1395,7 +1508,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "KR",
-      "verified": false
+      "verified": false,
+      "ardupilot_partner": false
     },
     {
       "id": "tustin dynamics",
@@ -1407,7 +1521,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "US",
-      "verified": true
+      "verified": true,
+      "ardupilot_partner": false
     },
     {
       "id": "uav dev gmbh",
@@ -1419,7 +1534,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "DE",
-      "verified": false
+      "verified": false,
+      "ardupilot_partner": false
     },
     {
       "id": "v uav",
@@ -1431,7 +1547,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": null,
-      "verified": false
+      "verified": false,
+      "ardupilot_partner": false
     },
     {
       "id": "vimdrones",
@@ -1443,7 +1560,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "US",
-      "verified": true
+      "verified": true,
+      "ardupilot_partner": true
     },
     {
       "id": "vololand",
@@ -1456,7 +1574,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "KR",
-      "verified": false
+      "verified": false,
+      "ardupilot_partner": false
     },
     {
       "id": "x mav",
@@ -1468,7 +1587,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "CN",
-      "verified": true
+      "verified": true,
+      "ardupilot_partner": false
     },
     {
       "id": "yari robotics",
@@ -1480,7 +1600,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": null,
-      "verified": false
+      "verified": false,
+      "ardupilot_partner": false
     },
     {
       "id": "yjuav",
@@ -1488,12 +1609,13 @@
       "aliases": [
         "yjuav"
       ],
-      "website": null,
+      "website": "http://www.yjuav.net/",
       "store_url": null,
       "distributors_url": null,
       "country": "CN",
       "verified": false,
-      "note": "yjuav.net returns a database error; no working domain found."
+      "note": "Listed on the ArduPilot partners page, but the site returns a database error.",
+      "ardupilot_partner": true
     },
     {
       "id": "zeroone",
@@ -1505,7 +1627,8 @@
       "store_url": null,
       "distributors_url": null,
       "country": "CN",
-      "verified": true
+      "verified": true,
+      "ardupilot_partner": false
     }
   ]
 }

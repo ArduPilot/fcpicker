@@ -245,6 +245,13 @@ export function manufacturerFor(
   return index.byId.get(manufacturerKey(raw, index)) ?? null;
 }
 
+// True when the board's maker is an ArduPilot Corporate Partner. Worth
+// surfacing: a partner funds the project and is far likelier to keep the
+// board's hwdef and docs current.
+export function isPartnerBoard(b: Board, index: ManufacturerIndex): boolean {
+  return manufacturerFor(boardManufacturer(b), index)?.ardupilot_partner ?? false;
+}
+
 // Best single "where to buy" link: direct store first, then the reseller list
 // for vendors who only sell through distributors, then the home page.
 export function purchaseUrl(m: Manufacturer | null): string | null {

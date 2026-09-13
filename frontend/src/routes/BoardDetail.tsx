@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import {
   boardManufacturer,
   isOnboardSensor,
+  isPartnerBoard,
   manufacturerFor,
   mcuFamilyLabel,
   purchaseUrl,
@@ -77,6 +78,17 @@ export default function BoardDetail() {
         {boardManufacturer(b) && (
           <p className="bd-maker" title="Manufacturer — suggested for discovery; verify in docs">
             by {boardManufacturer(b)}
+            {isPartnerBoard(b, mfrIndex) && (
+              <a
+                className="bd-partner"
+                href="https://ardupilot.org/copter/docs/common-partners.html"
+                target="_blank"
+                rel="noreferrer"
+                title="Listed as a Corporate Partner on ArduPilot's partners page"
+              >
+                ✓ ArduPilot Partner
+              </a>
+            )}
           </p>
         )}
         <p className="bd-subtitle">

@@ -269,7 +269,7 @@
     "notes": null
   },
   "ai": {
-    "source": "fc-verify-enrich workflow: hwdef+README+local-wiki+manufacturer cross-correlation",
+    "source": "fc-verify-enrich workflow: hwdef+README+local-wiki+manufacturer cross-correlation; input voltage from retailer listing (vendor page not found)",
     "manufacturer": "Lectron",
     "marketing_name": "Lectron Pi5 Autopilot",
     "family": "Pixhawk FMUv6X",
@@ -292,7 +292,7 @@
     "weight_g": 162.4,
     "mounting_pattern_mm": null,
     "mounting_hole_dia_mm": null,
-    "voltage_cells": null,
+    "voltage_cells": "3-6S",
     "voltage_min_v": 9,
     "voltage_max_v": 26,
     "bec_outputs": [
@@ -388,7 +388,8 @@
     ],
     "sources_used": [
       "/Users/fred/ardupilot/libraries/AP_HAL_ChibiOS/hwdef/Lectron-Pi5-H7/hwdef.dat",
-      "/Users/fred/ardupilot/libraries/AP_HAL_ChibiOS/hwdef/Lectron-Pi5-H7/README.md"
+      "/Users/fred/ardupilot/libraries/AP_HAL_ChibiOS/hwdef/Lectron-Pi5-H7/README.md",
+      "https://www.ozdisan.com/en/p/autopilot-systems-1005816/lectron-pi5-autopilot-1595027"
     ],
     "confidence": "medium",
     "dimensions_mm": {

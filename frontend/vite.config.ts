@@ -298,6 +298,13 @@ function runBundler(): Promise<void> {
   })
 }
 
+// Served at the domain root in development and on the standalone deploy, and
+// under a sub-path when it lands at ardupilot.org/fcpicker. BASE_PATH drives
+// both the asset URLs and the router basename, so the same source builds for
+// either. Must have a trailing slash.
+const BASE_PATH = process.env.BASE_PATH ?? '/'
+
 export default defineConfig({
+  base: BASE_PATH,
   plugins: [react(), adminApi()],
 })

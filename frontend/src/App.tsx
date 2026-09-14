@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import type { Board, BoardsPayload } from "./types";
 import "./App.css";
+import { asset } from "./data";
 
 function mcuFamilyLabel(family: string | null): string {
   if (!family) return "Unknown";
@@ -21,7 +22,7 @@ function App() {
   const [minImus, setMinImus] = useState(1);
 
   useEffect(() => {
-    fetch("/boards.json")
+    fetch(asset("/boards.json"))
       .then((r) => {
         if (!r.ok) throw new Error(`HTTP ${r.status}`);
         return r.json() as Promise<BoardsPayload>;

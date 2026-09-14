@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import {
+  asset,
   boardManufacturer,
   isOnboardSensor,
   partnerStatus,
@@ -299,7 +300,7 @@ function BoardGallery({
     if (seen.has(key(f))) continue;
     seen.add(key(f));
     images.push({
-      url: `/board-images/${encodeURIComponent(slug)}/${encodeURIComponent(f)}`,
+      url: asset(`/board-images/${encodeURIComponent(slug)}/${encodeURIComponent(f)}`),
       caption: f,
       source: "admin",
     });

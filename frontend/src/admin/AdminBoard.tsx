@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { useOutletContext, useParams } from "react-router-dom";
-import { useBoardImages } from "../data";
+import { asset, useBoardImages } from "../data";
 import type { Board, BoardConnector, BoardManual, ManualStatus } from "../types";
 import type { AdminCtx } from "./AdminLayout";
 import {
@@ -508,8 +508,8 @@ function ImagesSection({
         <div className="adm-image-grid">
           {images.map((f) => (
             <div key={f} className="adm-image-tile">
-              <a href={`/board-images/${encodeURIComponent(slug)}/${encodeURIComponent(f)}`} target="_blank" rel="noreferrer">
-                <img src={`/board-images/${encodeURIComponent(slug)}/${encodeURIComponent(f)}`} alt={f} loading="lazy" />
+              <a href={asset(`/board-images/${encodeURIComponent(slug)}/${encodeURIComponent(f)}`)} target="_blank" rel="noreferrer">
+                <img src={asset(`/board-images/${encodeURIComponent(slug)}/${encodeURIComponent(f)}`)} alt={f} loading="lazy" />
               </a>
               <div className="adm-image-tile-foot">
                 <span title={f}>{f}</span>
@@ -616,7 +616,7 @@ function ExtractDrawer({
     setFetching(true);
     setLlmError(null);
     try {
-      const r = await fetch("/api/admin/fetch-url", {
+      const r = await fetch(asset("/api/admin/fetch-url"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ url }),
@@ -688,7 +688,7 @@ function ExtractDrawer({
     setBusy(true);
     setLlmError(null);
     try {
-      const r = await fetch("/api/admin/extract", {
+      const r = await fetch(asset("/api/admin/extract"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

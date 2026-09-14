@@ -14,6 +14,31 @@ import type {
 // candidate parts per physical position (e.g. "BMP280 or SPL06", "ICP20100 or
 // DPS310"); those alternates sit on the same channel, so keying on the channel
 // collapses them to the one physical sensor that's actually populated.
+// Resolve a root-relative path against the deployed base. Every fetch of a
+// bundled payload and every link to a static file must go through this, or it
+// breaks when the site is served under a sub-path (ardupilot.org/fcpicker).
+// import.meta.env.BASE_URL is "/" at the root and "/fcpicker/" under one.
+// Seed the module caches before rendering. Every hook below initialises its
+// state directly from these, so priming them means the very first render has
+// real data — which is what makes build-time pre-rendering produce content
+// instead of the loading skeleton. Build-time only; the browser never calls it.
+export function primeCaches(data: {
+  boards?: Board[];
+  rangefinders?: Rangefinder[];
+  manufacturers?: Manufacturer[];
+  images?: { base_url: string; boards: { slug: string; is_autopilot: boolean; images: string[] }[] };
+}): void {
+  if (data.boards) cache = data.boards;
+  if (data.rangefinders) rfCache = data.rangefinders;
+  if (data.manufacturers) mfrCache = data.manufacturers;
+  if (data.images) imagesCache = data.images;
+}
+
+export function asset(path: string): string {
+  const base = import.meta.env.BASE_URL;
+  return base.replace(/\/$/, "") + (path.startsWith("/") ? path : `/${path}`);
+}
+
 export function sensorSlotKey(s: SensorEntry): string {
   if (s.slot) return s.slot;
   const p = (s.bus ?? "").split(":");
@@ -39,7 +64,7 @@ let inflight: Promise<Board[]> | null = null;
 function load(): Promise<Board[]> {
   if (cache) return Promise.resolve(cache);
   if (inflight) return inflight;
-  inflight = fetch("/boards.json")
+  inflight = fetch(asset("/boards.json"))
     .then((r) => {
       if (!r.ok) throw new Error(`HTTP ${r.status}`);
       return r.json() as Promise<BoardsPayload>;
@@ -76,7 +101,7 @@ let imagesInflight: Promise<HwdefImagesPayload> | null = null;
 function loadImages(): Promise<HwdefImagesPayload> {
   if (imagesCache) return Promise.resolve(imagesCache);
   if (imagesInflight) return imagesInflight;
-  imagesInflight = fetch("/hwdef-images.json")
+  imagesInflight = fetch(asset("/hwdef-images.json"))
     .then((r) => {
       if (!r.ok) throw new Error(`HTTP ${r.status}`);
       return r.json() as Promise<HwdefImagesPayload>;
@@ -120,7 +145,7 @@ let rfInflight: Promise<Rangefinder[]> | null = null;
 function loadRangefinders(): Promise<Rangefinder[]> {
   if (rfCache) return Promise.resolve(rfCache);
   if (rfInflight) return rfInflight;
-  rfInflight = fetch("/rangefinders.json")
+  rfInflight = fetch(asset("/rangefinders.json"))
     .then((r) => {
       if (!r.ok) throw new Error(`HTTP ${r.status}`);
       return r.json() as Promise<RangefindersPayload>;
@@ -164,7 +189,7 @@ let mfrInflight: Promise<Manufacturer[]> | null = null;
 export function loadManufacturers(): Promise<Manufacturer[]> {
   if (mfrCache) return Promise.resolve(mfrCache);
   if (mfrInflight) return mfrInflight;
-  mfrInflight = fetch("/manufacturers.json")
+  mfrInflight = fetch(asset("/manufacturers.json"))
     .then((r) => {
       if (!r.ok) throw new Error(`HTTP ${r.status}`);
       return r.json() as Promise<ManufacturersPayload>;

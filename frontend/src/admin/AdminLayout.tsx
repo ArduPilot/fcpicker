@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Link, Outlet, useParams } from "react-router-dom";
 import type { Board, BoardManual, BoardsPayload, ManualStatus } from "../types";
 import "../admin.css";
+import { asset } from "../data";
 
 export type AdminCtx = {
   boards: Board[];
@@ -25,8 +26,8 @@ export default function AdminLayout() {
 
   useEffect(() => {
     Promise.all([
-      fetch("/boards.json").then((r) => r.json() as Promise<BoardsPayload>),
-      fetch("/api/admin/capabilities")
+      fetch(asset("/boards.json")).then((r) => r.json() as Promise<BoardsPayload>),
+      fetch(asset("/api/admin/capabilities"))
         .then((r) => (r.ok ? r.json() : { canWrite: false, llm: false }))
         .catch(() => ({ canWrite: false, llm: false })),
     ]).then(([payload, caps]) => {

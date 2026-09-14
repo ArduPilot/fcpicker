@@ -43,7 +43,137 @@
     "sbus_out": false,
     "iomcu": false,
     "bdshot": true,
-    "adc_inputs": 3
+    "adc_inputs": 3,
+    "serial_ports": [
+      {
+        "serial": 0,
+        "device": "OTG1",
+        "usb": true,
+        "tx": null,
+        "rx": null,
+        "rts": null,
+        "cts": null,
+        "inverted": false,
+        "protocol": {
+          "id": 2,
+          "name": "MAVLink2",
+          "from_hwdef": false
+        },
+        "hint": null
+      },
+      {
+        "serial": 1,
+        "device": "USART1",
+        "usb": false,
+        "tx": "PA9",
+        "rx": "PA10",
+        "rts": null,
+        "cts": null,
+        "inverted": false,
+        "protocol": {
+          "id": 2,
+          "name": "MAVLink2",
+          "from_hwdef": false
+        },
+        "hint": null
+      },
+      {
+        "serial": 2,
+        "device": "USART2",
+        "usb": false,
+        "tx": "PD5",
+        "rx": "PD6",
+        "rts": null,
+        "cts": null,
+        "inverted": false,
+        "protocol": {
+          "id": 2,
+          "name": "MAVLink2",
+          "from_hwdef": false
+        },
+        "hint": null
+      },
+      {
+        "serial": 3,
+        "device": "USART3",
+        "usb": false,
+        "tx": "PB10",
+        "rx": "PB11",
+        "rts": null,
+        "cts": null,
+        "inverted": false,
+        "protocol": {
+          "id": 5,
+          "name": "GPS",
+          "from_hwdef": false
+        },
+        "hint": null
+      },
+      {
+        "serial": 4,
+        "device": "UART4",
+        "usb": false,
+        "tx": "PA0",
+        "rx": "PA1",
+        "rts": null,
+        "cts": null,
+        "inverted": false,
+        "protocol": {
+          "id": 5,
+          "name": "GPS",
+          "from_hwdef": false
+        },
+        "hint": null
+      },
+      {
+        "serial": 5,
+        "device": "UART5",
+        "usb": false,
+        "tx": "PC12",
+        "rx": "PD2",
+        "rts": null,
+        "cts": null,
+        "inverted": false,
+        "protocol": {
+          "id": -1,
+          "name": "None",
+          "from_hwdef": false
+        },
+        "hint": null
+      },
+      {
+        "serial": 6,
+        "device": "USART6",
+        "usb": false,
+        "tx": "PC6",
+        "rx": "PC7",
+        "rts": null,
+        "cts": null,
+        "inverted": false,
+        "protocol": {
+          "id": -1,
+          "name": "None",
+          "from_hwdef": false
+        },
+        "hint": null
+      },
+      {
+        "serial": 7,
+        "device": "UART7",
+        "usb": false,
+        "tx": "PE8",
+        "rx": "PE7",
+        "rts": null,
+        "cts": null,
+        "inverted": false,
+        "protocol": {
+          "id": -1,
+          "name": "None",
+          "from_hwdef": false
+        },
+        "hint": null
+      }
+    ]
   },
   "bdshot_target": null,
   "power": {
@@ -115,6 +245,7 @@
   "repo_url": "https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_HAL_ChibiOS/hwdef/FlywooF745/README.md",
   "manual": {
     "status": "partial",
+    "manufacturer": null,
     "form_factor": null,
     "mounting": null,
     "assembly": null,
@@ -125,7 +256,6 @@
     "ardupilot_repo_url": null,
     "discontinued": false,
     "imu_count": null,
-    "notes": null,
     "variants": [
       {
         "name": "GOKU GN 745 AIO 40A",
@@ -155,7 +285,8 @@
         "product_url": null,
         "discontinued": false
       }
-    ]
+    ],
+    "notes": null
   },
   "ai": {
     "source": "fc-verify-enrich workflow: hwdef+README+local-wiki+manufacturer cross-correlation",

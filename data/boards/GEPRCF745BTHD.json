@@ -44,7 +44,137 @@
     "sbus_out": false,
     "iomcu": false,
     "bdshot": true,
-    "adc_inputs": 2
+    "adc_inputs": 2,
+    "serial_ports": [
+      {
+        "serial": 0,
+        "device": "OTG1",
+        "usb": true,
+        "tx": null,
+        "rx": null,
+        "rts": null,
+        "cts": null,
+        "inverted": false,
+        "protocol": {
+          "id": 2,
+          "name": "MAVLink2",
+          "from_hwdef": false
+        },
+        "hint": null
+      },
+      {
+        "serial": 1,
+        "device": "USART1",
+        "usb": false,
+        "tx": "PA9",
+        "rx": "PA10",
+        "rts": null,
+        "cts": null,
+        "inverted": false,
+        "protocol": {
+          "id": 42,
+          "name": "MSP DisplayPort",
+          "from_hwdef": true
+        },
+        "hint": null
+      },
+      {
+        "serial": 2,
+        "device": "USART2",
+        "usb": false,
+        "tx": "PA2",
+        "rx": "PA3",
+        "rts": null,
+        "cts": null,
+        "inverted": false,
+        "protocol": {
+          "id": 2,
+          "name": "MAVLink2",
+          "from_hwdef": false
+        },
+        "hint": null
+      },
+      {
+        "serial": 3,
+        "device": "USART3",
+        "usb": false,
+        "tx": "PB10",
+        "rx": "PB11",
+        "rts": null,
+        "cts": null,
+        "inverted": false,
+        "protocol": {
+          "id": -1,
+          "name": "None",
+          "from_hwdef": true
+        },
+        "hint": "USART3 (BT)"
+      },
+      {
+        "serial": 4,
+        "device": "UART4",
+        "usb": false,
+        "tx": "PA0",
+        "rx": "PA1",
+        "rts": null,
+        "cts": null,
+        "inverted": false,
+        "protocol": {
+          "id": 5,
+          "name": "GPS",
+          "from_hwdef": true
+        },
+        "hint": "UART4 (GPS)"
+      },
+      {
+        "serial": 6,
+        "device": "USART6",
+        "usb": false,
+        "tx": "PC6",
+        "rx": "PC7",
+        "rts": null,
+        "cts": null,
+        "inverted": false,
+        "protocol": {
+          "id": -1,
+          "name": "None",
+          "from_hwdef": true
+        },
+        "hint": "UART6"
+      },
+      {
+        "serial": 7,
+        "device": "UART7",
+        "usb": false,
+        "tx": "PE8",
+        "rx": "PE7",
+        "rts": null,
+        "cts": null,
+        "inverted": false,
+        "protocol": {
+          "id": -1,
+          "name": "None",
+          "from_hwdef": true
+        },
+        "hint": null
+      },
+      {
+        "serial": 8,
+        "device": "UART8",
+        "usb": false,
+        "tx": "PE1",
+        "rx": "PE0",
+        "rts": null,
+        "cts": null,
+        "inverted": false,
+        "protocol": {
+          "id": 16,
+          "name": "ESC telemetry",
+          "from_hwdef": true
+        },
+        "hint": null
+      }
+    ]
   },
   "bdshot_target": null,
   "power": {
@@ -102,6 +232,7 @@
   "repo_url": "https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_HAL_ChibiOS/hwdef/GEPRCF745BTHD/README.md",
   "manual": {
     "status": "not_started",
+    "manufacturer": null,
     "form_factor": null,
     "mounting": null,
     "assembly": null,
@@ -112,6 +243,7 @@
     "ardupilot_repo_url": null,
     "discontinued": false,
     "imu_count": null,
+    "variants": [],
     "notes": null
   },
   "ai": {

@@ -42,7 +42,105 @@
     "sbus_out": false,
     "iomcu": false,
     "bdshot": true,
-    "adc_inputs": 2
+    "adc_inputs": 2,
+    "serial_ports": [
+      {
+        "serial": 0,
+        "device": "UART8",
+        "usb": false,
+        "tx": "PE1",
+        "rx": "PE0",
+        "rts": null,
+        "cts": null,
+        "inverted": false,
+        "protocol": {
+          "id": 2,
+          "name": "MAVLink2",
+          "from_hwdef": false
+        },
+        "hint": "UART for debug"
+      },
+      {
+        "serial": 1,
+        "device": "UART7",
+        "usb": false,
+        "tx": "PE8",
+        "rx": "PE7",
+        "rts": null,
+        "cts": null,
+        "inverted": false,
+        "protocol": {
+          "id": 48,
+          "name": "PPP",
+          "from_hwdef": true
+        },
+        "hint": "UART connected to FMU, uses DMA"
+      },
+      {
+        "serial": 2,
+        "device": "USART3",
+        "usb": false,
+        "tx": "PC10",
+        "rx": "PC11",
+        "rts": null,
+        "cts": null,
+        "inverted": false,
+        "protocol": {
+          "id": 2,
+          "name": "MAVLink2",
+          "from_hwdef": false
+        },
+        "hint": "UART for DSM input"
+      },
+      {
+        "serial": 3,
+        "device": "USART6",
+        "usb": false,
+        "tx": "PC6",
+        "rx": "PC7",
+        "rts": null,
+        "cts": null,
+        "inverted": false,
+        "protocol": {
+          "id": 5,
+          "name": "GPS",
+          "from_hwdef": false
+        },
+        "hint": "UART for SBUS out"
+      },
+      {
+        "serial": 4,
+        "device": "UART4",
+        "usb": false,
+        "tx": "PD1",
+        "rx": null,
+        "rts": null,
+        "cts": null,
+        "inverted": false,
+        "protocol": {
+          "id": 5,
+          "name": "GPS",
+          "from_hwdef": false
+        },
+        "hint": "UART for RCIN"
+      },
+      {
+        "serial": 5,
+        "device": "USART2",
+        "usb": false,
+        "tx": "PD5",
+        "rx": "PD6",
+        "rts": "PD4",
+        "cts": "PD3",
+        "inverted": false,
+        "protocol": {
+          "id": -1,
+          "name": "None",
+          "from_hwdef": false
+        },
+        "hint": "USART for future use"
+      }
+    ]
   },
   "bdshot_target": null,
   "power": {
@@ -86,6 +184,7 @@
   "repo_url": null,
   "manual": {
     "status": "not_started",
+    "manufacturer": null,
     "form_factor": null,
     "mounting": null,
     "assembly": null,
@@ -96,6 +195,7 @@
     "ardupilot_repo_url": null,
     "discontinued": false,
     "imu_count": null,
+    "variants": [],
     "notes": null
   },
   "ai": {

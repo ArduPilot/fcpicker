@@ -39,7 +39,57 @@
     "sbus_out": false,
     "iomcu": false,
     "bdshot": false,
-    "adc_inputs": 6
+    "adc_inputs": 6,
+    "serial_ports": [
+      {
+        "serial": 0,
+        "device": "USART1",
+        "usb": false,
+        "tx": "PA9",
+        "rx": "PA10",
+        "rts": null,
+        "cts": null,
+        "inverted": false,
+        "protocol": {
+          "id": 2,
+          "name": "MAVLink2",
+          "from_hwdef": false
+        },
+        "hint": "USART1 is for debug console"
+      },
+      {
+        "serial": 1,
+        "device": "USART2",
+        "usb": false,
+        "tx": "PA2",
+        "rx": "PA3",
+        "rts": null,
+        "cts": null,
+        "inverted": false,
+        "protocol": {
+          "id": 2,
+          "name": "MAVLink2",
+          "from_hwdef": false
+        },
+        "hint": "USART2 is for sonix"
+      },
+      {
+        "serial": 3,
+        "device": "USART6",
+        "usb": false,
+        "tx": "PA11",
+        "rx": "PC7",
+        "rts": null,
+        "cts": null,
+        "inverted": false,
+        "protocol": {
+          "id": 5,
+          "name": "GPS",
+          "from_hwdef": false
+        },
+        "hint": "USART6 is for GPS"
+      }
+    ]
   },
   "bdshot_target": null,
   "power": {
@@ -86,6 +136,7 @@
   "repo_url": null,
   "manual": {
     "status": "not_started",
+    "manufacturer": null,
     "form_factor": null,
     "mounting": null,
     "assembly": null,
@@ -96,6 +147,7 @@
     "ardupilot_repo_url": null,
     "discontinued": false,
     "imu_count": null,
+    "variants": [],
     "notes": null
   },
   "ai": {

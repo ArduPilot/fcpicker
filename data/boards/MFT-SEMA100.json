@@ -47,7 +47,137 @@
     "sbus_out": false,
     "iomcu": false,
     "bdshot": false,
-    "adc_inputs": 2
+    "adc_inputs": 2,
+    "serial_ports": [
+      {
+        "serial": 0,
+        "device": "OTG1",
+        "usb": true,
+        "tx": null,
+        "rx": null,
+        "rts": null,
+        "cts": null,
+        "inverted": false,
+        "protocol": {
+          "id": 2,
+          "name": "MAVLink2",
+          "from_hwdef": false
+        },
+        "hint": null
+      },
+      {
+        "serial": 1,
+        "device": "USART1",
+        "usb": false,
+        "tx": "PA9",
+        "rx": "PA10",
+        "rts": null,
+        "cts": null,
+        "inverted": false,
+        "protocol": {
+          "id": 2,
+          "name": "MAVLink2",
+          "from_hwdef": false
+        },
+        "hint": null
+      },
+      {
+        "serial": 2,
+        "device": "USART2",
+        "usb": false,
+        "tx": "PD5",
+        "rx": "PD6",
+        "rts": null,
+        "cts": null,
+        "inverted": false,
+        "protocol": {
+          "id": 2,
+          "name": "MAVLink2",
+          "from_hwdef": false
+        },
+        "hint": "USART2 is TX RX 2"
+      },
+      {
+        "serial": 3,
+        "device": "USART3",
+        "usb": false,
+        "tx": "PD8",
+        "rx": "PD9",
+        "rts": null,
+        "cts": null,
+        "inverted": false,
+        "protocol": {
+          "id": 5,
+          "name": "GPS",
+          "from_hwdef": false
+        },
+        "hint": "USART3 is TX RX 3"
+      },
+      {
+        "serial": 4,
+        "device": "UART5",
+        "usb": false,
+        "tx": "PC12",
+        "rx": "PD2",
+        "rts": null,
+        "cts": null,
+        "inverted": false,
+        "protocol": {
+          "id": 5,
+          "name": "GPS",
+          "from_hwdef": false
+        },
+        "hint": "UART5 is TX RX 4"
+      },
+      {
+        "serial": 5,
+        "device": "UART7",
+        "usb": false,
+        "tx": "PE8",
+        "rx": "PE7",
+        "rts": "PE9",
+        "cts": "PE10",
+        "inverted": false,
+        "protocol": {
+          "id": -1,
+          "name": "None",
+          "from_hwdef": false
+        },
+        "hint": "UART7 is TX RX 5"
+      },
+      {
+        "serial": 6,
+        "device": "UART8",
+        "usb": false,
+        "tx": null,
+        "rx": "PE0",
+        "rts": null,
+        "cts": null,
+        "inverted": false,
+        "protocol": {
+          "id": -1,
+          "name": "None",
+          "from_hwdef": false
+        },
+        "hint": "SBUS, DSM port"
+      },
+      {
+        "serial": 7,
+        "device": "OTG2",
+        "usb": true,
+        "tx": null,
+        "rx": null,
+        "rts": null,
+        "cts": null,
+        "inverted": false,
+        "protocol": {
+          "id": -1,
+          "name": "None",
+          "from_hwdef": false
+        },
+        "hint": null
+      }
+    ]
   },
   "bdshot_target": null,
   "power": {
@@ -99,6 +229,7 @@
   "repo_url": "https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_HAL_ChibiOS/hwdef/MFT-SEMA100/README.md",
   "manual": {
     "status": "not_started",
+    "manufacturer": null,
     "form_factor": null,
     "mounting": null,
     "assembly": null,
@@ -109,6 +240,7 @@
     "ardupilot_repo_url": null,
     "discontinued": false,
     "imu_count": null,
+    "variants": [],
     "notes": null
   },
   "ai": {

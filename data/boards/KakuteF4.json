@@ -40,7 +40,105 @@
     "sbus_out": false,
     "iomcu": false,
     "bdshot": false,
-    "adc_inputs": 3
+    "adc_inputs": 3,
+    "serial_ports": [
+      {
+        "serial": 0,
+        "device": "OTG1",
+        "usb": true,
+        "tx": null,
+        "rx": null,
+        "rts": null,
+        "cts": null,
+        "inverted": false,
+        "protocol": {
+          "id": 2,
+          "name": "MAVLink2",
+          "from_hwdef": false
+        },
+        "hint": null
+      },
+      {
+        "serial": 1,
+        "device": "USART6",
+        "usb": false,
+        "tx": "PC6",
+        "rx": "PC7",
+        "rts": null,
+        "cts": null,
+        "inverted": false,
+        "protocol": {
+          "id": 2,
+          "name": "MAVLink2",
+          "from_hwdef": false
+        },
+        "hint": "USART6, telem1, SERIAL1"
+      },
+      {
+        "serial": 2,
+        "device": "USART1",
+        "usb": false,
+        "tx": "PA9",
+        "rx": "PA10",
+        "rts": null,
+        "cts": null,
+        "inverted": false,
+        "protocol": {
+          "id": 10,
+          "name": "FrSky SPort passthrough",
+          "from_hwdef": true
+        },
+        "hint": "for FrSky S.PORT. Has builtin inverters and diode to combine"
+      },
+      {
+        "serial": 3,
+        "device": "UART4",
+        "usb": false,
+        "tx": "PA0",
+        "rx": "PA1",
+        "rts": null,
+        "cts": null,
+        "inverted": false,
+        "protocol": {
+          "id": 5,
+          "name": "GPS",
+          "from_hwdef": false
+        },
+        "hint": "UART4 (GPS), SERIAL3"
+      },
+      {
+        "serial": 4,
+        "device": "UART5",
+        "usb": false,
+        "tx": null,
+        "rx": "PD2",
+        "rts": null,
+        "cts": null,
+        "inverted": false,
+        "protocol": {
+          "id": 5,
+          "name": "GPS",
+          "from_hwdef": false
+        },
+        "hint": "UART5 (ESC telemetry sensor), SERIAL4"
+      },
+      {
+        "serial": 5,
+        "device": "USART3",
+        "usb": false,
+        "tx": "PB10",
+        "rx": "PB15",
+        "rts": null,
+        "cts": null,
+        "inverted": true,
+        "protocol": {
+          "id": -1,
+          "name": "None",
+          "from_hwdef": false
+        },
+        "hint": "rcinput is PB11"
+      }
+    ]
   },
   "bdshot_target": null,
   "power": {
@@ -91,6 +189,7 @@
   "repo_url": "https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_HAL_ChibiOS/hwdef/KakuteF4/README.md",
   "manual": {
     "status": "not_started",
+    "manufacturer": null,
     "form_factor": null,
     "mounting": null,
     "assembly": null,
@@ -101,6 +200,7 @@
     "ardupilot_repo_url": null,
     "discontinued": false,
     "imu_count": null,
+    "variants": [],
     "notes": null
   },
   "ai": {

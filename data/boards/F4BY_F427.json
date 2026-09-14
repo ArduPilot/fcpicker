@@ -43,7 +43,105 @@
     "sbus_out": false,
     "iomcu": false,
     "bdshot": false,
-    "adc_inputs": 6
+    "adc_inputs": 6,
+    "serial_ports": [
+      {
+        "serial": 0,
+        "device": "OTG1",
+        "usb": true,
+        "tx": null,
+        "rx": null,
+        "rts": null,
+        "cts": null,
+        "inverted": false,
+        "protocol": {
+          "id": 2,
+          "name": "MAVLink2",
+          "from_hwdef": false
+        },
+        "hint": null
+      },
+      {
+        "serial": 1,
+        "device": "USART2",
+        "usb": false,
+        "tx": "PD5",
+        "rx": "PD6",
+        "rts": null,
+        "cts": null,
+        "inverted": false,
+        "protocol": {
+          "id": 2,
+          "name": "MAVLink2",
+          "from_hwdef": false
+        },
+        "hint": "USART2 serial2 telem2"
+      },
+      {
+        "serial": 2,
+        "device": "USART1",
+        "usb": false,
+        "tx": "PB6",
+        "rx": "PB7",
+        "rts": null,
+        "cts": null,
+        "inverted": false,
+        "protocol": {
+          "id": 2,
+          "name": "MAVLink2",
+          "from_hwdef": false
+        },
+        "hint": "UART1 as board 2.1.5 for serial 3 gps"
+      },
+      {
+        "serial": 3,
+        "device": "USART3",
+        "usb": false,
+        "tx": "PD8",
+        "rx": "PD9",
+        "rts": null,
+        "cts": null,
+        "inverted": false,
+        "protocol": {
+          "id": 5,
+          "name": "GPS",
+          "from_hwdef": false
+        },
+        "hint": "USART3 serial3 telem1"
+      },
+      {
+        "serial": 4,
+        "device": "UART4",
+        "usb": false,
+        "tx": "PC10",
+        "rx": "PC11",
+        "rts": null,
+        "cts": null,
+        "inverted": false,
+        "protocol": {
+          "id": 5,
+          "name": "GPS",
+          "from_hwdef": false
+        },
+        "hint": null
+      },
+      {
+        "serial": 5,
+        "device": "UART5",
+        "usb": false,
+        "tx": "PC12",
+        "rx": "PD2",
+        "rts": null,
+        "cts": null,
+        "inverted": false,
+        "protocol": {
+          "id": -1,
+          "name": "None",
+          "from_hwdef": false
+        },
+        "hint": "SHARE dma with I2C2_TX"
+      }
+    ]
   },
   "bdshot_target": null,
   "power": {
@@ -116,6 +214,7 @@
   "repo_url": null,
   "manual": {
     "status": "not_started",
+    "manufacturer": null,
     "form_factor": null,
     "mounting": null,
     "assembly": null,
@@ -126,6 +225,7 @@
     "ardupilot_repo_url": null,
     "discontinued": false,
     "imu_count": null,
+    "variants": [],
     "notes": null
   },
   "ai": {

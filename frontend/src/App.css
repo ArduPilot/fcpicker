@@ -1392,6 +1392,10 @@
   vertical-align: top;
 }
 .bd-table tr:last-child td { border-bottom: none; }
+.bd-serial td { white-space: nowrap; }
+.bd-serial td.bd-serial-hint { white-space: normal; color: var(--ink-mute); font-size: 12px; min-width: 120px; }
+.bd-serial .bd-chip { margin-left: 6px; }
+.bd-serial-proto { color: var(--ink-mute); font-size: 11.5px; }
 .bd-chip {
   display: inline-block;
   margin-left: 8px;

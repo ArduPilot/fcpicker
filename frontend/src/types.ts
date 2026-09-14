@@ -36,6 +36,21 @@ export interface BoardIO {
   // Bidirectional DShot in this hwdef (BIDIR-tagged PWM pin or IOMCU flag).
   bdshot: boolean;
   adc_inputs: number;
+  // SERIALn (ArduPilot port number) → hardware UART → physical pads.
+  serial_ports: SerialPort[];
+}
+
+export interface SerialPort {
+  serial: number;          // SERIALn parameter number (index in SERIAL_ORDER)
+  device: string;          // USART1, UART7, OTG1 …
+  usb: boolean;            // OTGn — USB, no pads
+  tx: string | null;       // pad, e.g. "PA9"
+  rx: string | null;
+  rts: string | null;
+  cts: string | null;
+  inverted: boolean;       // TXINV/RXINV pins
+  protocol: { id: number; name: string; from_hwdef: boolean } | null;
+  hint: string | null;     // comment the hwdef author wrote above the pins
 }
 
 // A "<slug>-bdshot" firmware target folded into its base board: same PCB,

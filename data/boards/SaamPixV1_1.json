@@ -44,7 +44,121 @@
     "sbus_out": false,
     "iomcu": false,
     "bdshot": false,
-    "adc_inputs": 6
+    "adc_inputs": 6,
+    "serial_ports": [
+      {
+        "serial": 0,
+        "device": "OTG1",
+        "usb": true,
+        "tx": null,
+        "rx": null,
+        "rts": null,
+        "cts": null,
+        "inverted": false,
+        "protocol": {
+          "id": 2,
+          "name": "MAVLink2",
+          "from_hwdef": false
+        },
+        "hint": null
+      },
+      {
+        "serial": 1,
+        "device": "USART2",
+        "usb": false,
+        "tx": "PD5",
+        "rx": "PD6",
+        "rts": "PD4",
+        "cts": "PD3",
+        "inverted": false,
+        "protocol": {
+          "id": 2,
+          "name": "MAVLink2",
+          "from_hwdef": false
+        },
+        "hint": "USART2 serial1 telem1"
+      },
+      {
+        "serial": 2,
+        "device": "USART3",
+        "usb": false,
+        "tx": "PD8",
+        "rx": "PD9",
+        "rts": null,
+        "cts": null,
+        "inverted": false,
+        "protocol": {
+          "id": 2,
+          "name": "MAVLink2",
+          "from_hwdef": false
+        },
+        "hint": "USART3 serial2 companion computer (onboard CP2104 USB bridge)"
+      },
+      {
+        "serial": 3,
+        "device": "UART4",
+        "usb": false,
+        "tx": "PA0",
+        "rx": "PA1",
+        "rts": null,
+        "cts": null,
+        "inverted": false,
+        "protocol": {
+          "id": 5,
+          "name": "GPS",
+          "from_hwdef": false
+        },
+        "hint": "UART4 is GPS"
+      },
+      {
+        "serial": 4,
+        "device": "UART8",
+        "usb": false,
+        "tx": "PE1",
+        "rx": "PE0",
+        "rts": null,
+        "cts": null,
+        "inverted": false,
+        "protocol": {
+          "id": 5,
+          "name": "GPS",
+          "from_hwdef": false
+        },
+        "hint": "UART8 is GPS2 by default"
+      },
+      {
+        "serial": 5,
+        "device": "USART1",
+        "usb": false,
+        "tx": "PB6",
+        "rx": "PB7",
+        "rts": null,
+        "cts": null,
+        "inverted": false,
+        "protocol": {
+          "id": -1,
+          "name": "None",
+          "from_hwdef": false
+        },
+        "hint": "USART1 is a spare user UART (no protocol assigned by default)"
+      },
+      {
+        "serial": 6,
+        "device": "UART7",
+        "usb": false,
+        "tx": "PE8",
+        "rx": "PE7",
+        "rts": null,
+        "cts": null,
+        "inverted": false,
+        "protocol": {
+          "id": -1,
+          "name": "None",
+          "from_hwdef": false
+        },
+        "hint": "UART7 is debug"
+      }
+    ]
   },
   "bdshot_target": null,
   "power": {
@@ -110,6 +224,7 @@
   "repo_url": null,
   "manual": {
     "status": "not_started",
+    "manufacturer": "SAAM Drones",
     "form_factor": null,
     "mounting": null,
     "assembly": null,
@@ -120,7 +235,7 @@
     "ardupilot_repo_url": null,
     "discontinued": false,
     "imu_count": null,
-    "notes": null,
-    "manufacturer": "SAAM Drones"
+    "variants": [],
+    "notes": null
   }
 }

@@ -36,7 +36,73 @@
     "sbus_out": false,
     "iomcu": false,
     "bdshot": false,
-    "adc_inputs": 0
+    "adc_inputs": 0,
+    "serial_ports": [
+      {
+        "serial": 0,
+        "device": "OTG1",
+        "usb": true,
+        "tx": null,
+        "rx": null,
+        "rts": null,
+        "cts": null,
+        "inverted": false,
+        "protocol": {
+          "id": 2,
+          "name": "MAVLink2",
+          "from_hwdef": false
+        },
+        "hint": null
+      },
+      {
+        "serial": 1,
+        "device": "USART3",
+        "usb": false,
+        "tx": "PC10",
+        "rx": "PC11",
+        "rts": null,
+        "cts": null,
+        "inverted": false,
+        "protocol": {
+          "id": 2,
+          "name": "MAVLink2",
+          "from_hwdef": false
+        },
+        "hint": "USART3 for telemetry"
+      },
+      {
+        "serial": 2,
+        "device": "USART6",
+        "usb": false,
+        "tx": "PC6",
+        "rx": "PC7",
+        "rts": null,
+        "cts": null,
+        "inverted": false,
+        "protocol": {
+          "id": 2,
+          "name": "MAVLink2",
+          "from_hwdef": false
+        },
+        "hint": "radio setup"
+      },
+      {
+        "serial": 3,
+        "device": "USART2",
+        "usb": false,
+        "tx": "PA2",
+        "rx": "PA3",
+        "rts": null,
+        "cts": null,
+        "inverted": false,
+        "protocol": {
+          "id": 5,
+          "name": "GPS",
+          "from_hwdef": false
+        },
+        "hint": null
+      }
+    ]
   },
   "bdshot_target": null,
   "power": {
@@ -89,6 +155,7 @@
   "repo_url": null,
   "manual": {
     "status": "not_started",
+    "manufacturer": null,
     "form_factor": null,
     "mounting": null,
     "assembly": null,
@@ -99,6 +166,7 @@
     "ardupilot_repo_url": null,
     "discontinued": false,
     "imu_count": 1,
+    "variants": [],
     "notes": null
   },
   "ai": {

@@ -45,7 +45,105 @@
     "sbus_out": false,
     "iomcu": false,
     "bdshot": true,
-    "adc_inputs": 5
+    "adc_inputs": 5,
+    "serial_ports": [
+      {
+        "serial": 0,
+        "device": "OTG1",
+        "usb": true,
+        "tx": null,
+        "rx": null,
+        "rts": null,
+        "cts": null,
+        "inverted": false,
+        "protocol": {
+          "id": 2,
+          "name": "MAVLink2",
+          "from_hwdef": false
+        },
+        "hint": null
+      },
+      {
+        "serial": 1,
+        "device": "USART1",
+        "usb": false,
+        "tx": "PA9",
+        "rx": "PA10",
+        "rts": null,
+        "cts": null,
+        "inverted": false,
+        "protocol": {
+          "id": 2,
+          "name": "MAVLink2",
+          "from_hwdef": false
+        },
+        "hint": "USART1 - from schematic: PA9(TX), PA10(RX)"
+      },
+      {
+        "serial": 2,
+        "device": "USART2",
+        "usb": false,
+        "tx": "PD5",
+        "rx": "PD6",
+        "rts": null,
+        "cts": null,
+        "inverted": false,
+        "protocol": {
+          "id": 5,
+          "name": "GPS",
+          "from_hwdef": true
+        },
+        "hint": "USART2 - from schematic: PD5(TX), PD6(RX)"
+      },
+      {
+        "serial": 3,
+        "device": "USART3",
+        "usb": false,
+        "tx": "PD8",
+        "rx": "PD9",
+        "rts": null,
+        "cts": null,
+        "inverted": false,
+        "protocol": {
+          "id": 5,
+          "name": "GPS",
+          "from_hwdef": false
+        },
+        "hint": "USART3 - from schematic: PD8(TX), PD9(RX)"
+      },
+      {
+        "serial": 4,
+        "device": "UART4",
+        "usb": false,
+        "tx": "PB9",
+        "rx": "PB8",
+        "rts": null,
+        "cts": null,
+        "inverted": false,
+        "protocol": {
+          "id": 5,
+          "name": "GPS",
+          "from_hwdef": true
+        },
+        "hint": "UART4 - from schematic: PB9(TX), PB8(RX)"
+      },
+      {
+        "serial": 5,
+        "device": "UART5",
+        "usb": false,
+        "tx": "PC12",
+        "rx": "PD2",
+        "rts": null,
+        "cts": null,
+        "inverted": false,
+        "protocol": {
+          "id": -1,
+          "name": "None",
+          "from_hwdef": false
+        },
+        "hint": "UART5 - from schematic: PC12(TX), PD2(RX)"
+      }
+    ]
   },
   "bdshot_target": null,
   "power": {
@@ -103,6 +201,7 @@
   "repo_url": "https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_HAL_ChibiOS/hwdef/AET_H743_Air/README.md",
   "manual": {
     "status": "not_started",
+    "manufacturer": "AeroEggTech",
     "form_factor": null,
     "mounting": null,
     "assembly": null,
@@ -113,7 +212,7 @@
     "ardupilot_repo_url": null,
     "discontinued": false,
     "imu_count": null,
-    "notes": null,
-    "manufacturer": "AeroEggTech"
+    "variants": [],
+    "notes": null
   }
 }

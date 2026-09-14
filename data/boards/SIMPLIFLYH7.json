@@ -41,7 +41,105 @@
     "sbus_out": false,
     "iomcu": false,
     "bdshot": true,
-    "adc_inputs": 3
+    "adc_inputs": 3,
+    "serial_ports": [
+      {
+        "serial": 0,
+        "device": "OTG1",
+        "usb": true,
+        "tx": null,
+        "rx": null,
+        "rts": null,
+        "cts": null,
+        "inverted": false,
+        "protocol": {
+          "id": 2,
+          "name": "MAVLink2",
+          "from_hwdef": false
+        },
+        "hint": null
+      },
+      {
+        "serial": 1,
+        "device": "USART1",
+        "usb": false,
+        "tx": "PA9",
+        "rx": "PA10",
+        "rts": null,
+        "cts": null,
+        "inverted": false,
+        "protocol": {
+          "id": 33,
+          "name": "DJI FPV",
+          "from_hwdef": true
+        },
+        "hint": "USART1 - SERIAL1 (VTX)"
+      },
+      {
+        "serial": 3,
+        "device": "USART3",
+        "usb": false,
+        "tx": "PB10",
+        "rx": "PB11",
+        "rts": null,
+        "cts": null,
+        "inverted": false,
+        "protocol": {
+          "id": -1,
+          "name": "None",
+          "from_hwdef": true
+        },
+        "hint": "USART3 - SERIAL3"
+      },
+      {
+        "serial": 4,
+        "device": "UART4",
+        "usb": false,
+        "tx": "PA0",
+        "rx": "PA1",
+        "rts": null,
+        "cts": null,
+        "inverted": false,
+        "protocol": {
+          "id": 5,
+          "name": "GPS",
+          "from_hwdef": false
+        },
+        "hint": "UART4 - SERIAL4 (RC input)"
+      },
+      {
+        "serial": 5,
+        "device": "UART5",
+        "usb": false,
+        "tx": null,
+        "rx": "PD2",
+        "rts": null,
+        "cts": null,
+        "inverted": false,
+        "protocol": {
+          "id": 16,
+          "name": "ESC telemetry",
+          "from_hwdef": true
+        },
+        "hint": "UART5 - SERIAL5 (ESC Telemetry)"
+      },
+      {
+        "serial": 7,
+        "device": "UART7",
+        "usb": false,
+        "tx": "PE8",
+        "rx": "PE7",
+        "rts": null,
+        "cts": null,
+        "inverted": false,
+        "protocol": {
+          "id": 5,
+          "name": "GPS",
+          "from_hwdef": true
+        },
+        "hint": "UART7 - SERIAL7 (GPS)"
+      }
+    ]
   },
   "bdshot_target": null,
   "power": {
@@ -85,6 +183,7 @@
   "repo_url": null,
   "manual": {
     "status": "not_started",
+    "manufacturer": "SimpliFly",
     "form_factor": null,
     "mounting": null,
     "assembly": null,
@@ -95,7 +194,7 @@
     "ardupilot_repo_url": null,
     "discontinued": false,
     "imu_count": null,
-    "notes": null,
-    "manufacturer": "SimpliFly"
+    "variants": [],
+    "notes": null
   }
 }

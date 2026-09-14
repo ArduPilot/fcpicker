@@ -29,7 +29,8 @@
     "sbus_out": false,
     "iomcu": false,
     "bdshot": false,
-    "adc_inputs": 0
+    "adc_inputs": 0,
+    "serial_ports": []
   },
   "bdshot_target": null,
   "power": {
@@ -95,6 +96,7 @@
   "repo_url": "https://github.com/ArduPilot/ardupilot/tree/master/libraries/AP_HAL_Linux/hwdef/aero",
   "manual": {
     "status": "not_started",
+    "manufacturer": "Intel",
     "form_factor": null,
     "mounting": null,
     "assembly": null,
@@ -105,7 +107,7 @@
     "ardupilot_repo_url": null,
     "discontinued": false,
     "imu_count": null,
-    "notes": null,
-    "manufacturer": "Intel"
+    "variants": [],
+    "notes": null
   }
 }

@@ -49,7 +49,137 @@
     "sbus_out": false,
     "iomcu": true,
     "bdshot": false,
-    "adc_inputs": 5
+    "adc_inputs": 5,
+    "serial_ports": [
+      {
+        "serial": 0,
+        "device": "OTG1",
+        "usb": true,
+        "tx": null,
+        "rx": null,
+        "rts": null,
+        "cts": null,
+        "inverted": false,
+        "protocol": {
+          "id": 2,
+          "name": "MAVLink2",
+          "from_hwdef": false
+        },
+        "hint": null
+      },
+      {
+        "serial": 1,
+        "device": "UART7",
+        "usb": false,
+        "tx": "PE8",
+        "rx": "PF6",
+        "rts": null,
+        "cts": null,
+        "inverted": false,
+        "protocol": {
+          "id": 2,
+          "name": "MAVLink2",
+          "from_hwdef": false
+        },
+        "hint": "UART7 is telem1"
+      },
+      {
+        "serial": 2,
+        "device": "UART5",
+        "usb": false,
+        "tx": "PB9",
+        "rx": "PD2",
+        "rts": null,
+        "cts": null,
+        "inverted": false,
+        "protocol": {
+          "id": 2,
+          "name": "MAVLink2",
+          "from_hwdef": false
+        },
+        "hint": "UART5 is telem2"
+      },
+      {
+        "serial": 3,
+        "device": "USART1",
+        "usb": false,
+        "tx": "PB14",
+        "rx": "PB15",
+        "rts": null,
+        "cts": null,
+        "inverted": false,
+        "protocol": {
+          "id": 5,
+          "name": "GPS",
+          "from_hwdef": false
+        },
+        "hint": "USART1 is GPS1"
+      },
+      {
+        "serial": 4,
+        "device": "UART8",
+        "usb": false,
+        "tx": "PE1",
+        "rx": "PE0",
+        "rts": null,
+        "cts": null,
+        "inverted": false,
+        "protocol": {
+          "id": 5,
+          "name": "GPS",
+          "from_hwdef": false
+        },
+        "hint": "UART8 is for gps2"
+      },
+      {
+        "serial": 5,
+        "device": "USART3",
+        "usb": false,
+        "tx": "PD8",
+        "rx": "PD9",
+        "rts": null,
+        "cts": null,
+        "inverted": false,
+        "protocol": {
+          "id": -1,
+          "name": "None",
+          "from_hwdef": false
+        },
+        "hint": "USART3 is debug"
+      },
+      {
+        "serial": 6,
+        "device": "USART2",
+        "usb": false,
+        "tx": "PD5",
+        "rx": "PA3",
+        "rts": "PD4",
+        "cts": "PD3",
+        "inverted": false,
+        "protocol": {
+          "id": -1,
+          "name": "None",
+          "from_hwdef": false
+        },
+        "hint": "USART2 is telem3"
+      },
+      {
+        "serial": 7,
+        "device": "OTG2",
+        "usb": true,
+        "tx": null,
+        "rx": null,
+        "rts": null,
+        "cts": null,
+        "inverted": false,
+        "protocol": {
+          "id": -1,
+          "name": "None",
+          "from_hwdef": false
+        },
+        "hint": null
+      }
+    ]
   },
   "bdshot_target": null,
   "power": {
@@ -129,6 +259,7 @@
   "repo_url": null,
   "manual": {
     "status": "not_started",
+    "manufacturer": null,
     "form_factor": null,
     "mounting": null,
     "assembly": null,
@@ -139,6 +270,7 @@
     "ardupilot_repo_url": null,
     "discontinued": false,
     "imu_count": null,
+    "variants": [],
     "notes": null
   },
   "ai": {

@@ -207,6 +207,52 @@ export default function BoardDetail() {
       </section>
 
       {/* Sensors */}
+      {io.serial_ports.length > 0 && (
+        <section className="bd-section">
+          <h2 className="bd-h2">Serial port map</h2>
+          <p className="bd-target-note" style={{ marginTop: 0, marginBottom: 12 }}>
+            ArduPilot SERIAL<i>n</i> parameter number → hardware UART → MCU pad, from the
+            {" "}{hwdefSlug} hwdef. Default protocol is ArduPilot&rsquo;s unless marked
+            &ldquo;hwdef&rdquo;; the note is the hwdef author&rsquo;s comment above those pins.
+          </p>
+          <div className="bd-table-wrap">
+            <table className="bd-table bd-serial">
+              <thead>
+                <tr>
+                  <th>Param</th>
+                  <th>Port</th>
+                  <th>TX pad</th>
+                  <th>RX pad</th>
+                  <th>RTS / CTS</th>
+                  <th>Default protocol</th>
+                  <th>hwdef note</th>
+                </tr>
+              </thead>
+              <tbody>
+                {io.serial_ports.map((sp) => (
+                  <tr key={sp.serial}>
+                    <td><strong>SERIAL{sp.serial}</strong></td>
+                    <td><code className="bd-code">{sp.device}</code>{sp.usb && <span className="bd-chip bd-chip-muted">USB</span>}</td>
+                    <td>{sp.usb ? "—" : pad(sp.tx, sp.inverted)}</td>
+                    <td>{sp.usb ? "—" : pad(sp.rx, sp.inverted)}</td>
+                    <td>{sp.rts || sp.cts ? `${sp.rts ?? "—"} / ${sp.cts ?? "—"}` : "—"}</td>
+                    <td>
+                      {sp.protocol ? (
+                        <span title={`SERIAL${sp.serial}_PROTOCOL = ${sp.protocol.id}${sp.protocol.from_hwdef ? " (set by this hwdef)" : " (ArduPilot built-in default)"}`}>
+                          {sp.protocol.name}
+                          {sp.protocol.from_hwdef && <span className="bd-chip bd-chip-muted">hwdef</span>}
+                        </span>
+                      ) : "—"}
+                    </td>
+                    <td className="bd-serial-hint">{sp.hint ?? "—"}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+      )}
+
       <section className="bd-section">
         <h2 className="bd-h2">On-board sensors</h2>
         <SensorRow label="IMUs"        items={b.imus} flagOverCount={MAX_IMU_SLOTS} />
@@ -332,6 +378,17 @@ function BoardGallery({
         Curated photos plus hwdef pinouts pulled from GitHub.
       </p>
     </section>
+  );
+}
+
+// Pad cell: "PA9", or "PA9 (inv)" for a hardware-inverted TXINV/RXINV pin.
+function pad(p: string | null, inverted: boolean) {
+  if (!p) return "—";
+  return (
+    <>
+      <code className="bd-code">{p}</code>
+      {inverted && <span className="bd-serial-proto"> inv</span>}
+    </>
   );
 }
 

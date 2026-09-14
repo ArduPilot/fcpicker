@@ -98,6 +98,8 @@ class Board(Base):
     bdshot: Mapped[bool] = mapped_column(Integer, default=0)
     # JSON: {slug, notes, io} of the merged "<slug>-bdshot" hwdef, if any.
     bdshot_target_json: Mapped[str | None] = mapped_column(String, nullable=True)
+    # JSON list: SERIALn → hardware UART → pads (see _serial_ports).
+    serial_ports_json: Mapped[str] = mapped_column(String, default="[]")
     adc_inputs: Mapped[int] = mapped_column(Integer, default=0)
     power_inputs: Mapped[int] = mapped_column(Integer, default=0)
     vehicles_csv: Mapped[str] = mapped_column(String, default="")
@@ -181,6 +183,7 @@ class ParsedBoard:
     bdshot: bool = False
     bdshot_target: dict | None = None
     header_note: str | None = None
+    serial_ports: list[dict] = None
     adc_inputs: int = 0
     power_inputs: int = 0
     vehicles: list[str] = None
@@ -197,6 +200,33 @@ BARO_RE = re.compile(r"^\s*BARO\s+(\S+)\s+(\S+)(.*)$", re.MULTILINE)
 COMPASS_RE = re.compile(r"^\s*COMPASS\s+(\S+)\s+(\S+)(.*)$", re.MULTILINE)
 BOARD_MATCH_RE = re.compile(r"\bBOARD_MATCH\(([^)]+)\)")
 SERIAL_ORDER_RE = re.compile(r"^\s*SERIAL_ORDER\s+(.+)$", re.MULTILINE)
+# `PA9 USART1_TX USART1` — a UART signal on a physical pad. TXINV/RXINV are
+# hardware-inverted variants of TX/RX.
+UART_PIN_RE = re.compile(r"^\s*(P[A-K]\d+)\s+(U(?:S)?ART\d+)_(TX|RX|RTS|CTS|TXINV|RXINV)\b", re.MULTILINE)
+# `define DEFAULT_SERIAL7_PROTOCOL 23` — the SERIALn_PROTOCOL default the
+# board ships with. Numeric in every hwdef; enum names accepted just in case.
+DEFAULT_SERIAL_PROTOCOL_RE = re.compile(
+    r"^\s*define\s+DEFAULT_SERIAL(\d)_PROTOCOL\s+(-?\d+|SerialProtocol_\w+)", re.MULTILINE)
+
+# AP_SerialManager::SerialProtocol, short display names.
+SERIAL_PROTOCOL_NAMES = {
+    -1: "None", 0: "Console", 1: "MAVLink1", 2: "MAVLink2", 3: "FrSky D", 4: "FrSky SPort",
+    5: "GPS", 6: "GPS", 7: "AlexMos gimbal", 8: "Gimbal", 9: "Rangefinder",
+    10: "FrSky SPort passthrough", 11: "Lidar360", 12: "USD1", 13: "Beacon", 14: "Volz",
+    15: "SBUS out", 16: "ESC telemetry", 17: "Devo telemetry", 18: "Optical flow",
+    19: "Robotis servo", 20: "NMEA out", 21: "WindVane", 22: "SLCAN", 23: "RC input",
+    24: "EFI", 25: "LTM telemetry", 26: "RunCam", 27: "HoTT telemetry", 28: "Scripting",
+    29: "CRSF", 30: "Generator", 31: "Winch", 32: "MSP", 33: "DJI FPV", 34: "Airspeed",
+    35: "ADSB", 36: "AHRS", 37: "SmartAudio", 38: "FETtec OneWire", 39: "Torqeedo",
+    40: "AIS", 41: "CoDevESC", 42: "MSP DisplayPort", 43: "MAVLink high-latency",
+    44: "IRC Tramp", 45: "DDS XRCE", 46: "IMU out", 48: "PPP", 49: "i-BUS telemetry",
+    50: "IOMCU",
+}
+# Paragraph headings that say nothing about a specific port.
+GENERIC_UART_HINTS = {"uarts", "uart", "usarts", "serial", "serial ports", "uart pins",
+                      "order of uarts (and usb)", "order of uarts"}
+# AP_SerialManager.cpp built-in defaults when the hwdef doesn't override.
+SERIAL_PROTOCOL_BUILTIN = {0: 2, 1: 2, 2: 2, 3: 5, 4: 5}
 I2C_ORDER_RE = re.compile(r"^\s*I2C_ORDER\s+(.+)$", re.MULTILINE)
 SPIDEV_RE = re.compile(r"^\s*SPIDEV\s+\S+\s+(SPI\d+)", re.MULTILINE)
 # Full SPIDEV form: SPIDEV <name> <SPIn> <DEVIDm> <CS> ...
@@ -393,6 +423,90 @@ def is_autopilot(slug: str) -> bool:
     return True
 
 
+def _serial_ports(text: str, raw: str) -> list[dict]:
+    """SERIALn → hardware UART → physical pads, from SERIAL_ORDER + pin lines.
+
+    `text` is the comment-stripped, undef-applied hwdef (authoritative pins);
+    `raw` still has comments, used only for the hint a hwdef author wrote
+    above a UART's pins ("# USART6 (RC input), SERIAL7"). Index in
+    SERIAL_ORDER is the SERIALn number; EMPTY keeps its slot, OTG is USB.
+    """
+    sm = SERIAL_ORDER_RE.search(text)
+    if not sm:
+        return []
+    pins: dict[str, dict] = {}
+    for m in UART_PIN_RE.finditer(text):
+        pad, dev, sig = m.group(1), m.group(2), m.group(3)
+        d = pins.setdefault(dev, {})
+        if sig in ("TXINV", "RXINV"):
+            d[sig[:2].lower()] = pad
+            d["inverted"] = True
+        else:
+            d[sig.lower()] = pad
+    # Hint: nearest comment line above a UART pin line, last occurrence wins
+    # (a variant hwdef redeclares pins after its own comment).
+    # Per device, the first comment block seen above its TX pin, else above
+    # its RX pin. First line of a block is the heading ("USART6 (RC input),
+    # SERIAL7"); later lines are prose. A hint that only repeats the device
+    # name ("UART4") carries no information and is dropped.
+    hint_tx: dict[str, str] = {}
+    hint_rx: dict[str, str] = {}
+    block: list[str] = []  # contiguous comment lines directly above the current line
+    for line in raw.splitlines():
+        s = line.strip()
+        if s.startswith("#"):
+            c = s.lstrip("#").strip()
+            if c:
+                block.append(c)
+            continue
+        if not s:
+            block = []
+            continue
+        m = UART_PIN_RE.match(line)
+        if m and block:
+            dev, sig = m.group(2), m.group(3)
+            target = hint_tx if sig.startswith("TX") else hint_rx
+            target.setdefault(dev, block[0][:80])
+        # Only a blank line ends a paragraph: every pin under one heading
+        # shares it, even with other pin lines in between (e.g. the RC-input
+        # timer pin declared between "# USART6 (RC input)" and USART6_TX).
+    hints: dict[str, str] = {}
+    for dev in set(hint_tx) | set(hint_rx):
+        h = hint_tx.get(dev) or hint_rx.get(dev) or ""
+        norm = h.rstrip(":").strip().lower()
+        if norm and norm != dev.lower() and norm not in GENERIC_UART_HINTS:
+            hints[dev] = h
+    overrides: dict[int, int] = {}
+    for m in DEFAULT_SERIAL_PROTOCOL_RE.finditer(text):
+        v = m.group(2)
+        if v.startswith("SerialProtocol_"):
+            name = v[len("SerialProtocol_"):]
+            num = next((k for k, n in SERIAL_PROTOCOL_NAMES.items()
+                        if n.replace(" ", "").lower() == name.replace("_", "").lower()), None)
+            if num is None:
+                continue
+            v = str(num)
+        overrides[int(m.group(1))] = int(v)
+    out: list[dict] = []
+    for n, tok in enumerate(sm.group(1).split()):
+        if tok == "EMPTY":
+            continue
+        from_hwdef = n in overrides
+        pid = overrides.get(n, SERIAL_PROTOCOL_BUILTIN.get(n, -1))
+        proto = {"id": pid, "name": SERIAL_PROTOCOL_NAMES.get(pid, str(pid)), "from_hwdef": from_hwdef}
+        if tok.startswith("OTG"):
+            out.append({"serial": n, "device": tok, "usb": True, "tx": None, "rx": None,
+                        "rts": None, "cts": None, "inverted": False, "protocol": proto, "hint": None})
+            continue
+        p = pins.get(tok, {})
+        out.append({
+            "serial": n, "device": tok, "usb": False,
+            "tx": p.get("tx"), "rx": p.get("rx"), "rts": p.get("rts"), "cts": p.get("cts"),
+            "inverted": bool(p.get("inverted")), "protocol": proto, "hint": hints.get(tok),
+        })
+    return out
+
+
 def _header_note(path: Path) -> str | None:
     """The leading `#` comment block of a hwdef file, as plain text.
 
@@ -433,6 +547,7 @@ def _io_from_parsed(p: "ParsedBoard") -> dict:
         "iomcu": bool(p.iomcu),
         "bdshot": bool(p.bdshot),
         "adc_inputs": p.adc_inputs,
+        "serial_ports": list(p.serial_ports or []),
     }
 
 
@@ -461,6 +576,7 @@ def parse_board(board_dir: Path, platform: str = "chibios") -> ParsedBoard | Non
     text = read_hwdef_text(board_dir)
     if not text:
         return None
+    raw = text
     # Strip comments so disabled (`#`-commented) pin/feature lines aren't parsed.
     text = _strip_comments(text)
     text = _apply_pin_undefs(text)
@@ -606,6 +722,7 @@ def parse_board(board_dir: Path, platform: str = "chibios") -> ParsedBoard | Non
     sbus_out = bool(SBUS_OUT_RE.search(text))
     bdshot = bool(BDSHOT_RE.search(text))
     header_note = _header_note(board_dir / "hwdef.dat")
+    serial_ports = _serial_ports(text, raw)
     adc_inputs = len(set(ADC_PIN_RE.findall(text)))
     # Distinct brick indices: VDD_BRICK_nVALID, VDD_BRICK2_nVALID → 2 inputs.
     # Boards with no bricks but onboard analog battery sensing have one
@@ -649,6 +766,7 @@ def parse_board(board_dir: Path, platform: str = "chibios") -> ParsedBoard | Non
         iomcu=iomcu,
         bdshot=bdshot,
         header_note=header_note,
+        serial_ports=serial_ports,
         adc_inputs=adc_inputs,
         power_inputs=power_inputs,
         vehicles=vehicles,
@@ -961,6 +1079,7 @@ def populate_db(session: Session, parsed: list[ParsedBoard], docs_map: dict[str,
             iomcu=p.iomcu,
             bdshot=p.bdshot,
             bdshot_target_json=json.dumps(p.bdshot_target) if p.bdshot_target else None,
+            serial_ports_json=json.dumps(p.serial_ports or []),
             adc_inputs=p.adc_inputs,
             power_inputs=p.power_inputs,
             vehicles_csv=",".join(p.vehicles or []),
@@ -1094,6 +1213,8 @@ def _board_payload(b: "Board") -> dict:
             "iomcu": bool(b.iomcu),
             "bdshot": bool(b.bdshot),
             "adc_inputs": b.adc_inputs,
+            # SERIALn → UART → pads; see _serial_ports().
+            "serial_ports": json.loads(b.serial_ports_json or "[]"),
         },
         # The "<slug>-bdshot" firmware target folded into this board, if any:
         # same PCB, different pin map. {slug, notes, io}.

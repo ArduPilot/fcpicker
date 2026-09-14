@@ -2,7 +2,7 @@
   "slug": "FlyFishRCF405",
   "name": "FlyFishRCF405",
   "platform": "chibios",
-  "manufacturer": null,
+  "manufacturer": "FlyFishRC",
   "mcu": {
     "family": "STM32F4xx",
     "part": "STM32F405xx"
@@ -213,5 +213,126 @@
     "imu_count": null,
     "variants": [],
     "notes": null
+  },
+  "ai": {
+    "source": "fc-verify-enrich workflow: hwdef+README+local-wiki+manufacturer cross-correlation",
+    "manufacturer": "FlyFishRC",
+    "marketing_name": "FlyFishRC F405",
+    "family": null,
+    "mcu_part": "STM32F405",
+    "imu_models": [
+      "ICM42688P"
+    ],
+    "baro_models": [
+      "DPS310"
+    ],
+    "compass_models": [],
+    "osd_chip": null,
+    "blackbox_flash": "W25Q128",
+    "has_sdcard": false,
+    "weight_g": 9.6,
+    "mounting_pattern_mm": "30.5x30.5",
+    "mounting_hole_dia_mm": 3,
+    "voltage_cells": "2-8S",
+    "voltage_min_v": 7.4,
+    "voltage_max_v": 33.6,
+    "bec_outputs": [
+      {
+        "rail": "5V",
+        "volts": 5,
+        "amps": 3
+      },
+      {
+        "rail": "10V",
+        "volts": 10,
+        "amps": 2.5
+      }
+    ],
+    "uart_count": 6,
+    "can_count": 0,
+    "notable_connectors": [
+      "CAM",
+      "VTX",
+      "SW-G",
+      "RS (analog RSSI)",
+      "4V5 (receiver/GPS)",
+      "CUR (external current sense)",
+      "LED (WS2812)"
+    ],
+    "has_baro": true,
+    "has_osd": true,
+    "wireless": null,
+    "pinout_notes": "6 UARTs, 8 motor outputs plus 1 LED PWM, hardware SBUS inverter on USART2, no builtin compass or SD card, dataflash blackbox on SPI3.",
+    "field_checks": [
+      {
+        "field": "mcu",
+        "hwdef": "STM32F405xx",
+        "readme": "STM32F405 32-bit processor, 1024KBytes Flash",
+        "wiki": null,
+        "manufacturer": null,
+        "agree": "agree"
+      },
+      {
+        "field": "imu",
+        "hwdef": "Invensensev3 SPI:icm42688 (ICM-42688-P per header comment)",
+        "readme": "ICM-42688-P",
+        "wiki": null,
+        "manufacturer": null,
+        "agree": "agree"
+      },
+      {
+        "field": "baro",
+        "hwdef": "DPS310 I2C:0:0x76",
+        "readme": "DPS310",
+        "wiki": null,
+        "manufacturer": null,
+        "agree": "agree"
+      },
+      {
+        "field": "weight",
+        "hwdef": null,
+        "readme": "9.6g",
+        "wiki": null,
+        "manufacturer": null,
+        "agree": "unknown"
+      },
+      {
+        "field": "dimensions",
+        "hwdef": null,
+        "readme": "36 x 36 x 8 mm, mounting 30.5 x 30.5mm M3",
+        "wiki": null,
+        "manufacturer": null,
+        "agree": "unknown"
+      },
+      {
+        "field": "uart_count",
+        "hwdef": "SERIAL_ORDER lists 6 non-USB UARTs (USART1/2/3, UART4/5, USART6)",
+        "readme": "6x UARTs",
+        "wiki": null,
+        "manufacturer": null,
+        "agree": "agree"
+      },
+      {
+        "field": "voltage",
+        "hwdef": "HAL_BATT_VOLT_SCALE 11.0 (11:1 divider)",
+        "readme": "2S-8S, 7.4V-33.6V, 11:1 divider supports up to 8S",
+        "wiki": null,
+        "manufacturer": null,
+        "agree": "agree"
+      }
+    ],
+    "discrepancies": [
+      "OSD chip conflict: hwdef header comment says 'OSD: MAX7456 (SPI2)' but README states 'OSD - AT7456E'. Both are pin/register-compatible analog OSD chips; the real installed part could not be confirmed from local files, so osd_chip is left null."
+    ],
+    "sources_used": [
+      "/Users/fred/ardupilot/libraries/AP_HAL_ChibiOS/hwdef/FlyFishRCF405/hwdef.dat",
+      "/Users/fred/ardupilot/libraries/AP_HAL_ChibiOS/hwdef/FlyFishRCF405/README.md"
+    ],
+    "confidence": "medium",
+    "dimensions_mm": {
+      "length": 36,
+      "width": 36,
+      "height": 8
+    }
   }
 }

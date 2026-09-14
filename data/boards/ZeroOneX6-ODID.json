@@ -310,5 +310,121 @@
     "imu_count": null,
     "variants": [],
     "notes": null
+  },
+  "ai": {
+    "source": "copied from ZeroOneX6 (ODID build of the same hardware); fc-verify-enrich workflow: hwdef+README+local-wiki+manufacturer cross-correlation",
+    "manufacturer": "ZeroOne",
+    "marketing_name": "ZeroOne X6",
+    "family": "Pixhawk FMUv6X",
+    "mcu_part": "STM32H753IIK6",
+    "imu_models": [
+      "ICM45686",
+      "ICM45686",
+      "BMI088"
+    ],
+    "baro_models": [
+      "ICP20100",
+      "ICP20100"
+    ],
+    "compass_models": [
+      "RM3100",
+      "IST8310",
+      "BMM350"
+    ],
+    "has_sdcard": true,
+    "uart_count": 7,
+    "can_count": 2,
+    "notable_connectors": [
+      "Micro-C USB",
+      "Ethernet (LAN8742A RMII)"
+    ],
+    "has_baro": true,
+    "has_osd": false,
+    "pinout_notes": "7 UARTs (3 with hardware flow control): Telem1/2/3, GPS1/2, UART4, FMU-DEBUG; 2 CAN (CANFD up to 8Mbit/s); Ethernet; 16 PWM (8 IO via STM32F103 IOMCU supporting BiDirDShot, 8 FMU); microSD (SDMMC2); FRAM parameter storage (Ramtron SPI5); dual 6-pin CAN power monitor inputs; IMU heater (2W); switchable 3.3V/5V PWM rail",
+    "discrepancies": [
+      "hwdef.dat MCU line uses 'STM32H743xx' (ChibiOS family selector) but README.md and wiki both confirm actual chip is STM32H753IIK6; current data mcu.part='STM32H743xx' is incorrect and should be STM32H753IIK6",
+      "Current data baro chip field shows 'ICP201XX' (ArduPilot driver family name) but README.md and wiki confirm the actual chip model is ICP20100; these are the same physical silicon but the display name should be ICP20100"
+    ],
+    "confidence": "high",
+    "sources_used": [
+      "/Users/fred/fcpicker/data/boards/ZeroOneX6.json",
+      "/Users/fred/ardupilot/libraries/AP_HAL_ChibiOS/hwdef/ZeroOneX6/README.md",
+      "/Users/fred/ardupilot/libraries/AP_HAL_ChibiOS/hwdef/ZeroOneX6/hwdef.dat",
+      "/Users/fred/ardupilot_wiki/common/source/docs/common-zeroonex6.rst"
+    ],
+    "field_checks": [
+      {
+        "field": "mcu_part",
+        "hwdef": "STM32H743xx (ChibiOS family selector)",
+        "readme": "STM32H753IIK6",
+        "wiki": "STM32H753IIK6",
+        "manufacturer": null,
+        "agree": "partial"
+      },
+      {
+        "field": "imu_models",
+        "hwdef": "Invensensev3 (icm45686_1), Invensensev3 (icm45686_2), BMI088",
+        "readme": "ICM45686 x2, BMI088 (X6 variant)",
+        "wiki": "ICM45686 x2, BMI088 (X6 variant)",
+        "manufacturer": null,
+        "agree": "agree"
+      },
+      {
+        "field": "baro_models",
+        "hwdef": "ICP201XX x2",
+        "readme": "ICP20100 x2",
+        "wiki": "ICP20100 x2",
+        "manufacturer": null,
+        "agree": "partial"
+      },
+      {
+        "field": "compass_models",
+        "hwdef": "RM3100, IST8310, BMM350",
+        "readme": "RM3100 (built-in only mentioned)",
+        "wiki": "RM3100 (built-in only mentioned)",
+        "manufacturer": null,
+        "agree": "partial"
+      },
+      {
+        "field": "uart_count",
+        "hwdef": "7 (UART7, UART5, USART1, UART8, USART2, UART4, USART3)",
+        "readme": "7",
+        "wiki": "7 UARTs, 3 with hardware flow control",
+        "manufacturer": null,
+        "agree": "agree"
+      },
+      {
+        "field": "can_count",
+        "hwdef": "2 (CAN1, CAN2)",
+        "readme": null,
+        "wiki": "2 CAN ports",
+        "manufacturer": null,
+        "agree": "agree"
+      },
+      {
+        "field": "has_sdcard",
+        "hwdef": "yes (SDMMC2)",
+        "readme": null,
+        "wiki": null,
+        "manufacturer": null,
+        "agree": "agree"
+      },
+      {
+        "field": "has_osd",
+        "hwdef": "no OSD chip defined",
+        "readme": null,
+        "wiki": null,
+        "manufacturer": null,
+        "agree": "agree"
+      },
+      {
+        "field": "iomcu",
+        "hwdef": "STM32F103 (IOMCU_UART USART6)",
+        "readme": "STM32F103",
+        "wiki": "STM32F103 IOMCU",
+        "manufacturer": null,
+        "agree": "agree"
+      }
+    ]
   }
 }

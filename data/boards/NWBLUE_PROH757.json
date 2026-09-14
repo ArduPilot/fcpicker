@@ -2,7 +2,7 @@
   "slug": "NWBLUE_PROH757",
   "name": "NWBLUE_PROH757",
   "platform": "chibios",
-  "manufacturer": null,
+  "manufacturer": "NWBlue",
   "mcu": {
     "family": "STM32H7xx",
     "part": "STM32H757xx"
@@ -222,5 +222,113 @@
     "imu_count": null,
     "variants": [],
     "notes": null
+  },
+  "ai": {
+    "source": "fc-verify-enrich workflow: hwdef+README+local-wiki+manufacturer cross-correlation",
+    "manufacturer": "NWBlue",
+    "marketing_name": "Pro H757 FPV Flight Controller",
+    "family": null,
+    "mcu_part": "STM32H757",
+    "imu_models": [
+      "ICM45686"
+    ],
+    "baro_models": [
+      "DPS368"
+    ],
+    "compass_models": [
+      "IIS2MDC"
+    ],
+    "osd_chip": null,
+    "blackbox_flash": null,
+    "has_sdcard": true,
+    "weight_g": null,
+    "mounting_pattern_mm": "30x30",
+    "mounting_hole_dia_mm": null,
+    "voltage_cells": "4S-12S",
+    "voltage_min_v": null,
+    "voltage_max_v": null,
+    "bec_outputs": [
+      {
+        "rail": "5V",
+        "volts": 5,
+        "amps": 2.5
+      },
+      {
+        "rail": "VREG (10V/12V)",
+        "volts": 10,
+        "amps": 3.5
+      }
+    ],
+    "uart_count": 6,
+    "can_count": 1,
+    "notable_connectors": [
+      "TELEM1 (J4)",
+      "GPS (J8)",
+      "RC (J11)",
+      "VTX (J9)",
+      "CAN1 (J3)",
+      "ESC (J10)",
+      "PWM AUX (J7)",
+      "SWD (J5)",
+      "PWR Output (J6)",
+      "USB-C"
+    ],
+    "has_baro": true,
+    "has_osd": true,
+    "wireless": false,
+    "pinout_notes": "30x30mm carrier for the CubePilot CubeNode H757 module, with JST-GH 1.25mm connectors for TELEM1, GPS, RC, VTX, CAN1, ESC and PWM AUX plus SWD debug and solder pads.",
+    "field_checks": [
+      {
+        "field": "mcu",
+        "hwdef": "STM32H757 (comment: 128k sectors)",
+        "readme": "STM32H757 dual-core, M7 @400MHz, 2MB flash",
+        "wiki": null,
+        "manufacturer": null,
+        "agree": "agree"
+      },
+      {
+        "field": "imu",
+        "hwdef": "Invensensev3 SPI:icm45686",
+        "readme": "On-module ICM-45686 IMU on SPI3, mounted upside down",
+        "wiki": null,
+        "manufacturer": null,
+        "agree": "agree"
+      },
+      {
+        "field": "baro",
+        "hwdef": "BARO DPS310 SPI:dps368 (DPS310 backend used for DPS368 part)",
+        "readme": "On-board DPS368 barometer on SPI3",
+        "wiki": null,
+        "manufacturer": null,
+        "agree": "agree"
+      },
+      {
+        "field": "uart_count",
+        "hwdef": "SERIAL_ORDER lists 6 UARTs besides OTG1 (USART1/2/6, UART4/7/8)",
+        "readme": "6 UARTs plus USB",
+        "wiki": null,
+        "manufacturer": null,
+        "agree": "agree"
+      },
+      {
+        "field": "dimensions",
+        "hwdef": "header comment: 30x30 multirotor flight controller",
+        "readme": "30 x 30 mm mounting",
+        "wiki": null,
+        "manufacturer": null,
+        "agree": "agree"
+      }
+    ],
+    "discrepancies": [],
+    "sources_used": [
+      "/Users/fred/ardupilot/libraries/AP_HAL_ChibiOS/hwdef/NWBLUE_PROH757/hwdef.dat",
+      "/Users/fred/ardupilot/libraries/AP_HAL_ChibiOS/hwdef/NWBLUE_PROH757/README.md"
+    ],
+    "confidence": "high",
+    "dimensions_mm": {
+      "length": 30,
+      "width": 30,
+      "height": null
+    }
   }
 }

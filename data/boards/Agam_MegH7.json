@@ -2,7 +2,7 @@
   "slug": "Agam_MegH7",
   "name": "Agam_MegH7",
   "platform": "chibios",
-  "manufacturer": null,
+  "manufacturer": "Agam Robotics",
   "mcu": {
     "family": "STM32H7xx",
     "part": "STM32H743xx"
@@ -257,5 +257,127 @@
     "imu_count": null,
     "variants": [],
     "notes": null
+  },
+  "ai": {
+    "source": "fc-verify-enrich workflow: hwdef+README+local-wiki+manufacturer cross-correlation",
+    "manufacturer": "Agam Robotics",
+    "marketing_name": "Agam MegH7",
+    "family": null,
+    "mcu_part": "STM32H743",
+    "imu_models": [
+      "ICM45686"
+    ],
+    "baro_models": [
+      "BMP390",
+      "SPL06"
+    ],
+    "compass_models": [],
+    "osd_chip": "AT7456E",
+    "blackbox_flash": null,
+    "has_sdcard": true,
+    "weight_g": 10.0,
+    "mounting_pattern_mm": "30.5x30.5",
+    "mounting_hole_dia_mm": 4,
+    "voltage_cells": "2S-8S",
+    "voltage_min_v": null,
+    "voltage_max_v": null,
+    "bec_outputs": [
+      {
+        "rail": "5V",
+        "volts": 5,
+        "amps": 3
+      },
+      {
+        "rail": "10V",
+        "volts": 10,
+        "amps": 3
+      }
+    ],
+    "uart_count": 7,
+    "can_count": 1,
+    "notable_connectors": [
+      "ESC",
+      "GPS",
+      "TELEM",
+      "RX",
+      "CAN",
+      "DIGI VTX",
+      "SPI4",
+      "I2C4",
+      "B/LD"
+    ],
+    "has_baro": true,
+    "has_osd": true,
+    "wireless": null,
+    "pinout_notes": "GPS/TELEM/CAN/RX are JST-GH 1.25mm; ESC/DIGI VTX/SPI4/I2C4/B-LD are JST-SH 1.0mm; all signal pins are 3.3V.",
+    "field_checks": [
+      {
+        "field": "mcu",
+        "hwdef": "STM32H743xx",
+        "readme": "STM32H743, Cortex-M7, 480MHz",
+        "wiki": null,
+        "manufacturer": null,
+        "agree": "agree"
+      },
+      {
+        "field": "imu",
+        "hwdef": "icm45686 (Invensensev3 driver)",
+        "readme": "TDK InvenSense ICM-45686",
+        "wiki": null,
+        "manufacturer": null,
+        "agree": "agree"
+      },
+      {
+        "field": "baro",
+        "hwdef": "BMP388 driver (probes as BMP390), SPL06 alt",
+        "readme": "Bosch BMP390 primary, SPL06 alternate",
+        "wiki": null,
+        "manufacturer": null,
+        "agree": "agree"
+      },
+      {
+        "field": "weight",
+        "hwdef": null,
+        "readme": "10.00 g",
+        "wiki": null,
+        "manufacturer": null,
+        "agree": "unknown"
+      },
+      {
+        "field": "dimensions",
+        "hwdef": null,
+        "readme": "37.5 x 39 x 8.8 mm",
+        "wiki": null,
+        "manufacturer": null,
+        "agree": "unknown"
+      },
+      {
+        "field": "uart_count",
+        "hwdef": "7 UART peripherals (USART1,2,3,4,6,7,8) + 2 USB CDC",
+        "readme": "7 UARTs",
+        "wiki": null,
+        "manufacturer": null,
+        "agree": "agree"
+      },
+      {
+        "field": "voltage",
+        "hwdef": null,
+        "readme": "2S-8S LiPo",
+        "wiki": null,
+        "manufacturer": null,
+        "agree": "unknown"
+      }
+    ],
+    "discrepancies": [],
+    "sources_used": [
+      "/Users/fred/ardupilot/libraries/AP_HAL_ChibiOS/hwdef/Agam_MegH7/hwdef.dat",
+      "/Users/fred/ardupilot/libraries/AP_HAL_ChibiOS/hwdef/Agam_MegH7/README.md"
+    ],
+    "confidence": "high",
+    "dimensions_mm": {
+      "length": 37.5,
+      "width": 39,
+      "height": 8.8
+    }
   }
 }

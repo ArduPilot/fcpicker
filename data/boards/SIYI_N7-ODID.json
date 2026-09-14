@@ -222,5 +222,147 @@
     "imu_count": null,
     "variants": [],
     "notes": null
+  },
+  "ai": {
+    "source": "copied from SIYI_N7 (ODID build of the same hardware); fc-verify-enrich workflow: hwdef+README+local-wiki+manufacturer cross-correlation",
+    "manufacturer": "SIYI",
+    "marketing_name": "SIYI N7 Autopilot",
+    "mcu_part": "STM32H743IIK6",
+    "imu_models": [
+      "ICM20689",
+      "ICM45686",
+      "BMI088"
+    ],
+    "baro_models": [
+      "MS5611"
+    ],
+    "compass_models": [
+      "IST8310"
+    ],
+    "has_sdcard": true,
+    "weight_g": 57,
+    "voltage_cells": "2-14S",
+    "voltage_min_v": 4.5,
+    "voltage_max_v": 5.5,
+    "uart_count": 4,
+    "can_count": 1,
+    "notable_connectors": [
+      "JST-GH"
+    ],
+    "has_baro": true,
+    "has_osd": false,
+    "pinout_notes": "SERIAL0=USB, SERIAL1=USART2/Telem1 (RTS/CTS), SERIAL3=USART1/GPS1, SERIAL4=UART4/GPS2, SERIAL6=UART7/debug, SERIAL7=USB2; 8 MAIN PWM via STM32F103 IOMCU (no DShot), 5 AUX PWM via H743 (DShot capable); 1 CAN port, dedicated I2C connector, RCIN pin on servo rail",
+    "discrepancies": [
+      "manufacturer field is null in our data; it is clearly SIYI (SIYI Technology (Shenzhen) Co., Ltd.)",
+      "ICM20689 and ICM45686 are assigned the same CS pin (ICM20689_CS) in hwdef \u2014 they are hardware variants occupying the same socket, not two simultaneously-present IMUs; the README and all manufacturer specs only list ICM20689, suggesting ICM45686 is a silent newer-revision substitution",
+      "Physical dimensions (47x68x19mm, 57g) are not populated in our data but confirmed by multiple reseller listings from manufacturer spec sheet",
+      "No dedicated ArduPilot wiki .rst page exists for this board; docs_url correctly points to the SIYI vendor PDF which is the only available documentation",
+      "voltage_min_v/voltage_max_v reflect the 5V power-module input to the FC, not raw battery voltage; the system supports 2-14S batteries through an external power module"
+    ],
+    "confidence": "high",
+    "sources_used": [
+      "/Users/fred/fcpicker/data/boards/SIYI_N7.json",
+      "/Users/fred/ardupilot/libraries/AP_HAL_ChibiOS/hwdef/SIYI_N7/hwdef.dat",
+      "/Users/fred/ardupilot/libraries/AP_HAL_ChibiOS/hwdef/SIYI_N7/README.md",
+      "/Users/fred/ardupilot_wiki/common/source/docs/common-autopilots.rst",
+      "https://unmannedrc.com/products/siyi-n7-autopilot-flight-controller",
+      "https://www.arrishobby.com/products/siyi-n7-autopilot-px4-and-ardupilot-firmware-compatible-flight-controller",
+      "https://shop.siyi.biz/products/siyi-n7-autopilot-flight-controller"
+    ],
+    "dimensions_mm": {
+      "length": 68,
+      "width": 47,
+      "height": 19
+    },
+    "field_checks": [
+      {
+        "field": "mcu_part",
+        "hwdef": "STM32H743xx",
+        "readme": "STM32H743",
+        "manufacturer": "STM32H743IIK6",
+        "wiki": null,
+        "agree": "agree"
+      },
+      {
+        "field": "imu_models",
+        "hwdef": "ICM20689 + ICM45686 (same CS, hw variants) + BMI088",
+        "readme": "ICM20689 and BMI088",
+        "manufacturer": "BMI088 / ICM20689",
+        "wiki": null,
+        "agree": "partial"
+      },
+      {
+        "field": "baro_models",
+        "hwdef": "MS5611 (SPI:ms5611 on SPI4)",
+        "readme": "MS5611 SPI barometer",
+        "manufacturer": "MS5611",
+        "wiki": null,
+        "agree": "agree"
+      },
+      {
+        "field": "compass_models",
+        "hwdef": "IST8310 I2C:0:0x0e",
+        "readme": "IST8310",
+        "manufacturer": "IST8310",
+        "wiki": null,
+        "agree": "agree"
+      },
+      {
+        "field": "uart_count",
+        "hwdef": "4 user UARTs (USART1/2, UART4/7) + UART8 internal IOMCU",
+        "readme": "4 UARTs plus USB",
+        "manufacturer": "4",
+        "wiki": null,
+        "agree": "agree"
+      },
+      {
+        "field": "can_count",
+        "hwdef": "1 (CAN1)",
+        "readme": "CAN ports (1 implied)",
+        "manufacturer": "1",
+        "wiki": null,
+        "agree": "agree"
+      },
+      {
+        "field": "has_sdcard",
+        "hwdef": "SDMMC1 present",
+        "readme": "microSD card slot",
+        "manufacturer": "TF Slot: 1",
+        "wiki": null,
+        "agree": "agree"
+      },
+      {
+        "field": "dimensions_mm",
+        "hwdef": null,
+        "readme": null,
+        "manufacturer": "47x68x19mm",
+        "wiki": null,
+        "agree": "unknown"
+      },
+      {
+        "field": "weight_g",
+        "hwdef": null,
+        "readme": null,
+        "manufacturer": "57g",
+        "wiki": null,
+        "agree": "unknown"
+      },
+      {
+        "field": "has_osd",
+        "hwdef": "no OSD device defined",
+        "readme": null,
+        "manufacturer": null,
+        "wiki": null,
+        "agree": "agree"
+      },
+      {
+        "field": "iomcu",
+        "hwdef": "IOMCU_UART UART8, STM32F103 co-processor",
+        "readme": "8 MAIN outputs via dedicated STM32F103 IO controller",
+        "manufacturer": "Co-processor STM32F103",
+        "wiki": null,
+        "agree": "agree"
+      }
+    ]
   }
 }

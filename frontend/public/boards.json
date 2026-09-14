@@ -3943,7 +3943,7 @@
       "slug": "Agam_MegH7",
       "name": "Agam_MegH7",
       "platform": "chibios",
-      "manufacturer": null,
+      "manufacturer": "Agam Robotics",
       "mcu": {
         "family": "STM32H7xx",
         "part": "STM32H743xx"
@@ -4198,6 +4198,128 @@
         "imu_count": null,
         "variants": [],
         "notes": null
+      },
+      "ai": {
+        "source": "fc-verify-enrich workflow: hwdef+README+local-wiki+manufacturer cross-correlation",
+        "manufacturer": "Agam Robotics",
+        "marketing_name": "Agam MegH7",
+        "family": null,
+        "mcu_part": "STM32H743",
+        "imu_models": [
+          "ICM45686"
+        ],
+        "baro_models": [
+          "BMP390",
+          "SPL06"
+        ],
+        "compass_models": [],
+        "osd_chip": "AT7456E",
+        "blackbox_flash": null,
+        "has_sdcard": true,
+        "weight_g": 10.0,
+        "mounting_pattern_mm": "30.5x30.5",
+        "mounting_hole_dia_mm": 4,
+        "voltage_cells": "2S-8S",
+        "voltage_min_v": null,
+        "voltage_max_v": null,
+        "bec_outputs": [
+          {
+            "rail": "5V",
+            "volts": 5,
+            "amps": 3
+          },
+          {
+            "rail": "10V",
+            "volts": 10,
+            "amps": 3
+          }
+        ],
+        "uart_count": 7,
+        "can_count": 1,
+        "notable_connectors": [
+          "ESC",
+          "GPS",
+          "TELEM",
+          "RX",
+          "CAN",
+          "DIGI VTX",
+          "SPI4",
+          "I2C4",
+          "B/LD"
+        ],
+        "has_baro": true,
+        "has_osd": true,
+        "wireless": null,
+        "pinout_notes": "GPS/TELEM/CAN/RX are JST-GH 1.25mm; ESC/DIGI VTX/SPI4/I2C4/B-LD are JST-SH 1.0mm; all signal pins are 3.3V.",
+        "field_checks": [
+          {
+            "field": "mcu",
+            "hwdef": "STM32H743xx",
+            "readme": "STM32H743, Cortex-M7, 480MHz",
+            "wiki": null,
+            "manufacturer": null,
+            "agree": "agree"
+          },
+          {
+            "field": "imu",
+            "hwdef": "icm45686 (Invensensev3 driver)",
+            "readme": "TDK InvenSense ICM-45686",
+            "wiki": null,
+            "manufacturer": null,
+            "agree": "agree"
+          },
+          {
+            "field": "baro",
+            "hwdef": "BMP388 driver (probes as BMP390), SPL06 alt",
+            "readme": "Bosch BMP390 primary, SPL06 alternate",
+            "wiki": null,
+            "manufacturer": null,
+            "agree": "agree"
+          },
+          {
+            "field": "weight",
+            "hwdef": null,
+            "readme": "10.00 g",
+            "wiki": null,
+            "manufacturer": null,
+            "agree": "unknown"
+          },
+          {
+            "field": "dimensions",
+            "hwdef": null,
+            "readme": "37.5 x 39 x 8.8 mm",
+            "wiki": null,
+            "manufacturer": null,
+            "agree": "unknown"
+          },
+          {
+            "field": "uart_count",
+            "hwdef": "7 UART peripherals (USART1,2,3,4,6,7,8) + 2 USB CDC",
+            "readme": "7 UARTs",
+            "wiki": null,
+            "manufacturer": null,
+            "agree": "agree"
+          },
+          {
+            "field": "voltage",
+            "hwdef": null,
+            "readme": "2S-8S LiPo",
+            "wiki": null,
+            "manufacturer": null,
+            "agree": "unknown"
+          }
+        ],
+        "discrepancies": [],
+        "sources_used": [
+          "/Users/fred/ardupilot/libraries/AP_HAL_ChibiOS/hwdef/Agam_MegH7/hwdef.dat",
+          "/Users/fred/ardupilot/libraries/AP_HAL_ChibiOS/hwdef/Agam_MegH7/README.md"
+        ],
+        "confidence": "high",
+        "dimensions_mm": {
+          "length": 37.5,
+          "width": 39,
+          "height": 8.8
+        }
       }
     },
     {
@@ -37354,7 +37476,7 @@
       "slug": "FlyFishRCF405",
       "name": "FlyFishRCF405",
       "platform": "chibios",
-      "manufacturer": null,
+      "manufacturer": "FlyFishRC",
       "mcu": {
         "family": "STM32F4xx",
         "part": "STM32F405xx"
@@ -37565,6 +37687,127 @@
         "imu_count": null,
         "variants": [],
         "notes": null
+      },
+      "ai": {
+        "source": "fc-verify-enrich workflow: hwdef+README+local-wiki+manufacturer cross-correlation",
+        "manufacturer": "FlyFishRC",
+        "marketing_name": "FlyFishRC F405",
+        "family": null,
+        "mcu_part": "STM32F405",
+        "imu_models": [
+          "ICM42688P"
+        ],
+        "baro_models": [
+          "DPS310"
+        ],
+        "compass_models": [],
+        "osd_chip": null,
+        "blackbox_flash": "W25Q128",
+        "has_sdcard": false,
+        "weight_g": 9.6,
+        "mounting_pattern_mm": "30.5x30.5",
+        "mounting_hole_dia_mm": 3,
+        "voltage_cells": "2-8S",
+        "voltage_min_v": 7.4,
+        "voltage_max_v": 33.6,
+        "bec_outputs": [
+          {
+            "rail": "5V",
+            "volts": 5,
+            "amps": 3
+          },
+          {
+            "rail": "10V",
+            "volts": 10,
+            "amps": 2.5
+          }
+        ],
+        "uart_count": 6,
+        "can_count": 0,
+        "notable_connectors": [
+          "CAM",
+          "VTX",
+          "SW-G",
+          "RS (analog RSSI)",
+          "4V5 (receiver/GPS)",
+          "CUR (external current sense)",
+          "LED (WS2812)"
+        ],
+        "has_baro": true,
+        "has_osd": true,
+        "wireless": null,
+        "pinout_notes": "6 UARTs, 8 motor outputs plus 1 LED PWM, hardware SBUS inverter on USART2, no builtin compass or SD card, dataflash blackbox on SPI3.",
+        "field_checks": [
+          {
+            "field": "mcu",
+            "hwdef": "STM32F405xx",
+            "readme": "STM32F405 32-bit processor, 1024KBytes Flash",
+            "wiki": null,
+            "manufacturer": null,
+            "agree": "agree"
+          },
+          {
+            "field": "imu",
+            "hwdef": "Invensensev3 SPI:icm42688 (ICM-42688-P per header comment)",
+            "readme": "ICM-42688-P",
+            "wiki": null,
+            "manufacturer": null,
+            "agree": "agree"
+          },
+          {
+            "field": "baro",
+            "hwdef": "DPS310 I2C:0:0x76",
+            "readme": "DPS310",
+            "wiki": null,
+            "manufacturer": null,
+            "agree": "agree"
+          },
+          {
+            "field": "weight",
+            "hwdef": null,
+            "readme": "9.6g",
+            "wiki": null,
+            "manufacturer": null,
+            "agree": "unknown"
+          },
+          {
+            "field": "dimensions",
+            "hwdef": null,
+            "readme": "36 x 36 x 8 mm, mounting 30.5 x 30.5mm M3",
+            "wiki": null,
+            "manufacturer": null,
+            "agree": "unknown"
+          },
+          {
+            "field": "uart_count",
+            "hwdef": "SERIAL_ORDER lists 6 non-USB UARTs (USART1/2/3, UART4/5, USART6)",
+            "readme": "6x UARTs",
+            "wiki": null,
+            "manufacturer": null,
+            "agree": "agree"
+          },
+          {
+            "field": "voltage",
+            "hwdef": "HAL_BATT_VOLT_SCALE 11.0 (11:1 divider)",
+            "readme": "2S-8S, 7.4V-33.6V, 11:1 divider supports up to 8S",
+            "wiki": null,
+            "manufacturer": null,
+            "agree": "agree"
+          }
+        ],
+        "discrepancies": [
+          "OSD chip conflict: hwdef header comment says 'OSD: MAX7456 (SPI2)' but README states 'OSD - AT7456E'. Both are pin/register-compatible analog OSD chips; the real installed part could not be confirmed from local files, so osd_chip is left null."
+        ],
+        "sources_used": [
+          "/Users/fred/ardupilot/libraries/AP_HAL_ChibiOS/hwdef/FlyFishRCF405/hwdef.dat",
+          "/Users/fred/ardupilot/libraries/AP_HAL_ChibiOS/hwdef/FlyFishRCF405/README.md"
+        ],
+        "confidence": "medium",
+        "dimensions_mm": {
+          "length": 36,
+          "width": 36,
+          "height": 8
+        }
       }
     },
     {
@@ -44954,7 +45197,7 @@
       "slug": "HGLRC_H743_EVO",
       "name": "HGLRC_H743_EVO",
       "platform": "chibios",
-      "manufacturer": null,
+      "manufacturer": "HGLRC",
       "mcu": {
         "family": "STM32H7xx",
         "part": "STM32H743xx"
@@ -45207,6 +45450,114 @@
         "imu_count": null,
         "variants": [],
         "notes": null
+      },
+      "ai": {
+        "source": "fc-verify-enrich workflow: hwdef+README+local-wiki+manufacturer cross-correlation",
+        "manufacturer": "HGLRC",
+        "marketing_name": "HGLRC H743 EVO",
+        "family": "STM32H7",
+        "mcu_part": "STM32H743VIT6",
+        "imu_models": [
+          "ICM42688P",
+          "BMI270"
+        ],
+        "baro_models": [
+          "DPS368"
+        ],
+        "compass_models": [
+          "IST8310"
+        ],
+        "osd_chip": "AT7456E",
+        "blackbox_flash": null,
+        "has_sdcard": true,
+        "weight_g": null,
+        "mounting_pattern_mm": null,
+        "mounting_hole_dia_mm": null,
+        "voltage_cells": null,
+        "voltage_min_v": null,
+        "voltage_max_v": null,
+        "bec_outputs": [
+          {
+            "rail": "VTX",
+            "volts": 12,
+            "amps": null
+          }
+        ],
+        "uart_count": 7,
+        "can_count": 1,
+        "notable_connectors": [
+          "USB Type-C",
+          "microSD",
+          "CAN"
+        ],
+        "has_baro": true,
+        "has_osd": true,
+        "wireless": null,
+        "pinout_notes": "Dual IMUs (ICM-42688-P on SPI1, BMI270 on SPI4), 10 PWM outputs (8 motor + 2 aux), analog AT7456E OSD, microSD, one CAN port, switchable 12V VTX BEC.",
+        "field_checks": [
+          {
+            "field": "mcu",
+            "hwdef": "STM32H743xx",
+            "readme": "STM32H743VIT6",
+            "wiki": null,
+            "manufacturer": null,
+            "agree": "agree"
+          },
+          {
+            "field": "imu",
+            "hwdef": "Invensensev3 (SPI icm42688) + BMI270 (SPI bmi270)",
+            "readme": "ICM-42688-P (SPI1) and BMI270 (SPI4)",
+            "wiki": null,
+            "manufacturer": null,
+            "agree": "agree"
+          },
+          {
+            "field": "baro",
+            "hwdef": "DPS310 driver, I2C:0:0x76",
+            "readme": "DPS368 (uses DPS310 driver), I2C2",
+            "wiki": null,
+            "manufacturer": null,
+            "agree": "agree"
+          },
+          {
+            "field": "weight",
+            "hwdef": null,
+            "readme": null,
+            "wiki": null,
+            "manufacturer": null,
+            "agree": "unknown"
+          },
+          {
+            "field": "dimensions",
+            "hwdef": null,
+            "readme": null,
+            "wiki": null,
+            "manufacturer": null,
+            "agree": "unknown"
+          },
+          {
+            "field": "uart_count",
+            "hwdef": "USART1,2,3,UART4,5,7,8 (7 UARTs + USB)",
+            "readme": "SERIAL1-5,7,8 mapped, SERIAL6 not connected (7 UARTs)",
+            "wiki": null,
+            "manufacturer": null,
+            "agree": "agree"
+          },
+          {
+            "field": "voltage",
+            "hwdef": null,
+            "readme": null,
+            "wiki": null,
+            "manufacturer": null,
+            "agree": "unknown"
+          }
+        ],
+        "discrepancies": [],
+        "sources_used": [
+          "/Users/fred/ardupilot/libraries/AP_HAL_ChibiOS/hwdef/HGLRC_H743_EVO/hwdef.dat",
+          "/Users/fred/ardupilot/libraries/AP_HAL_ChibiOS/hwdef/HGLRC_H743_EVO/README.md"
+        ],
+        "confidence": "medium"
       }
     },
     {
@@ -54402,7 +54753,7 @@
       "slug": "Lectron-Pi5-H7",
       "name": "Lectron-Pi5-H7",
       "platform": "chibios",
-      "manufacturer": null,
+      "manufacturer": "Lectron",
       "mcu": {
         "family": "STM32H7xx",
         "part": "STM32H753xx"
@@ -54667,6 +55018,135 @@
         "imu_count": null,
         "variants": [],
         "notes": null
+      },
+      "ai": {
+        "source": "fc-verify-enrich workflow: hwdef+README+local-wiki+manufacturer cross-correlation",
+        "manufacturer": "Lectron",
+        "marketing_name": "Lectron Pi5 Autopilot",
+        "family": "Pixhawk FMUv6X",
+        "mcu_part": "STM32H753",
+        "imu_models": [
+          "ICM42670P",
+          "ICM42670P",
+          "BMI270"
+        ],
+        "baro_models": [
+          "BMP390",
+          "BMP390"
+        ],
+        "compass_models": [
+          "BMM350"
+        ],
+        "osd_chip": null,
+        "blackbox_flash": null,
+        "has_sdcard": true,
+        "weight_g": 162.4,
+        "mounting_pattern_mm": null,
+        "mounting_hole_dia_mm": null,
+        "voltage_cells": null,
+        "voltage_min_v": 9,
+        "voltage_max_v": 26,
+        "bec_outputs": [
+          {
+            "rail": "5V",
+            "volts": 5,
+            "amps": 5
+          }
+        ],
+        "uart_count": 7,
+        "can_count": 2,
+        "notable_connectors": [
+          "XT30 power input",
+          "USB Type-C (OTG)",
+          "microSD",
+          "100-Mbps FMU Ethernet",
+          "1-Gbps CM5 Ethernet",
+          "CAN bus port",
+          "GPS1 (Full GPS)",
+          "GPS2 (Basic GPS)",
+          "SBUS/RC input",
+          "SPI6 external (2x CS)",
+          "2x CSI camera (22-pin FFC)",
+          "M.2 Key-M (2230/2242)"
+        ],
+        "has_baro": true,
+        "has_osd": false,
+        "wireless": null,
+        "pinout_notes": "Pixhawk FMUv6X-compatible FMU (STM32H753) plus STM32F103 IOMCU, paired with a Raspberry Pi CM5 companion computer on one board.",
+        "field_checks": [
+          {
+            "field": "mcu",
+            "hwdef": "STM32H753xx",
+            "readme": "STM32H753",
+            "wiki": null,
+            "manufacturer": null,
+            "agree": "agree"
+          },
+          {
+            "field": "imu",
+            "hwdef": "Invensensev3 x2 + BMI270",
+            "readme": "ICM-42670-P x2 + BMI270",
+            "wiki": null,
+            "manufacturer": null,
+            "agree": "agree"
+          },
+          {
+            "field": "baro",
+            "hwdef": "BMP388 x2 (I2C)",
+            "readme": "BMP390 x2",
+            "wiki": null,
+            "manufacturer": null,
+            "agree": "disagree"
+          },
+          {
+            "field": "weight",
+            "hwdef": null,
+            "readme": "162.4 g (with IMU-01 board, CM5 Lite, SD cards)",
+            "wiki": null,
+            "manufacturer": null,
+            "agree": "unknown"
+          },
+          {
+            "field": "dimensions",
+            "hwdef": null,
+            "readme": "118.9 x 67.1 x 30.1 mm",
+            "wiki": null,
+            "manufacturer": null,
+            "agree": "unknown"
+          },
+          {
+            "field": "uart_count",
+            "hwdef": "7 (SERIAL_ORDER, excl. OTG1) + USART6 IOMCU-internal",
+            "readme": "table lists SERIAL1-7 (7); Interfaces bullet says 6x UART/USART ports",
+            "wiki": null,
+            "manufacturer": null,
+            "agree": "partial"
+          },
+          {
+            "field": "voltage",
+            "hwdef": null,
+            "readme": "9-26 VDC (3S-6S LiPo)",
+            "wiki": null,
+            "manufacturer": null,
+            "agree": "unknown"
+          }
+        ],
+        "discrepancies": [
+          "hwdef defines BARO BMP388 on I2C:1 and I2C:3, but README Sensors section states Dual Bosch BMP390 barometers.",
+          "hwdef defines both CAN1 and CAN2 pin mappings, but README Interfaces section lists only '1x CAN bus port'.",
+          "README Interfaces bullet says '6x UART/USART based ports' while the UART Mapping table lists 7 (SERIAL1-SERIAL7, excluding USB).",
+          "Stated weight (162.4 g) is with Lectron IMU-01 sensor board, CM5 Lite, and SD cards attached, not the bare FC board alone."
+        ],
+        "sources_used": [
+          "/Users/fred/ardupilot/libraries/AP_HAL_ChibiOS/hwdef/Lectron-Pi5-H7/hwdef.dat",
+          "/Users/fred/ardupilot/libraries/AP_HAL_ChibiOS/hwdef/Lectron-Pi5-H7/README.md"
+        ],
+        "confidence": "medium",
+        "dimensions_mm": {
+          "length": 118.9,
+          "width": 67.1,
+          "height": 30.1
+        }
       }
     },
     {
@@ -72525,7 +73005,7 @@
       "slug": "NWBLUE_PROH757",
       "name": "NWBLUE_PROH757",
       "platform": "chibios",
-      "manufacturer": null,
+      "manufacturer": "NWBlue",
       "mcu": {
         "family": "STM32H7xx",
         "part": "STM32H757xx"
@@ -72745,6 +73225,114 @@
         "imu_count": null,
         "variants": [],
         "notes": null
+      },
+      "ai": {
+        "source": "fc-verify-enrich workflow: hwdef+README+local-wiki+manufacturer cross-correlation",
+        "manufacturer": "NWBlue",
+        "marketing_name": "Pro H757 FPV Flight Controller",
+        "family": null,
+        "mcu_part": "STM32H757",
+        "imu_models": [
+          "ICM45686"
+        ],
+        "baro_models": [
+          "DPS368"
+        ],
+        "compass_models": [
+          "IIS2MDC"
+        ],
+        "osd_chip": null,
+        "blackbox_flash": null,
+        "has_sdcard": true,
+        "weight_g": null,
+        "mounting_pattern_mm": "30x30",
+        "mounting_hole_dia_mm": null,
+        "voltage_cells": "4S-12S",
+        "voltage_min_v": null,
+        "voltage_max_v": null,
+        "bec_outputs": [
+          {
+            "rail": "5V",
+            "volts": 5,
+            "amps": 2.5
+          },
+          {
+            "rail": "VREG (10V/12V)",
+            "volts": 10,
+            "amps": 3.5
+          }
+        ],
+        "uart_count": 6,
+        "can_count": 1,
+        "notable_connectors": [
+          "TELEM1 (J4)",
+          "GPS (J8)",
+          "RC (J11)",
+          "VTX (J9)",
+          "CAN1 (J3)",
+          "ESC (J10)",
+          "PWM AUX (J7)",
+          "SWD (J5)",
+          "PWR Output (J6)",
+          "USB-C"
+        ],
+        "has_baro": true,
+        "has_osd": true,
+        "wireless": false,
+        "pinout_notes": "30x30mm carrier for the CubePilot CubeNode H757 module, with JST-GH 1.25mm connectors for TELEM1, GPS, RC, VTX, CAN1, ESC and PWM AUX plus SWD debug and solder pads.",
+        "field_checks": [
+          {
+            "field": "mcu",
+            "hwdef": "STM32H757 (comment: 128k sectors)",
+            "readme": "STM32H757 dual-core, M7 @400MHz, 2MB flash",
+            "wiki": null,
+            "manufacturer": null,
+            "agree": "agree"
+          },
+          {
+            "field": "imu",
+            "hwdef": "Invensensev3 SPI:icm45686",
+            "readme": "On-module ICM-45686 IMU on SPI3, mounted upside down",
+            "wiki": null,
+            "manufacturer": null,
+            "agree": "agree"
+          },
+          {
+            "field": "baro",
+            "hwdef": "BARO DPS310 SPI:dps368 (DPS310 backend used for DPS368 part)",
+            "readme": "On-board DPS368 barometer on SPI3",
+            "wiki": null,
+            "manufacturer": null,
+            "agree": "agree"
+          },
+          {
+            "field": "uart_count",
+            "hwdef": "SERIAL_ORDER lists 6 UARTs besides OTG1 (USART1/2/6, UART4/7/8)",
+            "readme": "6 UARTs plus USB",
+            "wiki": null,
+            "manufacturer": null,
+            "agree": "agree"
+          },
+          {
+            "field": "dimensions",
+            "hwdef": "header comment: 30x30 multirotor flight controller",
+            "readme": "30 x 30 mm mounting",
+            "wiki": null,
+            "manufacturer": null,
+            "agree": "agree"
+          }
+        ],
+        "discrepancies": [],
+        "sources_used": [
+          "/Users/fred/ardupilot/libraries/AP_HAL_ChibiOS/hwdef/NWBLUE_PROH757/hwdef.dat",
+          "/Users/fred/ardupilot/libraries/AP_HAL_ChibiOS/hwdef/NWBLUE_PROH757/README.md"
+        ],
+        "confidence": "high",
+        "dimensions_mm": {
+          "length": 30,
+          "width": 30,
+          "height": null
+        }
       }
     },
     {
@@ -95611,6 +96199,148 @@
         "imu_count": null,
         "variants": [],
         "notes": null
+      },
+      "ai": {
+        "source": "copied from SIYI_N7 (ODID build of the same hardware); fc-verify-enrich workflow: hwdef+README+local-wiki+manufacturer cross-correlation",
+        "manufacturer": "SIYI",
+        "marketing_name": "SIYI N7 Autopilot",
+        "mcu_part": "STM32H743IIK6",
+        "imu_models": [
+          "ICM20689",
+          "ICM45686",
+          "BMI088"
+        ],
+        "baro_models": [
+          "MS5611"
+        ],
+        "compass_models": [
+          "IST8310"
+        ],
+        "has_sdcard": true,
+        "weight_g": 57,
+        "voltage_cells": "2-14S",
+        "voltage_min_v": 4.5,
+        "voltage_max_v": 5.5,
+        "uart_count": 4,
+        "can_count": 1,
+        "notable_connectors": [
+          "JST-GH"
+        ],
+        "has_baro": true,
+        "has_osd": false,
+        "pinout_notes": "SERIAL0=USB, SERIAL1=USART2/Telem1 (RTS/CTS), SERIAL3=USART1/GPS1, SERIAL4=UART4/GPS2, SERIAL6=UART7/debug, SERIAL7=USB2; 8 MAIN PWM via STM32F103 IOMCU (no DShot), 5 AUX PWM via H743 (DShot capable); 1 CAN port, dedicated I2C connector, RCIN pin on servo rail",
+        "discrepancies": [
+          "manufacturer field is null in our data; it is clearly SIYI (SIYI Technology (Shenzhen) Co., Ltd.)",
+          "ICM20689 and ICM45686 are assigned the same CS pin (ICM20689_CS) in hwdef \u2014 they are hardware variants occupying the same socket, not two simultaneously-present IMUs; the README and all manufacturer specs only list ICM20689, suggesting ICM45686 is a silent newer-revision substitution",
+          "Physical dimensions (47x68x19mm, 57g) are not populated in our data but confirmed by multiple reseller listings from manufacturer spec sheet",
+          "No dedicated ArduPilot wiki .rst page exists for this board; docs_url correctly points to the SIYI vendor PDF which is the only available documentation",
+          "voltage_min_v/voltage_max_v reflect the 5V power-module input to the FC, not raw battery voltage; the system supports 2-14S batteries through an external power module"
+        ],
+        "confidence": "high",
+        "sources_used": [
+          "/Users/fred/fcpicker/data/boards/SIYI_N7.json",
+          "/Users/fred/ardupilot/libraries/AP_HAL_ChibiOS/hwdef/SIYI_N7/hwdef.dat",
+          "/Users/fred/ardupilot/libraries/AP_HAL_ChibiOS/hwdef/SIYI_N7/README.md",
+          "/Users/fred/ardupilot_wiki/common/source/docs/common-autopilots.rst",
+          "https://unmannedrc.com/products/siyi-n7-autopilot-flight-controller",
+          "https://www.arrishobby.com/products/siyi-n7-autopilot-px4-and-ardupilot-firmware-compatible-flight-controller",
+          "https://shop.siyi.biz/products/siyi-n7-autopilot-flight-controller"
+        ],
+        "dimensions_mm": {
+          "length": 68,
+          "width": 47,
+          "height": 19
+        },
+        "field_checks": [
+          {
+            "field": "mcu_part",
+            "hwdef": "STM32H743xx",
+            "readme": "STM32H743",
+            "manufacturer": "STM32H743IIK6",
+            "wiki": null,
+            "agree": "agree"
+          },
+          {
+            "field": "imu_models",
+            "hwdef": "ICM20689 + ICM45686 (same CS, hw variants) + BMI088",
+            "readme": "ICM20689 and BMI088",
+            "manufacturer": "BMI088 / ICM20689",
+            "wiki": null,
+            "agree": "partial"
+          },
+          {
+            "field": "baro_models",
+            "hwdef": "MS5611 (SPI:ms5611 on SPI4)",
+            "readme": "MS5611 SPI barometer",
+            "manufacturer": "MS5611",
+            "wiki": null,
+            "agree": "agree"
+          },
+          {
+            "field": "compass_models",
+            "hwdef": "IST8310 I2C:0:0x0e",
+            "readme": "IST8310",
+            "manufacturer": "IST8310",
+            "wiki": null,
+            "agree": "agree"
+          },
+          {
+            "field": "uart_count",
+            "hwdef": "4 user UARTs (USART1/2, UART4/7) + UART8 internal IOMCU",
+            "readme": "4 UARTs plus USB",
+            "manufacturer": "4",
+            "wiki": null,
+            "agree": "agree"
+          },
+          {
+            "field": "can_count",
+            "hwdef": "1 (CAN1)",
+            "readme": "CAN ports (1 implied)",
+            "manufacturer": "1",
+            "wiki": null,
+            "agree": "agree"
+          },
+          {
+            "field": "has_sdcard",
+            "hwdef": "SDMMC1 present",
+            "readme": "microSD card slot",
+            "manufacturer": "TF Slot: 1",
+            "wiki": null,
+            "agree": "agree"
+          },
+          {
+            "field": "dimensions_mm",
+            "hwdef": null,
+            "readme": null,
+            "manufacturer": "47x68x19mm",
+            "wiki": null,
+            "agree": "unknown"
+          },
+          {
+            "field": "weight_g",
+            "hwdef": null,
+            "readme": null,
+            "manufacturer": "57g",
+            "wiki": null,
+            "agree": "unknown"
+          },
+          {
+            "field": "has_osd",
+            "hwdef": "no OSD device defined",
+            "readme": null,
+            "manufacturer": null,
+            "wiki": null,
+            "agree": "agree"
+          },
+          {
+            "field": "iomcu",
+            "hwdef": "IOMCU_UART UART8, STM32F103 co-processor",
+            "readme": "8 MAIN outputs via dedicated STM32F103 IO controller",
+            "manufacturer": "Co-processor STM32F103",
+            "wiki": null,
+            "agree": "agree"
+          }
+        ]
       }
     },
     {
@@ -109672,7 +110402,7 @@
       "slug": "TUSTIN_MACH",
       "name": "TUSTIN_MACH",
       "platform": "chibios",
-      "manufacturer": null,
+      "manufacturer": "Tustin Dynamics",
       "mcu": {
         "family": "STM32H7xx",
         "part": "STM32H743xx"
@@ -109919,6 +110649,130 @@
         "imu_count": null,
         "variants": [],
         "notes": null
+      },
+      "ai": {
+        "source": "fc-verify-enrich workflow: hwdef+README+local-wiki+manufacturer cross-correlation",
+        "manufacturer": "Tustin Dynamics",
+        "marketing_name": "Tustin MACH",
+        "family": null,
+        "mcu_part": "STM32H743",
+        "imu_models": [
+          "BMI088",
+          "ICM45686"
+        ],
+        "baro_models": [
+          "ICP20100"
+        ],
+        "compass_models": [
+          "IST8310"
+        ],
+        "osd_chip": "AT7456E",
+        "blackbox_flash": null,
+        "has_sdcard": true,
+        "weight_g": null,
+        "mounting_pattern_mm": null,
+        "mounting_hole_dia_mm": null,
+        "voltage_cells": null,
+        "voltage_min_v": 12,
+        "voltage_max_v": 40,
+        "bec_outputs": [
+          {
+            "rail": "12V",
+            "volts": 12,
+            "amps": null
+          },
+          {
+            "rail": "5V",
+            "volts": 5,
+            "amps": null
+          }
+        ],
+        "uart_count": 7,
+        "can_count": 1,
+        "notable_connectors": [
+          "USB-C",
+          "TELEM1",
+          "TELEM2",
+          "TELEM3",
+          "GPS",
+          "RC",
+          "VTX",
+          "CAM",
+          "DJI",
+          "I2C",
+          "CAN",
+          "DEBUG",
+          "ESC M1-M4",
+          "ESC M5-M8"
+        ],
+        "has_baro": true,
+        "has_osd": true,
+        "wireless": null,
+        "pinout_notes": "Front edges carry UART5/UART4/CAN, GPS/UART1/UART6, and VTX/DEBUG; back edges carry CAM/DJI/USB-C and I2C.",
+        "field_checks": [
+          {
+            "field": "mcu",
+            "hwdef": "STM32H7xx STM32H743xx",
+            "readme": "STM32H743",
+            "wiki": null,
+            "manufacturer": null,
+            "agree": "agree"
+          },
+          {
+            "field": "imu",
+            "hwdef": "BMI088, Invensensev3(icm45686)",
+            "readme": "BMI088 and ICM-45686",
+            "wiki": null,
+            "manufacturer": null,
+            "agree": "agree"
+          },
+          {
+            "field": "baro",
+            "hwdef": "ICP201XX",
+            "readme": "ICP-20100",
+            "wiki": null,
+            "manufacturer": null,
+            "agree": "agree"
+          },
+          {
+            "field": "weight",
+            "hwdef": null,
+            "readme": null,
+            "wiki": null,
+            "manufacturer": null,
+            "agree": "unknown"
+          },
+          {
+            "field": "dimensions",
+            "hwdef": null,
+            "readme": null,
+            "wiki": null,
+            "manufacturer": null,
+            "agree": "unknown"
+          },
+          {
+            "field": "uart_count",
+            "hwdef": "7 (SERIAL_ORDER)",
+            "readme": "Seven serial ports",
+            "wiki": null,
+            "manufacturer": null,
+            "agree": "agree"
+          },
+          {
+            "field": "voltage",
+            "hwdef": null,
+            "readme": "12V-40V VBAT",
+            "wiki": null,
+            "manufacturer": null,
+            "agree": "partial"
+          }
+        ],
+        "discrepancies": [],
+        "sources_used": [
+          "/Users/fred/ardupilot/libraries/AP_HAL_ChibiOS/hwdef/TUSTIN_MACH/hwdef.dat",
+          "/Users/fred/ardupilot/libraries/AP_HAL_ChibiOS/hwdef/TUSTIN_MACH/README.md"
+        ],
+        "confidence": "medium"
       }
     },
     {
@@ -113360,7 +114214,7 @@
       "slug": "X-MAV-AP-H743v3",
       "name": "X-MAV-AP-H743v3",
       "platform": "chibios",
-      "manufacturer": null,
+      "manufacturer": "X-MAV",
       "mcu": {
         "family": "STM32H7xx",
         "part": "STM32H743xx"
@@ -113631,6 +114485,131 @@
         "imu_count": null,
         "variants": [],
         "notes": null
+      },
+      "ai": {
+        "source": "fc-verify-enrich workflow: hwdef+README+local-wiki+manufacturer cross-correlation",
+        "manufacturer": "X-MAV",
+        "marketing_name": "AP-H743v3",
+        "family": "STM32H7",
+        "mcu_part": "STM32H743",
+        "imu_models": [
+          "BMI088",
+          "ICM45686"
+        ],
+        "baro_models": [
+          "SPL06"
+        ],
+        "compass_models": [
+          "QMC5883P"
+        ],
+        "osd_chip": "AT7456E",
+        "blackbox_flash": null,
+        "has_sdcard": true,
+        "weight_g": 9,
+        "mounting_pattern_mm": "30.5x30.5",
+        "mounting_hole_dia_mm": 4,
+        "voltage_cells": "2-8S",
+        "voltage_min_v": 6,
+        "voltage_max_v": 35,
+        "bec_outputs": [
+          {
+            "rail": "12V",
+            "volts": 12,
+            "amps": 2
+          },
+          {
+            "rail": "5V",
+            "volts": 5,
+            "amps": 2
+          }
+        ],
+        "uart_count": 8,
+        "can_count": 2,
+        "notable_connectors": [
+          "USB",
+          "microSD",
+          "CAN x2",
+          "I2C (2 connectors)",
+          "SH1.0-6P DJI/HD-VTX connector",
+          "FPV camera connector",
+          "analog VTX connector"
+        ],
+        "has_baro": true,
+        "has_osd": true,
+        "wireless": null,
+        "pinout_notes": "Dual IMUs (BMI088 on SPI1, ICM45686 on SPI4), 8 UARTs, 2 CAN, AT7456E analog OSD plus DisplayPort HD OSD via DJI connector, microSD, 8 PWM/DShot outputs in 3 groups.",
+        "field_checks": [
+          {
+            "field": "mcu",
+            "hwdef": "STM32H743xx",
+            "readme": "STM32H743 microcontroller",
+            "wiki": null,
+            "manufacturer": null,
+            "agree": "agree"
+          },
+          {
+            "field": "imu",
+            "hwdef": "BMI088 (SPI1, CS BMI088_1_A/G_CS) + Invensensev3 driver on SPI4 (CS ICM45686_CS)",
+            "readme": "BMI088/ICM45686 dual IMUs",
+            "wiki": null,
+            "manufacturer": null,
+            "agree": "agree"
+          },
+          {
+            "field": "baro",
+            "hwdef": "BARO SPL06 I2C:0:0x76",
+            "readme": "SPA06 barometer",
+            "wiki": null,
+            "manufacturer": null,
+            "agree": "disagree"
+          },
+          {
+            "field": "weight",
+            "hwdef": null,
+            "readme": "9g",
+            "wiki": null,
+            "manufacturer": null,
+            "agree": "unknown"
+          },
+          {
+            "field": "dimensions",
+            "hwdef": null,
+            "readme": "36 x 36 x 8 mm",
+            "wiki": null,
+            "manufacturer": null,
+            "agree": "unknown"
+          },
+          {
+            "field": "uart_count",
+            "hwdef": "SERIAL_ORDER lists 8 UARTs (USART1,2,3,6,UART4,5,7,8) + USB",
+            "readme": "8 UARTs (SERIAL0-8 table)",
+            "wiki": null,
+            "manufacturer": null,
+            "agree": "agree"
+          },
+          {
+            "field": "voltage",
+            "hwdef": null,
+            "readme": "2-8S (6-35V) input",
+            "wiki": null,
+            "manufacturer": null,
+            "agree": "unknown"
+          }
+        ],
+        "discrepancies": [
+          "README Features list says 'SPA06 barometer' but hwdef instantiates driver 'BARO SPL06 I2C:0:0x76'; likely a README typo for SPL06 (no SPA06 part is otherwise documented).",
+          "README Features list says 'AT7456E OSD' (matching hwdef's AT7456E_CS pin and SPIDEV osd entry), but the README's own OSD Support section separately claims 'onboard analog SD OSD using a MAX7456 chip'; hwdef confirms AT7456E is the actual chip."
+        ],
+        "sources_used": [
+          "/Users/fred/ardupilot/libraries/AP_HAL_ChibiOS/hwdef/X-MAV-AP-H743v3/hwdef.dat",
+          "/Users/fred/ardupilot/libraries/AP_HAL_ChibiOS/hwdef/X-MAV-AP-H743v3/README.md"
+        ],
+        "confidence": "medium",
+        "dimensions_mm": {
+          "length": 36,
+          "width": 36,
+          "height": 8
+        }
       }
     },
     {
@@ -116522,6 +117501,122 @@
         "imu_count": null,
         "variants": [],
         "notes": null
+      },
+      "ai": {
+        "source": "copied from ZeroOneX6 (ODID build of the same hardware); fc-verify-enrich workflow: hwdef+README+local-wiki+manufacturer cross-correlation",
+        "manufacturer": "ZeroOne",
+        "marketing_name": "ZeroOne X6",
+        "family": "Pixhawk FMUv6X",
+        "mcu_part": "STM32H753IIK6",
+        "imu_models": [
+          "ICM45686",
+          "ICM45686",
+          "BMI088"
+        ],
+        "baro_models": [
+          "ICP20100",
+          "ICP20100"
+        ],
+        "compass_models": [
+          "RM3100",
+          "IST8310",
+          "BMM350"
+        ],
+        "has_sdcard": true,
+        "uart_count": 7,
+        "can_count": 2,
+        "notable_connectors": [
+          "Micro-C USB",
+          "Ethernet (LAN8742A RMII)"
+        ],
+        "has_baro": true,
+        "has_osd": false,
+        "pinout_notes": "7 UARTs (3 with hardware flow control): Telem1/2/3, GPS1/2, UART4, FMU-DEBUG; 2 CAN (CANFD up to 8Mbit/s); Ethernet; 16 PWM (8 IO via STM32F103 IOMCU supporting BiDirDShot, 8 FMU); microSD (SDMMC2); FRAM parameter storage (Ramtron SPI5); dual 6-pin CAN power monitor inputs; IMU heater (2W); switchable 3.3V/5V PWM rail",
+        "discrepancies": [
+          "hwdef.dat MCU line uses 'STM32H743xx' (ChibiOS family selector) but README.md and wiki both confirm actual chip is STM32H753IIK6; current data mcu.part='STM32H743xx' is incorrect and should be STM32H753IIK6",
+          "Current data baro chip field shows 'ICP201XX' (ArduPilot driver family name) but README.md and wiki confirm the actual chip model is ICP20100; these are the same physical silicon but the display name should be ICP20100"
+        ],
+        "confidence": "high",
+        "sources_used": [
+          "/Users/fred/fcpicker/data/boards/ZeroOneX6.json",
+          "/Users/fred/ardupilot/libraries/AP_HAL_ChibiOS/hwdef/ZeroOneX6/README.md",
+          "/Users/fred/ardupilot/libraries/AP_HAL_ChibiOS/hwdef/ZeroOneX6/hwdef.dat",
+          "/Users/fred/ardupilot_wiki/common/source/docs/common-zeroonex6.rst"
+        ],
+        "field_checks": [
+          {
+            "field": "mcu_part",
+            "hwdef": "STM32H743xx (ChibiOS family selector)",
+            "readme": "STM32H753IIK6",
+            "wiki": "STM32H753IIK6",
+            "manufacturer": null,
+            "agree": "partial"
+          },
+          {
+            "field": "imu_models",
+            "hwdef": "Invensensev3 (icm45686_1), Invensensev3 (icm45686_2), BMI088",
+            "readme": "ICM45686 x2, BMI088 (X6 variant)",
+            "wiki": "ICM45686 x2, BMI088 (X6 variant)",
+            "manufacturer": null,
+            "agree": "agree"
+          },
+          {
+            "field": "baro_models",
+            "hwdef": "ICP201XX x2",
+            "readme": "ICP20100 x2",
+            "wiki": "ICP20100 x2",
+            "manufacturer": null,
+            "agree": "partial"
+          },
+          {
+            "field": "compass_models",
+            "hwdef": "RM3100, IST8310, BMM350",
+            "readme": "RM3100 (built-in only mentioned)",
+            "wiki": "RM3100 (built-in only mentioned)",
+            "manufacturer": null,
+            "agree": "partial"
+          },
+          {
+            "field": "uart_count",
+            "hwdef": "7 (UART7, UART5, USART1, UART8, USART2, UART4, USART3)",
+            "readme": "7",
+            "wiki": "7 UARTs, 3 with hardware flow control",
+            "manufacturer": null,
+            "agree": "agree"
+          },
+          {
+            "field": "can_count",
+            "hwdef": "2 (CAN1, CAN2)",
+            "readme": null,
+            "wiki": "2 CAN ports",
+            "manufacturer": null,
+            "agree": "agree"
+          },
+          {
+            "field": "has_sdcard",
+            "hwdef": "yes (SDMMC2)",
+            "readme": null,
+            "wiki": null,
+            "manufacturer": null,
+            "agree": "agree"
+          },
+          {
+            "field": "has_osd",
+            "hwdef": "no OSD chip defined",
+            "readme": null,
+            "wiki": null,
+            "manufacturer": null,
+            "agree": "agree"
+          },
+          {
+            "field": "iomcu",
+            "hwdef": "STM32F103 (IOMCU_UART USART6)",
+            "readme": "STM32F103",
+            "wiki": "STM32F103 IOMCU",
+            "manufacturer": null,
+            "agree": "agree"
+          }
+        ]
       }
     },
     {

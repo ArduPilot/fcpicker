@@ -2,7 +2,7 @@
   "slug": "HGLRC_H743_EVO",
   "name": "HGLRC_H743_EVO",
   "platform": "chibios",
-  "manufacturer": null,
+  "manufacturer": "HGLRC",
   "mcu": {
     "family": "STM32H7xx",
     "part": "STM32H743xx"
@@ -255,5 +255,113 @@
     "imu_count": null,
     "variants": [],
     "notes": null
+  },
+  "ai": {
+    "source": "fc-verify-enrich workflow: hwdef+README+local-wiki+manufacturer cross-correlation",
+    "manufacturer": "HGLRC",
+    "marketing_name": "HGLRC H743 EVO",
+    "family": "STM32H7",
+    "mcu_part": "STM32H743VIT6",
+    "imu_models": [
+      "ICM42688P",
+      "BMI270"
+    ],
+    "baro_models": [
+      "DPS368"
+    ],
+    "compass_models": [
+      "IST8310"
+    ],
+    "osd_chip": "AT7456E",
+    "blackbox_flash": null,
+    "has_sdcard": true,
+    "weight_g": null,
+    "mounting_pattern_mm": null,
+    "mounting_hole_dia_mm": null,
+    "voltage_cells": null,
+    "voltage_min_v": null,
+    "voltage_max_v": null,
+    "bec_outputs": [
+      {
+        "rail": "VTX",
+        "volts": 12,
+        "amps": null
+      }
+    ],
+    "uart_count": 7,
+    "can_count": 1,
+    "notable_connectors": [
+      "USB Type-C",
+      "microSD",
+      "CAN"
+    ],
+    "has_baro": true,
+    "has_osd": true,
+    "wireless": null,
+    "pinout_notes": "Dual IMUs (ICM-42688-P on SPI1, BMI270 on SPI4), 10 PWM outputs (8 motor + 2 aux), analog AT7456E OSD, microSD, one CAN port, switchable 12V VTX BEC.",
+    "field_checks": [
+      {
+        "field": "mcu",
+        "hwdef": "STM32H743xx",
+        "readme": "STM32H743VIT6",
+        "wiki": null,
+        "manufacturer": null,
+        "agree": "agree"
+      },
+      {
+        "field": "imu",
+        "hwdef": "Invensensev3 (SPI icm42688) + BMI270 (SPI bmi270)",
+        "readme": "ICM-42688-P (SPI1) and BMI270 (SPI4)",
+        "wiki": null,
+        "manufacturer": null,
+        "agree": "agree"
+      },
+      {
+        "field": "baro",
+        "hwdef": "DPS310 driver, I2C:0:0x76",
+        "readme": "DPS368 (uses DPS310 driver), I2C2",
+        "wiki": null,
+        "manufacturer": null,
+        "agree": "agree"
+      },
+      {
+        "field": "weight",
+        "hwdef": null,
+        "readme": null,
+        "wiki": null,
+        "manufacturer": null,
+        "agree": "unknown"
+      },
+      {
+        "field": "dimensions",
+        "hwdef": null,
+        "readme": null,
+        "wiki": null,
+        "manufacturer": null,
+        "agree": "unknown"
+      },
+      {
+        "field": "uart_count",
+        "hwdef": "USART1,2,3,UART4,5,7,8 (7 UARTs + USB)",
+        "readme": "SERIAL1-5,7,8 mapped, SERIAL6 not connected (7 UARTs)",
+        "wiki": null,
+        "manufacturer": null,
+        "agree": "agree"
+      },
+      {
+        "field": "voltage",
+        "hwdef": null,
+        "readme": null,
+        "wiki": null,
+        "manufacturer": null,
+        "agree": "unknown"
+      }
+    ],
+    "discrepancies": [],
+    "sources_used": [
+      "/Users/fred/ardupilot/libraries/AP_HAL_ChibiOS/hwdef/HGLRC_H743_EVO/hwdef.dat",
+      "/Users/fred/ardupilot/libraries/AP_HAL_ChibiOS/hwdef/HGLRC_H743_EVO/README.md"
+    ],
+    "confidence": "medium"
   }
 }

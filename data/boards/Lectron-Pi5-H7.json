@@ -2,7 +2,7 @@
   "slug": "Lectron-Pi5-H7",
   "name": "Lectron-Pi5-H7",
   "platform": "chibios",
-  "manufacturer": null,
+  "manufacturer": "Lectron",
   "mcu": {
     "family": "STM32H7xx",
     "part": "STM32H753xx"
@@ -267,5 +267,134 @@
     "imu_count": null,
     "variants": [],
     "notes": null
+  },
+  "ai": {
+    "source": "fc-verify-enrich workflow: hwdef+README+local-wiki+manufacturer cross-correlation",
+    "manufacturer": "Lectron",
+    "marketing_name": "Lectron Pi5 Autopilot",
+    "family": "Pixhawk FMUv6X",
+    "mcu_part": "STM32H753",
+    "imu_models": [
+      "ICM42670P",
+      "ICM42670P",
+      "BMI270"
+    ],
+    "baro_models": [
+      "BMP390",
+      "BMP390"
+    ],
+    "compass_models": [
+      "BMM350"
+    ],
+    "osd_chip": null,
+    "blackbox_flash": null,
+    "has_sdcard": true,
+    "weight_g": 162.4,
+    "mounting_pattern_mm": null,
+    "mounting_hole_dia_mm": null,
+    "voltage_cells": null,
+    "voltage_min_v": 9,
+    "voltage_max_v": 26,
+    "bec_outputs": [
+      {
+        "rail": "5V",
+        "volts": 5,
+        "amps": 5
+      }
+    ],
+    "uart_count": 7,
+    "can_count": 2,
+    "notable_connectors": [
+      "XT30 power input",
+      "USB Type-C (OTG)",
+      "microSD",
+      "100-Mbps FMU Ethernet",
+      "1-Gbps CM5 Ethernet",
+      "CAN bus port",
+      "GPS1 (Full GPS)",
+      "GPS2 (Basic GPS)",
+      "SBUS/RC input",
+      "SPI6 external (2x CS)",
+      "2x CSI camera (22-pin FFC)",
+      "M.2 Key-M (2230/2242)"
+    ],
+    "has_baro": true,
+    "has_osd": false,
+    "wireless": null,
+    "pinout_notes": "Pixhawk FMUv6X-compatible FMU (STM32H753) plus STM32F103 IOMCU, paired with a Raspberry Pi CM5 companion computer on one board.",
+    "field_checks": [
+      {
+        "field": "mcu",
+        "hwdef": "STM32H753xx",
+        "readme": "STM32H753",
+        "wiki": null,
+        "manufacturer": null,
+        "agree": "agree"
+      },
+      {
+        "field": "imu",
+        "hwdef": "Invensensev3 x2 + BMI270",
+        "readme": "ICM-42670-P x2 + BMI270",
+        "wiki": null,
+        "manufacturer": null,
+        "agree": "agree"
+      },
+      {
+        "field": "baro",
+        "hwdef": "BMP388 x2 (I2C)",
+        "readme": "BMP390 x2",
+        "wiki": null,
+        "manufacturer": null,
+        "agree": "disagree"
+      },
+      {
+        "field": "weight",
+        "hwdef": null,
+        "readme": "162.4 g (with IMU-01 board, CM5 Lite, SD cards)",
+        "wiki": null,
+        "manufacturer": null,
+        "agree": "unknown"
+      },
+      {
+        "field": "dimensions",
+        "hwdef": null,
+        "readme": "118.9 x 67.1 x 30.1 mm",
+        "wiki": null,
+        "manufacturer": null,
+        "agree": "unknown"
+      },
+      {
+        "field": "uart_count",
+        "hwdef": "7 (SERIAL_ORDER, excl. OTG1) + USART6 IOMCU-internal",
+        "readme": "table lists SERIAL1-7 (7); Interfaces bullet says 6x UART/USART ports",
+        "wiki": null,
+        "manufacturer": null,
+        "agree": "partial"
+      },
+      {
+        "field": "voltage",
+        "hwdef": null,
+        "readme": "9-26 VDC (3S-6S LiPo)",
+        "wiki": null,
+        "manufacturer": null,
+        "agree": "unknown"
+      }
+    ],
+    "discrepancies": [
+      "hwdef defines BARO BMP388 on I2C:1 and I2C:3, but README Sensors section states Dual Bosch BMP390 barometers.",
+      "hwdef defines both CAN1 and CAN2 pin mappings, but README Interfaces section lists only '1x CAN bus port'.",
+      "README Interfaces bullet says '6x UART/USART based ports' while the UART Mapping table lists 7 (SERIAL1-SERIAL7, excluding USB).",
+      "Stated weight (162.4 g) is with Lectron IMU-01 sensor board, CM5 Lite, and SD cards attached, not the bare FC board alone."
+    ],
+    "sources_used": [
+      "/Users/fred/ardupilot/libraries/AP_HAL_ChibiOS/hwdef/Lectron-Pi5-H7/hwdef.dat",
+      "/Users/fred/ardupilot/libraries/AP_HAL_ChibiOS/hwdef/Lectron-Pi5-H7/README.md"
+    ],
+    "confidence": "medium",
+    "dimensions_mm": {
+      "length": 118.9,
+      "width": 67.1,
+      "height": 30.1
+    }
   }
 }

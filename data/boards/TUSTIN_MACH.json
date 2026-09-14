@@ -2,7 +2,7 @@
   "slug": "TUSTIN_MACH",
   "name": "TUSTIN_MACH",
   "platform": "chibios",
-  "manufacturer": null,
+  "manufacturer": "Tustin Dynamics",
   "mcu": {
     "family": "STM32H7xx",
     "part": "STM32H743xx"
@@ -249,5 +249,129 @@
     "imu_count": null,
     "variants": [],
     "notes": null
+  },
+  "ai": {
+    "source": "fc-verify-enrich workflow: hwdef+README+local-wiki+manufacturer cross-correlation",
+    "manufacturer": "Tustin Dynamics",
+    "marketing_name": "Tustin MACH",
+    "family": null,
+    "mcu_part": "STM32H743",
+    "imu_models": [
+      "BMI088",
+      "ICM45686"
+    ],
+    "baro_models": [
+      "ICP20100"
+    ],
+    "compass_models": [
+      "IST8310"
+    ],
+    "osd_chip": "AT7456E",
+    "blackbox_flash": null,
+    "has_sdcard": true,
+    "weight_g": null,
+    "mounting_pattern_mm": null,
+    "mounting_hole_dia_mm": null,
+    "voltage_cells": null,
+    "voltage_min_v": 12,
+    "voltage_max_v": 40,
+    "bec_outputs": [
+      {
+        "rail": "12V",
+        "volts": 12,
+        "amps": null
+      },
+      {
+        "rail": "5V",
+        "volts": 5,
+        "amps": null
+      }
+    ],
+    "uart_count": 7,
+    "can_count": 1,
+    "notable_connectors": [
+      "USB-C",
+      "TELEM1",
+      "TELEM2",
+      "TELEM3",
+      "GPS",
+      "RC",
+      "VTX",
+      "CAM",
+      "DJI",
+      "I2C",
+      "CAN",
+      "DEBUG",
+      "ESC M1-M4",
+      "ESC M5-M8"
+    ],
+    "has_baro": true,
+    "has_osd": true,
+    "wireless": null,
+    "pinout_notes": "Front edges carry UART5/UART4/CAN, GPS/UART1/UART6, and VTX/DEBUG; back edges carry CAM/DJI/USB-C and I2C.",
+    "field_checks": [
+      {
+        "field": "mcu",
+        "hwdef": "STM32H7xx STM32H743xx",
+        "readme": "STM32H743",
+        "wiki": null,
+        "manufacturer": null,
+        "agree": "agree"
+      },
+      {
+        "field": "imu",
+        "hwdef": "BMI088, Invensensev3(icm45686)",
+        "readme": "BMI088 and ICM-45686",
+        "wiki": null,
+        "manufacturer": null,
+        "agree": "agree"
+      },
+      {
+        "field": "baro",
+        "hwdef": "ICP201XX",
+        "readme": "ICP-20100",
+        "wiki": null,
+        "manufacturer": null,
+        "agree": "agree"
+      },
+      {
+        "field": "weight",
+        "hwdef": null,
+        "readme": null,
+        "wiki": null,
+        "manufacturer": null,
+        "agree": "unknown"
+      },
+      {
+        "field": "dimensions",
+        "hwdef": null,
+        "readme": null,
+        "wiki": null,
+        "manufacturer": null,
+        "agree": "unknown"
+      },
+      {
+        "field": "uart_count",
+        "hwdef": "7 (SERIAL_ORDER)",
+        "readme": "Seven serial ports",
+        "wiki": null,
+        "manufacturer": null,
+        "agree": "agree"
+      },
+      {
+        "field": "voltage",
+        "hwdef": null,
+        "readme": "12V-40V VBAT",
+        "wiki": null,
+        "manufacturer": null,
+        "agree": "partial"
+      }
+    ],
+    "discrepancies": [],
+    "sources_used": [
+      "/Users/fred/ardupilot/libraries/AP_HAL_ChibiOS/hwdef/TUSTIN_MACH/hwdef.dat",
+      "/Users/fred/ardupilot/libraries/AP_HAL_ChibiOS/hwdef/TUSTIN_MACH/README.md"
+    ],
+    "confidence": "medium"
   }
 }

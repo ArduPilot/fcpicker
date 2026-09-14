@@ -82,13 +82,18 @@ log(`verifying + enriching ${clusters.length} board clusters (local-first)`)
 
 function buildPrompt(c) {
   const variants = (c.slugs || [c.base]).join(', ')
-  return `You are verifying AND enriching ArduPilot flight-controller catalog data for board **${c.base}**.
+  // Linux (SoC / Pi-HAT) boards live in AP_HAL_Linux and have only a hwdef.dat.
+  const hwdefDir = c.hwdef_dir || `/Users/fred/ardupilot/libraries/AP_HAL_ChibiOS/hwdef/${c.base}`
+  const platformNote = c.platform === 'linux'
+    ? `\nThis is a LINUX board (SoC / Raspberry-Pi HAT style, not an STM32 flight controller). Its hwdef is ${hwdefDir}/hwdef.dat only (no README, no MCU line); mcu_part is the SoC/companion chip if documented, else null. Physical specs come from the wiki and manufacturer page.`
+    : ''
+  return `You are verifying AND enriching ArduPilot flight-controller catalog data for board **${c.base}**.${platformNote}
 Firmware-identical variants in this cluster (same physical hardware): ${variants}.
 Be rigorous, skeptical, and LOCAL-FIRST. Only use the web to fill a physical spec that the local sources lack, or to settle a genuine disagreement. NEVER WebFetch ardupilot.org — read the LOCAL wiki instead (don't load the open-source project's servers).
 
 SOURCES (read in this order with Read/Bash):
 1. Our current data: /Users/fred/fcpicker/data/boards/${c.base}.json  (this is what we're verifying).
-2. hwdef ground truth + comments: /Users/fred/ardupilot/libraries/AP_HAL_ChibiOS/hwdef/${c.base}/README.md and hwdef.dat (and hwdef.inc if present). The README usually has the board's real name, pinout, mounting-hole info. IMPORTANT: hwdef driver names are chip *families*, not exact parts — "IMU Invensense SPI:mpu6000" may physically be an ICM20689; "BARO BMP388" may be a BMP390; "MCU STM32H743xx" may be an H753. SPIDEV aliases (e.g. "mpu6000") are legacy bus labels. Resolve the REAL chip from the README text / CS-pin name / wiki / manufacturer — do not trust the alias.
+2. hwdef ground truth + comments: ${hwdefDir}/README.md and hwdef.dat (and hwdef.inc if present). The README usually has the board's real name, pinout, mounting-hole info. IMPORTANT: hwdef driver names are chip *families*, not exact parts — "IMU Invensense SPI:mpu6000" may physically be an ICM20689; "BARO BMP388" may be a BMP390; "MCU STM32H743xx" may be an H753. SPIDEV aliases (e.g. "mpu6000") are legacy bus labels. Resolve the REAL chip from the README text / CS-pin name / wiki / manufacturer — do not trust the alias.
 3. LOCAL ArduPilot wiki: derive the stem from our docs_url (e.g. .../common-holybro-kakutef7aio.html -> stem "common-holybro-kakutef7aio") and read /Users/fred/ardupilot_wiki/common/source/docs/<stem>.rst ; if it's a platform page or not found, grep -ril "<board name>" /Users/fred/ardupilot_wiki/*/source/docs/ to locate it. Confirm the page describes THIS exact board (not a different mini/pro/wing/v2 variant). If our docs_url is for the wrong variant, set correct_wiki_stem.
 4. Manufacturer website (WebSearch then WebFetch) — ONLY to fill missing physical specs (dimensions, weight, mounting, BEC) or resolve a conflict.
 

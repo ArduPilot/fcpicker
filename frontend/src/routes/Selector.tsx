@@ -6,11 +6,13 @@ import {
   boardManufacturer,
   isPartnerBoard,
   manufacturerKey,
+  partnerStatus,
   mcuFamilyLabel,
   physicalSensorCount,
   useBoards,
   useManufacturers,
   type ManufacturerIndex,
+  type PartnerStatus,
 } from "../data";
 import type { Board, VehicleType } from "../types";
 
@@ -333,6 +335,27 @@ function matchesQuery(b: Board, query: string): boolean {
   if (tokens.length === 0) return true;
   const hay = searchHaystack(b);
   return tokens.every((t) => hay.includes(t));
+}
+
+// Tick for a Corporate Partner, cross for a maker we know isn't one, and
+// nothing at all when the manufacturer is unidentified — a cross there would
+// claim they aren't a partner, which we don't know.
+function PartnerMark({ status }: { status: PartnerStatus }) {
+  if (status === "unknown") return null;
+  const partner = status === "partner";
+  return (
+    <span
+      className={partner ? "row-partner" : "row-nonpartner"}
+      title={
+        partner
+          ? "ArduPilot Corporate Partner — this manufacturer funds the project"
+          : "Not an ArduPilot Corporate Partner"
+      }
+      aria-label={partner ? "ArduPilot Corporate Partner" : "Not an ArduPilot Corporate Partner"}
+    >
+      {partner ? "✓" : "✗"}
+    </span>
+  );
 }
 
 function passes(b: Board, f: Filters, mfrIndex?: ManufacturerIndex): boolean {
@@ -920,15 +943,7 @@ export default function Selector() {
                           {boardManufacturer(b)}
                         </span>
                       )}
-                      {isPartnerBoard(b, mfrIndex) && (
-                        <span
-                          className="row-partner"
-                          title="ArduPilot Corporate Partner — this manufacturer supports the project"
-                          aria-label="ArduPilot Corporate Partner"
-                        >
-                          ✓
-                        </span>
-                      )}
+                      <PartnerMark status={partnerStatus(b, mfrIndex)} />
                     </td>
                     {orderedColumns.map((c) => (
                       <Cell key={c.id} col={c} board={b} />

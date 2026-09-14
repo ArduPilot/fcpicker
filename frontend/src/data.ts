@@ -245,11 +245,21 @@ export function manufacturerFor(
   return index.byId.get(manufacturerKey(raw, index)) ?? null;
 }
 
-// True when the board's maker is an ArduPilot Corporate Partner. Worth
-// surfacing: a partner funds the project and is far likelier to keep the
+// Whether the board's maker is an ArduPilot Corporate Partner. Three states,
+// not two: "unknown" is for boards whose manufacturer we could not identify at
+// all, where marking them a non-partner would assert something we don't know.
+export type PartnerStatus = "partner" | "non-partner" | "unknown";
+
+export function partnerStatus(b: Board, index: ManufacturerIndex): PartnerStatus {
+  const m = manufacturerFor(boardManufacturer(b), index);
+  if (!m) return "unknown";
+  return m.ardupilot_partner ? "partner" : "non-partner";
+}
+
+// Worth surfacing: a partner funds the project and is likelier to keep the
 // board's hwdef and docs current.
 export function isPartnerBoard(b: Board, index: ManufacturerIndex): boolean {
-  return manufacturerFor(boardManufacturer(b), index)?.ardupilot_partner ?? false;
+  return partnerStatus(b, index) === "partner";
 }
 
 // Best single "where to buy" link: direct store first, then the reseller list

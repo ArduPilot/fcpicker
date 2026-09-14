@@ -514,6 +514,17 @@ export default function Selector() {
 
   const set = <K extends keyof Filters>(k: K, v: Filters[K]) => setF((p) => ({ ...p, [k]: v }));
 
+  // Toggle one value in an array-valued filter. Derives from the previous
+  // state so rapid clicks can't clobber each other.
+  const toggleIn = <K extends { [P in keyof Filters]: Filters[P] extends string[] ? P : never }[keyof Filters]>(
+    k: K,
+    v: string,
+  ) =>
+    setF((p) => {
+      const cur = p[k] as string[];
+      return { ...p, [k]: cur.includes(v) ? cur.filter((x) => x !== v) : [...cur, v] };
+    });
+
   return (
     <>
       <aside className="sidebar">
@@ -554,12 +565,7 @@ export default function Selector() {
                 <button
                   key={v.id}
                   className={"chip " + (on ? "chip-on" : "")}
-                  onClick={() =>
-                    set(
-                      "vehicles",
-                      on ? f.vehicles.filter((x) => x !== v.id) : [...f.vehicles, v.id],
-                    )
-                  }
+                  onClick={() => toggleIn("vehicles", v.id)}
                 >
                   {v.label}
                 </button>
@@ -606,9 +612,7 @@ export default function Selector() {
                   key={m}
                   className={"chip " + (on ? "chip-on" : "")}
                   aria-pressed={on}
-                  onClick={() =>
-                    set("mcus", on ? f.mcus.filter((x) => x !== m) : [...f.mcus, m])
-                  }
+                  onClick={() => toggleIn("mcus", m)}
                 >
                   {m.replace("STM32 ", "")}
                 </button>

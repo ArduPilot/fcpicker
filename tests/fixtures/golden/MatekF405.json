@@ -1,0 +1,164 @@
+{
+  "adc_inputs": 3,
+  "baros": [
+    [
+      "BMP280",
+      "I2C:0:0x76",
+      null,
+      null,
+      null
+    ]
+  ],
+  "bdshot": false,
+  "bdshot_target": null,
+  "can_buses": [],
+  "canfd": false,
+  "compasses": [],
+  "docs_url": null,
+  "ethernet": false,
+  "flash_kb": 1024,
+  "header_note": "hw definition file for MatekF405 hardware tested on the MatekF405-OSD board with thanks to betaflight for pinout",
+  "i2c_buses": [
+    "I2C1"
+  ],
+  "imus": [
+    [
+      "Invensense",
+      "SPI:mpu6000",
+      null,
+      "SPI1/CS:MPU6000_CS",
+      "MPU6000"
+    ]
+  ],
+  "iomcu": false,
+  "mcu_family": "STM32F4xx",
+  "mcu_part": "STM32F405xx",
+  "platform": "chibios",
+  "power_inputs": 1,
+  "pwm_fmu": 6,
+  "pwm_io": 0,
+  "readme": null,
+  "repo_url": null,
+  "sbus_out": false,
+  "sdcard": true,
+  "serial_ports": [
+    {
+      "cts": null,
+      "device": "OTG1",
+      "hint": null,
+      "inverted": false,
+      "protocol": {
+        "from_hwdef": false,
+        "id": 2,
+        "name": "MAVLink2"
+      },
+      "rts": null,
+      "rx": null,
+      "serial": 0,
+      "tx": null,
+      "usb": true
+    },
+    {
+      "cts": null,
+      "device": "USART3",
+      "hint": null,
+      "inverted": false,
+      "protocol": {
+        "from_hwdef": false,
+        "id": 2,
+        "name": "MAVLink2"
+      },
+      "rts": null,
+      "rx": "PC11",
+      "serial": 1,
+      "tx": "PC10",
+      "usb": false
+    },
+    {
+      "cts": null,
+      "device": "UART4",
+      "hint": null,
+      "inverted": false,
+      "protocol": {
+        "from_hwdef": false,
+        "id": 2,
+        "name": "MAVLink2"
+      },
+      "rts": null,
+      "rx": "PA1",
+      "serial": 2,
+      "tx": "PA0",
+      "usb": false
+    },
+    {
+      "cts": null,
+      "device": "USART1",
+      "hint": null,
+      "inverted": false,
+      "protocol": {
+        "from_hwdef": false,
+        "id": 5,
+        "name": "GPS"
+      },
+      "rts": null,
+      "rx": "PA10",
+      "serial": 3,
+      "tx": "PA9",
+      "usb": false
+    },
+    {
+      "cts": null,
+      "device": "UART5",
+      "hint": null,
+      "inverted": false,
+      "protocol": {
+        "from_hwdef": false,
+        "id": 5,
+        "name": "GPS"
+      },
+      "rts": null,
+      "rx": "PD2",
+      "serial": 4,
+      "tx": "PC12",
+      "usb": false
+    },
+    {
+      "cts": null,
+      "device": "USART2",
+      "hint": "alternative RC input using UART",
+      "inverted": false,
+      "protocol": {
+        "from_hwdef": false,
+        "id": -1,
+        "name": "None"
+      },
+      "rts": null,
+      "rx": "PA3",
+      "serial": 5,
+      "tx": "PA2",
+      "usb": false
+    }
+  ],
+  "slug": "MatekF405",
+  "spi_buses": [
+    "SPI1",
+    "SPI2",
+    "SPI3"
+  ],
+  "uart_buses": [
+    "USART3",
+    "UART4",
+    "USART1",
+    "UART5",
+    "USART2"
+  ],
+  "usb_count": 1,
+  "vehicles": [
+    "copter",
+    "plane",
+    "rover",
+    "sub",
+    "tracker",
+    "blimp"
+  ]
+}

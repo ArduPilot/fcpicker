@@ -1,0 +1,107 @@
+name: Parser drift
+
+# Re-runs the parser against a current ArduPilot checkout and opens an issue if
+# a fresh build would change the committed catalog.
+#
+# build.py preserves the human `manual` block and the AI `ai` block, so any
+# difference is build-derived: either upstream hwdef moved, or our own parser
+# did. A regex tweak that silently alters ninety boards is indistinguishable
+# from a quiet commit until someone notices a spec is wrong — which, for a
+# catalogue people buy hardware from, is the failure that actually costs money.
+#
+# Runs weekly and on demand. Deliberately NOT on every push: upstream moves on
+# its own schedule and a per-push run would mostly report ArduPilot's changes,
+# not ours.
+
+on:
+  schedule:
+    - cron: "0 7 * * 1"   # Mondays 07:00 UTC, an hour after the new-boards check
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+env:
+  NOTIFY_USER: freddygaffey
+
+jobs:
+  drift:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout fcPicker
+        uses: actions/checkout@v4
+
+      - name: Checkout ArduPilot hwdef trees (shallow, sparse)
+        uses: actions/checkout@v4
+        with:
+          repository: ArduPilot/ardupilot
+          path: ardupilot
+          fetch-depth: 1
+          sparse-checkout: |
+            libraries/AP_HAL_ChibiOS/hwdef
+            libraries/AP_HAL_Linux/hwdef
+          sparse-checkout-cone-mode: false
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install -r tools/requirements.txt
+
+      # build.py expects the checkout at ~/ardupilot.
+      - name: Put ArduPilot where the build script looks for it
+        run: ln -s "$GITHUB_WORKSPACE/ardupilot" "$HOME/ardupilot"
+
+      - name: Re-run the parser over the committed catalog
+        run: python tools/build.py
+
+      - name: Summarise drift
+        id: drift
+        run: |
+          python tools/drift_report.py > drift.md
+          if git diff --quiet -- data/boards && \
+             [ -z "$(git ls-files --others --exclude-standard -- data/boards)" ]; then
+            echo "drifted=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "drifted=true" >> "$GITHUB_OUTPUT"
+          fi
+          cat drift.md
+
+      - name: Open or update an issue
+        if: steps.drift.outputs.drifted == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh label create parser-drift --color d93f0b \
+            --description "A fresh parser run would change the committed catalog" \
+            2>/dev/null || true
+
+          title="Parser drift detected on $(date -u +%Y-%m-%d)"
+          # One open drift issue at a time — successive weeks comment on it
+          # rather than filing a new one, so the backlog stays readable.
+          existing="$(gh issue list --state open --label parser-drift \
+                       --json number -q '.[0].number')"
+          {
+            cat drift.md
+            echo
+            echo "Reproduce locally with an ArduPilot checkout at ~/ardupilot:"
+            echo '```'
+            echo '.venv/bin/python tools/build.py && .venv/bin/python tools/drift_report.py'
+            echo '```'
+            echo
+            echo "cc @$NOTIFY_USER"
+          } > body.md
+
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --body-file body.md
+            echo "Commented on existing issue #$existing"
+          else
+            gh issue create --title "$title" --label parser-drift \
+              --assignee "$NOTIFY_USER" --body-file body.md
+          fi
+
+      - name: Report no drift
+        if: steps.drift.outputs.drifted == 'false'
+        run: echo "A fresh build reproduces the committed catalog exactly."

@@ -20,7 +20,6 @@ import type { Board, VehicleType } from "./types";
 export const MAX_IMU_SLOTS = 3;
 
 function imuSlotCountRaw(b: Board): number {
-  if (b.manual?.imu_count != null) return b.manual.imu_count;
   const slots = new Set<string>();
   let unslotted = 0;
   for (const s of b.imus) {
@@ -30,8 +29,16 @@ function imuSlotCountRaw(b: Board): number {
   return slots.size + unslotted;
 }
 
-// Capped slot count: never exceeds the physical hardware maximum.
+// Displayed IMU count.
+//
+// A human-set `manual.imu_count` is trusted as-is: it is the verified answer
+// for boards that genuinely carry more IMU footprints than ArduPilot will
+// instantiate (the QioTek Zealot and VUAV V7pro hwdefs each declare four
+// chip-selects). Only an unverified parse is clamped, and tools/sanity_check.py
+// fails the build when a parse exceeds the ceiling without an override — so
+// that clamp should never actually fire.
 export function imuSlotCount(b: Board): number {
+  if (b.manual?.imu_count != null) return b.manual.imu_count;
   return Math.min(imuSlotCountRaw(b), MAX_IMU_SLOTS);
 }
 

@@ -3,9 +3,11 @@
   "private": true,
   "scripts": {
     "dev": "npm --prefix frontend run dev",
-    "build": "npm --prefix frontend run build",
+    "ensure-deps": "[ -d frontend/node_modules ] || npm --prefix frontend ci --no-audit --no-fund",
+    "build": "npm run ensure-deps && npm --prefix frontend run build",
+    "build:spa": "npm run ensure-deps && npm --prefix frontend run build:spa",
     "preview": "npm --prefix frontend run preview",
-    "lint": "npm --prefix frontend run lint",
+    "lint": "npm run ensure-deps && npm --prefix frontend run lint",
     "deploy": "wrangler deploy",
     "prepare": "git config core.hooksPath .githooks || true",
     "test": "npm --prefix frontend run test",

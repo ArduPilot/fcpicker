@@ -242,6 +242,7 @@
     "discontinued": false,
     "imu_count": null,
     "variants": [],
+    "documents": [],
     "notes": null
   },
   "ai": {

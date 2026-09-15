@@ -23,6 +23,7 @@ const EMPTY_MANUAL: BoardManual = {
   discontinued: false,
   imu_count: null,
   variants: [],
+  documents: [],
   notes: null,
 };
 

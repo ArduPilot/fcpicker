@@ -7,7 +7,7 @@ export const meta = {
 const SCHEMA = {
   type: 'object',
   additionalProperties: false,
-  required: ['base', 'manufacturer', 'docs_url_correct', 'discrepancies', 'confidence', 'sources_used'],
+  required: ['base', 'manufacturer', 'docs_url_correct', 'documents', 'discrepancies', 'confidence', 'sources_used'],
   properties: {
     base: { type: 'string' },
     cluster_slugs: { type: 'array', items: { type: 'string' } },
@@ -55,6 +55,35 @@ const SCHEMA = {
     has_osd: { type: ['boolean', 'null'] },
     wireless: { type: ['string', 'null'], description: 'onboard ELRS/Bluetooth/WiFi if any' },
     pinout_notes: { type: ['string', 'null'], description: 'short summary of UART/motor/connector layout' },
+    // vendor documentation — URLs only, never hosted by us
+    documents: {
+      type: 'array',
+      description:
+        'Vendor datasheets/manuals linked from pages you actually fetched. ' +
+        'NEVER construct a URL from a naming pattern, and never report a link ' +
+        'you did not literally see in fetched page content. An empty array is ' +
+        'a correct and common answer — plenty of vendors publish no PDF at all. ' +
+        'A fabricated link is far worse than a missing one.',
+      items: {
+        type: 'object', additionalProperties: false,
+        required: ['title', 'url', 'kind', 'format'],
+        properties: {
+          title: { type: 'string', description: 'link text or document title as the vendor prints it' },
+          url: { type: 'string', description: 'absolute URL, exactly as it appeared in the page source' },
+          kind: { enum: ['datasheet', 'manual', 'pinout', 'schematic', 'quickstart', 'other'] },
+          format: { enum: ['pdf', 'html', 'zip', 'other'] },
+          variant: {
+            type: ['string', 'null'],
+            description:
+              'retail product this covers, matching a manual.variants name exactly ' +
+              '(e.g. "H743-SLIM"); null when it covers the whole family. One firmware ' +
+              'target can span several products with different datasheets.',
+          },
+          language: { type: ['string', 'null'], description: 'ISO 639-1, e.g. "en" or "zh"' },
+          source_page: { type: ['string', 'null'], description: 'the page the link was found on' },
+        },
+      },
+    },
     // cross-correlation
     field_checks: {
       type: 'array',

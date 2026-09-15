@@ -1175,6 +1175,10 @@ MANUAL_TEMPLATE = {
     # boards against it (the MatekH743 target covers -WING/-SLIM/-MINI/-WLITE),
     # and those products have no hwdef of their own. Empty = single product.
     "variants": [],
+    # Vendor datasheets and manuals, as URLs only — the PDF stays on the
+    # vendor's server. Promoted here from the extraction pass's ai.documents
+    # once a human has opened the link and confirmed it is the right board.
+    "documents": [],
     "notes": None,
 }
 

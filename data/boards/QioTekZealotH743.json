@@ -435,6 +435,7 @@
     "discontinued": false,
     "imu_count": 3,
     "variants": [],
+    "documents": [],
     "notes": "IMU count verified against ardupilot.org/copter/docs/common-qiotek-zealoth7.html: 3 gyro/accelerometers per variant. The hwdef declares 4 chip-selects because the ADIS16470 is an alternate fitted only on the Industry Application version, so no single board carries all four."
   },
   "ai": {

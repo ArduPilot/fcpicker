@@ -261,6 +261,7 @@
     "discontinued": false,
     "imu_count": 3,
     "variants": [],
+    "documents": [],
     "notes": null
   },
   "ai": {

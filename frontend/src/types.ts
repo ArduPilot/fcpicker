@@ -92,6 +92,39 @@ export interface BoardDimensions {
   height: number | null;
 }
 
+// A vendor-published document for a board: datasheet, manual, pinout sheet.
+//
+// URLs only — the PDF stays on the vendor's server. We never host or proxy it,
+// which keeps them the source of truth and keeps untrusted binaries out of the
+// deployment entirely.
+//
+// Vendor links rot badly (mrobotics.io now redirects elsewhere, several Matek
+// product pages are gone), so `source_page` records where the link was found
+// and `checked` records when it last resolved. Both exist so a dead link can
+// be re-found rather than merely deleted.
+export interface BoardDocument {
+  // Link text or document title as the vendor prints it.
+  title: string;
+  // Absolute URL of the document itself.
+  url: string;
+  kind: "datasheet" | "manual" | "pinout" | "schematic" | "quickstart" | "other";
+  // "pdf" for the common case; some vendors publish only an HTML page.
+  format: "pdf" | "html" | "zip" | "other";
+  // Which retail product this covers. Must match a name in manual.variants,
+  // or null when it applies to the whole firmware target. One target can span
+  // several products with different datasheets, so a single URL per board
+  // would be wrong for most of them.
+  variant: string | null;
+  // ISO 639-1. Many vendors publish Chinese-only documentation; saying so is
+  // more useful than pretending every link is English.
+  language: string | null;
+  // The page the link was found on — provenance, and the place to look when
+  // the document itself moves.
+  source_page: string | null;
+  // ISO date the URL last resolved. Null means never verified.
+  checked: string | null;
+}
+
 export type ManualStatus = "not_started" | "partial" | "complete";
 
 // A retail product that ships against this board's firmware target.
@@ -144,6 +177,9 @@ export interface BoardManual {
   // Retail products covered by this firmware target. Empty = the board is
   // sold as a single product under its own name.
   variants: BoardVariant[];
+  // Vendor datasheets and manuals. Human-curated: promoted from ai.documents
+  // once the link has been opened and confirmed to be the right board.
+  documents: BoardDocument[];
   notes: string | null;
 }
 
@@ -174,6 +210,9 @@ export interface BoardAi {
   has_osd?: boolean | null;
   wireless?: string | null;
   pinout_notes?: string | null;
+  // Documents the extraction pass found on vendor pages. Suggestions only —
+  // promoted into manual.documents after a human opens the link.
+  documents?: BoardDocument[];
   confidence?: "high" | "medium" | "low";
   sources_used?: string[];
 }

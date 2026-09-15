@@ -31,3 +31,15 @@ data/_queue/*.jsonl
 
 # Wrangler local cache (account id)
 .wrangler/
+
+# Test artifacts
+frontend/test-results/
+frontend/playwright-report/
+frontend/coverage/
+.pytest_cache/
+
+# Test artifacts
+frontend/test-results/
+frontend/playwright-report/
+frontend/coverage/
+.pytest_cache/

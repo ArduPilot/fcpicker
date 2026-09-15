@@ -7,6 +7,10 @@
     "preview": "npm --prefix frontend run preview",
     "lint": "npm --prefix frontend run lint",
     "deploy": "wrangler deploy",
-    "prepare": "git config core.hooksPath .githooks || true"
+    "prepare": "git config core.hooksPath .githooks || true",
+    "test": "npm --prefix frontend run test",
+    "test:e2e": "npm --prefix frontend run test:e2e",
+    "test:py": ".venv/bin/pytest",
+    "test:all": "npm run test:py && npm run test && npm run test:e2e"
   }
 }

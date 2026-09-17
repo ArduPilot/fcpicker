@@ -429,12 +429,42 @@ def bundle_drivers(in_dir: Path, out_path: Path) -> int:
 
 # --- enum → driver matching ------------------------------------------------
 
+# ArduPilot abbreviates some enum names past the point where they share any
+# substring with the driver's own class name, so the substring match below
+# silently finds nothing and the device ends up with no type_ids at all — which
+# is the one field a user actually needs, since it is what RNGFNDx_TYPE gets
+# set to. These are the abbreviations, mapped by hand.
+ENUM_ALIASES: dict[str, str] = {
+    # RangeFinder
+    "MBI2C": "maxsonari2cxl",        # MaxBotix I2C
+    "MBSER": "maxsonarseriallv",     # MaxBotix serial
+    "PLI2C": "pulsedlightlrf",       # PulsedLight / LIDAR-Lite
+    "PLI2CV3": "pulsedlightlrf",
+    "PLI2CV3HP": "pulsedlightlrf",
+    "LWI2C": "lightwarei2c",
+    "LWSER": "lightwareserial",
+    "TRI2C": "terarangeri2c",
+    "LightWare_GRF_I2C": "lightwaregrf",
+    # Proximity
+    "TRTOWER": "terarangertower",
+    "TRTOWEREVO": "terarangertowerevo",
+}
+
+
 def attach_enum_ids(drivers: list[Driver], enum: list[tuple[str, int]]) -> None:
-    """Attach RNGFND/PRX type IDs to drivers by normalized substring match."""
+    """Attach RNGFND/PRX type IDs to drivers.
+
+    Exact slug match, then the hand-written alias table, then a normalised
+    substring match. The aliases come before the substring pass because a
+    fuzzy match on an abbreviation is as likely to hit the wrong driver as the
+    right one.
+    """
     norm_to_drivers = {d.slug: d for d in drivers}
     for name, val in enum:
         key = _norm(name)
         target = norm_to_drivers.get(key)
+        if not target and name in ENUM_ALIASES:
+            target = norm_to_drivers.get(ENUM_ALIASES[name])
         if not target:
             # Substring search both directions.
             candidates = [d for k, d in norm_to_drivers.items() if k in key or key in k]

@@ -6,7 +6,12 @@
   "class_name": "AP_RangeFinder_MaxsonarI2CXL",
   "bus": "i2c",
   "tech": "ultrasonic",
-  "type_ids": [],
+  "type_ids": [
+    {
+      "enum": "MBI2C",
+      "param_value": 2
+    }
+  ],
   "docs_url": "https://ardupilot.org/copter/docs/common-rangefinder-maxbotixi2c.html",
   "wiki_range_min_m": null,
   "wiki_range_max_m": 7.0,

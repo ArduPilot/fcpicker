@@ -6,7 +6,12 @@
   "class_name": "AP_RangeFinder_LightWareSerial",
   "bus": "serial",
   "tech": "lidar",
-  "type_ids": [],
+  "type_ids": [
+    {
+      "enum": "LWSER",
+      "param_value": 8
+    }
+  ],
   "docs_url": null,
   "wiki_range_min_m": null,
   "wiki_range_max_m": null,

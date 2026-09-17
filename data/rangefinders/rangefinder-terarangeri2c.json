@@ -6,7 +6,12 @@
   "class_name": "AP_RangeFinder_TeraRangerI2C",
   "bus": "i2c",
   "tech": "lidar",
-  "type_ids": [],
+  "type_ids": [
+    {
+      "enum": "TRI2C",
+      "param_value": 14
+    }
+  ],
   "docs_url": "https://ardupilot.org/copter/docs/common-teraranger-one-rangefinder.html",
   "wiki_range_min_m": null,
   "wiki_range_max_m": 10.0,

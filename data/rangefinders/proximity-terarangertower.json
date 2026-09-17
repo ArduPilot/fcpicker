@@ -6,7 +6,12 @@
   "class_name": "AP_Proximity_TeraRangerTower",
   "bus": "serial",
   "tech": "lidar",
-  "type_ids": [],
+  "type_ids": [
+    {
+      "enum": "TRTOWER",
+      "param_value": 3
+    }
+  ],
   "docs_url": "https://ardupilot.org/copter/docs/common-teraranger-tower-objectavoidance.html",
   "wiki_range_min_m": null,
   "wiki_range_max_m": null,

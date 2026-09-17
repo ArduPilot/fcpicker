@@ -6,7 +6,20 @@
   "class_name": "AP_RangeFinder_PulsedLightLRF",
   "bus": "i2c",
   "tech": "lidar",
-  "type_ids": [],
+  "type_ids": [
+    {
+      "enum": "PLI2C",
+      "param_value": 3
+    },
+    {
+      "enum": "PLI2CV3",
+      "param_value": 15
+    },
+    {
+      "enum": "PLI2CV3HP",
+      "param_value": 21
+    }
+  ],
   "docs_url": "https://ardupilot.org/copter/docs/common-rangefinder-lidarlite.html",
   "wiki_range_min_m": null,
   "wiki_range_max_m": 40.0,

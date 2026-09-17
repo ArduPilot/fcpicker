@@ -6,7 +6,12 @@
   "class_name": "AP_RangeFinder_LightWareI2C",
   "bus": "i2c",
   "tech": "lidar",
-  "type_ids": [],
+  "type_ids": [
+    {
+      "enum": "LWI2C",
+      "param_value": 7
+    }
+  ],
   "docs_url": null,
   "wiki_range_min_m": null,
   "wiki_range_max_m": null,

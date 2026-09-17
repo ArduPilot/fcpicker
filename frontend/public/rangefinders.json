@@ -218,7 +218,12 @@
       "class_name": "AP_Proximity_TeraRangerTower",
       "bus": "serial",
       "tech": "lidar",
-      "type_ids": [],
+      "type_ids": [
+        {
+          "enum": "TRTOWER",
+          "param_value": 3
+        }
+      ],
       "docs_url": "https://ardupilot.org/copter/docs/common-teraranger-tower-objectavoidance.html",
       "wiki_range_min_m": null,
       "wiki_range_max_m": null,
@@ -248,7 +253,12 @@
       "class_name": "AP_Proximity_TeraRangerTowerEvo",
       "bus": "serial",
       "tech": "lidar",
-      "type_ids": [],
+      "type_ids": [
+        {
+          "enum": "TRTOWEREVO",
+          "param_value": 6
+        }
+      ],
       "docs_url": null,
       "wiki_range_min_m": null,
       "wiki_range_max_m": null,
@@ -908,7 +918,12 @@
       "class_name": "AP_RangeFinder_LightWareI2C",
       "bus": "i2c",
       "tech": "lidar",
-      "type_ids": [],
+      "type_ids": [
+        {
+          "enum": "LWI2C",
+          "param_value": 7
+        }
+      ],
       "docs_url": null,
       "wiki_range_min_m": null,
       "wiki_range_max_m": null,
@@ -938,7 +953,12 @@
       "class_name": "AP_RangeFinder_LightWareSerial",
       "bus": "serial",
       "tech": "lidar",
-      "type_ids": [],
+      "type_ids": [
+        {
+          "enum": "LWSER",
+          "param_value": 8
+        }
+      ],
       "docs_url": null,
       "wiki_range_min_m": null,
       "wiki_range_max_m": null,
@@ -968,7 +988,12 @@
       "class_name": "AP_RangeFinder_MaxsonarI2CXL",
       "bus": "i2c",
       "tech": "ultrasonic",
-      "type_ids": [],
+      "type_ids": [
+        {
+          "enum": "MBI2C",
+          "param_value": 2
+        }
+      ],
       "docs_url": "https://ardupilot.org/copter/docs/common-rangefinder-maxbotixi2c.html",
       "wiki_range_min_m": null,
       "wiki_range_max_m": 7.0,
@@ -998,7 +1023,12 @@
       "class_name": "AP_RangeFinder_MaxsonarSerialLV",
       "bus": "serial",
       "tech": "ultrasonic",
-      "type_ids": [],
+      "type_ids": [
+        {
+          "enum": "MBSER",
+          "param_value": 13
+        }
+      ],
       "docs_url": "https://ardupilot.org/copter/docs/common-rangefinder-maxbotix-analog.html",
       "wiki_range_min_m": null,
       "wiki_range_max_m": 10.0,
@@ -1133,7 +1163,20 @@
       "class_name": "AP_RangeFinder_PulsedLightLRF",
       "bus": "i2c",
       "tech": "lidar",
-      "type_ids": [],
+      "type_ids": [
+        {
+          "enum": "PLI2C",
+          "param_value": 3
+        },
+        {
+          "enum": "PLI2CV3",
+          "param_value": 15
+        },
+        {
+          "enum": "PLI2CV3HP",
+          "param_value": 21
+        }
+      ],
       "docs_url": "https://ardupilot.org/copter/docs/common-rangefinder-lidarlite.html",
       "wiki_range_min_m": null,
       "wiki_range_max_m": 40.0,
@@ -1198,7 +1241,12 @@
       "class_name": "AP_RangeFinder_TeraRangerI2C",
       "bus": "i2c",
       "tech": "lidar",
-      "type_ids": [],
+      "type_ids": [
+        {
+          "enum": "TRI2C",
+          "param_value": 14
+        }
+      ],
       "docs_url": "https://ardupilot.org/copter/docs/common-teraranger-one-rangefinder.html",
       "wiki_range_min_m": null,
       "wiki_range_max_m": 10.0,

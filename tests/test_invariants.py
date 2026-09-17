@@ -211,3 +211,44 @@ def test_sitemap_covers_the_rangefinder_catalog(repo_root):
     assert any(loc.endswith("/rangefinders") for loc in locs), (
         "the rangefinder index page itself is not in the sitemap"
     )
+
+
+HWDEF_ROOT = Path.home() / "ardupilot" / "libraries"
+
+needs_ardupilot = pytest.mark.skipif(
+    not HWDEF_ROOT.exists(), reason="needs an ArduPilot checkout at ~/ardupilot"
+)
+
+
+@needs_ardupilot
+def test_github_readme_links_match_the_real_filename(boards):
+    """GitHub is case-sensitive; macOS is not.
+
+    A dozen hwdefs spell it "Readme.md" or "readme.md". On a case-insensitive
+    filesystem `(dir / "README.md").exists()` is True for every one of them, so
+    a URL built from the assumed name resolves locally and 404s on GitHub —
+    which is how three boards ended up with a dead link as their primary
+    docs_url.
+    """
+    wrong = []
+    for b in boards:
+        for key in ("docs_url", "repo_url"):
+            url = b.get(key) or ""
+            if "github.com" not in url or not url.lower().endswith("readme.md"):
+                continue
+            linked = url.rsplit("/", 1)[-1]
+            actual = None
+            for hal in ("AP_HAL_ChibiOS", "AP_HAL_Linux"):
+                d = HWDEF_ROOT / hal / "hwdef" / b["slug"]
+                if d.is_dir():
+                    actual = next(
+                        (f.name for f in sorted(d.iterdir()) if f.name.lower() == "readme.md"),
+                        None,
+                    )
+                    break
+            if actual and actual != linked:
+                wrong.append(f"{b['slug']}: links {linked}, file is {actual}")
+    assert not wrong, (
+        "GitHub README links whose capitalisation does not match the file:\n  "
+        + "\n  ".join(wrong)
+    )

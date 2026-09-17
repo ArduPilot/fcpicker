@@ -695,7 +695,7 @@
         "blimp"
       ],
       "docs_url": "https://ardupilot.org/copter/docs/common-acctongodwit-ga1.html",
-      "repo_url": "https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_HAL_ChibiOS/hwdef/AcctonGodwit_GA1/README.md",
+      "repo_url": "https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_HAL_ChibiOS/hwdef/AcctonGodwit_GA1/readme.md",
       "manual": {
         "status": "not_started",
         "manufacturer": null,
@@ -14325,7 +14325,7 @@
         "blimp"
       ],
       "docs_url": "https://ardupilot.org/copter/docs/common-botwingf405.html",
-      "repo_url": "https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_HAL_ChibiOS/hwdef/BOTWINGF405/README.md",
+      "repo_url": "https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_HAL_ChibiOS/hwdef/BOTWINGF405/Readme.md",
       "manual": {
         "status": "not_started",
         "manufacturer": null,
@@ -15930,7 +15930,7 @@
         "tracker",
         "blimp"
       ],
-      "docs_url": "https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_HAL_ChibiOS/hwdef/CBU-H7-LC-Stamp/README.md",
+      "docs_url": "https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_HAL_ChibiOS/hwdef/CBU-H7-LC-Stamp/readme.md",
       "repo_url": null,
       "manual": {
         "status": "not_started",
@@ -18647,7 +18647,7 @@
         "blimp"
       ],
       "docs_url": "https://ardupilot.org/copter/docs/common-CSKYF405.html",
-      "repo_url": "https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_HAL_ChibiOS/hwdef/CSKY405/README.md",
+      "repo_url": "https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_HAL_ChibiOS/hwdef/CSKY405/Readme.md",
       "manual": {
         "status": "not_started",
         "manufacturer": null,
@@ -47814,7 +47814,7 @@
         "blimp"
       ],
       "docs_url": "https://ardupilot.org/copter/docs/common-jhemcuf405pro.html",
-      "repo_url": "https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_HAL_ChibiOS/hwdef/JHEM_JHEF405/README.md",
+      "repo_url": "https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_HAL_ChibiOS/hwdef/JHEM_JHEF405/readme.md",
       "manual": {
         "status": "not_started",
         "manufacturer": null,
@@ -48163,7 +48163,7 @@
       "vehicles": [
         "copter"
       ],
-      "docs_url": "https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_HAL_ChibiOS/hwdef/JHEMCU-GSF405A/README.md",
+      "docs_url": "https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_HAL_ChibiOS/hwdef/JHEMCU-GSF405A/readme.md",
       "repo_url": null,
       "manual": {
         "status": "not_started",
@@ -48494,7 +48494,7 @@
       "vehicles": [
         "copter"
       ],
-      "docs_url": "https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_HAL_ChibiOS/hwdef/JHEMCU-GSF405A-RX2/README.md",
+      "docs_url": "https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_HAL_ChibiOS/hwdef/JHEMCU-GSF405A-RX2/readme.md",
       "repo_url": null,
       "manual": {
         "status": "not_started",
@@ -49646,7 +49646,7 @@
         "blimp"
       ],
       "docs_url": "https://ardupilot.org/copter/docs/common-speedybeef405wing.html",
-      "repo_url": "https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_HAL_ChibiOS/hwdef/JHEMCUF405WING/README.md",
+      "repo_url": "https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_HAL_ChibiOS/hwdef/JHEMCUF405WING/Readme.md",
       "manual": {
         "status": "not_started",
         "manufacturer": null,
@@ -55501,7 +55501,7 @@
         "blimp"
       ],
       "docs_url": "https://ardupilot.org/copter/docs/common-longbowf405wing.html",
-      "repo_url": "https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_HAL_ChibiOS/hwdef/LongBowF405WING/README.md",
+      "repo_url": "https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_HAL_ChibiOS/hwdef/LongBowF405WING/Readme.md",
       "manual": {
         "status": "not_started",
         "manufacturer": null,
@@ -62341,7 +62341,7 @@
         "tracker",
         "blimp"
       ],
-      "docs_url": "https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_HAL_ChibiOS/hwdef/MatekH7A3/README.md",
+      "docs_url": "https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_HAL_ChibiOS/hwdef/MatekH7A3/Readme.md",
       "repo_url": null,
       "manual": {
         "status": "not_started",
@@ -90653,7 +90653,7 @@
         "blimp"
       ],
       "docs_url": "https://ardupilot.org/copter/docs/common-radiolinkpix6.html",
-      "repo_url": "https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_HAL_ChibiOS/hwdef/RadiolinkPIX6/README.md",
+      "repo_url": "https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_HAL_ChibiOS/hwdef/RadiolinkPIX6/Readme.md",
       "manual": {
         "status": "not_started",
         "manufacturer": null,
@@ -102652,7 +102652,7 @@
         "blimp"
       ],
       "docs_url": "https://ardupilot.org/copter/docs/common-speedybeef405wing.html",
-      "repo_url": "https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_HAL_ChibiOS/hwdef/SpeedyBeeF405WING/README.md",
+      "repo_url": "https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_HAL_ChibiOS/hwdef/SpeedyBeeF405WING/Readme.md",
       "manual": {
         "status": "not_started",
         "manufacturer": null,

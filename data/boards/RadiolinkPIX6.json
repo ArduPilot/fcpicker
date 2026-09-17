@@ -214,7 +214,7 @@
     "blimp"
   ],
   "docs_url": "https://ardupilot.org/copter/docs/common-radiolinkpix6.html",
-  "repo_url": "https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_HAL_ChibiOS/hwdef/RadiolinkPIX6/README.md",
+  "repo_url": "https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_HAL_ChibiOS/hwdef/RadiolinkPIX6/Readme.md",
   "manual": {
     "status": "not_started",
     "manufacturer": null,

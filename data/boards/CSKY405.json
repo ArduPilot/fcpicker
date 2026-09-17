@@ -196,7 +196,7 @@
     "blimp"
   ],
   "docs_url": "https://ardupilot.org/copter/docs/common-CSKYF405.html",
-  "repo_url": "https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_HAL_ChibiOS/hwdef/CSKY405/README.md",
+  "repo_url": "https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_HAL_ChibiOS/hwdef/CSKY405/Readme.md",
   "manual": {
     "status": "not_started",
     "manufacturer": null,

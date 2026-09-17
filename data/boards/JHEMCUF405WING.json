@@ -197,7 +197,7 @@
     "blimp"
   ],
   "docs_url": "https://ardupilot.org/copter/docs/common-speedybeef405wing.html",
-  "repo_url": "https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_HAL_ChibiOS/hwdef/JHEMCUF405WING/README.md",
+  "repo_url": "https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_HAL_ChibiOS/hwdef/JHEMCUF405WING/Readme.md",
   "manual": {
     "status": "not_started",
     "manufacturer": null,

@@ -280,7 +280,7 @@
     "blimp"
   ],
   "docs_url": "https://ardupilot.org/copter/docs/common-acctongodwit-ga1.html",
-  "repo_url": "https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_HAL_ChibiOS/hwdef/AcctonGodwit_GA1/README.md",
+  "repo_url": "https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_HAL_ChibiOS/hwdef/AcctonGodwit_GA1/readme.md",
   "manual": {
     "status": "not_started",
     "manufacturer": null,

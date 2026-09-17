@@ -189,6 +189,18 @@ export interface BecOutput {
   amps: number | null;
 }
 
+// One field, as read from each available source, and whether they agreed.
+// Produced by the fc-verify-enrich pass, which reads a board's hwdef, wiki
+// page, vendor page and README side by side.
+export interface AiFieldCheck {
+  field: string;
+  hwdef: string | null;
+  wiki: string | null;
+  manufacturer: string | null;
+  readme: string | null;
+  agree: "agree" | "partial" | "disagree" | "unknown";
+}
+
 // AI-gathered enrichment (vendor pages + docs + local wiki). NON-authoritative:
 // a discovery aid only. Chip-level fields are intentionally not surfaced in the
 // UI — they're unreliable for multi-revision boards. Verify against docs.
@@ -213,6 +225,35 @@ export interface BoardAi {
   // Documents the extraction pass found on vendor pages. Suggestions only —
   // promoted into manual.documents after a human opens the link.
   documents?: BoardDocument[];
+  // --- Cross-check readings -------------------------------------------------
+  // Derived independently of the hwdef parser, so agreement is corroboration
+  // and divergence is worth investigating. tests/test_ai_parser_agreement.py
+  // compares these against the parser on every run; they agree on 97-100% of
+  // boards depending on the field.
+  //
+  // mcu_part is the silicon read off vendor documentation (STM32H743IIK6),
+  // which is more specific than the parser's hwdef compile target
+  // (STM32H743xx) and legitimately differs where ArduPilot builds a part on a
+  // superset target.
+  mcu_part?: string | null;
+  imu_models?: string[];
+  baro_models?: string[];
+  compass_models?: string[];
+  has_baro?: boolean | null;
+  has_sdcard?: boolean | null;
+  uart_count?: number | null;
+  can_count?: number | null;
+  // Suggested replacement for a docs_url that points at the wrong page, as a
+  // wiki .rst stem. Applied through data/docs_overrides.json after a human
+  // confirms the page really describes this board.
+  correct_wiki_stem?: string | null;
+  // Free-text notes on where the sources disagreed. A snapshot from whenever
+  // the pass last ran, so it goes stale — prefer the computed comparison in
+  // tests/test_ai_parser_agreement.py over reading these as a to-do list.
+  discrepancies?: string[];
+  field_checks?: AiFieldCheck[];
+  // Which extraction pass wrote this block.
+  source?: string;
   confidence?: "high" | "medium" | "low";
   sources_used?: string[];
 }

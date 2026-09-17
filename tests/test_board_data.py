@@ -149,21 +149,11 @@ def _board_ai_allowed_keys(repo_root) -> set[str]:
     return set(keys) | {"source"}
 
 
-@pytest.mark.xfail(
-    reason=(
-        "Every one of the 279 boards carrying an `ai` block was populated by a "
-        "verification-style workflow ('fc-verify-enrich') that writes fields never "
-        "declared on the BoardAi interface in frontend/src/types.ts: has_baro, "
-        "has_sdcard, baro_models, imu_models, uart_count, can_count, mcu_part, "
-        "discrepancies, field_checks (and compass_models / correct_wiki_stem on "
-        "some boards). The frontend will never read these, and BoardAi documents "
-        "a different, narrower shape than what extraction is actually writing. "
-        "This is a real drift between the extraction workflow and the documented "
-        "`ai` schema, not a test bug — see tools/build.py's `ai` handling and "
-        "CLAUDE.md's labeler workflow section."
-    ),
-    strict=True,
-)
+# Was xfailed while the extraction workflow wrote fields BoardAi never
+# declared. Those are now declared (mcu_part, imu_models, field_checks and the
+# rest of the cross-check group), so this is a live guard again: a pass that
+# invents a new field fails here rather than silently filling board files with
+# data the frontend can never read.
 def test_ai_block_has_no_unknown_keys(boards, repo_root):
     allowed = _board_ai_allowed_keys(repo_root)
     unknown: dict[str, list[str]] = {}

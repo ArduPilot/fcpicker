@@ -1,0 +1,74 @@
+name: Link check
+
+# Every outbound link in the catalog, weekly. Vendor links rot fast and a dead
+# link on a spec page sends someone choosing hardware nowhere.
+#
+# Deliberately NOT part of CI: third-party uptime must never fail a pull
+# request. A vendor's site being down at 3am is not a reason to block a merge.
+# It reports instead, onto one long-lived issue.
+
+on:
+  schedule:
+    - cron: "0 8 * * 1"   # Mondays 08:00 UTC, after the parser-drift check
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+env:
+  NOTIFY_USER: freddygaffey
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Check links
+        run: python tools/link_check.py --markdown > report.md
+
+      - name: Decide whether anything needs attention
+        id: triage
+        run: |
+          # Only dead links and certificate problems are worth an issue.
+          # Host-blocked entries are a WAF turning a bot away and say nothing
+          # about whether the link works for a person.
+          if grep -qE "^### (Dead links|Certificate problems)" report.md; then
+            echo "report=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "report=false" >> "$GITHUB_OUTPUT"
+          fi
+          cat report.md
+
+      - name: Open or update the issue
+        if: steps.triage.outputs.report == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh label create link-rot --color fbca04 \
+            --description "Dead or misconfigured outbound links" 2>/dev/null || true
+
+          # One standing issue, commented on weekly, rather than a new one each
+          # Monday — link rot is a continuing condition, not an event.
+          existing="$(gh issue list --state open --label link-rot \
+                       --json number -q '.[0].number')"
+          {
+            cat report.md
+            echo
+            echo "Reproduce with \`python tools/link_check.py\`."
+            echo
+            echo "cc @$NOTIFY_USER"
+          } > body.md
+
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --body-file body.md
+          else
+            gh issue create --title "Dead links in the catalog" --label link-rot \
+              --assignee "$NOTIFY_USER" --body-file body.md
+          fi

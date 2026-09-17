@@ -51,7 +51,7 @@ COMMON_PLATFORM = "copter"
 # the hwdef README on GitHub, if the board ships one.
 HWDEF_README_URL = (
     "https://github.com/ArduPilot/ardupilot/blob/master/"
-    "libraries/{hal_dir}/hwdef/{slug}/README.md"
+    "libraries/{hal_dir}/hwdef/{slug}/{readme}"
 )
 # Fallback link for boards with no README: the hwdef directory itself.
 HWDEF_DIR_URL = (
@@ -190,6 +190,7 @@ class ParsedBoard:
     docs_url: str | None = None
     repo_url: str | None = None
     readme: str | None = None
+    readme_name: str | None = None
 
 
 MCU_RE = re.compile(r"^\s*MCU\s+(\S+)\s+(\S+)", re.MULTILINE)
@@ -740,8 +741,17 @@ def parse_board(board_dir: Path, platform: str = "chibios") -> ParsedBoard | Non
     else:
         vehicles = list(ALL_VEHICLES)
 
-    readme_path = board_dir / "README.md"
-    readme = readme_path.read_text(errors="ignore") if readme_path.exists() else None
+    # Take the filename from the directory listing rather than assuming
+    # "README.md". A dozen hwdefs spell it "Readme.md" or "readme.md", and on a
+    # case-insensitive filesystem (macOS) `(dir / "README.md").exists()` is True
+    # for all of them — so the generated GitHub URL 404'd, because GitHub is
+    # case-sensitive. The link checker is what surfaced it.
+    readme_name = next(
+        (f.name for f in sorted(board_dir.iterdir()) if f.name.lower() == "readme.md"),
+        None,
+    )
+    readme_path = board_dir / readme_name if readme_name else None
+    readme = readme_path.read_text(errors="ignore") if readme_path else None
 
     return ParsedBoard(
         slug=slug,
@@ -771,6 +781,7 @@ def parse_board(board_dir: Path, platform: str = "chibios") -> ParsedBoard | Non
         power_inputs=power_inputs,
         vehicles=vehicles,
         readme=readme,
+        readme_name=readme_name,
     )
 
 
@@ -1045,7 +1056,10 @@ def populate_db(session: Session, parsed: list[ParsedBoard], docs_map: dict[str,
     for p in parsed:
         hal_dir = HAL_DIR.get(p.platform, "AP_HAL_ChibiOS")
         # The hwdef README on GitHub, if this board ships one.
-        readme_url = HWDEF_README_URL.format(hal_dir=hal_dir, slug=p.slug) if p.readme is not None else None
+        readme_url = (
+            HWDEF_README_URL.format(hal_dir=hal_dir, slug=p.slug, readme=p.readme_name)
+            if p.readme_name else None
+        )
         # Linux boards rarely have a wiki page; the hwdef dir is a guaranteed
         # source link. Kept Linux-only so ChibiOS output is byte-identical.
         dir_url = HWDEF_DIR_URL.format(hal_dir=hal_dir, slug=p.slug) if p.platform == "linux" else None

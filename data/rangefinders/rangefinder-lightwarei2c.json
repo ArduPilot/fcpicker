@@ -19,7 +19,7 @@
   "wiki_fov_deg": null,
   "manual": {
     "status": "not_started",
-    "manufacturer": null,
+    "manufacturer": "LightWare",
     "product_url": null,
     "accuracy_cm": null,
     "update_rate_hz": null,

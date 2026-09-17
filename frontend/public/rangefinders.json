@@ -21,7 +21,7 @@
       "wiki_fov_deg": null,
       "manual": {
         "status": "not_started",
-        "manufacturer": null,
+        "manufacturer": "Cygbot",
         "product_url": null,
         "accuracy_cm": null,
         "update_rate_hz": null,
@@ -56,7 +56,7 @@
       "wiki_fov_deg": null,
       "manual": {
         "status": "not_started",
-        "manufacturer": null,
+        "manufacturer": "LDROBOT",
         "product_url": null,
         "accuracy_cm": null,
         "update_rate_hz": null,
@@ -91,7 +91,7 @@
       "wiki_fov_deg": 360,
       "manual": {
         "status": "not_started",
-        "manufacturer": null,
+        "manufacturer": "LightWare",
         "product_url": null,
         "accuracy_cm": null,
         "update_rate_hz": null,
@@ -126,7 +126,7 @@
       "wiki_fov_deg": null,
       "manual": {
         "status": "not_started",
-        "manufacturer": null,
+        "manufacturer": "LightWare",
         "product_url": null,
         "accuracy_cm": null,
         "update_rate_hz": null,
@@ -161,7 +161,7 @@
       "wiki_fov_deg": null,
       "manual": {
         "status": "not_started",
-        "manufacturer": null,
+        "manufacturer": "Nanoradar",
         "product_url": null,
         "accuracy_cm": null,
         "update_rate_hz": null,
@@ -196,7 +196,7 @@
       "wiki_fov_deg": null,
       "manual": {
         "status": "not_started",
-        "manufacturer": null,
+        "manufacturer": "Slamtec",
         "product_url": null,
         "accuracy_cm": null,
         "update_rate_hz": null,
@@ -231,7 +231,7 @@
       "wiki_fov_deg": null,
       "manual": {
         "status": "not_started",
-        "manufacturer": null,
+        "manufacturer": "Terabee",
         "product_url": null,
         "accuracy_cm": null,
         "update_rate_hz": null,
@@ -266,7 +266,7 @@
       "wiki_fov_deg": null,
       "manual": {
         "status": "not_started",
-        "manufacturer": null,
+        "manufacturer": "Terabee",
         "product_url": null,
         "accuracy_cm": null,
         "update_rate_hz": null,
@@ -301,7 +301,7 @@
       "wiki_fov_deg": null,
       "manual": {
         "status": "not_started",
-        "manufacturer": null,
+        "manufacturer": "Ainstein",
         "product_url": null,
         "accuracy_cm": null,
         "update_rate_hz": null,
@@ -371,7 +371,7 @@
       "wiki_fov_deg": null,
       "manual": {
         "status": "not_started",
-        "manufacturer": null,
+        "manufacturer": "Parrot",
         "product_url": null,
         "accuracy_cm": null,
         "update_rate_hz": null,
@@ -382,7 +382,7 @@
         "range_min_m_override": null,
         "range_max_m_override": null,
         "fov_deg_override": null,
-        "notes": null
+        "notes": "The Bebop's built-in sonar, not a separately purchasable sensor \u2014 attributed to Parrot for consistency with the bebop board entry."
       }
     },
     {
@@ -406,7 +406,7 @@
       "wiki_fov_deg": null,
       "manual": {
         "status": "not_started",
-        "manufacturer": null,
+        "manufacturer": "Benewake",
         "product_url": null,
         "accuracy_cm": null,
         "update_rate_hz": null,
@@ -441,7 +441,7 @@
       "wiki_fov_deg": null,
       "manual": {
         "status": "not_started",
-        "manufacturer": null,
+        "manufacturer": "Benewake",
         "product_url": null,
         "accuracy_cm": null,
         "update_rate_hz": null,
@@ -476,7 +476,7 @@
       "wiki_fov_deg": null,
       "manual": {
         "status": "not_started",
-        "manufacturer": null,
+        "manufacturer": "Benewake",
         "product_url": null,
         "accuracy_cm": null,
         "update_rate_hz": null,
@@ -511,7 +511,7 @@
       "wiki_fov_deg": null,
       "manual": {
         "status": "not_started",
-        "manufacturer": null,
+        "manufacturer": "Benewake",
         "product_url": null,
         "accuracy_cm": null,
         "update_rate_hz": null,
@@ -546,7 +546,7 @@
       "wiki_fov_deg": null,
       "manual": {
         "status": "not_started",
-        "manufacturer": null,
+        "manufacturer": "Benewake",
         "product_url": null,
         "accuracy_cm": null,
         "update_rate_hz": null,
@@ -581,7 +581,7 @@
       "wiki_fov_deg": null,
       "manual": {
         "status": "not_started",
-        "manufacturer": null,
+        "manufacturer": "Benewake",
         "product_url": null,
         "accuracy_cm": null,
         "update_rate_hz": null,
@@ -616,7 +616,7 @@
       "wiki_fov_deg": null,
       "manual": {
         "status": "not_started",
-        "manufacturer": null,
+        "manufacturer": "Blue Robotics",
         "product_url": null,
         "accuracy_cm": null,
         "update_rate_hz": null,
@@ -651,7 +651,7 @@
       "wiki_fov_deg": null,
       "manual": {
         "status": "not_started",
-        "manufacturer": null,
+        "manufacturer": "Polaris IC",
         "product_url": null,
         "accuracy_cm": null,
         "update_rate_hz": null,
@@ -756,7 +756,7 @@
       "wiki_fov_deg": null,
       "manual": {
         "status": "not_started",
-        "manufacturer": null,
+        "manufacturer": "JAE",
         "product_url": null,
         "accuracy_cm": null,
         "update_rate_hz": null,
@@ -791,7 +791,7 @@
       "wiki_fov_deg": null,
       "manual": {
         "status": "not_started",
-        "manufacturer": null,
+        "manufacturer": "Lanbao",
         "product_url": null,
         "accuracy_cm": null,
         "update_rate_hz": null,
@@ -826,7 +826,7 @@
       "wiki_fov_deg": null,
       "manual": {
         "status": "not_started",
-        "manufacturer": null,
+        "manufacturer": "LeddarTech",
         "product_url": null,
         "accuracy_cm": null,
         "update_rate_hz": null,
@@ -861,7 +861,7 @@
       "wiki_fov_deg": null,
       "manual": {
         "status": "not_started",
-        "manufacturer": null,
+        "manufacturer": "LeddarTech",
         "product_url": null,
         "accuracy_cm": null,
         "update_rate_hz": null,
@@ -896,7 +896,7 @@
       "wiki_fov_deg": null,
       "manual": {
         "status": "not_started",
-        "manufacturer": null,
+        "manufacturer": "LightWare",
         "product_url": null,
         "accuracy_cm": null,
         "update_rate_hz": null,
@@ -931,7 +931,7 @@
       "wiki_fov_deg": null,
       "manual": {
         "status": "not_started",
-        "manufacturer": null,
+        "manufacturer": "LightWare",
         "product_url": null,
         "accuracy_cm": null,
         "update_rate_hz": null,
@@ -966,7 +966,7 @@
       "wiki_fov_deg": null,
       "manual": {
         "status": "not_started",
-        "manufacturer": null,
+        "manufacturer": "LightWare",
         "product_url": null,
         "accuracy_cm": null,
         "update_rate_hz": null,
@@ -1001,7 +1001,7 @@
       "wiki_fov_deg": null,
       "manual": {
         "status": "not_started",
-        "manufacturer": null,
+        "manufacturer": "MaxBotix",
         "product_url": null,
         "accuracy_cm": null,
         "update_rate_hz": null,
@@ -1036,7 +1036,7 @@
       "wiki_fov_deg": null,
       "manual": {
         "status": "not_started",
-        "manufacturer": null,
+        "manufacturer": "MaxBotix",
         "product_url": null,
         "accuracy_cm": null,
         "update_rate_hz": null,
@@ -1106,7 +1106,7 @@
       "wiki_fov_deg": null,
       "manual": {
         "status": "not_started",
-        "manufacturer": null,
+        "manufacturer": "NoopLoop",
         "product_url": null,
         "accuracy_cm": null,
         "update_rate_hz": null,
@@ -1141,7 +1141,7 @@
       "wiki_fov_deg": null,
       "manual": {
         "status": "not_started",
-        "manufacturer": null,
+        "manufacturer": "Nanoradar",
         "product_url": null,
         "accuracy_cm": null,
         "update_rate_hz": null,
@@ -1184,7 +1184,7 @@
       "wiki_fov_deg": null,
       "manual": {
         "status": "not_started",
-        "manufacturer": null,
+        "manufacturer": "Garmin",
         "product_url": null,
         "accuracy_cm": null,
         "update_rate_hz": null,
@@ -1219,7 +1219,7 @@
       "wiki_fov_deg": null,
       "manual": {
         "status": "not_started",
-        "manufacturer": null,
+        "manufacturer": "Benewake",
         "product_url": null,
         "accuracy_cm": null,
         "update_rate_hz": null,
@@ -1254,7 +1254,7 @@
       "wiki_fov_deg": null,
       "manual": {
         "status": "not_started",
-        "manufacturer": null,
+        "manufacturer": "Terabee",
         "product_url": null,
         "accuracy_cm": null,
         "update_rate_hz": null,
@@ -1289,7 +1289,7 @@
       "wiki_fov_deg": null,
       "manual": {
         "status": "not_started",
-        "manufacturer": null,
+        "manufacturer": "Terabee",
         "product_url": null,
         "accuracy_cm": null,
         "update_rate_hz": null,
@@ -1324,7 +1324,7 @@
       "wiki_fov_deg": null,
       "manual": {
         "status": "not_started",
-        "manufacturer": null,
+        "manufacturer": "NoopLoop",
         "product_url": null,
         "accuracy_cm": null,
         "update_rate_hz": null,
@@ -1359,7 +1359,7 @@
       "wiki_fov_deg": null,
       "manual": {
         "status": "not_started",
-        "manufacturer": null,
+        "manufacturer": "NoopLoop",
         "product_url": null,
         "accuracy_cm": null,
         "update_rate_hz": null,
@@ -1394,7 +1394,7 @@
       "wiki_fov_deg": null,
       "manual": {
         "status": "not_started",
-        "manufacturer": null,
+        "manufacturer": "Ainstein",
         "product_url": null,
         "accuracy_cm": null,
         "update_rate_hz": null,
@@ -1429,7 +1429,7 @@
       "wiki_fov_deg": null,
       "manual": {
         "status": "not_started",
-        "manufacturer": null,
+        "manufacturer": "Ainstein",
         "product_url": null,
         "accuracy_cm": null,
         "update_rate_hz": null,
@@ -1464,7 +1464,7 @@
       "wiki_fov_deg": null,
       "manual": {
         "status": "not_started",
-        "manufacturer": null,
+        "manufacturer": "STMicroelectronics",
         "product_url": null,
         "accuracy_cm": null,
         "update_rate_hz": null,
@@ -1499,7 +1499,7 @@
       "wiki_fov_deg": null,
       "manual": {
         "status": "not_started",
-        "manufacturer": null,
+        "manufacturer": "STMicroelectronics",
         "product_url": null,
         "accuracy_cm": null,
         "update_rate_hz": null,
@@ -1534,7 +1534,7 @@
       "wiki_fov_deg": null,
       "manual": {
         "status": "not_started",
-        "manufacturer": null,
+        "manufacturer": "Attollo Engineering",
         "product_url": null,
         "accuracy_cm": null,
         "update_rate_hz": null,

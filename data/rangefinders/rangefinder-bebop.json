@@ -19,7 +19,7 @@
   "wiki_fov_deg": null,
   "manual": {
     "status": "not_started",
-    "manufacturer": null,
+    "manufacturer": "Parrot",
     "product_url": null,
     "accuracy_cm": null,
     "update_rate_hz": null,
@@ -30,6 +30,6 @@
     "range_min_m_override": null,
     "range_max_m_override": null,
     "fov_deg_override": null,
-    "notes": null
+    "notes": "The Bebop's built-in sonar, not a separately purchasable sensor \u2014 attributed to Parrot for consistency with the bebop board entry."
   }
 }

@@ -1659,6 +1659,206 @@
       "verified": false,
       "note": "Site listed in the CyberX-v10 hwdef README as the manufacturer/where-to-buy link. Returns HTTP 200 but is a client-rendered (Nuxt) single-page app with no server-rendered content, and no HTTPS certificate — automated fetch and browser navigation both failed to confirm company identity from the page content.",
       "ardupilot_partner": false
+    },
+    {
+      "id": "ainstein",
+      "name": "Ainstein",
+      "aliases": [
+        "ainstein"
+      ],
+      "website": "https://ainstein.ai/",
+      "store_url": null,
+      "distributors_url": null,
+      "country": "US",
+      "verified": true,
+      "ardupilot_partner": false
+    },
+    {
+      "id": "attollo engineering",
+      "name": "Attollo Engineering",
+      "aliases": [
+        "attollo engineering",
+        "attollo"
+      ],
+      "website": "https://attolloengineering.com/",
+      "store_url": "https://attolloengineering.com/store/",
+      "distributors_url": null,
+      "country": "US",
+      "verified": true,
+      "ardupilot_partner": false
+    },
+    {
+      "id": "benewake",
+      "name": "Benewake",
+      "aliases": [
+        "benewake"
+      ],
+      "website": "https://en.benewake.com/",
+      "store_url": null,
+      "distributors_url": null,
+      "country": "CN",
+      "verified": true,
+      "ardupilot_partner": true
+    },
+    {
+      "id": "cygbot",
+      "name": "Cygbot",
+      "aliases": [
+        "cygbot"
+      ],
+      "website": "https://www.cygbot.com/",
+      "store_url": null,
+      "distributors_url": null,
+      "country": "KR",
+      "verified": true,
+      "ardupilot_partner": false
+    },
+    {
+      "id": "garmin",
+      "name": "Garmin",
+      "aliases": [
+        "garmin"
+      ],
+      "website": "https://www.garmin.com/",
+      "store_url": null,
+      "distributors_url": null,
+      "country": "US",
+      "verified": true,
+      "ardupilot_partner": false
+    },
+    {
+      "id": "lanbao",
+      "name": "Lanbao",
+      "aliases": [
+        "lanbao"
+      ],
+      "website": "https://www.lanbaosensor.com/",
+      "store_url": null,
+      "distributors_url": null,
+      "country": "CN",
+      "verified": true,
+      "ardupilot_partner": false
+    },
+    {
+      "id": "ldrobot",
+      "name": "LDROBOT",
+      "aliases": [
+        "ldrobot"
+      ],
+      "website": "https://www.ldrobot.com/",
+      "store_url": null,
+      "distributors_url": null,
+      "country": "CN",
+      "verified": true,
+      "ardupilot_partner": false
+    },
+    {
+      "id": "leddartech",
+      "name": "LeddarTech",
+      "aliases": [
+        "leddartech",
+        "leddar"
+      ],
+      "website": "https://leddartech.com/",
+      "store_url": null,
+      "distributors_url": null,
+      "country": "CA",
+      "verified": true,
+      "ardupilot_partner": false
+    },
+    {
+      "id": "lightware",
+      "name": "LightWare",
+      "aliases": [
+        "lightware"
+      ],
+      "website": "https://lightwarelidar.com/",
+      "store_url": null,
+      "distributors_url": null,
+      "country": "ZA",
+      "verified": false,
+      "note": "lightwarelidar.com (and lightware.co.za) return HTTP 403 Cloudflare bot-challenge pages to automated requests; not independently confirmed, though LightWare is a listed ArduPilot Corporate Partner using this domain.",
+      "ardupilot_partner": true
+    },
+    {
+      "id": "maxbotix",
+      "name": "MaxBotix",
+      "aliases": [
+        "maxbotix"
+      ],
+      "website": "https://www.maxbotix.com/",
+      "store_url": null,
+      "distributors_url": null,
+      "country": "US",
+      "verified": true,
+      "ardupilot_partner": false
+    },
+    {
+      "id": "nanoradar",
+      "name": "Nanoradar",
+      "aliases": [
+        "nanoradar"
+      ],
+      "website": "https://www.nanoradar.com/",
+      "store_url": null,
+      "distributors_url": null,
+      "country": "CN",
+      "verified": true,
+      "ardupilot_partner": true
+    },
+    {
+      "id": "nooploop",
+      "name": "NoopLoop",
+      "aliases": [
+        "nooploop"
+      ],
+      "website": "https://www.nooploop.com/",
+      "store_url": null,
+      "distributors_url": null,
+      "country": "CN",
+      "verified": true,
+      "ardupilot_partner": true
+    },
+    {
+      "id": "polaris ic",
+      "name": "Polaris IC",
+      "aliases": [
+        "polaris ic",
+        "polarisic"
+      ],
+      "website": "https://www.polarisic.com/",
+      "store_url": null,
+      "distributors_url": null,
+      "country": "CN",
+      "verified": true,
+      "ardupilot_partner": false
+    },
+    {
+      "id": "slamtec",
+      "name": "Slamtec",
+      "aliases": [
+        "slamtec"
+      ],
+      "website": "https://www.slamtec.com/",
+      "store_url": null,
+      "distributors_url": null,
+      "country": "CN",
+      "verified": true,
+      "ardupilot_partner": false
+    },
+    {
+      "id": "terabee",
+      "name": "Terabee",
+      "aliases": [
+        "terabee",
+        "teraranger"
+      ],
+      "website": "https://www.terabee.com/",
+      "store_url": null,
+      "distributors_url": null,
+      "country": "CH",
+      "verified": true,
+      "ardupilot_partner": false
     }
   ]
 }

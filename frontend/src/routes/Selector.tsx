@@ -390,6 +390,7 @@ export default function Selector() {
                 <button
                   key={v.id}
                   className={"chip " + (on ? "chip-on" : "")}
+                  aria-pressed={on}
                   onClick={() => toggleIn("vehicles", v.id)}
                 >
                   {v.label}
@@ -977,7 +978,17 @@ function BdshotCell({ board: b }: { board: Board }) {
   if (b.bdshot_target) {
     return (
       <td className="td-bool td-bool-yes">
-        <Link to={`/board/${b.slug}`} className="bdshot-var" title={`Optional: ${b.bdshot_target.slug} firmware target`}>opt</Link>
+        <Link
+          to={`/board/${b.slug}`}
+          className="bdshot-var"
+          // "opt" alone is meaningless out of context. Deliberately does not
+          // repeat the board name: the row already announces it, and including
+          // it made this link indistinguishable from the board link beside it.
+          aria-label="Optional bidirectional DShot firmware target"
+          title={`Optional: ${b.bdshot_target.slug} firmware target`}
+        >
+          opt
+        </Link>
       </td>
     );
   }

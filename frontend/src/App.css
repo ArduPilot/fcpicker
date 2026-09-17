@@ -353,6 +353,7 @@
 }
 
 .toggle {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -360,7 +361,27 @@
   font-size: 13px;
   color: var(--ink);
 }
-.toggle input { display: none; }
+/* Visually hidden rather than display:none. The custom .toggle-mark is what
+   you see, but the real checkbox has to stay in the accessibility tree and in
+   the tab order — display:none took every sidebar toggle out of both, so none
+   of them could be reached by keyboard at all. */
+.toggle input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+/* The focus ring has to move to the visible element, since the input itself
+   is invisible. */
+.toggle input:focus-visible + .toggle-mark {
+  outline: 2px solid var(--ap-blue);
+  outline-offset: 2px;
+}
 .toggle-mark {
   width: 34px;
   height: 18px;

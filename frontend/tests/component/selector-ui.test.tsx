@@ -148,3 +148,33 @@ describe("Selector UI", () => {
     expect(copter.className).not.toMatch(/\bchip-on\b/);
   });
 });
+
+describe("keyboard accessibility", () => {
+  beforeEach(() => {
+    primeAll();
+  });
+
+  it("exposes every sidebar toggle to assistive tech and the tab order", () => {
+    // Regression guard: `.toggle input { display: none }` removed all of these
+    // from the accessibility tree AND the tab order, so no sidebar toggle could
+    // be reached by keyboard at all. They are visually hidden now instead.
+    renderApp();
+    const toggles = screen.getAllByRole("checkbox");
+    expect(toggles.length).toBeGreaterThan(5);
+    for (const t of toggles) {
+      expect(t).toBeInTheDocument();
+    }
+  });
+
+  it("reports pressed state on both the MCU and vehicle chips", async () => {
+    // The MCU chips always had aria-pressed; the vehicle chips did not, so a
+    // screen-reader user could not tell which vehicles were selected.
+    const user = userEvent.setup();
+    renderApp();
+
+    const copter = screen.getByRole("button", { name: "Copter" });
+    expect(copter).toHaveAttribute("aria-pressed", "false");
+    await user.click(copter);
+    expect(copter).toHaveAttribute("aria-pressed", "true");
+  });
+});

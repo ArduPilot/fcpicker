@@ -34,13 +34,26 @@ NOT_A_BOARD = {
 # failed. Remove entries as they are fixed; never add to this list to make a
 # failing test pass — a new entry means a real regression.
 KNOWN_UNREFERENCED = {
-    "common-cuav-pixhawkv6X",
-    "common-cuav-v5plus-overview",
-    "common-erle-brain-linux-autopilot",
-    "common-holybro-pix32v6",
-    "common-intel-aero-rtf",
+    # Investigated individually; the reason matters, because only some are
+    # fixable from here.
+    #
+    # No ArduPilot hwdef exists, so there is no board to reference. The page
+    # documents hardware the firmware does not support (or no longer does):
+    "common-holybro-pix32v6",          # no hwdef anywhere upstream
+    "common-matekf405-se",             # no hwdef; EOL on Matek's own site
+    #
+    # A board exists upstream but our parser drops it: PixSurveyA1 inherits
+    # from fmuv3, which declares no IMU lines at all (that family probes them
+    # in firmware), and the "no IMU means not an autopilot" rule rejects it.
+    # Importing it needs a decision, because it would display 0 IMUs.
     "common-makeflyeasy-PixSurveyA1",
-    "common-matekf405-se",
+    #
+    # We carry the board but the page describes a different or broader product,
+    # so pointing at it would be worse than the current link:
+    "common-cuav-pixhawkv6X",          # we have CUAV-V6X-v2; page never mentions v2
+    "common-cuav-v5plus-overview",     # we have CUAVv5; V5+ is a separate product
+    "common-intel-aero-rtf",           # `aero` points at the Overview page instead
+    "common-erle-brain-linux-autopilot",  # archived; erlebrain2 uses the quick-start page
 }
 
 requires_wiki = pytest.mark.skipif(

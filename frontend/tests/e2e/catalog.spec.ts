@@ -12,43 +12,20 @@
  */
 import { expect, test } from "@playwright/test";
 
-// Escapes a display name for safe use inside a `new RegExp(...)` locator
-// match — none of the current catalog names need it, but a hyphen or paren in
-// a future board/device name shouldn't silently break these tests.
-function escapeRegExp(s: string): string {
-  return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-}
 
 interface BoardsPayload {
   boards: { slug: string; manual?: { discontinued?: boolean }; mcu: { family: string | null } }[];
 }
-interface RangefindersPayload {
-  rangefinders: { kind: string; slug: string; display_name: string }[];
-}
 
 test.describe("catalog behaviour", () => {
-  test("rangefinders: the list renders and a device links through to its detail page", async ({
-    page,
-    request,
-  }) => {
-    const { rangefinders }: RangefindersPayload = await (
-      await request.get("/rangefinders.json")
-    ).json();
-    expect(rangefinders.length).toBeGreaterThan(0);
-    const sample = rangefinders[0];
-
-    await page.goto("/rangefinders");
-    await expect(
-      page.getByRole("heading", { name: "Rangefinders & proximity sensors" }),
-    ).toBeVisible();
-    await expect(page.locator("table.ttable tbody tr.trow").first()).toBeVisible();
-
-    const link = page.getByRole("link", { name: new RegExp(escapeRegExp(sample.display_name)) });
-    await expect(link).toBeVisible();
-    await link.click();
-
-    await expect(page).toHaveURL(new RegExp(`/rangefinder/${sample.kind}-${sample.slug}$`));
-    await expect(page.getByRole("heading", { name: sample.display_name, level: 1 })).toBeVisible();
+  test("the rangefinder catalog is not published", async ({ request }) => {
+    // The site is the flight-controller picker; prerender.mjs deliberately does
+    // not emit the rangefinder routes, so nginx has no file to serve. The data
+    // file is still bundled and the routes still work under `npm run dev` —
+    // this asserts only that the pages are absent from the built site, which is
+    // what keeps the sitemap honest.
+    expect((await request.get("/rangefinders")).status()).toBe(404);
+    expect((await request.get("/rangefinder/rangefinder-benewaketfmini")).status()).toBe(404);
   });
 
   test("MCU multi-select in a real browser: two chips both end up selected (regression guard)", async ({
@@ -120,7 +97,7 @@ test.describe("catalog behaviour", () => {
     await expect(page.getByRole("link", { name: /Pixhawk6X/ })).toBeVisible();
   });
 
-  test("no console errors across the selector, a board page, and rangefinders", async ({
+  test("no console errors across the selector and a board page", async ({
     page,
     request,
   }) => {
@@ -142,11 +119,6 @@ test.describe("catalog behaviour", () => {
 
     await page.goto(`/board/${slug}`);
     await expect(page.getByRole("heading", { name: slug, level: 1 })).toBeVisible();
-
-    await page.goto("/rangefinders");
-    await expect(
-      page.getByRole("heading", { name: "Rangefinders & proximity sensors" }),
-    ).toBeVisible();
 
     expect(errors).toEqual([]);
   });

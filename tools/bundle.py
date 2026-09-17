@@ -14,6 +14,7 @@ hook runs this whenever data/boards/* changes are staged.
 from __future__ import annotations
 
 import json
+import os
 import re
 import sys
 from pathlib import Path
@@ -103,8 +104,12 @@ def write_sitemap(out_path: Path = SITEMAP_OUT) -> int:
         (json.loads(f.read_text())["slug"] for f in BOARDS_DIR.glob("*.json")),
         key=str.lower,
     )
+    # Only advertise what frontend/prerender.mjs actually emits. Listing a URL
+    # that has no file behind it is worse than omitting it: nginx serves a 404
+    # to a crawler we invited. Keep this in step with INCLUDE_RANGEFINDERS.
+    include_rangefinders = os.environ.get("INCLUDE_RANGEFINDERS") == "1"
     rangefinders = []
-    if RF_OUT.exists():
+    if include_rangefinders and RF_OUT.exists():
         for rf in json.loads(RF_OUT.read_text())["rangefinders"]:
             # Route is /rangefinder/<kind>-<slug>; see routes/Rangefinders.tsx.
             rangefinders.append(f"{rf['kind']}-{rf['slug']}")

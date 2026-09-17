@@ -90,24 +90,36 @@ def _rangefinder_ids() -> list[str]:
 
 @pytest.mark.slow
 def test_prerender_emits_a_page_per_route(default_build: Path):
+    """One file per flight controller, plus the index — and nothing else.
+
+    Rangefinder routes still exist in the app (they work under `npm run dev`)
+    but are not emitted as files: the published site is the flight-controller
+    picker. The negative half matters as much as the positive one, because a
+    page emitted but unlinked is dead weight, and a URL advertised but not
+    emitted is a 404.
+    """
     dist = default_build
     slugs = _board_slugs()
-    rf_ids = _rangefinder_ids()
 
     assert (dist / "index.html").is_file(), "no dist/index.html"
-    assert (dist / "rangefinders" / "index.html").is_file(), "no dist/rangefinders/index.html"
 
     missing_boards = [s for s in slugs if not (dist / "board" / s / "index.html").is_file()]
     assert not missing_boards, f"missing board pages: {missing_boards[:10]}"
 
-    missing_rf = [r for r in rf_ids if not (dist / "rangefinder" / r / "index.html").is_file()]
-    assert not missing_rf, f"missing rangefinder pages: {missing_rf[:10]}"
+    assert not (dist / "rangefinders").exists(), (
+        "rangefinder index was emitted; prerender.mjs should skip it unless "
+        "INCLUDE_RANGEFINDERS=1"
+    )
+    assert not (dist / "rangefinder").exists(), (
+        "rangefinder detail pages were emitted; prerender.mjs should skip them "
+        "unless INCLUDE_RANGEFINDERS=1"
+    )
 
     total_pages = len(list(dist.rglob("index.html")))
-    expected = len(slugs) + len(rf_ids) + 2  # + "/" and "/rangefinders"
+    expected = len(slugs) + 1  # every board, plus the selector index
     assert total_pages == expected, (
-        f"expected {expected} index.html files ({len(slugs)} boards + "
-        f"{len(rf_ids)} rangefinders + 2), found {total_pages}"
+        f"expected {expected} index.html files ({len(slugs)} boards + the "
+        f"index), found {total_pages}"
     )
 
 

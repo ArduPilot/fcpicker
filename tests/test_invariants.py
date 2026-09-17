@@ -189,27 +189,27 @@ def test_board_count_floor(boards):
     )
 
 
-def test_sitemap_covers_the_rangefinder_catalog(repo_root):
-    """Rangefinder pages are pre-rendered and linked, so they must be listed.
+def test_sitemap_advertises_only_what_is_built(repo_root):
+    """Never list a URL that has no file behind it.
 
-    They were absent for a long time: the sitemap was generated from the board
-    table alone, quietly advertising 322 of the 368 real pages.
+    The published site is the flight-controller picker; prerender.mjs does not
+    emit the rangefinder catalog unless INCLUDE_RANGEFINDERS=1, so the sitemap
+    must not offer those URLs either. A sitemap entry with no page behind it
+    sends a crawler we invited straight to a 404, which is worse than simply
+    not mentioning it.
+
+    If rangefinders are ever published again, both sides flip together.
     """
-    import json
     import xml.etree.ElementTree as ET
 
     sitemap = repo_root / "frontend" / "public" / "sitemap.xml"
-    ns = {"s": "http://www.sitemaps.org/schemas/sitemap/0.9"}
-    locs = {el.text for el in ET.parse(sitemap).getroot().iter(f"{{{ns['s']}}}loc")}
+    ns = "{http://www.sitemaps.org/schemas/sitemap/0.9}"
+    locs = {el.text for el in ET.parse(sitemap).getroot().iter(f"{ns}loc")}
 
-    payload = json.loads((repo_root / "frontend" / "public" / "rangefinders.json").read_text())
-    expected = {f"{rf['kind']}-{rf['slug']}" for rf in payload["rangefinders"]}
-    listed = {loc.rsplit("/rangefinder/", 1)[-1] for loc in locs if "/rangefinder/" in loc}
-
-    missing = sorted(expected - listed)
-    assert not missing, f"rangefinder pages absent from sitemap: {missing}"
-    assert any(loc.endswith("/rangefinders") for loc in locs), (
-        "the rangefinder index page itself is not in the sitemap"
+    advertised = sorted(loc for loc in locs if "/rangefinder" in loc)
+    assert not advertised, (
+        "sitemap lists rangefinder URLs that prerender.mjs does not build:\n  "
+        + "\n  ".join(advertised[:10])
     )
 
 

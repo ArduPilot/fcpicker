@@ -44,11 +44,19 @@ async function main() {
 
   // Route list mirrors routes-config.tsx. /admin is dev-only (its API lives in
   // the vite dev server) so it is deliberately not emitted.
+  //
+  // Rangefinders are excluded: the published site is the flight-controller
+  // picker, and nothing in the header nav links to that catalog. The routes
+  // still exist in the app, so they work under `npm run dev`; they are simply
+  // not emitted as files, and write_sitemap() in tools/bundle.py leaves them
+  // out to match. Set INCLUDE_RANGEFINDERS=1 to build them.
+  const includeRangefinders = process.env.INCLUDE_RANGEFINDERS === "1";
   const paths = [
     "/",
-    "/rangefinders",
     ...data.boards.map((b) => `/board/${b.slug}`),
-    ...data.rangefinders.map((r) => `/rangefinder/${r.kind}-${r.slug}`),
+    ...(includeRangefinders
+      ? ["/rangefinders", ...data.rangefinders.map((r) => `/rangefinder/${r.kind}-${r.slug}`)]
+      : []),
   ];
 
   const vite = await createServer({

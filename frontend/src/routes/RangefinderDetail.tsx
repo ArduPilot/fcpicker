@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { Link, useParams } from "react-router-dom";
-import { useRangefinders } from "../data";
-import type { Rangefinder } from "../types";
+import { manufacturerFor, purchaseUrl, useManufacturers, useRangefinders } from "../data";
+import type { Manufacturer, Rangefinder } from "../types";
 import { SiblingNav } from "../SiblingNav";
 import { ReportIssue } from "../ReportIssue";
 
@@ -21,6 +21,7 @@ function effectiveFov(r: Rangefinder): number | null {
 export default function RangefinderDetail() {
   const { id = "" } = useParams();
   const { rangefinders, loading, error } = useRangefinders();
+  const mfrIndex = useManufacturers();
 
   const allIds = useMemo(
     () => (rangefinders ?? [])
@@ -66,6 +67,22 @@ export default function RangefinderDetail() {
       <header className="bd-head">
         <p className="bd-eyebrow">ArduPilot-supported {classLabel.toLowerCase()}</p>
         <h1 className="bd-title">{r.display_name}</h1>
+        {r.manual?.manufacturer && (
+          <p className="bd-maker">
+            by {r.manual.manufacturer}
+            {manufacturerFor(r.manual.manufacturer, mfrIndex)?.ardupilot_partner && (
+              <a
+                className="bd-partner"
+                href="https://ardupilot.org/copter/docs/common-partners.html"
+                target="_blank"
+                rel="noreferrer"
+                title="Listed as a Corporate Partner on ArduPilot's partners page"
+              >
+                ✓ ArduPilot Partner
+              </a>
+            )}
+          </p>
+        )}
         <p className="bd-subtitle">
           {r.tech ?? "—"}
           {r.bus && <> &nbsp;·&nbsp; {r.bus} bus</>}
@@ -83,6 +100,11 @@ export default function RangefinderDetail() {
           <span>No matching wiki page found for this device.</span>
         </div>
       )}
+
+      <RangefinderBuyLink
+        productUrl={r.manual?.product_url ?? null}
+        manufacturer={manufacturerFor(r.manual?.manufacturer, mfrIndex)}
+      />
 
       <section className="bd-section">
         <h2 className="bd-h2">Specifications</h2>
@@ -157,5 +179,34 @@ export default function RangefinderDetail() {
         label={r.display_name}
       />
     </article>
+  );
+}
+
+// Where to buy. A device-specific product page beats the vendor's home page,
+// so it wins when one is recorded; otherwise this falls back to the same
+// store -> resellers -> website order the board pages use.
+function RangefinderBuyLink({
+  productUrl,
+  manufacturer,
+}: {
+  productUrl: string | null;
+  manufacturer: Manufacturer | null;
+}) {
+  const url = productUrl ?? purchaseUrl(manufacturer);
+  if (!url) return null;
+
+  const label = productUrl
+    ? "Product page"
+    : manufacturer?.store_url
+      ? `Buy direct from ${manufacturer.name}`
+      : manufacturer?.distributors_url
+        ? `Find a ${manufacturer.name} reseller`
+        : `${manufacturer?.name ?? "Manufacturer"} website`;
+
+  return (
+    <a className="bd-doc-cta" href={url} target="_blank" rel="noreferrer" style={{ marginTop: 8 }}>
+      <span className="bd-doc-cta-label">{label}</span>
+      <span className="bd-doc-cta-arrow">↗</span>
+    </a>
   );
 }

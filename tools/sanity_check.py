@@ -28,6 +28,12 @@ MAX_IMU = 3
 MAX_BARO = 3      # observed real max is 2; 3 leaves margin, >3 is a bug.
 MAX_COMPASS = 3   # onboard mags; externals are excluded from the count.
 
+# Firmware variants that deliberately strip sensors, so "IMUs but no barometer"
+# is correct rather than suspicious. Both `undef BARO` in their hwdef: they are
+# PPP gateway builds, not flight controllers in the usual sense. Left as a named
+# list rather than a suffix rule, so adding one is a decision someone makes.
+SENSORLESS_VARIANTS = {"CubeRedPrimary-PPPGW", "Pixhawk6X-PPPGW"}
+
 
 def is_onboard(s: dict) -> bool:
     return "EXTERNAL" not in (s.get("bus") or "").upper()
@@ -100,7 +106,7 @@ def main() -> int:
             hard.append(f"{slug}: chibios board with no MCU family")
 
         # SOFT: plausible but worth an eyeball (not a failure).
-        if imu >= 3 and baro == 0:
+        if imu >= 3 and baro == 0 and slug not in SENSORLESS_VARIANTS:
             soft.append(f"{slug}: {imu} IMU but 0 baro — verify against wiki")
 
     print(f"Checked {len(files)} boards.\n")

@@ -187,3 +187,27 @@ def test_board_count_floor(boards):
         f"only {len(boards)} boards found, below the floor of {MIN_BOARD_COUNT} "
         "— a parser regression may be silently dropping boards"
     )
+
+
+def test_sitemap_covers_the_rangefinder_catalog(repo_root):
+    """Rangefinder pages are pre-rendered and linked, so they must be listed.
+
+    They were absent for a long time: the sitemap was generated from the board
+    table alone, quietly advertising 322 of the 368 real pages.
+    """
+    import json
+    import xml.etree.ElementTree as ET
+
+    sitemap = repo_root / "frontend" / "public" / "sitemap.xml"
+    ns = {"s": "http://www.sitemaps.org/schemas/sitemap/0.9"}
+    locs = {el.text for el in ET.parse(sitemap).getroot().iter(f"{{{ns['s']}}}loc")}
+
+    payload = json.loads((repo_root / "frontend" / "public" / "rangefinders.json").read_text())
+    expected = {f"{rf['kind']}-{rf['slug']}" for rf in payload["rangefinders"]}
+    listed = {loc.rsplit("/rangefinder/", 1)[-1] for loc in locs if "/rangefinder/" in loc}
+
+    missing = sorted(expected - listed)
+    assert not missing, f"rangefinder pages absent from sitemap: {missing}"
+    assert any(loc.endswith("/rangefinders") for loc in locs), (
+        "the rangefinder index page itself is not in the sitemap"
+    )

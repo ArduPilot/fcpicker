@@ -21,6 +21,11 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parent.parent
 BOARDS_DIR = REPO_ROOT / "data" / "boards"
 OUT_PATH = REPO_ROOT / "frontend" / "public" / "boards.json"
+RANGEFINDERS_DIR = REPO_ROOT / "data" / "rangefinders"
+RF_OUT = REPO_ROOT / "frontend" / "public" / "rangefinders.json"
+SITEMAP_OUT = REPO_ROOT / "frontend" / "public" / "sitemap.xml"
+# Must match SITE_BASE_URL in tools/build.py.
+SITE_BASE_URL = "https://fcpicker.pebnum.com"
 MFR_SRC = REPO_ROOT / "data" / "manufacturers.json"
 MFR_OUT = REPO_ROOT / "frontend" / "public" / "manufacturers.json"
 
@@ -81,6 +86,46 @@ def report_manufacturer_coverage(boards: list[dict], src: Path = MFR_SRC) -> Non
         print(f"  unmapped: {shown}{more}")
 
 
+def write_sitemap(out_path: Path = SITEMAP_OUT) -> int:
+    """Write sitemap.xml covering every public route.
+
+    Lives here rather than in build.py because build.py needs an ArduPilot
+    checkout to run at all, so the sitemap only regenerated on a full import
+    and drifted whenever boards changed through the bundler alone. It also
+    omitted the rangefinder catalog entirely — 45 pages that were pre-rendered,
+    linked and served, but advertised to nobody.
+    """
+    from datetime import date
+    from xml.sax.saxutils import escape as xml_escape
+
+    today = date.today().isoformat()
+    boards = sorted(
+        (json.loads(f.read_text())["slug"] for f in BOARDS_DIR.glob("*.json")),
+        key=str.lower,
+    )
+    rangefinders = []
+    if RF_OUT.exists():
+        for rf in json.loads(RF_OUT.read_text())["rangefinders"]:
+            # Route is /rangefinder/<kind>-<slug>; see routes/Rangefinders.tsx.
+            rangefinders.append(f"{rf['kind']}-{rf['slug']}")
+    rangefinders.sort(key=str.lower)
+
+    def url(loc: str, freq: str, priority: str) -> str:
+        return (f"  <url><loc>{SITE_BASE_URL}{loc}</loc><lastmod>{today}</lastmod>"
+                f"<changefreq>{freq}</changefreq><priority>{priority}</priority></url>")
+
+    lines = ['<?xml version="1.0" encoding="UTF-8"?>',
+             '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+             url("/", "weekly", "1.0")]
+    if rangefinders:
+        lines.append(url("/rangefinders", "weekly", "0.9"))
+    lines += [url(f"/board/{xml_escape(s)}", "monthly", "0.7") for s in boards]
+    lines += [url(f"/rangefinder/{xml_escape(s)}", "monthly", "0.6") for s in rangefinders]
+    lines.append("</urlset>\n")
+    out_path.write_text("\n".join(lines))
+    return len(lines) - 3  # minus the two header lines and the closing tag
+
+
 def bundle(boards_dir: Path = BOARDS_DIR, out_path: Path = OUT_PATH) -> int:
     files = sorted(boards_dir.glob("*.json"))
     payload = [json.loads(f.read_text()) for f in files]
@@ -100,6 +145,9 @@ def main() -> int:
     m = bundle_manufacturers()
     if m:
         print(f"Bundled {m} manufacturers → {MFR_OUT.relative_to(REPO_ROOT)}")
+    urls = write_sitemap()
+    print(f"Wrote {urls} URLs → {SITEMAP_OUT.relative_to(REPO_ROOT)}")
+
     boards = [json.loads(f.read_text()) for f in sorted(BOARDS_DIR.glob("*.json"))]
     report_manufacturer_coverage(boards)
     return 0

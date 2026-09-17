@@ -13,7 +13,14 @@ import {
   useBoards,
   useManufacturers,
 } from "../data";
-import type { Board, BoardAi, BoardVariant, Manufacturer, SensorEntry } from "../types";
+import type {
+  Board,
+  BoardAi,
+  BoardDocument,
+  BoardVariant,
+  Manufacturer,
+  SensorEntry,
+} from "../types";
 import { SiblingNav } from "../SiblingNav";
 import { ReportIssue } from "../ReportIssue";
 
@@ -154,6 +161,8 @@ export default function BoardDetail() {
       <BuyLink manufacturer={manufacturerFor(boardManufacturer(b), mfrIndex)} />
 
       <Variants variants={b.manual?.variants ?? []} />
+
+      <Documents documents={b.manual?.documents ?? []} />
 
       {/* Board images — admin uploads first, then hwdef images from GitHub */}
       <BoardGallery
@@ -698,6 +707,55 @@ function Variants({ variants }: { variants: BoardVariant[] }) {
           </tbody>
         </table>
       </div>
+    </section>
+  );
+}
+
+// Vendor datasheets and manuals. Renders nothing until a board has any, which
+// is currently all of them — the extraction pass has not run yet. It exists so
+// that when it does, the data has somewhere to land.
+const DOC_KIND_LABEL: Record<BoardDocument["kind"], string> = {
+  datasheet: "Datasheet",
+  manual: "Manual",
+  pinout: "Pinout",
+  schematic: "Schematic",
+  quickstart: "Quick start",
+  other: "Document",
+};
+
+function Documents({ documents }: { documents: BoardDocument[] }) {
+  if (documents.length === 0) return null;
+
+  // Family-wide documents first, then per-variant, so a reader sees the
+  // general datasheet before the one for a specific retail version.
+  const sorted = [...documents].sort((a, b) => {
+    if (!a.variant && b.variant) return -1;
+    if (a.variant && !b.variant) return 1;
+    return (a.variant ?? "").localeCompare(b.variant ?? "");
+  });
+
+  return (
+    <section className="bd-section">
+      <h2 className="bd-h2">Vendor documentation</h2>
+      <p className="bd-target-note" style={{ marginTop: 0, marginBottom: 12 }}>
+        Hosted by the manufacturer, not by fcPicker. Links can go stale — tell us
+        if one is dead.
+      </p>
+      <ul className="bd-doclist">
+        {sorted.map((d) => (
+          <li key={d.url}>
+            <a href={d.url} target="_blank" rel="noreferrer">
+              {d.title}
+            </a>
+            <span className="bd-doc-meta">
+              {DOC_KIND_LABEL[d.kind] ?? "Document"}
+              {d.format === "pdf" && " · PDF"}
+              {d.variant && ` · ${d.variant}`}
+              {d.language && d.language !== "en" && ` · ${d.language.toUpperCase()}`}
+            </span>
+          </li>
+        ))}
+      </ul>
     </section>
   );
 }

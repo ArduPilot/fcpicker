@@ -1495,3 +1495,21 @@
   font-weight: 600;
   white-space: nowrap;
 }
+
+/* Vendor documentation list on the board page. */
+.bd-doclist {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.bd-doclist li {
+  padding: 7px 0;
+  border-bottom: 1px solid var(--rule, #f0f0f0);
+  font-size: 13.5px;
+}
+.bd-doclist li:last-child { border-bottom: none; }
+.bd-doc-meta {
+  margin-left: 8px;
+  color: var(--ink-mute);
+  font-size: 12px;
+}

@@ -11,7 +11,8 @@ import { beforeEach, describe, expect, it } from "vitest";
 import { render, screen, within } from "@testing-library/react";
 import { createMemoryRouter, RouterProvider } from "react-router-dom";
 import { routes } from "../../src/routes-config";
-import { primeAll } from "../helpers";
+import { allManufacturers, board, primeAll } from "../helpers";
+import { primeCaches } from "../../src/data";
 
 function renderApp(initialPath: string) {
   const router = createMemoryRouter(routes, { initialEntries: [initialPath] });
@@ -87,5 +88,57 @@ describe("BoardDetail", () => {
     // 3DRControlZeroG's manual.variants is empty.
     renderApp("/board/3DRControlZeroG");
     expect(screen.queryByRole("heading", { name: "Retail versions" })).not.toBeInTheDocument();
+  });
+});
+
+describe("vendor documentation", () => {
+  beforeEach(() => {
+    primeAll();
+  });
+
+  it("renders nothing while no board has documents yet", () => {
+    // Every board's manual.documents is currently empty — the extraction pass
+    // has not run. An empty section heading would be worse than no section.
+    renderApp("/board/MatekH743");
+    expect(screen.queryByRole("heading", { name: /Vendor documentation/i })).toBeNull();
+  });
+
+  it("lists documents, family-wide ones first, when a board has them", () => {
+    const b = board("MatekH743");
+    const withDocs = {
+      ...b,
+      manual: {
+        ...b.manual!,
+        documents: [
+          {
+            title: "H743-SLIM datasheet",
+            url: "https://example.invalid/slim.pdf",
+            kind: "datasheet" as const,
+            format: "pdf" as const,
+            variant: "H743-SLIM",
+            language: "en",
+            source_page: null,
+            checked: null,
+          },
+          {
+            title: "H743 family manual",
+            url: "https://example.invalid/family.pdf",
+            kind: "manual" as const,
+            format: "pdf" as const,
+            variant: null,
+            language: "en",
+            source_page: null,
+            checked: null,
+          },
+        ],
+      },
+    };
+    primeCaches({ boards: [withDocs], manufacturers: allManufacturers() });
+    renderApp("/board/MatekH743");
+
+    expect(screen.getByRole("heading", { name: /Vendor documentation/i })).toBeInTheDocument();
+    const links = screen.getAllByRole("link", { name: /H743.*(datasheet|manual)/i });
+    // The family-wide document sorts ahead of the variant-specific one.
+    expect(links[0]).toHaveTextContent("H743 family manual");
   });
 });

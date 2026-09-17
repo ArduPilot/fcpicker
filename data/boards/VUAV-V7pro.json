@@ -290,7 +290,7 @@
     "imu_count": 3,
     "variants": [],
     "documents": [],
-    "notes": null
+    "notes": "IMU count verified against the hwdef README: 'Three IMUs: ADIS16470, ICM42688, ICM42688'. The hwdef's 4th chip-select is RESERVE_CS1, an unpopulated reserve footprint."
   },
   "ai": {
     "source": "fc-verify-enrich workflow: hwdef+README+local-wiki+manufacturer cross-correlation",

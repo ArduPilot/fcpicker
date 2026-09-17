@@ -66,31 +66,31 @@ def test_baro_and_compass_within_bounds(boards):
     assert not bad, f"displayed baro/compass count outside 0..3: {bad}"
 
 
+# Boards whose hwdef declares more IMU chip-selects than ArduPilot can
+# instantiate. Every one has a human-verified manual.imu_count recording the
+# real number; this set exists so a NEW one cannot appear unnoticed.
+KNOWN_RAW_IMU_OVERCOUNT = {"QioTekZealotF427", "QioTekZealotH743", "VUAV-V7pro"}
+
+
 def test_raw_imu_overcount_is_tracked(boards):
-    """MAX_IMU_SLOTS caps the *displayed* IMU count at 3, which can mask a
-    parser problem: a board whose hwdef genuinely yields 4+ distinct physical
-    IMU slots (SPI chip-select / I2C bus channel) silently gets rounded down
-    to "3" in the UI instead of surfacing as a bug. Compute the RAW, uncapped
-    slot count here so an overcount stays a visible, tracked list of parse
-    problems rather than being swallowed by the display cap.
+    """The parser reading more than 3 IMU positions must stay a known set.
 
-    If this starts failing for new boards, investigate each one (duplicate
-    BOARD_MATCH variants being counted as separate slots is the usual cause)
-    before deciding whether to fix the parser or extend the xfail list.
+    It is not an error in itself — the QioTek Zealot and VUAV V7pro genuinely
+    expose a fourth chip-select for alternates or a reserve footprint, all
+    confirmed against the wiki or the hwdef README. A board appearing here
+    unannounced means either a new such board or a parser regression, and both
+    want a human look before the displayed count is trusted.
     """
-    offenders = []
-    for b in boards:
-        raw = positions(b["imus"])
-        if raw > MAX_IMU_SLOTS:
-            offenders.append(f"{b['slug']} (raw={raw})")
-
-    if offenders:
-        pytest.xfail(
-            "boards with raw (uncapped) IMU slot count > "
-            f"{MAX_IMU_SLOTS}, masked by the frontend's display cap: "
-            + ", ".join(offenders)
-        )
-
+    over = {b["slug"] for b in boards if positions(b["imus"]) > MAX_IMU}
+    new = sorted(over - KNOWN_RAW_IMU_OVERCOUNT)
+    assert not new, (
+        "new board(s) parsing above the IMU ceiling:\n  "
+        + "\n  ".join(f"{s}: raw={next(positions(b['imus']) for b in boards if b['slug'] == s)}" for s in new)
+        + "\n\nCheck the hwdef, then record a verified manual.imu_count and add the "
+          "slug here."
+    )
+    gone = sorted(KNOWN_RAW_IMU_OVERCOUNT - over)
+    assert not gone, f"no longer overcounting — remove from KNOWN_RAW_IMU_OVERCOUNT: {gone}"
 
 def test_chibios_boards_have_mcu_family(boards):
     bad = [

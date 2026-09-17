@@ -88850,7 +88850,7 @@
         "imu_count": 3,
         "variants": [],
         "documents": [],
-        "notes": null
+        "notes": "IMU count verified against the ArduPilot wiki (common-qiotek-zealot): 'Gyro/Accelerometers: ICM20689, ICM20602, and BMI088' \u2014 3. The hwdef exposes a 4th chip-select because BMI055/BMI088 and ICM20649/ICM42605 are alternates sharing footprints across board revisions."
       },
       "ai": {
         "source": "fc-verify-enrich workflow: hwdef+README+local-wiki+manufacturer cross-correlation",
@@ -113559,7 +113559,7 @@
         "imu_count": 3,
         "variants": [],
         "documents": [],
-        "notes": null
+        "notes": "IMU count verified against the hwdef README: 'Three IMUs: ADIS16470, ICM42688, ICM42688'. The hwdef's 4th chip-select is RESERVE_CS1, an unpopulated reserve footprint."
       },
       "ai": {
         "source": "fc-verify-enrich workflow: hwdef+README+local-wiki+manufacturer cross-correlation",

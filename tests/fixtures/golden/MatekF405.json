@@ -38,6 +38,7 @@
   "pwm_fmu": 6,
   "pwm_io": 0,
   "readme": null,
+  "readme_name": null,
   "repo_url": null,
   "sbus_out": false,
   "sdcard": true,

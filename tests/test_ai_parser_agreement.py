@@ -34,10 +34,17 @@ MCU_TARGET_ALIASES = {
 # Boards where the two sources genuinely disagree, as of writing. Shrink this
 # by fixing the data, never extend it to silence a failure.
 KNOWN_UART_DIVERGENCE = {"AIRLink", "BETAFPV-F405-I2C", "JHEMCU-H743HD", "PH4-mini"}
-# Two of these matter more than the rest: sanity_check.py independently flags
-# CubeRedPrimary-PPPGW and Pixhawk6X-PPPGW as "3 IMU but 0 baro — verify
-# against wiki", and the extraction pass agrees they do have a barometer. Two
-# independent signals pointing at the same parser gap.
+# CubeRedPrimary-PPPGW and Pixhawk6X-PPPGW are the instructive ones, and they
+# cut against the AI rather than for it. Both hwdefs explicitly `undef BARO`:
+# they are PPP-gateway builds with the sensors deliberately stripped, so the
+# parser's "no barometer" is correct and the extraction pass is wrong. It read
+# the parent board's wiki page rather than the variant's.
+#
+# That is the pass's characteristic failure mode — conflating a firmware
+# variant (-PPPGW, -ODID, -bdshot) with the physical board it derives from —
+# and it is worth knowing before trusting any of these entries in either
+# direction. sanity_check.py's matching "3 IMU but 0 baro" SOFT warning on
+# these two is a false positive for the same reason.
 KNOWN_FEATURE_DIVERGENCE = {
     "BeastH7v2", "CubeRedPrimary-PPPGW", "FlywooH743Pro", "GEPRC_TAKER_H743",
     "IFLIGHT_2RAW_H7", "MambaF405US-I2C", "MambaF405v2", "Pixhawk6X-PPPGW",

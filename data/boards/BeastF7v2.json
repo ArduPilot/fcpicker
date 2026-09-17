@@ -171,7 +171,7 @@
     "tracker",
     "blimp"
   ],
-  "docs_url": "https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_HAL_ChibiOS/hwdef/BeastF7v2/README.md",
+  "docs_url": "https://ardupilot.org/copter/docs/common-iflight-beastf7AIO.html",
   "repo_url": null,
   "manual": {
     "status": "not_started",

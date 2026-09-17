@@ -195,7 +195,7 @@
     "tracker",
     "blimp"
   ],
-  "docs_url": "https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_HAL_ChibiOS/hwdef/IFLIGHT_2RAW_H7/README.md",
+  "docs_url": "https://ardupilot.org/copter/docs/common-iflight-thunder-H7.html",
   "repo_url": null,
   "manual": {
     "status": "not_started",

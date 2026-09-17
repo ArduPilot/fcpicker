@@ -34,14 +34,10 @@ NOT_A_BOARD = {
 # failed. Remove entries as they are fixed; never add to this list to make a
 # failing test pass — a new entry means a real regression.
 KNOWN_UNREFERENCED = {
-    "common-StampH743",
-    "common-airvolute-DroneCore-Suite",
     "common-cuav-pixhawkv6X",
     "common-cuav-v5plus-overview",
     "common-erle-brain-linux-autopilot",
-    "common-foxeerf745aio",
     "common-holybro-pix32v6",
-    "common-iflight-thunder-H7",
     "common-intel-aero-rtf",
     "common-makeflyeasy-PixSurveyA1",
     "common-matekf405-se",

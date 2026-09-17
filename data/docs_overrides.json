@@ -31,5 +31,11 @@
   "TMotorH743": "https://ardupilot.org/copter/docs/common-tmotor-h7-mini.html",
   "skyviper-f412-rev1": "https://ardupilot.org/dev/docs/skyviper.html",
   "AIRLink": "https://ardupilot.org/copter/docs/common-skydrones-airlink.html",
-  "skyviper-journey": "https://ardupilot.org/copter/docs/skyrocket.html"
+  "skyviper-journey": "https://ardupilot.org/copter/docs/skyrocket.html",
+  "BeastF7v2": "https://ardupilot.org/copter/docs/common-iflight-beastf7AIO.html",
+  "CBU-H7-Stamp": "https://ardupilot.org/copter/docs/common-StampH743.html",
+  "CubeGreen-solo": "https://ardupilot.org/copter/docs/common-thecube-overview.html",
+  "IFLIGHT_2RAW_H7": "https://ardupilot.org/copter/docs/common-iflight-thunder-H7.html",
+  "ReaperF745": "https://ardupilot.org/copter/docs/common-foxeerf745aio.html",
+  "Airvolute-DCS2": "https://ardupilot.org/copter/docs/common-airvolute-DroneCore-Suite.html"
 }

@@ -20,11 +20,11 @@
         "accton iot"
       ],
       "name": "Accton-IoT",
-      "website": null,
+      "website": "https://www.accton-iot.com/",
       "store_url": null,
       "distributors_url": null,
       "country": "TW",
-      "verified": false,
+      "verified": true,
       "ardupilot_partner": false
     },
     {
@@ -217,11 +217,11 @@
         "arkin labs private limited"
       ],
       "name": "Arkin Labs",
-      "website": null,
+      "website": "https://www.arkinlabs.in/",
       "store_url": null,
       "distributors_url": null,
       "country": "IN",
-      "verified": false,
+      "verified": true,
       "ardupilot_partner": false
     },
     {
@@ -256,12 +256,13 @@
         "b cube"
       ],
       "name": "B-Cube",
-      "website": null,
+      "website": "https://blog.rctoysky.com/",
       "store_url": null,
       "distributors_url": null,
       "country": null,
-      "verified": false,
-      "ardupilot_partner": false
+      "verified": true,
+      "ardupilot_partner": false,
+      "note": "Blog/brand site for their own FC products (e.g. B-CUBE F745 V2); also hosts documentation for the unrelated open-source PilotPi shield."
     },
     {
       "id": "beagleboard org",
@@ -373,12 +374,13 @@
         "clearsky"
       ],
       "name": "ClearSky",
-      "website": null,
+      "website": "https://air-link.space",
       "store_url": null,
       "distributors_url": null,
       "country": null,
       "verified": false,
-      "ardupilot_partner": false
+      "ardupilot_partner": false,
+      "note": "Client-rendered SPA with no static content to confirm identity via automated fetch. ArduPilot wiki explicitly links this URL as the ClearSky Airlink vendor page, with stores at rushop.air-link.space and via astroX."
     },
     {
       "id": "coolfly",
@@ -386,12 +388,13 @@
         "coolfly"
       ],
       "name": "Coolfly",
-      "website": null,
+      "website": "https://www.cecooleye.cn/",
       "store_url": null,
       "distributors_url": null,
       "country": null,
-      "verified": false,
-      "ardupilot_partner": false
+      "verified": true,
+      "ardupilot_partner": false,
+      "note": "Company identifies as 酷天（厦门）微电子有限公司 (Coolfly Xiamen Microelectronics Co., Ltd.); URL is the one linked from the KT-FMU-F1 hwdef README as manufacturer."
     },
     {
       "id": "corvon",
@@ -467,12 +470,13 @@
         "dheeran labs"
       ],
       "name": "Dheeran Labs",
-      "website": null,
+      "website": "https://dheeranlabs.in/",
       "store_url": null,
       "distributors_url": null,
       "country": "IN",
       "verified": false,
-      "ardupilot_partner": false
+      "ardupilot_partner": false,
+      "note": "dheeranlabs.in returns 403 to automated requests from two different user agents; the domain is right but resolution could not be reproduced, so this is not recorded as verified."
     },
     {
       "id": "diatone",
@@ -493,11 +497,11 @@
         "droneer"
       ],
       "name": "Droneer",
-      "website": null,
+      "website": "http://www.droneer.com/",
       "store_url": null,
       "distributors_url": null,
       "country": null,
-      "verified": false,
+      "verified": true,
       "ardupilot_partner": true
     },
     {
@@ -545,11 +549,11 @@
         "f4by team"
       ],
       "name": "F4BY Team",
-      "website": null,
+      "website": "https://f4by.com/",
       "store_url": null,
       "distributors_url": null,
       "country": null,
-      "verified": false,
+      "verified": true,
       "ardupilot_partner": false
     },
     {
@@ -681,7 +685,8 @@
       "distributors_url": null,
       "country": null,
       "verified": false,
-      "ardupilot_partner": false
+      "ardupilot_partner": false,
+      "note": "takeyourgear.com, named in the AIRBRAINH743 hwdef README as the manufacturer site, does not resolve (NXDOMAIN); likely defunct or rebranded. Leaving URLs null."
     },
     {
       "id": "geprc",
@@ -767,12 +772,13 @@
         "horizon31"
       ],
       "name": "Horizon31",
-      "website": null,
+      "website": "https://horizon31.com/",
       "store_url": null,
       "distributors_url": null,
       "country": "US",
       "verified": false,
-      "ardupilot_partner": false
+      "ardupilot_partner": false,
+      "note": "Connection refused when fetched from this environment; independent sources (ORNL licensing press release, Military Embedded Systems company profile) corroborate horizon31.com as Horizon31, LLC."
     },
     {
       "id": "hw",
@@ -888,12 +894,13 @@
         "lefei rc"
       ],
       "name": "lefei rc",
-      "website": null,
+      "website": "https://www.lefeirc.com/",
       "store_url": null,
       "distributors_url": null,
       "country": null,
       "verified": false,
-      "ardupilot_partner": false
+      "ardupilot_partner": false,
+      "note": "Site is live but serves a JS anti-bot clearance challenge, blocking automated fetch; could not confirm content. A prior report indicated this domain had lapsed, so status is uncertain."
     },
     {
       "id": "lumenier",
@@ -956,11 +963,11 @@
         "mft savunma ve havac l k ltd ti"
       ],
       "name": "MFT Savunma ve Havacılık",
-      "website": null,
+      "website": "https://www.mftsavunma.com.tr/",
       "store_url": null,
       "distributors_url": null,
       "country": "TR",
-      "verified": false,
+      "verified": true,
       "ardupilot_partner": false
     },
     {
@@ -1106,12 +1113,13 @@
         "pilotgaea"
       ],
       "name": "PilotGaea",
-      "website": null,
+      "website": "https://www.pilotgaea.com.tw/",
       "store_url": null,
       "distributors_url": null,
       "country": "TW",
       "verified": false,
-      "ardupilot_partner": false
+      "ardupilot_partner": false,
+      "note": "Connection refused/timed out when fetched from this environment; GitHub org PilotGaea2001 and other sources corroborate this domain."
     },
     {
       "id": "principiot",
@@ -1119,11 +1127,11 @@
         "principiot"
       ],
       "name": "PrincipIoT",
-      "website": null,
+      "website": "https://principiot.com/",
       "store_url": null,
       "distributors_url": null,
       "country": null,
-      "verified": false,
+      "verified": true,
       "ardupilot_partner": false
     },
     {
@@ -1163,7 +1171,8 @@
       "distributors_url": null,
       "country": null,
       "verified": false,
-      "ardupilot_partner": false
+      "ardupilot_partner": false,
+      "note": "svehicle.cn, named in the SVehicle-E2 hwdef README as the manufacturer site, now redirects with a notice that it moved to vekopilot.com (operated by 唯科智能/VekoPilot). The new site does not self-identify as \"S-Vehicle\", so the rebrand is unconfirmed; leaving URLs null."
     },
     {
       "id": "saam drones",
@@ -1223,11 +1232,11 @@
         "sierra aerospace"
       ],
       "name": "Sierra Aerospace",
-      "website": null,
+      "website": "https://sierraaerospace.in/",
       "store_url": null,
       "distributors_url": null,
       "country": null,
-      "verified": false,
+      "verified": true,
       "ardupilot_partner": false
     },
     {
@@ -1289,12 +1298,13 @@
         "skyrocket"
       ],
       "name": "SkyRocket",
-      "website": null,
+      "website": "https://skyviper.com/",
       "store_url": null,
       "distributors_url": null,
       "country": "US",
-      "verified": false,
-      "ardupilot_partner": false
+      "verified": true,
+      "ardupilot_partner": false,
+      "note": "Consumer brand is \"Sky Viper\"; support domain (support.skyrocketon.com) confirms SkyRocket as the parent company ardupilot docs name."
     },
     {
       "id": "skyrukh",
@@ -1302,12 +1312,13 @@
         "skyrukh"
       ],
       "name": "SkyRukh",
-      "website": null,
+      "website": "https://skyrukh.com/",
       "store_url": null,
       "distributors_url": null,
       "country": null,
       "verified": false,
-      "ardupilot_partner": false
+      "ardupilot_partner": false,
+      "note": "DNS for this domain resolves to 127.0.0.1 from this environment (possibly sinkholed or parked); could not confirm live content despite search results describing an active Skyrukh autopilot/GNSS business at this URL."
     },
     {
       "id": "skysakurarc",
@@ -1382,12 +1393,13 @@
         "standard systems"
       ],
       "name": "Standard Systems",
-      "website": null,
+      "website": "https://standardsystems.tech/",
       "store_url": null,
       "distributors_url": null,
       "country": null,
       "verified": false,
-      "ardupilot_partner": false
+      "ardupilot_partner": false,
+      "note": "Returns a Cloudflare error 1001 (origin DNS resolution failure) from this environment; the ResoluteH7 hwdef README names this URL as the manufacturer site, but it is not currently resolving to live content."
     },
     {
       "id": "stingbee",
@@ -1395,11 +1407,11 @@
       "aliases": [
         "stingbee"
       ],
-      "website": null,
+      "website": "https://stingbee.com.ua/",
       "store_url": null,
       "distributors_url": null,
       "country": null,
-      "verified": false,
+      "verified": true,
       "ardupilot_partner": false
     },
     {
@@ -1427,7 +1439,8 @@
       "distributors_url": null,
       "country": null,
       "verified": false,
-      "ardupilot_partner": false
+      "ardupilot_partner": false,
+      "note": "swift-flyer.com, listed as the website on the Swift-Flyer GitHub org page (source of the F4BY firmware team), does not resolve; likely defunct or lapsed. Leaving URLs null."
     },
     {
       "id": "t motor",
@@ -1504,12 +1517,13 @@
         "thepeach"
       ],
       "name": "ThePeach",
-      "website": null,
+      "website": "https://thepeach.kr/english/",
       "store_url": null,
       "distributors_url": null,
       "country": "KR",
       "verified": false,
-      "ardupilot_partner": false
+      "ardupilot_partner": false,
+      "note": "Site serves a JS cookie-based bot challenge that blocks automated fetch; independent sources corroborate ThePeach as a South Korean flight-controller/FCC company based in Daejeon."
     },
     {
       "id": "tustin dynamics",
@@ -1530,11 +1544,11 @@
         "uav dev gmbh"
       ],
       "name": "UAV-DEV GmbH",
-      "website": null,
+      "website": "https://www.uav-dev.com/en",
       "store_url": null,
       "distributors_url": null,
       "country": "DE",
-      "verified": false,
+      "verified": true,
       "ardupilot_partner": false
     },
     {
@@ -1543,11 +1557,11 @@
         "v uav"
       ],
       "name": "V-UAV",
-      "website": null,
+      "website": "http://www.v-uav.com/",
       "store_url": null,
       "distributors_url": null,
       "country": null,
-      "verified": false,
+      "verified": true,
       "ardupilot_partner": false
     },
     {
@@ -1570,11 +1584,11 @@
         "vololand",
         "vololand co ltd"
       ],
-      "website": null,
+      "website": "https://vololand.com/en/",
       "store_url": null,
       "distributors_url": null,
       "country": "KR",
-      "verified": false,
+      "verified": true,
       "ardupilot_partner": false
     },
     {
@@ -1596,11 +1610,11 @@
         "yari robotics"
       ],
       "name": "YARI Robotics",
-      "website": null,
+      "website": "https://yarirobotics.com/",
       "store_url": null,
       "distributors_url": null,
       "country": null,
-      "verified": false,
+      "verified": true,
       "ardupilot_partner": false
     },
     {
@@ -1628,6 +1642,22 @@
       "distributors_url": null,
       "country": "CN",
       "verified": true,
+      "ardupilot_partner": false
+    },
+    {
+      "id": "cybercraft international limited",
+      "name": "CyberCraft International Limited",
+      "aliases": [
+        "cybercraft international limited",
+        "cybercraft international",
+        "cybercraft"
+      ],
+      "website": "http://int.woocoo.vip/",
+      "store_url": null,
+      "distributors_url": null,
+      "country": null,
+      "verified": false,
+      "note": "Site listed in the CyberX-v10 hwdef README as the manufacturer/where-to-buy link. Returns HTTP 200 but is a client-rendered (Nuxt) single-page app with no server-rendered content, and no HTTPS certificate — automated fetch and browser navigation both failed to confirm company identity from the page content.",
       "ardupilot_partner": false
     }
   ]

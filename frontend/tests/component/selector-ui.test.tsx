@@ -203,7 +203,7 @@ describe("fuzzy finder help", () => {
     const help = screen.getByRole("button", { name: /What is fuzzy finding/i });
     const tip = screen.getByRole("tooltip");
     expect(help).toHaveAttribute("aria-describedby", tip.id);
-    expect(tip).toHaveTextContent(/approximate string matching/i);
+    expect(tip).toHaveTextContent(/tolerates noise/i);
   });
 
   it("does not toggle the filter when the help button is used", async () => {

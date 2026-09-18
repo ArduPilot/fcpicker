@@ -423,9 +423,7 @@ export default function Selector() {
                 ?
               </button>
               <span role="tooltip" id="fuzzy-help" className="tooltip">
-                Approximate string matching — bounded Damerau&ndash;Levenshtein.
-                Transpositions, insertions, deletions and substitutions each cost
-                one; the error budget scales with token length.
+                A search algorithm that tolerates noise in the query.
               </span>
             </span>
           </div>

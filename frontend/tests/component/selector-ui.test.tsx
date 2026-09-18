@@ -188,3 +188,32 @@ describe("keyboard accessibility", () => {
     expect(copter).toHaveAttribute("aria-pressed", "true");
   });
 });
+
+describe("fuzzy finder help", () => {
+  beforeEach(() => {
+    primeAll();
+  });
+
+  it("explains fuzzy finding only when asked", async () => {
+    const user = userEvent.setup();
+    renderApp("/");
+
+    expect(screen.getByLabelText(/Fuzzy finder/i, { selector: "input" })).toBeInTheDocument();
+    expect(screen.queryByText(/still finds/i)).toBeNull();
+
+    await user.click(screen.getByRole("button", { name: /What is fuzzy finding/i }));
+    expect(screen.getByText(/still finds/i)).toBeInTheDocument();
+  });
+
+  it("does not toggle the filter when the help button is clicked", async () => {
+    // The help button sits outside the <label> for exactly this reason.
+    const user = userEvent.setup();
+    renderApp("/");
+
+    const toggle = screen.getByLabelText(/Fuzzy finder/i, { selector: "input" });
+    expect(toggle).not.toBeChecked();
+
+    await user.click(screen.getByRole("button", { name: /What is fuzzy finding/i }));
+    expect(toggle).not.toBeChecked();
+  });
+});

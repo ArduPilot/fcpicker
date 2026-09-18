@@ -1513,3 +1513,28 @@
   color: var(--ink-mute);
   font-size: 12px;
 }
+
+/* Toggle with a help affordance beside it. */
+.toggle-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+}
+.help-btn {
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--ink-mute);
+  font-size: 11px;
+  line-height: 1;
+  cursor: pointer;
+}
+.help-btn:hover,
+.help-btn[aria-expanded="true"] {
+  border-color: var(--ap-blue);
+  color: var(--ap-blue);
+}

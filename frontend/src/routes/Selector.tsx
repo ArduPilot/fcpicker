@@ -257,6 +257,7 @@ export default function Selector() {
     [setSearchParams],
   );
   const [sort, setSort] = useState<{ key: SortKey; dir: 1 | -1 }>({ key: "slug", dir: 1 });
+  const [fuzzyHelp, setFuzzyHelp] = useState(false);
   const [csvOpen, setCsvOpen] = useState(false);
   const [csvScope, setCsvScope] = useState<"filtered" | "all">("filtered");
   const [csvCols, setCsvCols] = useState<Set<string>>(
@@ -399,18 +400,34 @@ export default function Selector() {
             value={f.query}
             onChange={(e) => set("query", e.target.value)}
           />
-          <label className="toggle" style={{ marginTop: 8 }}>
-            <input
-              type="checkbox"
-              checked={f.fuzzy}
-              onChange={(e) => set("fuzzy", e.target.checked)}
-            />
-            <span className="toggle-mark" aria-hidden />
-            <span className="toggle-label">Allow typos</span>
-          </label>
-          {f.fuzzy && (
+          <div className="toggle-row">
+            <label className="toggle">
+              <input
+                type="checkbox"
+                checked={f.fuzzy}
+                onChange={(e) => set("fuzzy", e.target.checked)}
+              />
+              <span className="toggle-mark" aria-hidden />
+              <span className="toggle-label">Fuzzy finder</span>
+            </label>
+            {/* Outside the label on purpose: inside it, clicking the help
+                button would also toggle the checkbox. */}
+            <button
+              type="button"
+              className="help-btn"
+              aria-expanded={fuzzyHelp}
+              aria-label="What is fuzzy finding?"
+              onClick={() => setFuzzyHelp((v) => !v)}
+            >
+              ?
+            </button>
+          </div>
+          {fuzzyHelp && (
             <p className="filter-note">
-              Matching approximately — a few mistyped characters still find the board.
+              Finds a board even when you mistype it — <em>Pixhwak</em> still finds
+              Pixhawk. Swapped, missing, extra and wrong letters all count as one
+              mistake each; longer words allow more of them. Short words allow none,
+              since almost anything would match.
             </p>
           )}
         </div>

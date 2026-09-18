@@ -194,18 +194,19 @@ describe("fuzzy finder help", () => {
     primeAll();
   });
 
-  it("explains fuzzy finding only when asked", async () => {
-    const user = userEvent.setup();
+  it("describes the toggle without needing a click", () => {
+    // A hover tip: the text is present in the DOM and associated with the
+    // button, shown by CSS on hover and focus. Rendering it always is what
+    // makes it reachable by a screen reader, which has no hover at all.
     renderApp("/");
 
-    expect(screen.getByLabelText(/Fuzzy finder/i, { selector: "input" })).toBeInTheDocument();
-    expect(screen.queryByText(/still finds/i)).toBeNull();
-
-    await user.click(screen.getByRole("button", { name: /What is fuzzy finding/i }));
-    expect(screen.getByText(/still finds/i)).toBeInTheDocument();
+    const help = screen.getByRole("button", { name: /What is fuzzy finding/i });
+    const tip = screen.getByRole("tooltip");
+    expect(help).toHaveAttribute("aria-describedby", tip.id);
+    expect(tip).toHaveTextContent(/spelling mistakes/i);
   });
 
-  it("does not toggle the filter when the help button is clicked", async () => {
+  it("does not toggle the filter when the help button is used", async () => {
     // The help button sits outside the <label> for exactly this reason.
     const user = userEvent.setup();
     renderApp("/");

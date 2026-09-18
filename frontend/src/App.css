@@ -1533,8 +1533,56 @@
   line-height: 1;
   cursor: pointer;
 }
-.help-btn:hover,
-.help-btn[aria-expanded="true"] {
+.help-wrap:hover .help-btn,
+.help-btn:focus-visible {
   border-color: var(--ap-blue);
   color: var(--ap-blue);
+}
+
+/* Hover tip. Shown on focus too: a hover-only tip does not exist for anyone
+   tabbing through the page or using a touchscreen. */
+.help-wrap {
+  position: relative;
+  display: inline-flex;
+}
+.tooltip {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+  width: max-content;
+  max-width: 230px;
+  padding: 7px 10px;
+  border-radius: 6px;
+  background: var(--ap-navy);
+  color: #fff;
+  font-size: 12px;
+  line-height: 1.45;
+  font-style: normal;
+  text-align: left;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 120ms ease;
+  pointer-events: none;
+}
+.tooltip em {
+  font-style: normal;
+  color: var(--ap-blue-soft, #bcdcff);
+}
+/* The little arrow, so it reads as pointing at the "?" rather than floating. */
+.tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: var(--ap-navy);
+}
+.help-wrap:hover .tooltip,
+.help-btn:focus-visible + .tooltip {
+  opacity: 1;
+  visibility: visible;
 }

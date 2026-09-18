@@ -257,7 +257,6 @@ export default function Selector() {
     [setSearchParams],
   );
   const [sort, setSort] = useState<{ key: SortKey; dir: 1 | -1 }>({ key: "slug", dir: 1 });
-  const [fuzzyHelp, setFuzzyHelp] = useState(false);
   const [csvOpen, setCsvOpen] = useState(false);
   const [csvScope, setCsvScope] = useState<"filtered" | "all">("filtered");
   const [csvCols, setCsvCols] = useState<Set<string>>(
@@ -410,34 +409,25 @@ export default function Selector() {
               <span className="toggle-mark" aria-hidden />
               <span className="toggle-label">Fuzzy finder</span>
             </label>
-            {/* Outside the label on purpose: inside it, clicking the help
-                button would also toggle the checkbox. */}
-            <button
-              type="button"
-              className="help-btn"
-              aria-expanded={fuzzyHelp}
-              aria-label="What is fuzzy finding?"
-              onClick={() => setFuzzyHelp((v) => !v)}
-            >
-              ?
-            </button>
+            {/* Outside the label on purpose: inside it, hovering the help
+                affordance would also target the checkbox. The button stays
+                focusable so the tip is reachable by keyboard and on touch,
+                where there is no hover at all. */}
+            <span className="help-wrap">
+              <button
+                type="button"
+                className="help-btn"
+                aria-describedby="fuzzy-help"
+                aria-label="What is fuzzy finding?"
+              >
+                ?
+              </button>
+              <span role="tooltip" id="fuzzy-help" className="tooltip">
+                Lets the search forgive small spelling mistakes — <em>Pixhwak</em>{" "}
+                still finds Pixhawk.
+              </span>
+            </span>
           </div>
-          {fuzzyHelp && (
-            <p className="filter-note">
-              Normally the search only shows boards whose name contains exactly what
-              you typed, so a single wrong letter finds nothing at all. Fuzzy finding
-              accepts near misses as well: it counts how many letters would have to
-              change to turn what you typed into the real name, and keeps anything
-              close enough. So <em>Pixhwak</em> still finds Pixhawk, and{" "}
-              <em>Matek H734</em> still finds the MatekH743.
-              <br />
-              <br />
-              A swapped pair, a missing letter, an extra one or a wrong one each
-              count as a single mistake. Longer words allow two; short ones allow
-              none, because almost every board would be within a letter of a
-              three-character word and the list would stop narrowing anything.
-            </p>
-          )}
         </div>
 
         <div className="sidebar-block">

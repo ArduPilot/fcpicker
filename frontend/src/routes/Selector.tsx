@@ -1,5 +1,12 @@
-import { useEffect, useMemo, useState, type KeyboardEvent, type ReactNode } from "react";
-import { Link } from "react-router-dom";
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+  type KeyboardEvent,
+  type ReactNode,
+} from "react";
+import { Link, useSearchParams } from "react-router-dom";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 import {
@@ -16,6 +23,8 @@ import {
 import type { Board, VehicleType } from "../types";
 import {
   DEFAULTS,
+  filtersFromParams,
+  filtersToParams,
   hasBdshot,
   imuSlotCount,
   passes,
@@ -226,7 +235,27 @@ function PartnerMark({ status }: { status: PartnerStatus }) {
 export default function Selector() {
   const { boards, loading, error } = useBoards();
   const mfrIndex = useManufacturers();
-  const [f, setF] = useState<Filters>(DEFAULTS);
+  // Filters live in the query string, so Back restores them and a filtered
+  // view can be shared. The URL is the source of truth; `f` is derived.
+  const [searchParams, setSearchParams] = useSearchParams();
+  const f = useMemo(() => filtersFromParams(searchParams), [searchParams]);
+
+  const setF = useCallback(
+    (update: Filters | ((prev: Filters) => Filters)) => {
+      setSearchParams(
+        (prev) => {
+          const next =
+            typeof update === "function" ? update(filtersFromParams(prev)) : update;
+          return filtersToParams(next);
+        },
+        // replace, not push: otherwise every keystroke in the search box adds a
+        // history entry and Back walks back through them one character at a
+        // time instead of leaving the page.
+        { replace: true },
+      );
+    },
+    [setSearchParams],
+  );
   const [sort, setSort] = useState<{ key: SortKey; dir: 1 | -1 }>({ key: "slug", dir: 1 });
   const [csvOpen, setCsvOpen] = useState(false);
   const [csvScope, setCsvScope] = useState<"filtered" | "all">("filtered");
@@ -635,17 +664,6 @@ export default function Selector() {
             <span className="toggle-mark" aria-hidden />
             <span className="toggle-label">List partners first</span>
           </label>
-          <p className="filter-note">
-            Corporate Partners fund the ArduPilot project. Both options are off by
-            default, so the standard listing ranks no manufacturer above another.{" "}
-            <a
-              href="https://ardupilot.org/copter/docs/common-partners.html"
-              target="_blank"
-              rel="noreferrer"
-            >
-              See the partners page ↗
-            </a>
-          </p>
         </div>
 
         <div className="sidebar-block">

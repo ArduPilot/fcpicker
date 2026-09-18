@@ -9,14 +9,24 @@
  */
 import { beforeEach, describe, expect, it } from "vitest";
 import { render, screen, within } from "@testing-library/react";
-import { createMemoryRouter, RouterProvider } from "react-router-dom";
+import { MemoryRouter, useRoutes } from "react-router-dom";
 import { routes } from "../../src/routes-config";
 import { allManufacturers, board, primeAll } from "../helpers";
 import { primeCaches } from "../../src/data";
 
+// A plain MemoryRouter rather than createMemoryRouter: filters now live in
+// the query string, and the data router's setSearchParams does not actually
+// navigate under jsdom, so every filter interaction silently did nothing.
+function Routed() {
+  return useRoutes(routes);
+}
+
 function renderApp(initialPath: string) {
-  const router = createMemoryRouter(routes, { initialEntries: [initialPath] });
-  return render(<RouterProvider router={router} />);
+  return render(
+    <MemoryRouter initialEntries={[initialPath]}>
+      <Routed />
+    </MemoryRouter>,
+  );
 }
 
 describe("BoardDetail", () => {

@@ -52,9 +52,13 @@ test.describe("static build smoke", () => {
     await page.getByRole("link", { name: /MatekH743/ }).first().click();
     await expect(page).toHaveURL(/\/board\/MatekH743/);
 
+    // Back returns to the selector with the search still applied. Filters live
+    // in the query string precisely so this works: losing them on the way back
+    // from a board page is the moment it costs the most.
     await page.goBack();
-    await expect(page).toHaveURL(/\/$|\/index\.html$/);
+    await expect(page).toHaveURL(/\?query=MatekH743/);
     await expect(page.getByText(/of \d+ ArduPilot-supported boards/)).toBeVisible();
+    await expect(page.getByPlaceholder(/Cube, Pixhawk, Matek/i)).toHaveValue("MatekH743");
   });
 });
 

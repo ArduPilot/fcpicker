@@ -8,15 +8,31 @@
  * the same stale value and the first selection was silently lost.
  */
 import { beforeEach, describe, expect, it } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { createMemoryRouter, RouterProvider } from "react-router-dom";
+import { MemoryRouter, useRoutes } from "react-router-dom";
 import { routes } from "../../src/routes-config";
 import { primeAll } from "../helpers";
 
+// A plain MemoryRouter rather than createMemoryRouter: filters now live in
+// the query string, and the data router's setSearchParams does not actually
+// navigate under jsdom, so every filter interaction silently did nothing.
+function Routed() {
+  return useRoutes(routes);
+}
+
 function renderApp(initialPath = "/") {
-  const router = createMemoryRouter(routes, { initialEntries: [initialPath] });
-  return render(<RouterProvider router={router} />);
+  return render(
+    <MemoryRouter initialEntries={[initialPath]}>
+      <Routed />
+    </MemoryRouter>,
+  );
+}
+
+/** The M in "N of M boards match your filters". */
+function totalCount(): number {
+  const sub = screen.getByText(/of \d+ ArduPilot-supported boards/i);
+  return Number(sub.textContent!.match(/of (\d+)/)![1]);
 }
 
 /** The "N of M boards match your filters" count, as an integer. */
@@ -49,8 +65,13 @@ describe("Selector filtering", () => {
     await user.click(h7);
     await user.click(f7);
 
-    expect(h7).toHaveAttribute("aria-pressed", "true");
-    expect(f7).toHaveAttribute("aria-pressed", "true");
+    // Filters live in the URL now, so applying one is a router navigation and
+    // therefore asynchronous — assert after it settles rather than in the same
+    // tick the click returns.
+    await waitFor(() => {
+      expect(h7).toHaveAttribute("aria-pressed", "true");
+      expect(f7).toHaveAttribute("aria-pressed", "true");
+    });
   });
 
   it("ORs the MCU families, so picking two shows the sum of both", async () => {
@@ -58,8 +79,10 @@ describe("Selector filtering", () => {
     renderApp();
 
     await user.click(screen.getByRole("button", { name: "H7" }));
+    await waitFor(() => expect(visibleCount()).toBeLessThan(totalCount()));
     const h7Only = visibleCount();
     await user.click(screen.getByRole("button", { name: "F7" }));
+    await waitFor(() => expect(visibleCount()).toBeGreaterThan(h7Only));
     const both = visibleCount();
 
     // A board has exactly one MCU family, so the union must be strictly larger.
@@ -84,6 +107,6 @@ describe("Selector filtering", () => {
     const claimed = Number(label.textContent!.match(/\((\d+)\)/)![1]);
 
     await user.click(toggle);
-    expect(visibleCount()).toBe(claimed);
+    await waitFor(() => expect(visibleCount()).toBe(claimed));
   });
 });

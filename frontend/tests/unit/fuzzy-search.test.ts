@@ -6,7 +6,15 @@
  * value is in rescuing a query that would otherwise return nothing at all.
  */
 import { describe, expect, it } from "vitest";
-import { fuzzyContains, fuzzyTolerance, matchesQuery } from "../../src/selector-filter";
+import {
+  DEFAULTS,
+  filtersFromParams,
+  filtersToParams,
+  fuzzyContains,
+  fuzzyTolerance,
+  matchesQuery,
+  type Filters,
+} from "../../src/selector-filter";
 import { allBoards, board } from "../helpers";
 
 describe("fuzzyTolerance", () => {
@@ -74,5 +82,37 @@ describe("matchesQuery with fuzzy enabled", () => {
 
   it("is off by default", () => {
     expect(matchesQuery(board("MatekH743"), "Matek H734")).toBe(false);
+  });
+});
+
+describe("filter URL round-trip", () => {
+  it("writes nothing for a default filter set", () => {
+    // A plain listing should stay at a bare "/" rather than a wall of
+    // parameters that all just repeat the defaults.
+    expect(filtersToParams(DEFAULTS).toString()).toBe("");
+  });
+
+  it("restores every kind of filter value", () => {
+    const f: Filters = {
+      ...DEFAULTS,
+      query: "matek h743",
+      fuzzy: true,
+      mcus: ["STM32 H7", "STM32 F7"],
+      vehicles: ["copter", "plane"],
+      uart: 6,
+      partnersOnly: true,
+      aiWeightMin: 20,
+      manufacturers: ["matek", "holybro"],
+    };
+    expect(filtersFromParams(filtersToParams(f))).toEqual(f);
+  });
+
+  it("treats an absent parameter as the default, not as empty", () => {
+    // manufacturers defaults to null ("everything ticked"), which is not the
+    // same as [] ("nothing ticked") — conflating them would hide every board.
+    const back = filtersFromParams(new URLSearchParams("query=cube"));
+    expect(back.manufacturers).toBeNull();
+    expect(back.query).toBe("cube");
+    expect(back.mcus).toEqual([]);
   });
 });

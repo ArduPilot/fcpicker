@@ -298,3 +298,68 @@ export function passes(b: Board, f: Filters, mfrIndex?: ManufacturerIndex): bool
   }
   return true;
 }
+
+// ── URL state ───────────────────────────────────────────────────────────────
+//
+// Filters live in the query string so the browser's Back button restores them.
+// Without this, choosing a board and returning threw away everything you had
+// set up, which is the point in the session where it is most annoying to lose.
+// Making the URL the source of truth also means a filtered view can be
+// bookmarked or sent to someone.
+//
+// Only values differing from DEFAULTS are written, so a plain listing stays at
+// a bare "/" instead of a wall of parameters that are all just the defaults.
+
+/** Serialise the non-default parts of a filter set into query parameters. */
+export function filtersToParams(f: Filters): URLSearchParams {
+  const params = new URLSearchParams();
+  for (const [key, def] of Object.entries(DEFAULTS) as [keyof Filters, unknown][]) {
+    const value = f[key] as unknown;
+    if (Array.isArray(def)) {
+      const arr = value as string[];
+      if (arr.length) params.set(key, arr.join(","));
+      continue;
+    }
+    if (value === def) continue;
+    if (value === null) continue;      // null is "no bound" / "everything"
+    if (typeof value === "boolean") {
+      if (value) params.set(key, "1");
+      continue;
+    }
+    if (Array.isArray(value)) {
+      // manufacturers is string[] | null; null (the default) means "all ticked".
+      if (value.length) params.set(key, value.join(","));
+      continue;
+    }
+    params.set(key, String(value));
+  }
+  return params;
+}
+
+/** Rebuild a filter set from query parameters, falling back to DEFAULTS. */
+export function filtersFromParams(params: URLSearchParams): Filters {
+  const out = { ...DEFAULTS } as Record<string, unknown>;
+  for (const [key, def] of Object.entries(DEFAULTS)) {
+    const raw = params.get(key);
+    if (raw === null) continue;
+    if (Array.isArray(def)) {
+      out[key] = raw ? raw.split(",").filter(Boolean) : [];
+    } else if (typeof def === "boolean") {
+      out[key] = raw === "1" || raw === "true";
+    } else if (typeof def === "number") {
+      const n = Number(raw);
+      if (Number.isFinite(n)) out[key] = n;
+    } else if (def === null) {
+      // Either a numeric bound (aiWeightMin…) or the manufacturer list.
+      if (key === "manufacturers") {
+        out[key] = raw ? raw.split(",").filter(Boolean) : null;
+      } else {
+        const n = Number(raw);
+        if (Number.isFinite(n)) out[key] = n;
+      }
+    } else {
+      out[key] = raw;
+    }
+  }
+  return out as unknown as Filters;
+}

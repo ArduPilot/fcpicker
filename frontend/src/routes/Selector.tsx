@@ -424,10 +424,18 @@ export default function Selector() {
           </div>
           {fuzzyHelp && (
             <p className="filter-note">
-              Finds a board even when you mistype it — <em>Pixhwak</em> still finds
-              Pixhawk. Swapped, missing, extra and wrong letters all count as one
-              mistake each; longer words allow more of them. Short words allow none,
-              since almost anything would match.
+              Normally the search only shows boards whose name contains exactly what
+              you typed, so a single wrong letter finds nothing at all. Fuzzy finding
+              accepts near misses as well: it counts how many letters would have to
+              change to turn what you typed into the real name, and keeps anything
+              close enough. So <em>Pixhwak</em> still finds Pixhawk, and{" "}
+              <em>Matek H734</em> still finds the MatekH743.
+              <br />
+              <br />
+              A swapped pair, a missing letter, an extra one or a wrong one each
+              count as a single mistake. Longer words allow two; short ones allow
+              none, because almost every board would be within a letter of a
+              three-character word and the list would stop narrowing anything.
             </p>
           )}
         </div>

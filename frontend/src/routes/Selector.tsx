@@ -423,8 +423,7 @@ export default function Selector() {
                 ?
               </button>
               <span role="tooltip" id="fuzzy-help" className="tooltip">
-                Lets the search forgive small spelling mistakes — <em>Pixhwak</em>{" "}
-                still finds Pixhawk.
+                Lets the search forgive small spelling mistakes.
               </span>
             </span>
           </div>

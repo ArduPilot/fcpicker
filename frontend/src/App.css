@@ -1567,10 +1567,6 @@
   transition: opacity 120ms ease;
   pointer-events: none;
 }
-.tooltip em {
-  font-style: normal;
-  color: var(--ap-blue-soft, #bcdcff);
-}
 /* The little arrow, so it reads as pointing at the "?" rather than floating. */
 .tooltip::after {
   content: "";

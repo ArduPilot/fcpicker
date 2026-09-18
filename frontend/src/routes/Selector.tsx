@@ -423,7 +423,9 @@ export default function Selector() {
                 ?
               </button>
               <span role="tooltip" id="fuzzy-help" className="tooltip">
-                Lets the search forgive small spelling mistakes.
+                Approximate string matching — bounded Damerau&ndash;Levenshtein.
+                Transpositions, insertions, deletions and substitutions each cost
+                one; the error budget scales with token length.
               </span>
             </span>
           </div>

@@ -44,6 +44,8 @@ export function imuSlotCount(b: Board): number {
 
 export interface Filters {
   query: string;
+  // Allow approximate matches in the search box. Off by default.
+  fuzzy: boolean;
   // Ticked manufacturer keys (see manufacturerKey). null = everything ticked,
   // i.e. no filter. "" is the key for boards with no manufacturer.
   manufacturers: string[] | null;
@@ -94,6 +96,7 @@ export interface Filters {
 
 export const DEFAULTS: Filters = {
   query: "",
+  fuzzy: false,
   manufacturers: null,
   platform: "ANY",
   mcus: [],
@@ -160,20 +163,83 @@ export function searchHaystack(b: Board): string {
   return parts.map(searchFold).join(" ");
 }
 
+// How many single-character mistakes a token may contain before it stops
+// matching. Short tokens get none: at three characters an allowance of one
+// would match almost anything, and the results become noise rather than a
+// shortlist.
+export function fuzzyTolerance(token: string): number {
+  if (token.length < 4) return 0;
+  if (token.length < 8) return 1;
+  return 2;
+}
+
+// Approximate substring search: is `token` present in `hay` within `maxErrors`
+// edits — insertion, deletion, substitution, or a swap of two adjacent
+// characters?
+//
+// The swap matters more than it looks. Transposition is the most common typing
+// mistake by some distance ("pixhwak", "h734", "ornage"), and plain Levenshtein
+// charges two edits for one, so a single fumbled keystroke would blow the whole
+// budget for a short token. Including it (Damerau-Levenshtein) is what makes
+// this useful rather than merely present.
+//
+// The table's first row stays at zero, which lets a match begin at any offset —
+// so this finds the token *inside* the haystack rather than comparing the two
+// whole strings. Board names are short and there are a few hundred of them, so
+// the quadratic cost is irrelevant in practice.
+export function fuzzyContains(hay: string, token: string, maxErrors: number): boolean {
+  if (maxErrors <= 0) return hay.includes(token);
+  if (token.length === 0) return true;
+  if (hay.length === 0) return false;
+
+  const width = token.length + 1;
+  // Three rows: two back (for transposition), one back, and the current one.
+  let twoBack = new Array<number>(width).fill(0);
+  let prev = Array.from({ length: width }, (_, j) => j);
+  const cur = new Array<number>(width);
+
+  for (let i = 1; i <= hay.length; i += 1) {
+    cur[0] = 0; // a match may begin anywhere in the haystack
+    for (let j = 1; j <= width - 1; j += 1) {
+      const cost = hay[i - 1] === token[j - 1] ? 0 : 1;
+      let best = Math.min(prev[j - 1] + cost, prev[j] + 1, cur[j - 1] + 1);
+      if (
+        i > 1 && j > 1 &&
+        hay[i - 1] === token[j - 2] &&
+        hay[i - 2] === token[j - 1]
+      ) {
+        best = Math.min(best, twoBack[j - 2] + 1); // adjacent swap costs one
+      }
+      cur[j] = best;
+    }
+    if (cur[width - 1] <= maxErrors) return true;
+    twoBack = prev;
+    prev = cur.slice();
+  }
+  return false;
+}
+
 // Every whitespace-separated token must appear, so "matek h743" narrows rather
 // than widening — each token is matched against the folded haystack, which is
 // why a query with separators still finds a solid slug.
-export function matchesQuery(b: Board, query: string): boolean {
+//
+// With `fuzzy` on, a token may also match approximately, which turns a typo
+// ("pixhwak") into a result instead of an empty list. Off by default: exact
+// matching is predictable, and a search that quietly returns near-misses is
+// worse when you knew exactly what you were looking for.
+export function matchesQuery(b: Board, query: string, fuzzy = false): boolean {
   const tokens = query.trim().split(/\s+/).map(searchFold).filter(Boolean);
   if (tokens.length === 0) return true;
   const hay = searchHaystack(b);
-  return tokens.every((t) => hay.includes(t));
+  return tokens.every((t) =>
+    hay.includes(t) || (fuzzy && fuzzyContains(hay, t, fuzzyTolerance(t))),
+  );
 }
 
 export function passes(b: Board, f: Filters, mfrIndex?: ManufacturerIndex): boolean {
   if (!f.includeDiscontinued && b.manual?.discontinued) return false;
   if (f.partnersOnly && !(mfrIndex && isPartnerBoard(b, mfrIndex))) return false;
-  if (f.query && !matchesQuery(b, f.query)) return false;
+  if (f.query && !matchesQuery(b, f.query, f.fuzzy)) return false;
   if (f.manufacturers != null && !f.manufacturers.includes(manufacturerKey(boardManufacturer(b), mfrIndex)))
     return false;
   if (f.platform !== "ANY" && b.platform !== f.platform) return false;

@@ -370,6 +370,20 @@ export default function Selector() {
             value={f.query}
             onChange={(e) => set("query", e.target.value)}
           />
+          <label className="toggle" style={{ marginTop: 8 }}>
+            <input
+              type="checkbox"
+              checked={f.fuzzy}
+              onChange={(e) => set("fuzzy", e.target.checked)}
+            />
+            <span className="toggle-mark" aria-hidden />
+            <span className="toggle-label">Allow typos</span>
+          </label>
+          {f.fuzzy && (
+            <p className="filter-note">
+              Matching approximately — a few mistyped characters still find the board.
+            </p>
+          )}
         </div>
 
         <div className="sidebar-block">
